@@ -13,7 +13,8 @@
 //
 // Bindings: RADAR (KV namespace), SOURCE (raiz "raw" do repositório), GITHUB_REPO (dono/repo),
 // opcionais GITHUB_TOKEN (segredo; Contents: Read e Actions: Read and write — com ele o
-// repositório pode ser privado) e LIMITER (rate limit).
+// repositório pode ser privado), LIMITER (rate limit) e CANONICAL_ORIGIN (endereço oficial,
+// ex.: https://radar.favcode.com.br; o endereço .workers.dev passa a redirecionar para ele).
 
 const PAGE_KEY = 'page';
 const PAGE_VERSION_KEY = 'page:generatedAt';
@@ -193,6 +194,10 @@ function foreignReferer(request, url) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    // O endereço provisório (.workers.dev) leva ao domínio oficial, com o mesmo caminho.
+    if (env.CANONICAL_ORIGIN && url.hostname.endsWith('.workers.dev')) {
+      return Response.redirect(`${env.CANONICAL_ORIGIN}${url.pathname}${url.search}`, 301);
+    }
     const head = request.method === 'HEAD';
     if (request.method !== 'GET' && !head) {
       return new Response('Método não permitido', { status: 405, headers: { allow: 'GET, HEAD' } });
