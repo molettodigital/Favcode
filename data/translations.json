@@ -1,29 +1,13 @@
 {
  "version": 1,
  "entries": {
-  "0033be2e56539a97": {
-   "t": "A Target vai abrir uma loja nos Hamptons. E ela não é vermelha.",
-   "s": "A cor característica da varejista não aparece na fachada do prédio da nova unidade em Bridgehampton, Nova York."
-  },
   "00cd27110b37cb9c": {
    "t": "Este artefato queer esquecido era a chave da paquera à moda antiga",
    "s": "Muito antes de a comunidade queer ter apps como Grindr e Sniffies para encontros discretos, homens gays acompanhavam os parceiros disponíveis do jeito analógico. Em bares sem placa, sob a luz de luminárias pendentes e…"
   },
-  "01860fe561b3fa8b": {
-   "t": "No Meta Connect, os óculos inteligentes da empresa estavam por toda parte",
-   "s": "A dona do Facebook e do Instagram quer manter os consumidores conectados ao mundo digital com sua linha cada vez maior de óculos inteligentes."
-  },
   "074e8cec38daea90": {
    "t": "Marcas deixadas por ursos ondulam nestas pranchas de surfe de cedro japonês",
    "s": "Ursos-negros-asiáticos deixam veios irregulares no cedro, que é moldado à mão e selado sob uma laca urushi brilhante."
-  },
-  "0809981ca1a9f363": {
-   "t": "Pesquisadores ligam o GPT-6 Astra direto a um robô e o deixam arrumar uma cozinha desconhecida",
-   "s": "Pesquisadores de Stanford e da Caltech fizeram um robô humanoide movido pelo GPT-6 Astra arrumar sozinho uma cozinha que não conhecia. O sistema HomeBody dispensa uma camada de controle treinada especialmente e deixa o modelo de linguagem…"
-  },
-  "08e9a8d62fdc7120": {
-   "t": "OpenAI pausa o treinamento dos seus ‘modelos mais capazes’",
-   "s": "Com o acúmulo de relatos de modelos da OpenAI escapando do controle, invadindo sites e saindo dos trilhos, a empresa decidiu pausar o treinamento dos seus modelos mais poderosos. A decisão foi tomada…"
   },
   "08fe1d2bc4f035a5": {
    "t": "Por que agências perdem clientes nos primeiros 90 dias (e como evitar)",
@@ -41,18 +25,6 @@
    "t": "Chefe do Instagram compartilha detalhes do algoritmo e dicas de publicação",
    "s": "Numa nova série de vídeos, Adam Mosseri responde a preocupações sobre a influência do algoritmo e sugere como os creators podem melhorar seus resultados."
   },
-  "1b31b4fd9fc8ac95": {
-   "t": "Neighborhood Intelligence refaz o acordo com a Fathom",
-   "s": "A empresa antes conhecida como Bed Bath & Beyond Inc. pretende aproveitar “praticamente todos” os seus ativos digitais, incluindo a tZero, ativos ligados à Medici e investimentos na GrainChain."
-  },
-  "1bcffb9e67ce4a26": {
-   "t": "Agentes da OpenAI tentaram invadir um site da ONU por ‘força bruta’",
-   "s": "O pesquisador de segurança Rowan Howard-Jones diz que agentes da OpenAI varreram mais de 16 mil vezes, entre abril e junho, o site de estatísticas da Conferência das Nações Unidas sobre Comércio e Desenvolvimento (UNCTAD). Embora o incidente não chegue a…"
-  },
-  "1c6786a63dd5844c": {
-   "t": "CEO do YouTube, Neal Mohan, dá de ombros para a tentativa da Meta de convencer rivais a adotar recursos de segurança",
-   "s": "Neal Mohan teve uma semana agitada. Na quarta-feira, o CEO do YouTube comandou a apresentação de novos produtos e recursos no evento anual Made On. Depois de sair do palco, Mohan fez outra…"
-  },
   "1e91a0c0b96fa673": {
    "t": "Por dentro do design do app Sleepiest, da Cuberto",
    "s": "A Cuberto criou o Sleepiest com paletas atmosféricas em modo escuro e controles de áudio hápticos e fluidos, num app pensado para noites tranquilas. A Cuberto abordou o Sleepiest com um compromisso inabalável com…"
@@ -61,49 +33,25 @@
    "t": "AMentoria capta US$ 196 mil em rodada seed para expandir plataforma de educação no Brasil",
    "s": "A edtech brasileira AMentoria captou US$ 196 mil numa rodada seed liderada pela Triaxis Capital e pela Crescera Capital por meio do FIP Nordeste…"
   },
-  "2e8af792e758df90": {
-   "t": "Campaign Trail: Brooklinen faz internamente sua primeira campanha com celebridades",
-   "s": "Laura Jacobs, CMO da marca de roupas de cama DTC, detalha a campanha “Best. Sheets. Ever”, que reúne nomes da comédia, da música e do esporte."
-  },
   "2eefdad056ca57b5": {
    "t": "O novo point dos alunos do ensino fundamental é a seção de comentários da NPR?",
    "s": "Quando funcionários da NPR marcaram como bots uns comentários estranhos nos podcasts da rádio no Spotify, foi preciso uma colega da geração Z para decifrar o mistério na hora."
-  },
-  "35638ec8fbe51e20": {
-   "t": "Seguradoras dizem que a IA já está encarecendo a saúde",
-   "s": "A Blue Cross Blue Shield diz que o uso de ferramentas de IA pelos hospitais gerou US$ 942 milhões a mais em gastos com saúde em dois anos."
   },
   "39495f2d4577c2d9": {
    "t": "Databricks compra a Row Zero e procura mais startups para adquirir",
    "s": "A Databricks comprou a startup de planilhas na nuvem Row Zero, mais uma aquisição na sua temporada de compras de 2026."
   },
-  "3aaf30c236b08463": {
-   "t": "CEO da Anthropic vai jantar com o presidente Trump",
-   "s": "Será o primeiro encontro a sós entre Dario Amodei e Donald Trump"
-  },
   "3c503d73b6dc7f8e": {
    "t": "Novas ferramentas de e-commerce: 23 de setembro de 2026",
    "s": "Nesta semana: novidades sobre anúncios no ChatGPT, pagamentos digitais, entregas autenticadas, comércio agêntico, modelos de CRM, logística, marketing de afiliados, feedback de clientes e mais."
-  },
-  "3d3f3b08fe2067b4": {
-   "t": "Identidade de marca e design de UI/UX: dose, por Sungsik Kim",
-   "s": "Sungsik Kim criou a identidade de marca e o design de UI/UX do dose, que acompanha o consumo de cafeína com marcadores circulares em matriz de pontos. A maioria dos apps de café oferece escolhas simples, como grãos descafeinados…"
   },
   "43fb59c76ea5f03d": {
    "t": "CEO da Havas, Yannick Bolloré, fala de compra de mídia principal, da liberdade da Uncommon e do seu papel na prospecção de clientes",
    "s": "O líder da holding explica por que não está fazendo movimentos drásticos para ganhar escala."
   },
-  "4930a43e370f3f09": {
-   "t": "Seoul Design Award 2026 revela os 10 finalistas e abre votação pública para o grande prêmio",
-   "s": "A votação pública global do Seoul Design Award 2026 já está aberta para definir o resultado final."
-  },
   "4986cf32154cdc3c": {
    "t": "Nuvia capta US$ 1,8 milhão para expandir agentes de vendas com IA pela América Latina",
    "s": "A startup brasileira de IA Nuvia captou US$ 1,8 milhão numa rodada liderada pela Amador Capital e pela Nascent. NXTP, Crivo Ventures,…"
-  },
-  "499a9664a2e667d8": {
-   "t": "X vai avisar usuários quando governos o obrigarem a limitar seus posts",
-   "s": "O X está ampliando sua ferramenta de transparência “Under the Hood” para mostrar quando posts foram rebaixados ou retidos por causa de leis locais e exigências de governos, incluindo qual país fez o pedido."
   },
   "4ad9fb0af0e995d0": {
    "t": "Scrunch x Peec AI: como escolher a ferramenta de AEO certa [2026]",
@@ -129,10 +77,6 @@
    "t": "Com o Muse Charm, da Meta, a IA entra na sua fase kawaii",
    "s": "A IA tem, no mínimo, um problema de imagem, com o aumento do medo de que a tecnologia leve a desemprego em massa e à extinção humana. Por isso, para o novo agente de IA Muse e um dispositivo associado, a Meta está apostando…"
   },
-  "5ad4552c0e2e2953": {
-   "t": "Que desgosto: A Vaca que Ri perde o sorriso",
-   "s": "A marca de queijo trocou o sorriso icônico da mascote por uma cara de preocupação numa nova e misteriosa ação de marketing."
-  },
   "5d14dbb0fbb4e0a8": {
    "t": "Braço americano do TikTok entra no Lantern, iniciativa entre plataformas pela segurança infantil",
    "s": "Oito meses depois de criar uma joint venture nos EUA, o TikTok se junta a outras plataformas para apoiar o trabalho conjunto do setor pela segurança infantil."
@@ -149,10 +93,6 @@
    "t": "TikTok vai pagar pelo menos US$ 100 milhões em acordo no Alabama",
    "s": "O TikTok vai pagar ao Alabama pelo menos US$ 100 milhões em um acordo ligado a acusações de que a plataforma de vídeos curtos enganou usuários sobre segurança e foi projetada para viciar crianças."
   },
-  "60a850180df8909f": {
-   "t": "Crianças transformaram os comentários de um podcast da NPR em grupo de conversa",
-   "s": "Alunos do ensino fundamental, provavelmente bloqueados em outros apps e redes sociais, transformaram a seção de comentários do Spotify de um episódio do Wild Card, da NPR, num grupo de conversa improvisado. Em um novo episódio do This American…"
-  },
   "615130c6eca93106": {
    "t": "Ticker: Kara Swisher confirma saída da CNN após a conclusão da fusão Paramount-WBD",
    "s": "O Dateline comemora a estreia da 35ª temporada iluminando o Empire State Building."
@@ -164,10 +104,6 @@
   "64175a63b6c6adc7": {
    "t": "Com o entusiasmo pelos comerciais do Super Bowl em queda, consumidores preferem mensagens simples",
    "s": "Dados da MarketCast mostram que peças criativas de CTV e TV linear sobre família, outono e custo-benefício estão agradando o público."
-  },
-  "6611e26a3a206199": {
-   "t": "Criei um avatar digital interativo de mim mesmo, e você pode conversar com ele",
-   "s": "Depois de conseguir um avatar interativo e treiná-lo para falar sobre fraudes em venture capital, fiquei com sentimentos contraditórios sobre criar clones de nós mesmos com IA."
   },
   "6d083bd762d110d5": {
    "t": "LLMs são máquinas do tempo que não dizem o quanto você viajou",
@@ -181,14 +117,6 @@
    "t": "O melhor da semana: embalagens estruturais e grids suíços",
    "s": "Reunimos o melhor da semana em embalagem, branding, design editorial e tipografia da semana ISO 2026-W39, com destaque para formas arquitetônicas e para o ofício da impressão. O fio condutor editorial desta semana…"
   },
-  "7093fc47fc30473d": {
-   "t": "Agentes de IA fazem cada vez mais do trabalho no desenvolvimento de modelos, mas as decisões seguem com os humanos",
-   "s": "Uma equipe de pesquisa analisou 769 registros de tarefas da construção do próprio modelo de IA. Agentes de IA fizeram até 55% das propostas de método, mas humanos tomaram mais de 85% das decisões finais. Um terço das tarefas não teria…"
-  },
-  "75fa05bc37cd002c": {
-   "t": "Crusoe desiste de plano de US$ 1,25 bilhão para usar turbinas da Boom em data centers de IA",
-   "s": "Blake Scholl, CEO da Boom Supersonic, disse que as novas usinas estacionárias da empresa saíram dos planos de curto prazo da Crusoe."
-  },
   "769b33b1a3deebc6": {
    "t": "Big-Box Briefing: Best Buy põe a TV conectada no centro da sua oferta de retail media",
    "s": "A Best Buy coloca cada vez mais suas raízes em eletrônicos no centro da oferta de retail media. Na quarta-feira, a empresa fez seu evento anual para mostrar o que vem por aí no negócio de retail media, incluindo…"
@@ -197,21 +125,9 @@
    "t": "“Temos o tipo de coisa que a IA gostaria de saber fazer”: por que a confiança importa mais do que nunca para a marca da NASA",
    "s": "Conversamos com David Rager, diretor de criação da NASA, sobre o branding da agência espacial."
   },
-  "7821401e581bb167": {
-   "t": "O Muse consegue superar os problemas de confiança da Meta?",
-   "s": "No Equity, discutimos como o anúncio de IA da Meta conseguiu roubar os holofotes da OpenAI e da Anthropic."
-  },
-  "79da7f842b24474d": {
-   "t": "Nvidia lança modelo gratuito de 100 milhões de parâmetros que identifica até oito vozes em tempo real",
-   "s": "A Nvidia lançou o Nemotron 3 Diarization, um modelo de IA que identifica quem está falando a cada momento de uma conversa. O artigo Nvidia lança modelo gratuito de 100 milhões de parâmetros que identifica até oito…"
-  },
   "7b1fd22fb2bde92d": {
    "t": "A versão só em texto do seu site tira a camada errada",
    "s": "Tire a camada visual e uma máquina ainda consegue usar um site. Tire a estrutura, como faz o markdown, e ela só consegue ler sobre ele."
-  },
-  "7b9f282e1bbeca5b": {
-   "t": "Mascotes de M&M’s trocam de gênero em anúncios que brincam com clichês de cinema e TV",
-   "s": "A BBDO Chicago está por trás de “Screentime”, campanha que dá um toque de humor a thrillers policiais, novelas e ao “Survivor”."
   },
   "7c458d0518bb49f6": {
    "t": "O que é preciso para criar ótimos produtos hoje",
@@ -229,10 +145,6 @@
    "t": "Como salvar o trabalho de UX júnior que ensina o ofício na era da IA. Nossa área depende disso.",
    "s": "A automação está assumindo tarefas com que os juniores aprendiam. Aqui estão sete tarefas que devolvem a prática, para manter o elemento humano da experiência do usuário e formar a equipe de 2030. Muitos times que conheço pararam de passar transcrições…"
   },
-  "85f737aaa49c90a5": {
-   "t": "Dario Amodei, da Anthropic, vira piada no SNL",
-   "s": "\"A IA é o diabo e eu, o seu criador.\""
-  },
   "89bbd2d417c55def": {
    "t": "YouTube transforma o Ask YouTube em vitrine para descobrir produtos",
    "s": "O YouTube está adicionando recursos de compra ao Ask YouTube, que pode organizar vídeos de review de produtos numa tabela comparativa e responder perguntas nas páginas dos vídeos."
@@ -249,10 +161,6 @@
    "t": "TikTok aceita restrições de uso para adolescentes no Alabama",
    "s": "As medidas são muito parecidas com as que a Meta concordou em adotar no acordo recente fechado na Califórnia."
   },
-  "910f94ddddf0da04": {
-   "t": "Não basta montar uma ativação. Dê ao público um motivo para abraçar a marca",
-   "s": ""
-  },
   "9327b1ff142d7163": {
    "t": "Meta apresenta óculos com IA sem câmera",
    "s": "A Meta diz que os óculos sem câmera serão mais leves e terão até 12 horas de bateria."
@@ -260,10 +168,6 @@
   "9417cf32998c1c3e": {
    "t": "Teste seus produtos para ser encontrado pela IA",
    "s": "O objetivo é ligar as necessidades de quem compra ao seu produto para que um sistema de IA o recomende."
-  },
-  "95acc10deeccc217": {
-   "t": "OpenAI diz que de 80% a 90% da sua pesquisa já mira o GPT 7 e além",
-   "s": "Boris Power, chefe de pesquisa aplicada da OpenAI, diz que de 80% a 90% da pesquisa da empresa é voltada ao GPT 7, ao GPT 8 e além. As melhorias dentro de uma mesma geração são, de propósito, apostas de curto prazo. Mas Power…"
   },
   "9645b522b264fcf1": {
    "t": "Por que o laptop de US$ 100 da OLPC nunca teve chance",
@@ -277,17 +181,9 @@
    "t": "O que as regras do YouTube sobre transtornos alimentares significam para o futuro do mukbang?",
    "s": "Há mais de uma década, as transmissões de mukbang estão entre as maiores curiosidades da internet. Em 2026, porém, pais e empresas de tecnologia se preocupam com padrões imitáveis de alimentação desordenada no conteúdo de creators, e…"
   },
-  "9b3a178d8583f2cd": {
-   "t": "CEO da TJX: modelo de distribuição vai ajudar a enfrentar o El Niño",
-   "s": "A estratégia de cadeia de suprimentos da varejista de descontos permite segurar estoque em vez de mandá-lo direto para as lojas."
-  },
   "a3ce304674cbf0ad": {
    "t": "Profissionais de marketing lamentam a cultura do ‘está bom, pode ir’, com a queda de padrões em meio à bolha da IA",
    "s": "‘Afogados em mensuração’, os profissionais de marketing repensam prioridades numa internet em que existem ‘dois públicos’."
-  },
-  "aa6d65488aff8d09": {
-   "t": "Design de espaços: manifestações de privacidade na Eurojust, por Silo",
-   "s": "O Silo criou intervenções disciplinadas de design de ambientes nas divisórias da Eurojust, equilibrando bem a privacidade interna. A Eurojust combate o crime transfronteiriço na Europa a partir da sua sede em Haia…"
   },
   "aa8bac65160c9462": {
    "t": "O poder do aprendizado baseado em produto",
@@ -301,21 +197,9 @@
    "t": "YouTube se recusa a entrar no acordo da Meta sobre danos a adolescentes",
    "s": "O CEO Neal Mohan disse à CNN nesta semana que o YouTube investiu pesado em medidas de segurança para usuários jovens e vai continuar investindo."
   },
-  "b401eee607ff39d0": {
-   "t": "Por que a Instacart aposta em reduzir o sobrepreço dos itens para crescer sua plataforma de entregas",
-   "s": "O CEO da Instacart, Chris Rogers, diz que sobrepreços menores no online, vantagens de fidelidade e opções de entrega mais baratas são cruciais para aumentar as vendas de supermercado online nos próximos anos."
-  },
-  "b85542b5d151474d": {
-   "t": "Como a Tecovas usa música no seu marketing de inspiração western",
-   "s": "A marca de roupas quer passar uma mensagem autêntica ao se associar a artistas em ascensão, como a banda country Chaparelle, na campanha de jeans de outono."
-  },
   "bc865a713e102ff4": {
    "t": "O diretor George Jaques mostra os bastidores de ‘Sunny Dancer’, comédia de amadurecimento sobre câncer",
    "s": ""
-  },
-  "bdd2db3f6e38dac3": {
-   "t": "Apple é condenada a pagar US$ 5,7 bilhões por patentes de tecnologia háptica",
-   "s": "A Taction, empresa de tecnologia háptica, processou a Apple em 2021 alegando violação de duas patentes. Agora um júri federal em San Diego concedeu à Taction mais de US$ 5,7 bilhões em indenização. Segundo a CNBC, \"o processo girava em torno…"
   },
   "c0bc8fa76038caad": {
    "t": "Agentes de IA não vão consertar dados ruins de audiência, vão amplificá-los",
@@ -324,14 +208,6 @@
   "c0f4f357dcc4c3ef": {
    "t": "Quando informar o uso de IA? O framework PACED",
    "s": "A reação das pessoas ao saber que a IA ajudou a criar um conteúdo varia com o público, o contexto, a natureza e o grau de uso da IA."
-  },
-  "c403ee4d7b656883": {
-   "t": "O cemitério da casa inteligente está ficando lotado",
-   "s": "Esta é a The Stepback, newsletter semanal que destrincha uma história essencial do mundo da tecnologia. Para saber mais sobre a situação frágil dos seus dispositivos conectados, siga Jennifer Pattison Tuohy. A Stepback chega na nossa…"
-  },
-  "caf1752a02ae7fcd": {
-   "t": "Como a Jeep está traçando um novo rumo para o seu marketing",
-   "s": "A nova campanha “This Is Jeep Country” celebra a herança americana da marca, enquanto extensões multiculturais conversam com um cenário fragmentado."
   },
   "cb5af6d82cc92434": {
    "t": "Moonbug entra na fase “Big Feelings” e lança uma “empresa de música totalmente integrada”",
@@ -365,10 +241,6 @@
    "t": "Alumínio e aço aparafusado transformam cama plataforma em peça arquitetônica na Paris Design Week",
    "s": "Roupas de cama de algodão egípcio da brut studios vestem a cama arquitetônica criada por rik frans jansen."
   },
-  "d5cf1adad4b71a3a": {
-   "t": "Design de marca: FORMA Material Culture, por Luciano Quintana",
-   "s": "O FORMA, de Luciano Quintana, apresenta um estudo ousado de branding. A identidade do festival explora a cultura material e o ciclo de vida dos objetos depois do uso. Luciano Quintana construiu o FORMA em torno da cultura material…"
-  },
   "d6fa05f86b04f70b": {
    "t": "Erro de TI apaga 11 anos de histórico de acesso a prontuários de maternidade em hospitais",
    "s": "Os hospitais ingleses recuperaram apenas os dados de atendimento dos pacientes."
@@ -389,25 +261,9 @@
    "t": "Jordan Matter vai passar um dia inteiro respondendo perguntas no VidSummit para ensinar tudo o que sabe a creators mais jovens",
    "s": "Na próxima semana, no VidSummit 2026, Jordan Matter vai fazer algo inédito: passar um dia inteiro numa sala, de porta aberta, respondendo a todas as perguntas que outros creators fizerem. Matter…"
   },
-  "e433fe67fdc9a934": {
-   "t": "Veteranos da Anthropic estariam comprando terras isoladas para o caso de a “IA sair do controle”",
-   "s": "Segundo o Wall Street Journal, alguns dos funcionários mais antigos da Anthropic estão pensando em comprar terras em regiões remotas dos EUA como refúgio caso a IA saia do controle. A reportagem mostra os laços profundos da empresa com o…"
-  },
-  "ea7317ad9b087baf": {
-   "t": "Creators que convertem: 4 líderes de negócio falam de resultados de marketing em todo o funil",
-   "s": "Por que o conteúdo de creators deve ser tratado como um ativo central de mídia paga."
-  },
   "ed68dbe7850b64bc": {
    "t": "Seja como o St. Mike’s: a resposta estava escondida no nome do hospital",
    "s": ""
-  },
-  "f069fd7a49b1cd71": {
-   "t": "Wayfair aumenta o investimento em esporte para sua plataforma de marca baseada em valores",
-   "s": "A varejista reforça sua nova ação multiplicando por cinco o investimento em publicidade nas emissoras que transmitem jogos de futebol americano."
-  },
-  "f1a05bcb92c51e0b": {
-   "t": "Inca Kola muda de marca enquanto a outra guerra das colas esquenta no mundo",
-   "s": "Há um detalhe polêmico."
   },
   "f7547d4aed5ac5f6": {
    "t": "MoMA explora a beleza útil do design de informação",
