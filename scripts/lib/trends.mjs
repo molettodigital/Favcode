@@ -80,6 +80,9 @@ export function extractProperNouns(title, { titleCase, known } = {}) {
     const tok = t.text;
     const usable =
       tok.length >= 2 &&
+      // Só letras e números (evita "R$", "US$", "#1"), com pelo menos duas letras.
+      /^[\p{L}\d][\p{L}\d.+&'’-]*$/u.test(tok) &&
+      (tok.match(/\p{L}/gu) || []).length >= 2 &&
       (isCapitalized(tok) || isDistinctive(tok)) &&
       !STOPWORDS.has(tok.toLowerCase()) &&
       !/^\d/.test(tok) &&

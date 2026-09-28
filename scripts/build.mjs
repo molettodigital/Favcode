@@ -5,6 +5,7 @@
 // Uso:
 //   node scripts/build.mjs                    busca os feeds na internet
 //   RADAR_FIXTURES=pasta node scripts/build.mjs  lê <pasta>/<slug-da-fonte>-<editoria>.xml (testes offline)
+//   node scripts/build.mjs --template-only    reaplica o template às manchetes do index.html atual (sem internet)
 //   SITE_URL=https://radar.favcode.com.br     endereço público, usado nas tags de compartilhamento
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -77,6 +78,14 @@ function safePath(url) {
   } catch {
     return '';
   }
+}
+
+/** Tira assinaturas de rede social e sufixos de fonte do fim do título. */
+function tidyTitle(title) {
+  return title
+    .replace(/\s+via\s+@\w+(?:\s*,\s*@\w+)*\s*$/i, '')
+    .replace(/\s+[|–—-]\s+(?:Olhar Digital|Canaltech|Tecnoblog|g1|TechCrunch|The Verge|Adweek|Propmark|ADNEWS|B9)\s*$/i, '')
+    .trim();
 }
 
 function routeColumn(feed, title) {
@@ -155,7 +164,7 @@ async function build() {
         column: routeColumn(feed, entry.title),
         source: sourceId,
         lang: feed.lang,
-        title: truncate(entry.title, 200),
+        title: truncate(tidyTitle(entry.title), 200),
         url,
         date,
         summary: entry.summary ? truncate(entry.summary, 220) : '',
@@ -240,7 +249,15 @@ async function writeSite(data) {
   await writeFile(OUTPUT, html);
 }
 
-build().catch((err) => {
+async function renderTemplateOnly() {
+  const current = await readFile(OUTPUT, 'utf8');
+  const m = /<script type="application\/json" id="radar-data">([\s\S]*?)<\/script>/.exec(current);
+  if (!m) throw new Error(`Não encontrei as manchetes em ${path.relative(ROOT, OUTPUT)}. Rode o build completo.`);
+  await writeSite(JSON.parse(m[1]));
+  console.log(`✔ ${path.relative(ROOT, OUTPUT)} atualizado com o template atual.`);
+}
+
+(process.argv.includes('--template-only') ? renderTemplateOnly() : build()).catch((err) => {
   console.error(`\n✗ ${err.message}`);
   process.exit(1);
 });

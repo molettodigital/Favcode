@@ -57,6 +57,7 @@ test('detecta nomes próprios sem pegar a primeira palavra da frase', () => {
   assert.deepEqual(extractProperNouns('Sam Altman diz que a OpenAI vai abrir escritório no Brasil'), ['Altman', 'OpenAI', 'Brasil']);
   assert.deepEqual(extractProperNouns('Why Every Designer Should Learn Figma Variables'), [], 'título em Title Case não vira termo');
   assert.deepEqual(extractProperNouns('iPhone 18 Pro Leaks Show New Camera'), ['iPhone']);
+  assert.deepEqual(extractProperNouns('Startup capta R$ 40 milhões e US$ 8 milhões com a Kaszek'), ['Kaszek']);
 });
 
 test('em alta: soma fontes e evita termos redundantes', () => {
@@ -92,6 +93,10 @@ test('descarta ofertas, guias de compra e tutoriais, mas mantém notícia', () =
     'Melhor notebook Asus: 9 modelos para comprar em 2026',
     'Como recuperar a senha do aplicativo e-Título',
     'The best Apple deals this week',
+    '8 polêmicas mais estranhas da história da Nintendo',
+    'Kindle x Galaxy Z Fold 8: qual é melhor para ler quadrinhos?',
+    'Quanto custaria um Volkswagen Pointer GTI hoje, com a inflação?',
+    'Edição de 28 de setembro de 2026',
   ];
   for (const t of junk) assert.ok(matchesAny(noise, t), `deveria descartar: ${t}`);
   const news = [

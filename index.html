@@ -116,6 +116,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; }
+  [hidden] { display: none !important; }
   html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   body {
     margin: 0;
@@ -262,6 +263,7 @@
     display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 0 0 16px;
     font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #7ff3ff;
   }
+  @media (max-width: 559px) { .eyebrow__sep { display: none; } .eyebrow time { flex-basis: 100%; } }
   .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--cyan); box-shadow: 0 0 0 0 rgba(1, 245, 255, 0.6); animation: live 2.4s ease-out infinite; }
   @keyframes live { 0% { box-shadow: 0 0 0 0 rgba(1, 245, 255, 0.55); } 70%, 100% { box-shadow: 0 0 0 10px rgba(1, 245, 255, 0); } }
   .console h1 {
@@ -275,6 +277,11 @@
   .stats dt { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: #8f99cc; }
   .stats dd { margin: 0; font-family: var(--font-display); font-weight: 600; font-size: 1.375rem; font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
   .stats dd.is-stale { color: #ffc46b; }
+  @media (max-width: 559px) {
+    .stats { gap: 8px 16px; }
+    .stats dd { font-size: 1.1875rem; }
+    .stats dt { font-size: 0.625rem; letter-spacing: 0.08em; }
+  }
   .newsince {
     margin: 18px 0 0; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px 6px 10px; border-radius: 999px;
     background: rgba(1, 245, 255, 0.1); border: 1px solid rgba(1, 245, 255, 0.28); color: #bff9ff; font-size: 0.875rem; font-weight: 500;
@@ -320,13 +327,13 @@
   .console__trends { grid-area: trends; min-width: 0; }
   .trends-title { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #8f99cc; margin-bottom: 10px; }
   .trends {
-    list-style: none; margin: 0 calc(-1 * clamp(20px, 3.4vw, 44px)); padding: 2px clamp(20px, 3.4vw, 44px) 6px;
+    position: relative; list-style: none; margin: 0 calc(-1 * clamp(20px, 3.4vw, 44px)); padding: 2px clamp(20px, 3.4vw, 44px) 6px;
     display: flex; gap: 8px; overflow-x: auto; scroll-snap-type: x proximity; scrollbar-width: none; overscroll-behavior-x: contain;
   }
   .trends::-webkit-scrollbar { display: none; }
   .trends li { scroll-snap-align: start; flex: 0 0 auto; }
   .trend {
-    display: grid; grid-template-columns: auto auto; align-items: center; gap: 2px 10px;
+    position: relative; display: grid; grid-template-columns: auto auto auto; align-items: center; gap: 2px 10px;
     padding: 10px 14px; border-radius: 14px; text-decoration: none; color: #fff;
     background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(143, 153, 204, 0.22);
     transition: background-color 0.15s ease, border-color 0.15s ease;
@@ -335,7 +342,7 @@
   .trend[aria-current='page'] { background: rgba(1, 245, 255, 0.16); border-color: var(--cyan); }
   .trend__rank { font-family: var(--font-mono); font-size: 0.75rem; color: #7ff3ff; font-variant-numeric: tabular-nums; }
   .trend__term { font-family: var(--font-display); font-weight: 600; font-size: 1rem; letter-spacing: -0.01em; white-space: nowrap; }
-  .trend__meta { grid-column: 2; font-family: var(--font-mono); font-size: 0.6875rem; color: #9aa4d6; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .trend__meta { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: #9aa4d6; white-space: nowrap; font-variant-numeric: tabular-nums; }
   .trend__bar { display: none; }
   .trends-empty { color: #b9c1ea; margin: 0; }
 
@@ -367,7 +374,7 @@
   .toolbar.is-stuck { border-bottom-color: var(--line); }
   .toolbar .wrap { display: flex; align-items: center; gap: 12px; padding-block: 10px; }
   .chips {
-    list-style: none; margin: 0; padding: 2px; display: flex; gap: 8px; overflow-x: auto; flex: 1 1 auto; min-width: 0;
+    position: relative; list-style: none; margin: 0; padding: 2px; display: flex; gap: 8px; overflow-x: auto; flex: 1 1 auto; min-width: 0;
     scrollbar-width: none; scroll-snap-type: x proximity; overscroll-behavior-x: contain;
     mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
     -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 28px), transparent);
@@ -376,15 +383,13 @@
   .chips li { flex: 0 0 auto; scroll-snap-align: start; }
   .chips li:last-child { padding-right: 24px; }
   .chip {
-    display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 8px; border-radius: 999px;
+    position: relative; display: inline-flex; align-items: center; gap: 7px; height: 40px; padding: 0 14px; border-radius: 999px;
     border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink);
     text-decoration: none; font-weight: 600; font-size: 0.9375rem; white-space: nowrap;
     transition: border-color 0.15s ease, background-color 0.15s ease;
   }
-  .chip--all { padding-left: 14px; }
   .chip:hover { border-color: var(--muted); background: var(--surface-2); }
   .chip[aria-current='page'] { background: var(--chip-active-bg); border-color: var(--chip-active-bg); color: var(--chip-active-ink); }
-  .chip[aria-current='page'] .code { background: rgba(255, 255, 255, 0.16); color: #fff; }
   .chip__count { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 500; opacity: 0.7; font-variant-numeric: tabular-nums; }
 
   .code {
@@ -427,7 +432,7 @@
   .col__title { font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; letter-spacing: -0.015em; line-height: 1.2; min-width: 0; }
   .col__title a { color: inherit; text-decoration: none; }
   .col__title a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .col__count { margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .col__count { position: relative; margin-left: auto; font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
   .col__more {
     display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 4px -8px 0; padding: 12px 8px; border-radius: 10px;
     font-weight: 600; font-size: 0.9375rem; text-decoration: none; color: var(--link);
@@ -451,13 +456,14 @@
     margin: 6px 0 0; color: var(--ink-2); font-size: 0.9375rem; line-height: 1.45;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
   }
-  .story__meta { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; margin-top: 8px; font-size: 0.8125rem; color: var(--muted); min-height: 32px; }
+  .story__meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.8125rem; color: var(--muted); min-height: 36px; min-width: 0; }
   .story__meta time { font-family: var(--font-mono); font-size: 0.75rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .story__source { font-weight: 600; color: var(--ink-2); min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 60%; }
+  .story__source { font-weight: 600; color: var(--ink-2); min-width: 0; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .story__lang, .story__new, .story__meta time { flex: 0 0 auto; }
   .story__lang { font-family: var(--font-mono); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.06em; border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 4px; }
   .story__new { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--code-ink); text-transform: uppercase; letter-spacing: 0.06em; }
   .story__new::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
-  .story__actions { margin-left: auto; display: flex; gap: 2px; position: relative; z-index: 1; }
+  .story__actions { margin-left: auto; display: flex; gap: 2px; position: relative; z-index: 1; flex: 0 0 auto; }
   .act {
     width: 36px; height: 36px; border: 0; border-radius: 999px; background: transparent; color: var(--muted);
     display: inline-grid; place-items: center; transition: background-color 0.15s ease, color 0.15s ease;
@@ -565,7 +571,7 @@
     <form class="search" role="search" data-search>
       <label for="q" class="sr-only">Buscar nas manchetes</label>
       <svg aria-hidden="true"><use href="#i-search"/></svg>
-      <input id="q" name="q" type="search" placeholder="Buscar nas manchetes, ex.: TikTok…" autocomplete="off" spellcheck="false" enterkeyhint="search">
+      <input id="q" name="q" type="search" placeholder="Buscar manchetes, ex.: Figma…" autocomplete="off" spellcheck="false" enterkeyhint="search">
       <kbd class="search__kbd" aria-hidden="true">/</kbd>
       <button class="search__clear" type="button" aria-label="Limpar busca" data-search-clear><svg width="18" height="18" aria-hidden="true"><use href="#i-x"/></svg></button>
     </form>
@@ -585,9 +591,9 @@
   <div class="wrap">
     <section class="console" aria-labelledby="console-title">
       <div class="console__text">
-        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span>Radar de notícias</span><span aria-hidden="true">·</span><time data-today></time></p>
+        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span>Radar de notícias</span><span class="eyebrow__sep" aria-hidden="true">·</span><time data-today></time></p>
         <h1 id="console-title">O que está em alta hoje em <em>IA, tecnologia, marketing, design e publicidade</em></h1>
-        <p class="console__lede" data-lede>Manchetes de veículos do Brasil e do mundo, organizadas por editoria e atualizadas a cada hora. Use a estrela para favoritar o que vale guardar.</p>
+        <p class="console__lede" data-lede>Manchetes de veículos do Brasil e do mundo, por editoria, atualizadas a cada hora.</p>
         <dl class="stats">
           <div><dt>manchetes</dt><dd data-stat="items">–</dd></div>
           <div><dt>fontes</dt><dd data-stat="sources">–</dd></div>
@@ -715,7 +721,7 @@
   // ---------- Formatação ----------
   const fmtNumber = new Intl.NumberFormat('pt-BR');
   const fmtRelative = new Intl.RelativeTimeFormat('pt-BR', { numeric: 'auto', style: 'short' });
-  const fmtShortDate = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short' });
+  const fmtShortDate = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit' });
   const fmtFull = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeStyle: 'short' });
   const fmtTime = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
   const fmtToday = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -728,7 +734,7 @@
     if (abs < 24 * HOUR) return fmtRelative.format(Math.round(diff / HOUR), 'hour');
     const startOfDay = (t) => new Date(t).setHours(0, 0, 0, 0);
     if (Math.round((startOfDay(Date.now()) - startOfDay(ts)) / (24 * HOUR)) === 1) return 'ontem';
-    return fmtShortDate.format(ts).replace('.', '');
+    return fmtShortDate.format(ts);
   }
 
   const esc = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -805,7 +811,7 @@
     updated.title = fmtFull.format(GENERATED);
     updated.classList.toggle('is-stale', age > 3 * HOUR);
 
-    $('[data-lede]').textContent = `Manchetes de ${fmtNumber.format(sourceCount)} veículos do Brasil e do mundo, organizadas por editoria e atualizadas a cada hora. Use a estrela para favoritar o que vale guardar.`;
+    $('[data-lede]').textContent = `Manchetes de ${fmtNumber.format(sourceCount)} veículos do Brasil e do mundo, por editoria, atualizadas a cada hora. Favorite o que vale guardar.`;
 
     const newsince = $('[data-newsince]');
     if (state.newIds.size) {
@@ -827,7 +833,7 @@
         <a class="trend" href="#em-alta=${encodeURIComponent(t.term)}" data-trend="${i}">
           <span class="trend__rank">${String(i + 1).padStart(2, '0')}</span>
           <span class="trend__term">${esc(t.term)}</span>
-          <span class="trend__meta">${plural(t.ids.length, 'manchete', 'manchetes')}<span class="sr-only">, ${plural(t.sources, 'fonte', 'fontes')}</span></span>
+          <span class="trend__meta"><span aria-hidden="true">${t.ids.length}</span><span class="sr-only">${plural(t.ids.length, 'manchete', 'manchetes')} de ${plural(t.sources, 'fonte', 'fontes')}</span></span>
           <span class="trend__bar" aria-hidden="true"><i style="--w:${Math.max(0.08, t.score / max).toFixed(3)}"></i></span>
         </a>
       </li>`,
@@ -867,23 +873,87 @@
     });
     const max = TRENDS.length ? TRENDS[0].score : 1;
     const last = Math.max(1, TRENDS.length - 1);
-    const blips = TRENDS.map((t, rank) => {
+    const toPolar = (x, y) => [(((Math.atan2(y - C, x - C) * 180) / Math.PI + 90) % 360 + 360) % 360, Math.hypot(x - C, y - C)];
+
+    // Posição inicial: setor da editoria dominante; quanto mais quente, mais perto do centro.
+    const pts = TRENDS.map((t, rank) => {
       const s = colIndex.get(t.column) ?? 0;
       const group = perSector.get(s);
       const j = group.indexOf(t);
-      const angle = s * step + step * (0.2 + (0.6 * (j + 0.5)) / group.length) + (hash(t.term) - 0.5) * 6;
-      const radius = 38 + (rank / last) * 104 + (hash(`${t.term}r`) - 0.5) * 12;
+      const angle = s * step + step * (0.15 + (0.7 * (j + 0.5)) / group.length) + (hash(t.term) - 0.5) * 4;
+      const radius = 40 + (rank / last) * 105 + (hash(`${t.term}r`) - 0.5) * 10;
       const [x, y] = polar(angle, radius);
-      const size = 3.5 + 5 * (t.score / max);
-      const color = rank < 3 ? '#01f5ff' : rank < 7 ? '#3fb8ff' : '#5b8cff';
-      const delay = ((((angle % 360) + 360) % 360) / 360) * 6;
-      const right = x >= C;
+      return { t, rank, s, x, y, size: 3.5 + 5 * (t.score / max) };
+    });
+
+    // Afasta pontos encavalados sem tirá-los do setor nem do anel útil.
+    const clamp = (p) => {
+      let [angle, radius] = toPolar(p.x, p.y);
+      const lo = p.s * step + 4;
+      const hi = (p.s + 1) * step - 4;
+      if (angle < lo || angle > hi) angle = Math.abs(angle - lo) < Math.abs(angle - hi) ? lo : hi;
+      radius = Math.min(150, Math.max(34, radius));
+      [p.x, p.y] = polar(angle, radius);
+    };
+    for (let iter = 0; iter < 80; iter++) {
+      let moved = false;
+      for (let a = 0; a < pts.length; a++) {
+        for (let b = a + 1; b < pts.length; b++) {
+          const A = pts[a];
+          const B = pts[b];
+          const dx = B.x - A.x;
+          const dy = B.y - A.y;
+          const d = Math.hypot(dx, dy) || 0.01;
+          const min = A.size + B.size + 12;
+          if (d < min) {
+            const push = (min - d) / 2;
+            A.x -= (dx / d) * push;
+            A.y -= (dy / d) * push;
+            B.x += (dx / d) * push;
+            B.y += (dy / d) * push;
+            clamp(A);
+            clamp(B);
+            moved = true;
+          }
+        }
+      }
+      if (!moved) break;
+    }
+
+    // Rótulos: só os 6 primeiros, e só onde não batem em outro rótulo.
+    const dots = pts.map((p) => ({ x: p.x - p.size - 2, y: p.y - p.size - 2, w: p.size * 2 + 4, h: p.size * 2 + 4, owner: p }));
+    const boxes = [];
+    const hits = (b, self) => dots.some((o) => o.owner !== self && b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y) || b.x < 0 || b.x + b.w > 400 || b.y < 0 || b.y + b.h > 400 || boxes.some((o) => b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
+    pts.forEach((p) => {
+      p.showLabel = false;
+      const w = p.t.term.length * 7.4 + 4;
+      const sides = p.x >= C ? ['right', 'left'] : ['left', 'right'];
+      for (const side of sides) {
+        const box = { x: side === 'right' ? p.x + p.size + 6 : p.x - p.size - 6 - w, y: p.y - 9, w, h: 18 };
+        if (!hits(box, p)) {
+          p.side = side;
+          if (p.rank < 6) {
+            p.showLabel = true;
+            boxes.push(box);
+          }
+          break;
+        }
+      }
+      if (!p.side) p.side = sides[0];
+    });
+
+    const blips = pts.map((p) => {
+      const color = p.rank < 3 ? '#01f5ff' : p.rank < 7 ? '#3fb8ff' : '#5b8cff';
+      const delay = (toPolar(p.x, p.y)[0] / 360) * 6;
+      const right = p.side === 'right';
+      const x = p.x.toFixed(1);
+      const y = p.y.toFixed(1);
       return `
-        <g class="blip${rank < 5 ? '' : ' blip--quiet'}" data-blip="${rank}" style="--c:${color};--d:${delay.toFixed(2)}s">
-          <circle class="blip__halo" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(size * 2.4).toFixed(1)}"/>
-          <circle class="blip__ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${size.toFixed(1)}"/>
-          <circle class="blip__core" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${size.toFixed(1)}"/>
-          <text class="blip__label" x="${(x + (right ? size + 7 : -size - 7)).toFixed(1)}" y="${y.toFixed(1)}" text-anchor="${right ? 'start' : 'end'}">${esc(t.term)}</text>
+        <g class="blip${p.showLabel ? '' : ' blip--quiet'}" data-blip="${p.rank}" style="--c:${color};--d:${delay.toFixed(2)}s">
+          <circle class="blip__halo" cx="${x}" cy="${y}" r="${(p.size * 2.4).toFixed(1)}"/>
+          <circle class="blip__ring" cx="${x}" cy="${y}" r="${p.size.toFixed(1)}"/>
+          <circle class="blip__core" cx="${x}" cy="${y}" r="${p.size.toFixed(1)}"/>
+          <text class="blip__label" x="${(p.x + (right ? p.size + 7 : -p.size - 7)).toFixed(1)}" y="${y}" text-anchor="${right ? 'start' : 'end'}">${esc(p.t.term)}</text>
         </g>`;
     });
     out += blips.join('');
@@ -912,7 +982,7 @@
     $('[data-chips]').innerHTML =
       `<li><a class="chip chip--all" href="#tudo" ${current === 'all' ? 'aria-current="page"' : ''}>Tudo</a></li>` +
       COLUMNS.map(
-        (c) => `<li><a class="chip" href="#${c.id}" ${current === c.id ? 'aria-current="page"' : ''}><span class="code">${esc(c.code)}</span>${esc(c.name)}<span class="chip__count" aria-hidden="true">${counts[c.id]}</span><span class="sr-only">, ${plural(counts[c.id], 'manchete', 'manchetes')}</span></a></li>`,
+        (c) => `<li><a class="chip" href="#${c.id}" ${current === c.id ? 'aria-current="page"' : ''} title="${esc(c.name)}">${esc(c.short || c.name)}<span class="chip__count" aria-hidden="true">${counts[c.id]}</span><span class="sr-only">, ${plural(counts[c.id], 'manchete', 'manchetes')}</span></a></li>`,
       ).join('');
     const active = $('.chip[aria-current="page"]');
     if (active) {
@@ -926,12 +996,15 @@
     body.innerHTML = `<div class="columns">${COLUMNS.map((c) => {
       const items = ITEMS.filter((it) => it.column === c.id && visible(it));
       const shown = items.slice(0, 7);
+      // Destaque com foto: a mais recente com imagem entre as 3 primeiras sobe para o topo.
+      const lead = shown.slice(0, 3).findIndex((it) => it.image);
+      if (lead > 0) shown.unshift(...shown.splice(lead, 1));
       return `
         <section class="col" aria-labelledby="col-${c.id}">
           <header class="col__head">
             <span class="code">${esc(c.code)}</span>
             <h2 class="col__title" id="col-${c.id}"><a href="#${c.id}">${esc(c.name)}</a></h2>
-            <span class="col__count">${plural(items.length, 'manchete', 'manchetes')}</span>
+            <span class="col__count" title="${plural(items.length, 'manchete', 'manchetes')}"><span aria-hidden="true">${items.length}</span><span class="sr-only">${plural(items.length, 'manchete', 'manchetes')}</span></span>
           </header>
           ${shown.length ? shown.map((it, i) => storyHTML(it, { variant: i === 0 ? 'lead' : 'row' })).join('') : `<p class="col__empty">Nenhuma manchete${state.lang === 'en' ? ' em inglês' : state.lang === 'pt' ? ' em português' : ''} nesta editoria agora.</p>`}
           ${items.length > shown.length ? `<a class="col__more" href="#${c.id}">Ver as ${items.length} de ${esc(c.name)}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>` : ''}
