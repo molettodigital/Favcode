@@ -217,7 +217,7 @@ async function build() {
     translator = workerTranslator(`${config.site.url}/api/translate`);
     console.log(`Tradução com a IA da Cloudflare (${config.site.url}/api/translate).`);
   }
-  const { items, stats: tr } = await translateItems(selected, {
+  const { items: translated, stats: tr } = await translateItems(selected, {
     client: hasCredentials ? new Anthropic() : null,
     translator,
     cacheFile: TRANSLATIONS,
@@ -226,6 +226,16 @@ async function build() {
   });
   console.log(`Tradução: ${tr.cached} do cache, ${tr.translated} traduzidas agora, ${tr.dropped} sem tradução ficaram de fora.`);
   for (const failure of tr.failures) console.log(`  ✗ lote não traduzido: ${failure}`);
+
+  // A tradução passa de novo pelos filtros: oferta ou assunto bloqueado escrito em inglês de um
+  // jeito que os filtros não pegaram costuma aparecer com as palavras de sempre em português.
+  const refiltered = (it) =>
+    it.lang === 'en' &&
+    (matchesAny(config.blocklist, `${it.title} \n ${it.summary}`.normalize('NFC')) !== null ||
+      matchesAny(config.noise, it.title) !== null ||
+      matchesAny(config.sponsored, `${it.title} ${it.summary}`) !== null);
+  const items = translated.filter((it) => !refiltered(it));
+  for (const it of translated.filter(refiltered)) console.log(`  ✗ descartada depois da tradução: ${it.title}`);
 
   // Toda manchete com imagem: quando o feed não traz, usa a imagem de capa da matéria.
   if (!FIXTURES) await enrichImages(items, { cacheFile: IMAGES, log: (msg) => console.log(msg) });
