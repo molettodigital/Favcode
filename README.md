@@ -40,7 +40,8 @@ Tudo fica em `config/radar.config.mjs`:
 
 - `feeds`: cada fonte tem nome, site, idioma, editoria e URL do feed. `routes` manda manchetes de fontes generalistas para a editoria certa (ex.: uma notícia de IA no Tecnoblog vai para a coluna de IA).
 - `blocklist`: assuntos que nunca entram (Google Ads, AdWords, Performance Max, Google Meu Negócio, Perfil da Empresa no Google…).
-- `noise`: posts que não são notícia (ofertas, cupons, guias de compra, tutoriais).
+- `noise`: posts que não são notícia (ofertas, cupons, guias de compra, tutoriais, listas).
+- `exclude` e `excludeUrl` por fonte: tiram assuntos ou seções fora do tema (ciência, games e carros dos portais de tecnologia, por exemplo).
 - `watchlist`: termos acompanhados no "Em alta". Nomes próprios que aparecem em várias fontes entram sozinhos.
 - `limits`: quantidade de manchetes por editoria, idade máxima e afins.
 
@@ -49,6 +50,7 @@ Tudo fica em `config/radar.config.mjs`:
 ```bash
 npm test        # testes do leitor de feeds, filtros e "Em alta"
 npm run build   # busca os feeds e gera o index.html
+npm run render  # só reaplica o template (src/) às manchetes atuais, sem internet
 ```
 
 Para testar sem internet, salve os feeds em uma pasta como `<fonte>-<editoria>.xml` (ex.: `tecnoblog-tecnologia.xml`) e rode `RADAR_FIXTURES=pasta npm run build`.

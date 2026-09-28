@@ -132,7 +132,7 @@
   a { color: var(--link); }
   button, input { font: inherit; color: inherit; }
   button { cursor: pointer; }
-  h1, h2, h3 { margin: 0; }
+  h1, h2, h3, h4 { margin: 0; }
   svg { flex-shrink: 0; }
 
   :focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; border-radius: 6px; }
@@ -418,7 +418,7 @@
   .view__head[hidden] { display: none; }
   .view__title { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2rem); letter-spacing: -0.025em; line-height: 1.15; text-wrap: balance; }
   .view__title:focus { outline: none; }
-  .view__sub { flex-basis: 100%; margin: 0; color: var(--muted); max-width: 70ch; }
+  .view__sub { flex: 1 0 100%; margin: 0; color: var(--muted); }
   .back-link { font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; margin-left: auto; padding: 6px 2px; }
   .back-link:hover { text-decoration: underline; text-underline-offset: 3px; }
   .back-link svg { width: 16px; height: 16px; transform: scaleX(-1); }
@@ -634,7 +634,7 @@
         <a class="back-link" href="#tudo" data-view-back hidden><svg aria-hidden="true"><use href="#i-arrow"/></svg>Todas as editorias</a>
         <p class="view__sub" data-view-sub></p>
       </div>
-      <fieldset class="lang lang--inline" data-lang>
+      <fieldset class="lang lang--inline" data-lang data-lang-inline>
         <legend class="sr-only">Idioma das manchetes</legend>
         <input type="radio" name="lang-m" id="lang-m-all" value="all"><label for="lang-m-all">Todas</label>
         <input type="radio" name="lang-m" id="lang-m-pt" value="pt"><label for="lang-m-pt">PT</label>
@@ -739,7 +739,7 @@
 
   const esc = (str) => String(str ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const plural = (n, one, many) => `${fmtNumber.format(n)} ${n === 1 ? one : many}`;
-  const fold = (str) => String(str).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+  const fold = (str) => String(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const sourceName = (it) => (SOURCES[it.source] && SOURCES[it.source].name) || it.sourceName || '';
   const visible = (it) => state.lang === 'all' || it.lang === state.lang;
   const isFav = (id) => state.favs.some((f) => f.id === id);
@@ -759,7 +759,7 @@
   })();
 
   // ---------- Templates ----------
-  function storyHTML(it, { variant = 'row', showColumn = false } = {}) {
+  function storyHTML(it, { variant = 'row', showColumn = false, level = 3 } = {}) {
     const fav = isFav(it.id);
     const name = sourceName(it);
     const col = COL[it.column];
@@ -769,7 +769,7 @@
       <article class="${cls}">
         ${withImage ? `<div class="story__media"><img src="${esc(it.image)}" alt="" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>` : ''}
         ${showColumn && col ? `<div class="card__kicker"><span class="code">${esc(col.code)}</span><span class="story__meta-col">${esc(col.name)}</span></div>` : ''}
-        <h3 class="story__title"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h3>
+        <h${level} class="story__title"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h${level}>
         ${it.summary && variant !== 'row' ? `<p class="story__summary">${esc(it.summary)}</p>` : ''}
         <div class="story__meta">
           ${state.newIds.has(it.id) ? '<span class="story__new">nova</span>' : ''}
@@ -1003,10 +1003,10 @@
         <section class="col" aria-labelledby="col-${c.id}">
           <header class="col__head">
             <span class="code">${esc(c.code)}</span>
-            <h2 class="col__title" id="col-${c.id}"><a href="#${c.id}">${esc(c.name)}</a></h2>
+            <h3 class="col__title" id="col-${c.id}"><a href="#${c.id}">${esc(c.name)}</a></h3>
             <span class="col__count" title="${plural(items.length, 'manchete', 'manchetes')}"><span aria-hidden="true">${items.length}</span><span class="sr-only">${plural(items.length, 'manchete', 'manchetes')}</span></span>
           </header>
-          ${shown.length ? shown.map((it, i) => storyHTML(it, { variant: i === 0 ? 'lead' : 'row' })).join('') : `<p class="col__empty">Nenhuma manchete${state.lang === 'en' ? ' em inglês' : state.lang === 'pt' ? ' em português' : ''} nesta editoria agora.</p>`}
+          ${shown.length ? shown.map((it, i) => storyHTML(it, { variant: i === 0 ? 'lead' : 'row', level: 4 })).join('') : `<p class="col__empty">Nenhuma manchete${state.lang === 'en' ? ' em inglês' : state.lang === 'pt' ? ' em português' : ''} nesta editoria agora.</p>`}
           ${items.length > shown.length ? `<a class="col__more" href="#${c.id}">Ver as ${items.length} de ${esc(c.name)}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>` : ''}
         </section>`;
     }).join('')}</div>`;
@@ -1058,6 +1058,7 @@
     else $('[data-fav-link]').removeAttribute('aria-current');
     $$('.trend').forEach((a) => a.removeAttribute('aria-current'));
 
+    $('[data-lang-inline]').hidden = r.view === 'favs';
     let announce = '';
     if (r.view === 'overview') {
       title.textContent = 'Todas as editorias';

@@ -68,7 +68,7 @@ function decodeBody(buf, contentType) {
 }
 
 function isBlocked(entry) {
-  const haystack = [entry.title, entry.summary, entry.categories.join(' '), safePath(entry.url).replace(/[-_/]+/g, ' ')].join(' \n ');
+  const haystack = [entry.title, entry.summary, entry.categories.join(' '), safePath(entry.url).replace(/[-_/]+/g, ' ')].join(' \n ').normalize('NFC');
   return matchesAny(config.blocklist, haystack) !== null;
 }
 
@@ -141,6 +141,10 @@ async function build() {
         continue;
       }
       if (matchesAny(config.noise, entry.title)) {
+        stats.noise++;
+        continue;
+      }
+      if (feed.excludeUrl && feed.excludeUrl.test(entry.url)) {
         stats.noise++;
         continue;
       }

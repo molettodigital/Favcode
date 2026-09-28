@@ -23,7 +23,7 @@ export function cleanUrl(url) {
 export function normalizeTitle(title) {
   return title
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();

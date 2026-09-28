@@ -108,3 +108,12 @@ test('descarta ofertas, guias de compra e tutoriais, mas mantém notícia', () =
   ];
   for (const t of news) assert.equal(matchesAny(noise, t), null, `deveria manter: ${t}`);
 });
+
+test('acentos decompostos (NFD) são normalizados antes dos filtros', async () => {
+  const { cleanTitle } = await import('../scripts/lib/feed-parser.mjs');
+  const nfd = 'Google Meu Negócio ganha novidades'.normalize('NFD');
+  assert.notEqual(nfd, 'Google Meu Negócio ganha novidades');
+  assert.ok(matchesAny(blocklist, cleanTitle(nfd)));
+  assert.ok(matchesAny(noise, cleanTitle('Edição de 28 de setembro de 2026'.normalize('NFD'))));
+  assert.ok(matchesAny(noise, 'Hora de jogar: uma seleção de ótimas ofertas em jogos para Xbox'));
+});

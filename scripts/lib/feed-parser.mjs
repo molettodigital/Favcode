@@ -2,15 +2,15 @@
 // Tolerante a feeds malformados: extrai o que der e ignora o resto.
 
 const NAMED_ENTITIES = {
-  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: ' ', hellip: '…', mdash: '—', ndash: '–',
+  amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", nbsp: '\u00a0', hellip: '…', mdash: '—', ndash: '–',
   lsquo: '‘', rsquo: '’', sbquo: '‚', ldquo: '“', rdquo: '”', bdquo: '„', laquo: '«', raquo: '»',
   copy: '©', reg: '®', trade: '™', middot: '·', bull: '•', deg: '°', euro: '€', pound: '£', cent: '¢',
   ordf: 'ª', ordm: 'º', iexcl: '¡', iquest: '¿', times: '×', divide: '÷', prime: '′', szlig: 'ß',
   aelig: 'æ', AElig: 'Æ', oslash: 'ø', Oslash: 'Ø', aring: 'å', Aring: 'Å', eth: 'ð', thorn: 'þ',
-  zwj: '', zwnj: '', shy: '', thinsp: ' ', ensp: ' ', emsp: ' ',
+  zwj: '', zwnj: '', shy: '', thinsp: '\u2009', ensp: '\u2002', emsp: '\u2003',
 };
 
-const COMBINING = { acute: '́', grave: '̀', circ: '̂', tilde: '̃', uml: '̈', cedil: '̧' };
+const COMBINING = { acute: '\u0301', grave: '\u0300', circ: '\u0302', tilde: '\u0303', uml: '\u0308', cedil: '\u0327' };
 
 function namedEntity(name) {
   if (Object.hasOwn(NAMED_ENTITIES, name)) return NAMED_ENTITIES[name];
@@ -53,7 +53,8 @@ function stripTags(html) {
     .replace(/<[^>]+>/g, '');
 }
 
-const collapse = (str) => str.replace(/[\s ]+/g, ' ').trim();
+// NFC: alguns feeds mandam acentos decompostos ("c" + cedilha), que os filtros não reconheceriam.
+const collapse = (str) => str.normalize('NFC').replace(/[\s\u00a0\u200b]+/g, ' ').trim();
 
 /** Texto limpo de um título: sem tags cruas, entidades decodificadas. */
 export function cleanTitle(raw) {
@@ -218,7 +219,7 @@ function pickLink(itemXml, isAtom) {
  * @returns {{ title: string, items: Array<{ title, url, date, summary, image, categories }> }}
  */
 export function parseFeed(xml, { baseUrl = '' } = {}) {
-  const src = String(xml || '').replace(/^﻿/, '');
+  const src = String(xml || '').replace(/^\ufeff/, '');
   const isAtom = /<feed\b[^>]*>/i.test(src) && /<entry\b/i.test(src);
   const channelTitle = cleanTitle(getTag(src.replace(/<(item|entry)\b[\s\S]*$/i, ''), ['title']));
 

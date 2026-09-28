@@ -23,7 +23,7 @@ const STARTUP = /\bstartups?\b|\brodada\b|\baporte\b|\bunic[oó]rnios?\b|\bunico
 const ADS = /\bag[eê]ncias?\b|\bcampanhas?\b|\bpublicidade\b|\bpropaganda\b|\bpublicit[aá]ri[oa]s?\b|\bcomerciais?\b|\bfilme publicit|\bCannes\b|\bLe[oõ]es\b|\bcria[cç][aã]o\b|\bcriativ[oa]s?\b|\bad campaign\b|\bagency\b|\bagencies\b|\bcampaign\b/i;
 
 // Fontes generalistas também publicam ciência, carros e curiosidades: fora do radar.
-const OFF_TOPIC = /\b(?:placas? tect[oô]nicas?|asteroides?|cometas?|gal[aá]xias?|telesc[oó]pios?|buracos? negros?|dinossauros?|f[oó]sseis|f[oó]ssil|vulc[aã]o|terremotos?|tsunamis?|eclipses?|meteoros?|exoplanetas?|arqueolog|paleontolog|esp[eé]cies?|cientistas descobrem|hor[oó]scopo|signos?|carros?|motos?|picapes?|SUVs?|sed[aã]s?|hatch|Volkswagen|Fiat|Chevrolet|Toyota|Hyundai|Renault|Jeep|Nissan|Fórmula 1|F1)\b/i;
+const OFF_TOPIC = /\b(?:placas? tect[oô]nicas?|asteroides?|cometas?|gal[aá]xias?|telesc[oó]pios?|buracos? negros?|dinossauros?|f[oó]sseis|f[oó]ssil|vulc[aã]o|terremotos?|tsunamis?|eclipses?|meteoros?|exoplanetas?|arqueolog|paleontolog|esp[eé]cies?|cientistas descobrem|hor[oó]scopo|signos?|carros?|motos?|picapes?|SUVs?|sed[aã]s?|hatch|Volkswagen|Fiat|Chevrolet|Toyota|Hyundai|Renault|Jeep|Nissan|Fórmula 1|F1|abuso sexual|pornografia infantil|pedofil\w*|estupr\w*|homic[ií]dios?|assassinad[oa]s?|latroc[ií]nio|fac[cç](?:ão|ões) criminos\w*)\b/i;
 
 const techRoutes = [
   { column: 'ia', match: AI },
@@ -49,10 +49,10 @@ export const feeds = [
   { name: 'Hugging Face', site: 'https://huggingface.co/blog', lang: 'en', column: 'ia', url: 'https://huggingface.co/blog/feed.xml' },
 
   // Tecnologia (fontes generalistas: redirecionam para IA, redes, e-commerce e startups)
-  { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'tecnologia', url: 'https://tecnoblog.net/feed/', routes: techRoutes, exclude: OFF_TOPIC },
-  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'tecnologia', url: 'https://olhardigital.com.br/feed/', routes: techRoutes, exclude: OFF_TOPIC },
-  { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'tecnologia', url: 'https://canaltech.com.br/rss/', routes: techRoutes, exclude: OFF_TOPIC },
-  { name: 'g1 Tecnologia', site: 'https://g1.globo.com/tecnologia/', lang: 'pt', column: 'tecnologia', url: 'https://g1.globo.com/rss/g1/tecnologia/', routes: techRoutes, exclude: OFF_TOPIC },
+  { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'tecnologia', url: 'https://tecnoblog.net/feed/', routes: techRoutes, exclude: OFF_TOPIC, excludeUrl: /\/achados\// },
+  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'tecnologia', url: 'https://olhardigital.com.br/feed/', routes: techRoutes, exclude: OFF_TOPIC, excludeUrl: /\/\d{2}\/(?:ciencia-e-espaco|reviews|games-e-consoles|carros-e-tecnologia|medicina-e-saude|cinema-e-streaming|dicas-e-tutoriais|videos)\// },
+  { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'tecnologia', url: 'https://canaltech.com.br/rss/', routes: techRoutes, exclude: OFF_TOPIC, excludeUrl: /canaltech\.com\.br\/(?:entretenimento|games|ciencia|espaco|saude|carros|veiculos|e-reader|curiosidades|meio-ambiente|filmes|series|quadrinhos|anime|esportes|casa-conectada|produtos|ofertas)\// },
+  { name: 'g1 Tecnologia', site: 'https://g1.globo.com/tecnologia/', lang: 'pt', column: 'tecnologia', url: 'https://g1.globo.com/rss/g1/tecnologia/', routes: techRoutes, exclude: OFF_TOPIC, excludeUrl: /g1\.globo\.com\/(?:fantastico|ciencia|saude|turismo-e-viagem|pop-arte|natureza|inovacao)\// },
   { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'tecnologia', url: 'https://www.theverge.com/rss/tech/index.xml', routes: techRoutes },
   { name: 'Ars Technica', site: 'https://arstechnica.com', lang: 'en', column: 'tecnologia', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', routes: techRoutes },
   { name: 'Wired', site: 'https://www.wired.com', lang: 'en', column: 'tecnologia', url: 'https://www.wired.com/feed/rss', routes: techRoutes },
@@ -77,7 +77,7 @@ export const feeds = [
   { name: 'Figma', site: 'https://www.figma.com/blog', lang: 'en', column: 'design', url: 'https://www.figma.com/blog/feed/atom.xml' },
 
   // Publicidade
-  { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/' },
+  { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/', excludeUrl: /\/acervo\// },
   { name: 'ADNEWS', site: 'https://adnews.com.br', lang: 'pt', column: 'publicidade', url: 'https://adnews.com.br/feed/', routes: [{ column: 'social', match: SOCIAL }] },
   { name: 'B9', site: 'https://www.b9.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.b9.com.br/feed/' },
   { name: 'Adweek', site: 'https://www.adweek.com', lang: 'en', column: 'publicidade', url: 'https://www.adweek.com/feed/' },
@@ -99,7 +99,7 @@ export const feeds = [
   // Startups e negócios
   { name: 'Startups', site: 'https://startups.com.br', lang: 'pt', column: 'startups', url: 'https://startups.com.br/feed/' },
   { name: 'Startupi', site: 'https://startupi.com.br', lang: 'pt', column: 'startups', url: 'https://startupi.com.br/feed/' },
-  { name: 'NeoFeed', site: 'https://neofeed.com.br', lang: 'pt', column: 'startups', url: 'https://neofeed.com.br/feed/' },
+  { name: 'NeoFeed', site: 'https://neofeed.com.br', lang: 'pt', column: 'startups', url: 'https://neofeed.com.br/feed/', excludeUrl: /neofeed\.com\.br\/(?:finde|insiders|economia|lifestyle|lideres)\// },
   { name: 'LatamList', site: 'https://latamlist.com', lang: 'en', column: 'startups', url: 'https://latamlist.com/feed/' },
   { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'startups', url: 'https://techcrunch.com/category/startups/feed/' },
 ];
@@ -141,6 +141,7 @@ export const noise = [
   /^\d+\s(?:pol[eê]micas|curiosidades|coisas|fatos|dicas|motivos|raz[oõ]es|erros|truques|segredos|jogos|filmes|s[eé]ries|apps|aplicativos|diferen[cç]as|celulares|notebooks|fones)\b/i,
   /\bqual (?:[eé] )?(?:o |a )?melhor\b|:\s*qual escolher\b|^quanto custaria\b/i,
   /^edi[cç][aã]o (?:de|do dia)\b|^newsletter\b/i,
+  /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
 ];
 
 /**
