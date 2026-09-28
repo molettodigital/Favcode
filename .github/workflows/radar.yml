@@ -17,6 +17,8 @@ on:
 
 permissions:
   contents: write
+  # Token OIDC que identifica este repositório no Worker de tradução (Workers AI).
+  id-token: write
 
 concurrency:
   group: radar-${{ github.ref }}
@@ -44,7 +46,7 @@ jobs:
         run: node scripts/build.mjs
         env:
           SITE_URL: ${{ vars.SITE_URL }}
-          # Tradução das manchetes em inglês (Settings → Secrets and variables → Actions).
+          # Opcional: com a chave, a tradução usa o Claude; sem ela, a IA da Cloudflare pelo Worker.
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           # Opcional: outro modelo para a tradução (padrão: claude-opus-5).
           RADAR_TRANSLATION_MODEL: ${{ vars.RADAR_TRANSLATION_MODEL }}

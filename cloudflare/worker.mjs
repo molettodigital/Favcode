@@ -7,14 +7,19 @@
 // Também dispara a coleta no GitHub Actions uma vez por hora, porque o agendamento do
 // próprio GitHub atrasa ou pula horários. Só funciona com o segredo GITHUB_TOKEN cadastrado.
 //
+// Tradução: POST /api/translate traduz lotes de manchetes com a IA da Cloudflare (Workers AI).
+// Só atende o GitHub Actions deste repositório, que se identifica com um token OIDC assinado
+// pelo GitHub; não há senha guardada em lugar nenhum.
+//
 // Proteção contra cópia: bloqueia programas de clonagem, raspadores e robôs de IA,
 // proíbe abrir o site dentro de outro (iframe), impede que outros sites usem as fontes e
 // o logo e, com o binding LIMITER, limita o número de acessos por IP.
 //
 // Bindings: RADAR (KV namespace), SOURCE (raiz "raw" do repositório), GITHUB_REPO (dono/repo),
-// opcionais GITHUB_TOKEN (segredo; Contents: Read e Actions: Read and write — com ele o
-// repositório pode ser privado), LIMITER (rate limit) e CANONICAL_ORIGIN (endereço oficial,
-// ex.: https://radar.favcode.com.br; o endereço .workers.dev passa a redirecionar para ele).
+// AI (Workers AI, para a tradução) e, opcionais, GITHUB_TOKEN (segredo; Contents: Read e
+// Actions: Read and write — com ele o repositório pode ser privado), LIMITER (rate limit) e
+// CANONICAL_ORIGIN (endereço oficial, ex.: https://radar.favcode.com.br; o endereço
+// .workers.dev passa a redirecionar para ele).
 
 const PAGE_KEY = 'page';
 const PAGE_VERSION_KEY = 'page:generatedAt';
@@ -191,6 +196,144 @@ function foreignReferer(request, url) {
   }
 }
 
+// ---------- Tradução (Workers AI) ----------
+
+const TRANSLATION_MODEL = '@cf/openai/gpt-oss-120b';
+const OIDC_ISSUER = 'https://token.actions.githubusercontent.com';
+const TRANSLATE_AUDIENCE = 'radar-favcode-translate';
+const MAX_TRANSLATE_ITEMS = 25;
+const MAX_SYSTEM_CHARS = 6000;
+
+const TRANSLATION_SCHEMA = {
+  type: 'object',
+  properties: {
+    items: {
+      type: 'array',
+      items: {
+        type: 'object',
+        properties: { id: { type: 'string' }, title: { type: 'string' }, summary: { type: 'string' } },
+        required: ['id', 'title', 'summary'],
+        additionalProperties: false,
+      },
+    },
+  },
+  required: ['items'],
+  additionalProperties: false,
+};
+
+const base64urlBytes = (part) => {
+  const b64 = part.replace(/-/g, '+').replace(/_/g, '/') + '='.repeat((4 - (part.length % 4)) % 4);
+  return Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+};
+const base64urlJson = (part) => JSON.parse(new TextDecoder().decode(base64urlBytes(part)));
+
+// Chaves públicas do GitHub, guardadas por uma hora na memória do Worker.
+let jwksCache = { keys: [], at: 0 };
+async function githubKeys(fetchImpl, force = false) {
+  if (!force && jwksCache.keys.length && Date.now() - jwksCache.at < 3600_000) return jwksCache.keys;
+  const res = await fetchImpl(`${OIDC_ISSUER}/.well-known/jwks`, { headers: { 'user-agent': 'radar-favcode-worker' } });
+  if (!res.ok) throw new Error(`GitHub respondeu ${res.status} ao buscar as chaves`);
+  jwksCache = { keys: (await res.json()).keys || [], at: Date.now() };
+  return jwksCache.keys;
+}
+
+/**
+ * Confere o token OIDC do GitHub Actions: assinatura RS256 do GitHub, emissor, público,
+ * validade e repositório. Devolve as declarações do token ou null.
+ */
+async function verifyGithubToken(token, env, { fetchImpl = fetch, now = Date.now() } = {}) {
+  const parts = String(token || '').split('.');
+  if (parts.length !== 3) return null;
+  let header;
+  let claims;
+  try {
+    header = base64urlJson(parts[0]);
+    claims = base64urlJson(parts[1]);
+  } catch {
+    return null;
+  }
+  if (header.alg !== 'RS256' || !header.kid) return null;
+  let jwk = (await githubKeys(fetchImpl)).find((k) => k.kid === header.kid);
+  if (!jwk) jwk = (await githubKeys(fetchImpl, true)).find((k) => k.kid === header.kid);
+  if (!jwk) return null;
+  const key = await crypto.subtle.importKey(
+    'jwk',
+    { kty: 'RSA', n: jwk.n, e: jwk.e, alg: 'RS256', ext: true },
+    { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+    false,
+    ['verify'],
+  );
+  const signed = new TextEncoder().encode(`${parts[0]}.${parts[1]}`);
+  if (!(await crypto.subtle.verify('RSASSA-PKCS1-v1_5', key, base64urlBytes(parts[2]), signed))) return null;
+
+  const seconds = now / 1000;
+  const audiences = [].concat(claims.aud || []);
+  if (claims.iss !== OIDC_ISSUER || !audiences.includes(TRANSLATE_AUDIENCE)) return null;
+  if (!(claims.exp > seconds) || (claims.nbf && claims.nbf > seconds + 60)) return null;
+  if (!env.GITHUB_REPO || String(claims.repository).toLowerCase() !== String(env.GITHUB_REPO).toLowerCase()) return null;
+  return claims;
+}
+
+/** Texto da resposta do modelo, qualquer que seja o formato (Responses ou chat). */
+function modelText(result) {
+  if (typeof result === 'string') return result;
+  if (typeof result?.response === 'string') return result.response;
+  if (Array.isArray(result?.output)) {
+    return result.output
+      .filter((o) => o.type === 'message')
+      .flatMap((o) => o.content || [])
+      .map((c) => c.text || '')
+      .join('');
+  }
+  return result?.choices?.[0]?.message?.content || '';
+}
+
+async function translateWithAI(env, system, items) {
+  const result = await env.AI.run(TRANSLATION_MODEL, {
+    input: [
+      { role: 'system', content: system },
+      { role: 'user', content: `Traduza estes itens:\n${JSON.stringify(items)}` },
+    ],
+    reasoning: { effort: 'low' },
+    text: { format: { type: 'json_schema', name: 'traducao', schema: TRANSLATION_SCHEMA, strict: true } },
+  });
+  const text = modelText(result);
+  const parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
+  const wanted = new Set(items.map((it) => it.id));
+  return (parsed.items || [])
+    .filter((it) => wanted.has(it.id) && String(it.title || '').trim())
+    .map((it) => ({ id: it.id, title: String(it.title).trim(), summary: String(it.summary || '').trim() }));
+}
+
+const json = (status, body) =>
+  new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
+
+async function handleTranslate(request, env) {
+  if (request.method !== 'POST') return json(405, { error: 'use POST' });
+  if (!env.AI) return json(503, { error: 'Workers AI indisponível' });
+  const token = (request.headers.get('authorization') || '').replace(/^Bearer\s+/i, '');
+  const claims = await verifyGithubToken(token, env).catch(() => null);
+  if (!claims) return json(401, { error: 'token do GitHub Actions inválido' });
+
+  const body = await request.json().catch(() => null);
+  const items = Array.isArray(body?.items) ? body.items : [];
+  const system = typeof body?.system === 'string' ? body.system : '';
+  const valid =
+    items.length > 0 &&
+    items.length <= MAX_TRANSLATE_ITEMS &&
+    system.length > 0 &&
+    system.length <= MAX_SYSTEM_CHARS &&
+    items.every((it) => typeof it?.id === 'string' && typeof it.title === 'string' && it.title.length <= 600 && typeof (it.summary ?? '') === 'string' && (it.summary ?? '').length <= 2000);
+  if (!valid) return json(400, { error: `envie de 1 a ${MAX_TRANSLATE_ITEMS} itens {id, title, summary} e as instruções` });
+
+  const clean = items.map(({ id, title, summary }) => ({ id, title, summary: summary || '' }));
+  try {
+    return json(200, { model: TRANSLATION_MODEL, items: await translateWithAI(env, system, clean) });
+  } catch (err) {
+    return json(502, { error: `falha na tradução: ${err?.message || err}` });
+  }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -198,6 +341,7 @@ export default {
     if (env.CANONICAL_ORIGIN && url.hostname.endsWith('.workers.dev')) {
       return Response.redirect(`${env.CANONICAL_ORIGIN}${url.pathname}${url.search}`, 301);
     }
+    if (url.pathname === '/api/translate') return handleTranslate(request, env);
     const head = request.method === 'HEAD';
     if (request.method !== 'GET' && !head) {
       return new Response('Método não permitido', { status: 405, headers: { allow: 'GET, HEAD' } });

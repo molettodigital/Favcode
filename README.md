@@ -16,7 +16,7 @@ Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, de
 ```
 config/radar.config.mjs   editorias, fontes RSS, bloqueios e termos monitorados
 scripts/build.mjs         busca os feeds, filtra, organiza, traduz e grava o index.html
-scripts/lib/translate.mjs tradução das manchetes em inglês com o Claude
+scripts/lib/translate.mjs tradução das manchetes em inglês (IA da Cloudflare ou Claude)
 data/translations.json    traduções já feitas (reaproveitadas a cada hora)
 src/index.template.html   layout, estilos e interação do site
 index.html                site pronto (gerado e minificado; não edite à mão)
@@ -27,17 +27,16 @@ LICENSE                   direitos reservados (uso proibido sem autorização)
 
 O GitHub Actions executa `node scripts/build.mjs` a cada hora (e a cada mudança em `config/`, `scripts/`, `src/` ou `assets/`). O script lê os feeds, descarta manchetes antigas, repetidas, de oferta/cupom e as que citam os assuntos bloqueados, e grava tudo dentro do `index.html`. Se menos de 40 manchetes chegarem (queda de rede, por exemplo), o site anterior é mantido.
 
-Requer Node.js 20 ou mais novo. A única dependência é o SDK da Anthropic (`@anthropic-ai/sdk`), usado na tradução; o `esbuild` entra só no build, para minificar a página.
+Requer Node.js 20 ou mais novo. A única dependência é o SDK da Anthropic (`@anthropic-ai/sdk`), usado na tradução quando há chave; o `esbuild` entra só no build, para minificar a página.
 
 ## Tradução
 
-As manchetes de veículos em inglês entram no radar já traduzidas para o português do Brasil, feitas pelo Claude (modelo `claude-opus-5`, esforço baixo, resposta em JSON validado). Cada título e resumo é traduzido uma vez só e fica guardado em `data/translations.json`; nas coletas seguintes a tradução é reaproveitada.
+As manchetes de veículos em inglês entram no radar já traduzidas para o português do Brasil. Cada título e resumo é traduzido uma vez só e fica guardado em `data/translations.json`; nas coletas seguintes a tradução é reaproveitada. O site nunca mostra manchete em inglês: a que não puder ser traduzida fica de fora até a próxima coleta.
 
-Para funcionar, cadastre a chave da API da Anthropic no GitHub: Settings → Secrets and variables → Actions → New repository secret, nome `ANTHROPIC_API_KEY`. A chave é criada em console.anthropic.com.
+Quem traduz:
 
-Sem a chave (ou se a API falhar), o site nunca mostra manchete em inglês: as que ainda não têm tradução guardada ficam de fora até a próxima coleta.
-
-Custo aproximado: com 10 a 20 manchetes novas em inglês por hora, fica na faixa de US$ 20 a US$ 40 por mês com o `claude-opus-5`. Para gastar menos, crie a variável `RADAR_TRANSLATION_MODEL` (Settings → Secrets and variables → Actions → Variables) com `claude-sonnet-5` ou `claude-haiku-4-5`; o Haiku sai cerca de 5 vezes mais barato.
+- **Padrão, sem configurar nada: a IA da Cloudflare** (Workers AI, modelo `@cf/openai/gpt-oss-120b`, raciocínio baixo e resposta em JSON validado). O build no GitHub Actions envia os lotes para `https://radar.favcode.com.br/api/translate`, e o Worker traduz. O Worker só atende este repositório: cada pedido leva um token OIDC que o GitHub assina para o workflow (`permissions: id-token: write`) e o Worker confere a assinatura, o público e o repositório. Não há chave nem senha guardada. O plano gratuito da Cloudflare dá 10 mil créditos de IA por dia; cada manchete gasta cerca de 10, então cabem perto de mil manchetes por dia, bem acima do volume do radar. Se um dia o limite acabar, as manchetes que faltarem traduzir ficam de fora até o dia seguinte, sem cobrança.
+- **Opcional: o Claude**, se a chave da API da Anthropic for cadastrada no GitHub (Settings → Secrets and variables → Actions → New repository secret, nome `ANTHROPIC_API_KEY`; a chave é criada em console.anthropic.com). Com a chave, a tradução passa a usar o `claude-opus-5` (esforço baixo). Custo aproximado: US$ 20 a US$ 40 por mês; para gastar menos, crie a variável `RADAR_TRANSLATION_MODEL` com `claude-sonnet-5` ou `claude-haiku-4-5`.
 
 ## Publicado na Cloudflare
 

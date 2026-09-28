@@ -908,6 +908,7 @@
     };
 
     let out = rings.map((r, i) => `<circle class="ring${i === rings.length - 1 ? ' ring--outer' : ''}" cx="${C}" cy="${C}" r="${r}"/>`).join('');
+    const sectorBoxes = [];
     COLUMNS.forEach((col, i) => {
       const [x, y] = polar(i * step, 190);
       out += `<line class="spoke" x1="${C}" y1="${C}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`;
@@ -916,6 +917,8 @@
       out += `<path class="sector-arc" data-col="${esc(col.id)}" d="M${ax.toFixed(1)} ${ay.toFixed(1)} A190 190 0 0 1 ${bx.toFixed(1)} ${by.toFixed(1)}"/>`;
       const [lx, ly] = polar(i * step + step / 2, 168);
       out += `<text class="sector-label" x="${lx.toFixed(1)}" y="${ly.toFixed(1)}">${esc(col.code)}</text>`;
+      const lw = String(col.code).length * 7.6 + 8;
+      sectorBoxes.push({ x: lx - lw / 2, y: ly - 9, w: lw, h: 18 });
     });
 
     const colIndex = new Map(COLUMNS.map((c, i) => [c.id, i]));
@@ -974,9 +977,9 @@
       if (!moved) break;
     }
 
-    // Rótulos: só os 6 primeiros, e só onde não batem em outro rótulo.
+    // Rótulos: só os 6 primeiros, e só onde não batem em outro rótulo nem na sigla das editorias.
     const dots = pts.map((p) => ({ x: p.x - p.size - 2, y: p.y - p.size - 2, w: p.size * 2 + 4, h: p.size * 2 + 4, owner: p }));
-    const boxes = [];
+    const boxes = [...sectorBoxes];
     const hits = (b, self) => dots.some((o) => o.owner !== self && b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y) || b.x < 0 || b.x + b.w > 400 || b.y < 0 || b.y + b.h > 400 || boxes.some((o) => b.x < o.x + o.w && b.x + b.w > o.x && b.y < o.y + o.h && b.y + b.h > o.y);
     pts.forEach((p) => {
       p.showLabel = false;

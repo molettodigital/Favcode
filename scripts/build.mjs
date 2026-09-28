@@ -18,7 +18,7 @@ import { transform } from 'esbuild';
 
 import * as config from '../config/radar.config.mjs';
 import { parseFeed, truncate } from './lib/feed-parser.mjs';
-import { DEFAULT_MODEL, translateItems } from './lib/translate.mjs';
+import { DEFAULT_MODEL, translateItems, workerTranslator } from './lib/translate.mjs';
 import { enrichImages } from './lib/images.mjs';
 import { computeTrends } from './lib/trends.mjs';
 import { cleanUrl, hashId, mapPool, matchesAny, normalizeTitle, slugify } from './lib/utils.mjs';
@@ -206,11 +206,22 @@ async function build() {
   printReport(report, selected, stats, performance.now() - started);
 
   // Tudo em português: manchetes em inglês são traduzidas (ou saem, se não der para traduzir).
+  // Com a chave da Anthropic, traduz com o Claude; no GitHub Actions sem a chave, com a IA da
+  // Cloudflare pelo Worker do site.
   const hasCredentials = Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+  const model = process.env.RADAR_TRANSLATION_MODEL || DEFAULT_MODEL;
+  let translator = null;
+  if (hasCredentials) {
+    console.log(`Tradução com o Claude (${model}).`);
+  } else if (process.env.ACTIONS_ID_TOKEN_REQUEST_URL && config.site.url) {
+    translator = workerTranslator(`${config.site.url}/api/translate`);
+    console.log(`Tradução com a IA da Cloudflare (${config.site.url}/api/translate).`);
+  }
   const { items, stats: tr } = await translateItems(selected, {
     client: hasCredentials ? new Anthropic() : null,
+    translator,
     cacheFile: TRANSLATIONS,
-    model: process.env.RADAR_TRANSLATION_MODEL || DEFAULT_MODEL,
+    model,
     log: (msg) => console.log(msg),
   });
   console.log(`Tradução: ${tr.cached} do cache, ${tr.translated} traduzidas agora, ${tr.dropped} sem tradução ficaram de fora.`);

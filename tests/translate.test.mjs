@@ -4,7 +4,7 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-import { requestOptions, translateItems, translationKey } from '../scripts/lib/translate.mjs';
+import { githubOidcToken, requestOptions, SYSTEM_PROMPT, translateItems, translationKey, WORKER_AUDIENCE, workerTranslator } from '../scripts/lib/translate.mjs';
 
 const tmpCache = async () => path.join(await mkdtemp(path.join(os.tmpdir(), 'radar-')), 'translations.json');
 
@@ -94,4 +94,50 @@ test('parâmetros se ajustam ao modelo escolhido', () => {
   assert.equal(requestOptions('claude-sonnet-5').fallbacks, undefined);
   assert.equal(requestOptions('claude-sonnet-5').output_config.effort, 'low');
   assert.equal(requestOptions('claude-opus-5').fallbacks, 'default');
+});
+
+test('sem chave da Anthropic, traduz pelo Worker com o token OIDC do Actions', async () => {
+  const cacheFile = await tmpCache();
+  const requests = [];
+  const fetchImpl = async (url, init) => {
+    requests.push({ url, init, body: JSON.parse(init.body) });
+    const sent = JSON.parse(init.body).items;
+    // O Worker devolve só o que traduziu; um id desconhecido é ignorado.
+    return Response.json({ items: [{ id: sent[0].id, title: 'OpenAI lança agentes', summary: 'Chegou.' }, { id: 'intruso', title: 'x', summary: '' }] });
+  };
+  const translator = workerTranslator('https://radar.test/api/translate', { getToken: async () => 'tok-123', fetchImpl });
+  const { items, stats } = await translateItems([en('1', 'OpenAI ships agents', 'It is here.'), en('2', 'Untranslated')], { translator, cacheFile });
+
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].url, 'https://radar.test/api/translate');
+  assert.equal(requests[0].init.headers.authorization, 'Bearer tok-123');
+  assert.equal(requests[0].body.system, SYSTEM_PROMPT);
+  assert.deepEqual(requests[0].body.items.map((it) => it.id), ['1', '2']);
+  assert.deepEqual(items.map((it) => it.title), ['OpenAI lança agentes']);
+  assert.deepEqual(stats, { cached: 0, translated: 1, dropped: 1, failures: [] });
+  const saved = JSON.parse(await readFile(cacheFile, 'utf8')).entries;
+  assert.deepEqual(Object.values(saved), [{ t: 'OpenAI lança agentes', s: 'Chegou.' }]);
+});
+
+test('erro do Worker: o lote fica de fora e a falha é registrada', async () => {
+  const cacheFile = await tmpCache();
+  const fetchImpl = async () => new Response('{"error":"token do GitHub Actions inválido"}', { status: 401 });
+  const translator = workerTranslator('https://radar.test/api/translate', { getToken: async () => 'x', fetchImpl });
+  const { items, stats } = await translateItems([en('1', 'OpenAI ships agents'), pt('2', 'Em português')], { translator, cacheFile });
+  assert.deepEqual(items.map((it) => it.id), ['2']);
+  assert.equal(stats.dropped, 1);
+  assert.match(stats.failures[0], /401/);
+});
+
+test('token OIDC pedido ao GitHub com o público do Worker', async () => {
+  let asked;
+  const fetchImpl = async (url, init) => {
+    asked = { url, auth: init.headers.authorization };
+    return Response.json({ value: 'jwt' });
+  };
+  const env = { ACTIONS_ID_TOKEN_REQUEST_URL: 'https://gh.test/token?api-version=2.0', ACTIONS_ID_TOKEN_REQUEST_TOKEN: 'req' };
+  assert.equal(await githubOidcToken(WORKER_AUDIENCE, { env, fetchImpl }), 'jwt');
+  assert.equal(asked.url, 'https://gh.test/token?api-version=2.0&audience=radar-favcode-translate');
+  assert.equal(asked.auth, 'bearer req');
+  await assert.rejects(githubOidcToken(WORKER_AUDIENCE, { env: {}, fetchImpl }), /fora do GitHub Actions/);
 });

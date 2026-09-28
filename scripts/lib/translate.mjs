@@ -1,4 +1,6 @@
-// Tradução das manchetes em inglês para o português do Brasil, feita com o Claude.
+// Tradução das manchetes em inglês para o português do Brasil.
+// Com ANTHROPIC_API_KEY, traduz com o Claude; sem ela, no GitHub Actions, usa a IA da
+// Cloudflare pelo Worker do site (POST /api/translate, autenticado com o token OIDC do Actions).
 // Cada título + resumo é traduzido uma vez só: o resultado fica em data/translations.json
 // e é reaproveitado nas coletas seguintes.
 
@@ -7,6 +9,8 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
 export const DEFAULT_MODEL = 'claude-opus-5';
+// Precisa ser igual ao TRANSLATE_AUDIENCE de cloudflare/worker.mjs.
+export const WORKER_AUDIENCE = 'radar-favcode-translate';
 const BATCH_SIZE = 20;
 const CONCURRENCY = 2;
 
@@ -100,16 +104,51 @@ export async function translateBatch(client, batch, { model = DEFAULT_MODEL } = 
     .filter((block) => block.type === 'text')
     .map((block) => block.text)
     .join('');
-  const parsed = JSON.parse(text);
+  return collectTranslations(batch, JSON.parse(text).items);
+}
+
+/** Map(id -> { title, summary }) com os itens do lote que voltaram com título. */
+export function collectTranslations(batch, returned) {
   const wanted = new Map(batch.map((it) => [it.id, it]));
   const out = new Map();
-  for (const item of parsed.items || []) {
-    const original = wanted.get(item.id);
-    const title = String(item.title || '').trim();
+  for (const item of returned || []) {
+    const original = wanted.get(item?.id);
+    const title = String(item?.title || '').trim();
     if (!original || !title) continue;
     out.set(item.id, { title, summary: original.summary ? String(item.summary || '').trim() : '' });
   }
   return out;
+}
+
+/** Token OIDC do GitHub Actions (exige `permissions: id-token: write` no workflow). */
+export async function githubOidcToken(audience, { env = process.env, fetchImpl = fetch } = {}) {
+  const url = env.ACTIONS_ID_TOKEN_REQUEST_URL;
+  const token = env.ACTIONS_ID_TOKEN_REQUEST_TOKEN;
+  if (!url || !token) throw new Error('token OIDC indisponível (rodando fora do GitHub Actions?)');
+  const res = await fetchImpl(`${url}&audience=${encodeURIComponent(audience)}`, {
+    headers: { authorization: `bearer ${token}`, accept: 'application/json' },
+  });
+  if (!res.ok) throw new Error(`GitHub respondeu ${res.status} ao emitir o token OIDC`);
+  return (await res.json()).value;
+}
+
+/** Tradutor que usa o Worker do site (Workers AI). Cada lote pede um token OIDC novo. */
+export function workerTranslator(endpoint, { getToken = () => githubOidcToken(WORKER_AUDIENCE), fetchImpl = fetch } = {}) {
+  return async (batch) => {
+    const res = await fetchImpl(endpoint, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${await getToken()}`,
+        'user-agent': 'radar-favcode-build',
+      },
+      body: JSON.stringify({ system: SYSTEM_PROMPT, items: batch.map(({ id, title, summary }) => ({ id, title, summary })) }),
+      signal: AbortSignal.timeout(120_000),
+    });
+    const body = await res.text();
+    if (!res.ok) throw new Error(`tradutor respondeu ${res.status}: ${body.slice(0, 200)}`);
+    return collectTranslations(batch, JSON.parse(body).items);
+  };
 }
 
 /**
@@ -117,7 +156,8 @@ export async function translateBatch(client, batch, { model = DEFAULT_MODEL } = 
  * ou são traduzidas agora; as que não puderem ser traduzidas saem do radar.
  * @returns {Promise<{ items: object[], stats: { cached: number, translated: number, dropped: number, failures: string[] } }>}
  */
-export async function translateItems(items, { client, cacheFile, model = DEFAULT_MODEL, log = () => {} }) {
+export async function translateItems(items, { client, translator, cacheFile, model = DEFAULT_MODEL, log = () => {} }) {
+  const translate = translator || (client ? (batch) => translateBatch(client, batch, { model }) : null);
   const cache = await loadCache(cacheFile);
   const used = {};
   const stats = { cached: 0, translated: 0, dropped: 0, failures: [] };
@@ -135,7 +175,7 @@ export async function translateItems(items, { client, cacheFile, model = DEFAULT
     }
   }
 
-  if (pending.length && client) {
+  if (pending.length && translate) {
     const batches = [];
     for (let i = 0; i < pending.length; i += BATCH_SIZE) batches.push(pending.slice(i, i + BATCH_SIZE));
     let next = 0;
@@ -143,7 +183,7 @@ export async function translateItems(items, { client, cacheFile, model = DEFAULT
       while (next < batches.length) {
         const batch = batches[next++];
         try {
-          const result = await translateBatch(client, batch, { model });
+          const result = await translate(batch);
           for (const item of batch) {
             const done = result.get(item.id);
             if (!done) continue;
@@ -157,7 +197,7 @@ export async function translateItems(items, { client, cacheFile, model = DEFAULT
     };
     await Promise.all(Array.from({ length: Math.min(CONCURRENCY, batches.length) }, worker));
   } else if (pending.length) {
-    log(`Sem ANTHROPIC_API_KEY: ${pending.length} manchetes em inglês sem tradução guardada ficaram de fora.`);
+    log(`Sem tradutor disponível: ${pending.length} manchetes em inglês sem tradução guardada ficaram de fora.`);
   }
 
   const out = [];
