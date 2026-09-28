@@ -4,7 +4,8 @@ Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, de
 
 - 8 editorias em colunas, com a manchete principal de cada uma em destaque.
 - **Em alta agora**: os termos mais citados nas últimas horas, desenhados num radar e listados em ranking.
-- Busca nas manchetes (atalho `/`), filtro de idioma (PT/EN), tema claro/escuro.
+- Tudo em português: manchetes de veículos em inglês chegam traduzidas (veja "Tradução").
+- Busca nas manchetes (atalho `/`) e tema claro/escuro.
 - **Favoritos** com a estrela (salvos no navegador) e botão de compartilhar.
 - Marca o que chegou desde a última visita e avisa quando há manchetes novas.
 - Não publica nada relacionado ao **Google**: a marca e os produtos dele (Google Ads, Google Meu Negócio, Gemini, Android, Chrome, Analytics, Search Console…) são descartados na coleta. O site também não carrega nada do Google: as fontes tipográficas ficam em `assets/fonts`.
@@ -13,7 +14,9 @@ Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, de
 
 ```
 config/radar.config.mjs   editorias, fontes RSS, bloqueios e termos monitorados
-scripts/build.mjs         busca os feeds, filtra, organiza e grava o index.html
+scripts/build.mjs         busca os feeds, filtra, organiza, traduz e grava o index.html
+scripts/lib/translate.mjs tradução das manchetes em inglês com o Claude
+data/translations.json    traduções já feitas (reaproveitadas a cada hora)
 src/index.template.html   layout, estilos e interação do site
 index.html                site pronto (gerado; não edite à mão)
 .github/workflows/radar.yml  roda o build a cada hora e publica o index.html
@@ -21,7 +24,17 @@ index.html                site pronto (gerado; não edite à mão)
 
 O GitHub Actions executa `node scripts/build.mjs` a cada hora (e a cada mudança em `config/`, `scripts/`, `src/` ou `assets/`). O script lê os feeds, descarta manchetes antigas, repetidas, de oferta/cupom e as que citam os assuntos bloqueados, e grava tudo dentro do `index.html`. Se menos de 40 manchetes chegarem (queda de rede, por exemplo), o site anterior é mantido.
 
-Não há dependências: só Node.js 20 ou mais novo.
+Requer Node.js 20 ou mais novo. A única dependência é o SDK da Anthropic (`@anthropic-ai/sdk`), usado na tradução.
+
+## Tradução
+
+As manchetes de veículos em inglês entram no radar já traduzidas para o português do Brasil, feitas pelo Claude (modelo `claude-opus-5`, esforço baixo, resposta em JSON validado). Cada título e resumo é traduzido uma vez só e fica guardado em `data/translations.json`; nas coletas seguintes a tradução é reaproveitada.
+
+Para funcionar, cadastre a chave da API da Anthropic no GitHub: Settings → Secrets and variables → Actions → New repository secret, nome `ANTHROPIC_API_KEY`. A chave é criada em console.anthropic.com.
+
+Sem a chave (ou se a API falhar), o site nunca mostra manchete em inglês: as que ainda não têm tradução guardada ficam de fora até a próxima coleta.
+
+Custo aproximado: com 10 a 20 manchetes novas em inglês por hora, fica na faixa de US$ 20 a US$ 40 por mês com o `claude-opus-5`. Para gastar menos, crie a variável `RADAR_TRANSLATION_MODEL` (Settings → Secrets and variables → Actions → Variables) com `claude-sonnet-5` ou `claude-haiku-4-5`; o Haiku sai cerca de 5 vezes mais barato.
 
 ## Publicar
 
@@ -48,6 +61,7 @@ Tudo fica em `config/radar.config.mjs`:
 ## Rodar localmente
 
 ```bash
+npm install     # instala o SDK da Anthropic
 npm test        # testes do leitor de feeds, filtros e "Em alta"
 npm run build   # busca os feeds e gera o index.html
 npm run render  # só reaplica o template (src/) às manchetes atuais, sem internet

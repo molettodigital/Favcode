@@ -13,8 +13,11 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import Anthropic from '@anthropic-ai/sdk';
+
 import * as config from '../config/radar.config.mjs';
 import { parseFeed, truncate } from './lib/feed-parser.mjs';
+import { DEFAULT_MODEL, translateItems } from './lib/translate.mjs';
 import { computeTrends } from './lib/trends.mjs';
 import { cleanUrl, hashId, mapPool, matchesAny, normalizeTitle, slugify } from './lib/utils.mjs';
 
@@ -23,6 +26,7 @@ const TEMPLATE = path.join(ROOT, 'src', 'index.template.html');
 const OUTPUT = path.resolve(ROOT, process.env.RADAR_OUTPUT || 'index.html');
 const FIXTURES = process.env.RADAR_FIXTURES ? path.resolve(process.env.RADAR_FIXTURES) : '';
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
+const TRANSLATIONS = path.join(ROOT, 'data', 'translations.json');
 const USER_AGENT = 'Mozilla/5.0 (compatible; FavCodeRadar/1.0; +https://github.com/molettodigital/Favcode)';
 const DAY = 86_400_000;
 
@@ -140,7 +144,7 @@ async function build() {
         blocked++;
         continue;
       }
-      if (matchesAny(config.noise, entry.title)) {
+      if (matchesAny(config.noise, entry.title) || matchesAny(config.sponsored, `${entry.title} ${entry.summary}`)) {
         stats.noise++;
         continue;
       }
@@ -181,7 +185,7 @@ async function build() {
 
   // Por editoria: mais recentes primeiro, com limite por fonte para manter a variedade.
   pool.sort((a, b) => b.date - a.date);
-  const items = [];
+  const selected = [];
   for (const column of config.columns) {
     const perSource = new Map();
     let count = 0;
@@ -190,13 +194,24 @@ async function build() {
       const n = perSource.get(item.source) || 0;
       if (n >= config.limits.perSourcePerColumn) continue;
       perSource.set(item.source, n + 1);
-      items.push(item);
+      selected.push(item);
       if (++count >= config.limits.perColumn) break;
     }
   }
-  items.sort((a, b) => b.date - a.date);
+  selected.sort((a, b) => b.date - a.date);
 
-  printReport(report, items, stats, performance.now() - started);
+  printReport(report, selected, stats, performance.now() - started);
+
+  // Tudo em português: manchetes em inglês são traduzidas (ou saem, se não der para traduzir).
+  const hasCredentials = Boolean(process.env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_AUTH_TOKEN);
+  const { items, stats: tr } = await translateItems(selected, {
+    client: hasCredentials ? new Anthropic() : null,
+    cacheFile: TRANSLATIONS,
+    model: process.env.RADAR_TRANSLATION_MODEL || DEFAULT_MODEL,
+    log: (msg) => console.log(msg),
+  });
+  console.log(`Tradução: ${tr.cached} do cache, ${tr.translated} traduzidas agora, ${tr.dropped} sem tradução ficaram de fora.`);
+  for (const failure of tr.failures) console.log(`  ✗ lote não traduzido: ${failure}`);
 
   if (items.length < config.limits.minItems) {
     throw new Error(`Só ${items.length} manchetes (mínimo ${config.limits.minItems}). O site anterior foi mantido.`);

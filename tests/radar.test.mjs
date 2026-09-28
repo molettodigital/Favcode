@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { blocklist, columns, feeds, noise, trendStoplist, watchlist } from '../config/radar.config.mjs';
+import { blocklist, columns, feeds, noise, sponsored, trendStoplist, watchlist } from '../config/radar.config.mjs';
 import { computeTrends, extractProperNouns } from '../scripts/lib/trends.mjs';
 import { cleanUrl, matchesAny } from '../scripts/lib/utils.mjs';
 
@@ -35,6 +35,8 @@ test('bloqueia tudo que é do Google: marca, produtos, anúncios e Meu Negócio'
     'Waymo expande robotáxis para mais cidades',
     'Pixel 11 Pro vaza com câmera nova',
     'Googlebot passa a renderizar mais JavaScript',
+    'Rising CPC? You’re Funding The Competition. Strong affiliate numbers can hide brand bidding.',
+    'PPC trends for Q4',
   ];
   for (const text of blocked) assert.ok(matchesAny(blocklist, text), `deveria bloquear: ${text}`);
 
@@ -115,6 +117,10 @@ test('descarta ofertas, guias de compra e tutoriais, mas mantém notícia', () =
     'Kindle x Galaxy Z Fold 8: qual é melhor para ler quadrinhos?',
     'Quanto custaria um Volkswagen Pointer GTI hoje, com a inflação?',
     'Edição de 28 de setembro de 2026',
+    'Best Party Speakers (2026): JBL, Sony, Marshall, and More',
+    '12 Best White Elephant Gifts, Plus a Prank Box to Put Them In (2026)',
+    'What’s the Best Pet DNA Test? We Tested the Most Popular Ones',
+    'Last 24 hours to save up to $200 on TechCrunch Disrupt 2026. Reason 5 of 5 to attend: Momentum',
   ];
   for (const t of junk) assert.ok(matchesAny(noise, t), `deveria descartar: ${t}`);
   const news = [
@@ -134,4 +140,10 @@ test('acentos decompostos (NFD) são normalizados antes dos filtros', async () =
   assert.ok(matchesAny(blocklist, cleanTitle(nfd)));
   assert.ok(matchesAny(noise, cleanTitle('Edição de 28 de setembro de 2026'.normalize('NFD'))));
   assert.ok(matchesAny(noise, 'Hora de jogar: uma seleção de ótimas ofertas em jogos para Xbox'));
+});
+
+test('descarta conteúdo patrocinado', () => {
+  assert.ok(matchesAny(sponsored, 'Are AI Ads Ready for Prime Time? This post was created in partnership with Higgsfield AI'));
+  assert.ok(matchesAny(sponsored, 'Conteúdo patrocinado: a nova linha de notebooks'));
+  assert.equal(matchesAny(sponsored, 'Brands sponsor more creators in 2026'), null);
 });

@@ -53,7 +53,6 @@ export const feeds = [
   { name: 'g1 Tecnologia', site: 'https://g1.globo.com/tecnologia/', lang: 'pt', column: 'tecnologia', url: 'https://g1.globo.com/rss/g1/tecnologia/', routes: techRoutes, exclude: OFF_TOPIC, excludeUrl: /g1\.globo\.com\/(?:fantastico|ciencia|saude|turismo-e-viagem|pop-arte|natureza|inovacao)\// },
   { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'tecnologia', url: 'https://www.theverge.com/rss/tech/index.xml', routes: techRoutes },
   { name: 'Ars Technica', site: 'https://arstechnica.com', lang: 'en', column: 'tecnologia', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', routes: techRoutes },
-  { name: 'Wired', site: 'https://www.wired.com', lang: 'en', column: 'tecnologia', url: 'https://www.wired.com/feed/rss', routes: techRoutes },
 
   // Marketing
   { name: 'Meio & Mensagem', site: 'https://www.meioemensagem.com.br', lang: 'pt', column: 'marketing', url: 'https://www.meioemensagem.com.br/feed', routes: [{ column: 'publicidade', match: ADS }, { column: 'social', match: SOCIAL }] },
@@ -71,7 +70,7 @@ export const feeds = [
   { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml' },
   { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/' },
   { name: 'Nielsen Norman Group', site: 'https://www.nngroup.com', lang: 'en', column: 'design', url: 'https://www.nngroup.com/feed/rss/' },
-  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss' },
+  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss', exclude: /\b(?:Mars|Martian|climate|carbon|glaciers?|reefs?|yeast|species|fossil fuels?|heat waves?|floods?)\b/i },
   { name: 'Figma', site: 'https://www.figma.com/blog', lang: 'en', column: 'design', url: 'https://www.figma.com/blog/feed/atom.xml' },
 
   // Publicidade
@@ -123,6 +122,8 @@ export const blocklist = [
   // Busca e análise: AI Overviews, atualizações do algoritmo, GA4, Search Console
   /\bAI Overviews?\b|\bAI Mode\b|\bcore (?:algorithm )?update\b|\bspam update\b/i,
   /\bSearch Console\b|\bGSC\b|\bGA4\b|\bLooker Studio\b|\bData Studio\b|\bFirebase\b|\bBigQuery\b/i,
+  // Busca paga (na prática, Google Ads mesmo quando o nome não aparece)
+  /\bPPC\b|\bpaid search\b|\bbrand bidding\b|\bbusca paga\b/i,
   // Google Meu Negócio / Perfil da Empresa (o nome "Google" já é pego acima)
   /\bGMB\b/,
 ];
@@ -144,7 +145,16 @@ export const noise = [
   /^\d+\s(?:pol[eê]micas|curiosidades|coisas|fatos|dicas|motivos|raz[oõ]es|erros|truques|segredos|jogos|filmes|s[eé]ries|apps|aplicativos|diferen[cç]as|celulares|notebooks|fones)\b/i,
   /\bqual (?:[eé] )?(?:o |a )?melhor\b|:\s*qual escolher\b|^quanto custaria\b/i,
   /^edi[cç][aã]o (?:de|do dia)\b|^newsletter\b/i,
+  // Guias de compra e testes de produto em inglês ("Best Party Speakers (2026)", "12 Best Gifts").
+  /^(?:the\s+)?\d*\s*best\b.*\(20\d\d\)|^\d+\s+best\b|\bwe tested\b|\bgift guide\b|\bgifts? (?:for|ideas)\b/i,
+  // Promoção de ingressos de eventos ("Last 24 hours to save up to $200 on TechCrunch Disrupt").
+  /\bTechCrunch Disrupt\b|\bsave up to \$\d+|\bexpo\+? pass\b/i,
   /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
+];
+
+/** Conteúdo patrocinado, verificado no título e no resumo. */
+export const sponsored = [
+  /\b(?:this (?:post|article|content) (?:was|is) (?:created|produced|brought to you) in partnership with|sponsored (?:content|post|by)|paid post|partner content|conte[uú]do patrocinado|publieditorial|publipost)\b/i,
 ];
 
 /**

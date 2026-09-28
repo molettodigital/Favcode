@@ -402,18 +402,6 @@
     font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.06em; line-height: 1;
   }
 
-  .lang { display: none; border: 0; margin: 0; padding: 3px; border-radius: 999px; background: var(--surface-2); flex: 0 0 auto; }
-  .lang input { position: absolute; opacity: 0; pointer-events: none; }
-  .lang label {
-    display: inline-grid; place-items: center; min-width: 48px; height: 34px; padding: 0 10px; border-radius: 999px; cursor: pointer;
-    font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--muted); transition: background-color 0.15s ease, color 0.15s ease;
-  }
-  .lang label:hover { color: var(--ink); }
-  .lang input:checked + label { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
-  .lang input:focus-visible + label { outline: 2px solid var(--azure); outline-offset: 1px; }
-  @media (min-width: 760px) { .lang { display: flex; } }
-  .lang--inline { display: flex; width: fit-content; margin: 0 0 16px; }
-  @media (min-width: 760px) { .lang--inline { display: none; } }
 
   /* ---------- Conteúdo ---------- */
   main { padding-bottom: 40px; }
@@ -463,8 +451,7 @@
   .story__meta { display: flex; align-items: center; gap: 8px; margin-top: 6px; font-size: 0.8125rem; color: var(--muted); min-height: 36px; min-width: 0; }
   .story__meta time { font-family: var(--font-mono); font-size: 0.75rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .story__source { font-weight: 600; color: var(--ink-2); min-width: 0; flex: 0 1 auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .story__lang, .story__new, .story__meta time { flex: 0 0 auto; }
-  .story__lang { font-family: var(--font-mono); font-size: 0.625rem; font-weight: 600; letter-spacing: 0.06em; border: 1px solid var(--line-strong); border-radius: 4px; padding: 1px 4px; }
+  .story__new, .story__meta time { flex: 0 0 auto; }
   .story__new { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--code-ink); text-transform: uppercase; letter-spacing: 0.06em; }
   .story__new::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--sky); }
   .story__actions { margin-left: auto; display: flex; gap: 2px; position: relative; z-index: 1; flex: 0 0 auto; }
@@ -597,7 +584,7 @@
       <div class="console__text">
         <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span>Radar de notícias</span><span class="eyebrow__sep" aria-hidden="true">·</span><time data-today></time></p>
         <h1 id="console-title">O que está em alta hoje em <em>IA, tecnologia, marketing, design e publicidade</em></h1>
-        <p class="console__lede" data-lede>Manchetes de veículos do Brasil e do mundo, por editoria, atualizadas a cada hora.</p>
+        <p class="console__lede" data-lede>Manchetes de veículos do Brasil e do mundo, em português, por editoria e atualizadas a cada hora.</p>
         <dl class="stats">
           <div><dt>manchetes</dt><dd data-stat="items">–</dd></div>
           <div><dt>fontes</dt><dd data-stat="sources">–</dd></div>
@@ -622,12 +609,6 @@
   <nav class="toolbar" aria-label="Editorias" data-toolbar>
     <div class="wrap">
       <ul class="chips" data-chips></ul>
-      <fieldset class="lang" data-lang>
-        <legend class="sr-only">Idioma das manchetes</legend>
-        <input type="radio" name="lang" id="lang-all" value="all"><label for="lang-all">Todas</label>
-        <input type="radio" name="lang" id="lang-pt" value="pt"><label for="lang-pt" title="Só em português">PT</label>
-        <input type="radio" name="lang" id="lang-en" value="en"><label for="lang-en" title="Só em inglês">EN</label>
-      </fieldset>
     </div>
   </nav>
 
@@ -638,12 +619,6 @@
         <a class="back-link" href="#tudo" data-view-back hidden><svg aria-hidden="true"><use href="#i-arrow"/></svg>Todas as editorias</a>
         <p class="view__sub" data-view-sub></p>
       </div>
-      <fieldset class="lang lang--inline" data-lang data-lang-inline>
-        <legend class="sr-only">Idioma das manchetes</legend>
-        <input type="radio" name="lang-m" id="lang-m-all" value="all"><label for="lang-m-all">Todas</label>
-        <input type="radio" name="lang-m" id="lang-m-pt" value="pt"><label for="lang-m-pt">PT</label>
-        <input type="radio" name="lang-m" id="lang-m-en" value="en"><label for="lang-m-en">EN</label>
-      </fieldset>
       <div data-view-body></div>
     </section>
     <noscript><p class="empty">Ative o JavaScript para ver as manchetes do radar.</p></noscript>
@@ -716,7 +691,6 @@
   };
 
   const state = {
-    lang: ['all', 'pt', 'en'].includes(store.get('lang', 'all')) ? store.get('lang', 'all') : 'all',
     favs: Array.isArray(store.get('favs', [])) ? store.get('favs', []) : [],
     route: { view: 'overview' },
     newIds: new Set(),
@@ -745,7 +719,6 @@
   const plural = (n, one, many) => `${fmtNumber.format(n)} ${n === 1 ? one : many}`;
   const fold = (str) => String(str).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
   const sourceName = (it) => (SOURCES[it.source] && SOURCES[it.source].name) || it.sourceName || '';
-  const visible = (it) => state.lang === 'all' || it.lang === state.lang;
   const isFav = (id) => state.favs.some((f) => f.id === id);
 
   // ---------- Manchetes novas desde a última visita ----------
@@ -773,14 +746,13 @@
       <article class="${cls}">
         ${withImage ? `<div class="story__media"><img src="${esc(it.image)}" alt="" width="640" height="360" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>` : ''}
         ${showColumn && col ? `<div class="card__kicker"><span class="code">${esc(col.code)}</span><span class="story__meta-col">${esc(col.name)}</span></div>` : ''}
-        <h${level} class="story__title"><a href="${esc(it.url)}" target="_blank" rel="noopener">${esc(it.title)}</a></h${level}>
+        <h${level} class="story__title"><a href="${esc(it.url)}" target="_blank" rel="noopener"${it.lang === 'en' ? ' hreflang="en" title="Título traduzido. A matéria original está em inglês."' : ''}>${esc(it.title)}</a></h${level}>
         ${it.summary && variant !== 'row' ? `<p class="story__summary">${esc(it.summary)}</p>` : ''}
         <div class="story__meta">
           ${state.newIds.has(it.id) ? '<span class="story__new">nova</span>' : ''}
           <time datetime="${new Date(it.date).toISOString()}" title="${esc(fmtFull.format(it.date))}" data-ts="${it.date}">${esc(relative(it.date))}</time>
           <span aria-hidden="true">·</span>
           <span class="story__source">${esc(name)}</span>
-          ${it.lang === 'en' ? '<span class="story__lang" title="Em inglês">EN</span>' : ''}
           <span class="story__actions">
             <button class="act" type="button" data-fav="${esc(it.id)}" aria-pressed="${fav}" aria-label="Favoritar: ${esc(it.title)}">
               <svg class="i-star" aria-hidden="true"><use href="#i-star"/></svg><svg class="i-star-fill" aria-hidden="true"><use href="#i-star-fill"/></svg>
@@ -815,7 +787,7 @@
     updated.title = fmtFull.format(GENERATED);
     updated.classList.toggle('is-stale', age > 3 * HOUR);
 
-    $('[data-lede]').textContent = `Manchetes de ${fmtNumber.format(sourceCount)} veículos do Brasil e do mundo, por editoria, atualizadas a cada hora. Favorite o que vale guardar.`;
+    $('[data-lede]').textContent = `Manchetes de ${fmtNumber.format(sourceCount)} veículos do Brasil e do mundo, todas em português, por editoria e atualizadas a cada hora. Favorite o que vale guardar.`;
 
     const newsince = $('[data-newsince]');
     if (state.newIds.size) {
@@ -980,7 +952,7 @@
   // ---------- Editorias ----------
   function renderChips() {
     const counts = Object.fromEntries(COLUMNS.map((c) => [c.id, 0]));
-    for (const it of ITEMS) if (visible(it)) counts[it.column]++;
+    for (const it of ITEMS) counts[it.column]++;
     const r = state.route;
     const current = r.view === 'column' ? r.id : r.view === 'overview' ? 'all' : '';
     $('[data-chips]').innerHTML =
@@ -998,7 +970,7 @@
 
   function renderOverview(body) {
     body.innerHTML = `<div class="columns">${COLUMNS.map((c) => {
-      const items = ITEMS.filter((it) => it.column === c.id && visible(it));
+      const items = ITEMS.filter((it) => it.column === c.id);
       const shown = items.slice(0, 7);
       // Destaque com foto: a mais recente com imagem entre as 3 primeiras sobe para o topo.
       const lead = shown.slice(0, 3).findIndex((it) => it.image);
@@ -1010,7 +982,7 @@
             <h3 class="col__title" id="col-${c.id}"><a href="#${c.id}">${esc(c.name)}</a></h3>
             <span class="col__count" title="${plural(items.length, 'manchete', 'manchetes')}"><span aria-hidden="true">${items.length}</span><span class="sr-only">${plural(items.length, 'manchete', 'manchetes')}</span></span>
           </header>
-          ${shown.length ? shown.map((it, i) => storyHTML(it, { variant: i === 0 ? 'lead' : 'row', level: 4 })).join('') : `<p class="col__empty">Nenhuma manchete${state.lang === 'en' ? ' em inglês' : state.lang === 'pt' ? ' em português' : ''} nesta editoria agora.</p>`}
+          ${shown.length ? shown.map((it, i) => storyHTML(it, { variant: i === 0 ? 'lead' : 'row', level: 4 })).join('') : '<p class="col__empty">Nenhuma manchete nesta editoria agora.</p>'}
           ${items.length > shown.length ? `<a class="col__more" href="#${c.id}">Ver as ${items.length} de ${esc(c.name)}<svg aria-hidden="true"><use href="#i-arrow"/></svg></a>` : ''}
         </section>`;
     }).join('')}</div>`;
@@ -1045,7 +1017,6 @@
   function searchItems(q) {
     const terms = fold(q).split(/\s+/).filter(Boolean);
     return ITEMS.filter((it) => {
-      if (!visible(it)) return false;
       const hay = fold(`${it.title} ${it.summary} ${sourceName(it)} ${COL[it.column].name}`);
       return terms.every((t) => hay.includes(t));
     });
@@ -1062,7 +1033,6 @@
     else $('[data-fav-link]').removeAttribute('aria-current');
     $$('.trend').forEach((a) => a.removeAttribute('aria-current'));
 
-    $('[data-lang-inline]').hidden = r.view === 'favs';
     let announce = '';
     if (r.view === 'overview') {
       title.textContent = 'Todas as editorias';
@@ -1070,24 +1040,22 @@
       renderOverview(body);
     } else if (r.view === 'column') {
       const col = COL[r.id];
-      const items = ITEMS.filter((it) => it.column === r.id && visible(it));
+      const items = ITEMS.filter((it) => it.column === r.id);
       title.textContent = col.name;
       sub.textContent = `${col.blurb} ${plural(items.length, 'manchete', 'manchetes')}.`;
       renderList(body, items, {
         showColumn: false,
-        empty: emptyHTML('Nada por aqui agora', `Nenhuma manchete${state.lang === 'en' ? ' em inglês' : state.lang === 'pt' ? ' em português' : ''} em ${col.name} neste momento.`, '<button class="pill-btn" type="button" data-lang-reset>Mostrar todos os idiomas</button>'),
+        empty: emptyHTML('Nada por aqui agora', `Nenhuma manchete em ${col.name} neste momento. O radar é atualizado a cada hora.`, '<a class="pill-btn" href="#tudo">Ver todas as editorias</a>'),
       });
     } else if (r.view === 'trend') {
       const idx = TRENDS.findIndex((t) => t.term === r.term);
       const trend = TRENDS[idx];
-      const items = trend ? trend.ids.map((id) => BY_ID.get(id)).filter(visible) : [];
+      const items = trend ? trend.ids.map((id) => BY_ID.get(id)) : [];
       title.textContent = `Em alta: ${r.term}`;
       sub.textContent = trend ? `${plural(trend.ids.length, 'manchete', 'manchetes')} de ${plural(trend.sources, 'fonte', 'fontes')} citam ${r.term} nas últimas horas.` : '';
       if (trend) $(`.trend[data-trend="${idx}"]`)?.setAttribute('aria-current', 'page');
       renderList(body, items, {
-        empty: trend
-          ? emptyHTML('Nada neste idioma', `As manchetes sobre ${r.term} estão em outro idioma.`, '<button class="pill-btn" type="button" data-lang-reset>Mostrar todos os idiomas</button>')
-          : emptyHTML('Esse assunto saiu do radar', 'O ranking muda a cada hora. Veja o que está em alta agora no topo da página.', '<a class="pill-btn" href="#tudo">Ver todas as editorias</a>'),
+        empty: emptyHTML('Esse assunto saiu do radar', 'O ranking muda a cada hora. Veja o que está em alta agora no topo da página.', '<a class="pill-btn" href="#tudo">Ver todas as editorias</a>'),
       });
     } else if (r.view === 'search') {
       const items = searchItems(r.q);
@@ -1220,14 +1188,6 @@
     }
   }
 
-  // ---------- Idioma ----------
-  function setLang(lang) {
-    state.lang = lang;
-    store.set('lang', lang);
-    $$('[data-lang] input').forEach((input) => (input.checked = input.value === lang));
-    render();
-  }
-
   // ---------- Tema ----------
   function currentTheme() {
     const attr = document.documentElement.getAttribute('data-theme');
@@ -1264,7 +1224,6 @@
       if (favBtn) return toggleFav(favBtn.dataset.fav, favBtn);
       const shareBtn = e.target.closest('[data-share]');
       if (shareBtn) return share(shareBtn.dataset.share);
-      if (e.target.closest('[data-lang-reset]')) return setLang('all');
       if (e.target.closest('[data-search-reset], [data-search-clear]')) {
         $('#q').value = '';
         history.replaceState(null, '', location.pathname + location.search);
@@ -1315,7 +1274,6 @@
       }
     });
 
-    $$('[data-lang] input').forEach((radio) => radio.addEventListener('change', () => radio.checked && setLang(radio.value)));
 
     const trendList = $('[data-trends]');
     if (trendList) {
@@ -1367,7 +1325,6 @@
   }
 
   // ---------- Início ----------
-  $$('[data-lang] input').forEach((input) => (input.checked = input.value === state.lang));
   saveFavs();
   applyThemeUI();
   renderConsole();

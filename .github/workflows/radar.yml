@@ -11,6 +11,8 @@ on:
       - "scripts/**"
       - "src/**"
       - "assets/**"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/radar.yml"
 
 permissions:
@@ -30,6 +32,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
 
       - name: Testes
         run: npm test
@@ -38,11 +44,15 @@ jobs:
         run: node scripts/build.mjs
         env:
           SITE_URL: ${{ vars.SITE_URL }}
+          # Tradução das manchetes em inglês (Settings → Secrets and variables → Actions).
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          # Opcional: outro modelo para a tradução (padrão: claude-opus-5).
+          RADAR_TRANSLATION_MODEL: ${{ vars.RADAR_TRANSLATION_MODEL }}
 
       - name: Publicar no repositório
         run: |
-          git add index.html
-          if git diff --cached --quiet -- index.html; then
+          git add index.html data/translations.json
+          if git diff --cached --quiet -- index.html data/translations.json; then
             echo "Nada mudou."
             exit 0
           fi
