@@ -146,17 +146,27 @@ export const blocklist = [
 ];
 
 /**
- * Ruído que não é notícia: posts de oferta/cupom, guias de compra e tutoriais passo a passo.
- * Vale só para o título.
+ * Ofertas, cupons e promoções (título, em português e em inglês). Fazem parte de `noise` e
+ * também são conferidas de novo nas manchetes traduzidas, junto com `blocklist` e `sponsored`.
  */
-export const noise = [
+export const offers = [
   /\b\d{1,2}\s?% (?:de desconto|off|mais barat[oa])\b/i,
   /\b(?:cupom|cupons|desconto agressivo|menor pre[cç]o|melhor(?:es)? pre[cç]os?|melhor oferta|em promo[cç][aã]o|queda de pre[cç]o|despenca de pre[cç]o|pela metade do pre[cç]o|sem juros)\b/i,
   /\b(?:cai|caem|fica|ficam|sai|saem)\s(?:quase\s)?\d{1,2}\s?%/i,
   /^(?:aproveite|oferta|ofertas|promo[cç][aã]o)\b/i,
+  /\b(?:best .+ deals|deal of the day|lowest price|on sale|promo codes?|coupons?|\d{1,2}% off)\b/i,
+  /\bpor (?:menos de|apenas|s[oó]) R\$\s?\d|\bchuta a porta\b/i,
+  /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
+];
+
+/**
+ * Ruído que não é notícia: posts de oferta/cupom, guias de compra e tutoriais passo a passo.
+ * Vale só para o título.
+ */
+export const noise = [
+  ...offers,
   /\b\d+\s(?:modelos|op[cç][oõ]es)\s(?:para comprar|para jogos)\b|\bqual (?:modelo )?comprar\b|\bpara comprar em 20\d\d\b/i,
   /^como (?:usar|fazer|baixar|recuperar|ativar|desativar|espelhar|justificar|ver|mudar|trocar|configurar|limpar|apagar|excluir|instalar|atualizar|colocar|tirar|cancelar|consultar|emitir|transferir|conectar|resetar|formatar|desbloquear|bloquear|salvar|converter|gravar|editar|imprimir|assistir|ligar|desligar|saber se)\b/i,
-  /\b(?:best .+ deals|deal of the day|lowest price|on sale|promo codes?|coupons?|\d{1,2}% off)\b/i,
   /\bhor[oó]scopo\b|\bloterias?\b|\bmega-?sena\b|\bresultado da quina\b/i,
   // Listas, comparativos e curiosidades atemporais.
   /^\d+\s(?:pol[eê]micas|curiosidades|coisas|fatos|dicas|motivos|raz[oõ]es|erros|truques|segredos|jogos|filmes|s[eé]ries|apps|aplicativos|diferen[cç]as|celulares|notebooks|fones)\b/i,
@@ -166,10 +176,8 @@ export const noise = [
   /^(?:the\s+)?\d*\s*best\b.*\(20\d\d\)|^\d+\s+best\b|\bwe tested\b|\bgift guide\b|\bgifts? (?:for|ideas)\b/i,
   // Promoção de ingressos de eventos ("Last 24 hours to save up to $200 on TechCrunch Disrupt").
   /\bTechCrunch Disrupt\b|\bsave up to \$\d+|\bexpo\+? pass\b/i,
-  // Ofertas com preço no título e agenda de esportes.
-  /\bpor (?:menos de|apenas|s[oó]) R\$\s?\d|\bchuta a porta\b/i,
+  // Agenda de esportes.
   /\bjogos de hoje\b|\bonde assistir\b|\bfutebol ao vivo\b|\bhor[aá]rios? d[aoe]s? (?:jogos|partidas)\b/i,
-  /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
 ];
 
 /** Conteúdo patrocinado, verificado no título e no resumo. */

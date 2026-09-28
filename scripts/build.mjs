@@ -227,12 +227,13 @@ async function build() {
   console.log(`Tradução: ${tr.cached} do cache, ${tr.translated} traduzidas agora, ${tr.dropped} sem tradução ficaram de fora.`);
   for (const failure of tr.failures) console.log(`  ✗ lote não traduzido: ${failure}`);
 
-  // A tradução passa de novo pelos filtros: oferta ou assunto bloqueado escrito em inglês de um
-  // jeito que os filtros não pegaram costuma aparecer com as palavras de sempre em português.
+  // A tradução passa de novo pelos filtros de oferta, patrocínio e assunto bloqueado: o que foi
+  // escrito em inglês de um jeito que os filtros não pegaram costuma aparecer com as palavras de
+  // sempre em português. (Os de tutorial ficam de fora: "How we save…" vira "Como salvar…".)
   const refiltered = (it) =>
     it.lang === 'en' &&
     (matchesAny(config.blocklist, `${it.title} \n ${it.summary}`.normalize('NFC')) !== null ||
-      matchesAny(config.noise, it.title) !== null ||
+      matchesAny(config.offers, it.title) !== null ||
       matchesAny(config.sponsored, `${it.title} ${it.summary}`) !== null);
   const items = translated.filter((it) => !refiltered(it));
   for (const it of translated.filter(refiltered)) console.log(`  ✗ descartada depois da tradução: ${it.title}`);

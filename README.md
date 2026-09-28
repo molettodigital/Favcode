@@ -87,7 +87,7 @@ Tudo fica em `config/radar.config.mjs`:
 
 - `feeds`: cada fonte tem nome, site, idioma, editoria e URL do feed. `routes` manda manchetes de fontes generalistas para a editoria certa (ex.: uma notícia de IA no Tecnoblog vai para a coluna de IA).
 - `blocklist`: assuntos que nunca entram (Google e todos os produtos e serviços dele). O YouTube continua; para tirar, acrescente `/\bYouTube\b/i` à lista.
-- `noise`: posts que não são notícia (ofertas, cupons, guias de compra, tutoriais, listas).
+- `noise`: posts que não são notícia (ofertas, cupons, guias de compra, tutoriais, listas). As regras de oferta ficam em `offers` e valem também para as manchetes traduzidas, junto com o `blocklist`: uma oferta ou um assunto bloqueado que escape do filtro em inglês é descartado depois da tradução.
 - `exclude` e `excludeUrl` por fonte: tiram assuntos ou seções fora do tema (ciência, games e carros dos portais de tecnologia, por exemplo).
 - `watchlist`: termos acompanhados no "Em alta". Nomes próprios que aparecem em várias fontes entram sozinhos.
 - `limits`: quantidade de manchetes por editoria, idade máxima e afins.
