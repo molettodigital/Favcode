@@ -1,0 +1,242 @@
+// Configuração do Radar FavCode.
+// Editorias, fontes (feeds RSS/Atom), bloqueios e termos monitorados.
+// Para incluir uma fonte, adicione um objeto em `feeds`; para tirar, apague a linha.
+
+/** Editorias, na ordem em que aparecem no site e nos setores do radar. */
+export const columns = [
+  { id: 'ia', name: 'Inteligência artificial', code: 'IA', blurb: 'Modelos, agentes, ferramentas e o que muda no trabalho com IA.' },
+  { id: 'tecnologia', name: 'Tecnologia', code: 'TEC', blurb: 'Big techs, gadgets, plataformas, regulação e infraestrutura.' },
+  { id: 'marketing', name: 'Marketing', code: 'MKT', blurb: 'Estratégia, dados, SEO, CRM, marcas e comportamento do consumidor.' },
+  { id: 'design', name: 'Design', code: 'DES', blurb: 'UX, UI, branding, tipografia, identidade visual e ferramentas.' },
+  { id: 'publicidade', name: 'Publicidade', code: 'PUB', blurb: 'Campanhas, agências, criatividade, mídia e premiações.' },
+  { id: 'social', name: 'Redes sociais', code: 'SOC', blurb: 'Instagram, TikTok, YouTube, LinkedIn, creators e influência.' },
+  { id: 'ecommerce', name: 'E-commerce e varejo', code: 'ECOM', blurb: 'Marketplaces, varejo digital, pagamentos e datas sazonais.' },
+  { id: 'startups', name: 'Startups e negócios', code: 'STA', blurb: 'Rodadas, aquisições, lançamentos e movimentos do mercado.' },
+];
+
+// Regras de redirecionamento: fontes generalistas mandam a manchete para a
+// editoria mais específica quando o título casa com o padrão.
+const AI = /\b(?:IA|AI|LLMs?|GenAI)\b|intelig[eê]ncia artificial|artificial intelligence|\bChat\s?GPT\b|\bOpen\s?AI\b|\bGPT-?\d|\bGemini\b|\bClaude\b|\bAnthropic\b|\bCopilot\b|\bMidjourney\b|\bDeepSeek\b|\bLlama\b|\bMistral\b|\bPerplexity\b|\bGrok\b|\bxAI\b|machine learning|aprendizado de m[aá]quina|\bchatbots?\b|\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b|\bgenerativ[ao]s?\b|\bgenerative\b/;
+const SOCIAL = /\b(?:Instagram|TikTok|Threads|YouTube|YouTubers?|WhatsApp|LinkedIn|Bluesky|Facebook|Snapchat|Pinterest|Kwai|Twitch|Reels|Stories)\b|\binfluenciador(?:a|es|as)?\b|\binfluencers?\b|\bcreators?\b|criador(?:es|as)? de conte[uú]do|redes sociais|social media|creator economy/i;
+const ECOM = /\be-?commerce\b|\bvarejo\b|\bvarejistas?\b|\bShopee\b|\bMercado Livre\b|\bMagalu\b|\bShein\b|\bTemu\b|\bmarketplaces?\b|\bBlack Friday\b|loja virtual|com[eé]rcio eletr[oô]nico|\bretail(?:ers?)?\b|\bTikTok Shop\b|\bPix\b|\bcheckout\b/i;
+const STARTUP = /\bstartups?\b|\brodada\b|\baporte\b|\bunic[oó]rnios?\b|\bunicorns?\b|venture capital|\bSeries [A-E]\b|\bS[eé]rie [A-E]\b|\braises \$|\bfunding\b|\bIPO\b|\badquire\b|\baquisi[cç][aã]o\b|\bacquires?\b|\bacquisition\b/i;
+const ADS = /\bag[eê]ncias?\b|\bcampanhas?\b|\bpublicidade\b|\bpropaganda\b|\bpublicit[aá]ri[oa]s?\b|\bcomerciais?\b|\bfilme publicit|\bCannes\b|\bLe[oõ]es\b|\bcria[cç][aã]o\b|\bcriativ[oa]s?\b|\bad campaign\b|\bagency\b|\bagencies\b|\bcampaign\b/i;
+
+const techRoutes = [
+  { column: 'ia', match: AI },
+  { column: 'social', match: SOCIAL },
+  { column: 'ecommerce', match: ECOM },
+  { column: 'startups', match: STARTUP },
+];
+
+/**
+ * Fontes. `column` é a editoria padrão; `routes` (opcional) redireciona por título;
+ * `include`/`exclude` (opcionais) filtram manchetes daquela fonte.
+ */
+export const feeds = [
+  // Inteligência artificial
+  { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'ia', url: 'https://tecnoblog.net/temas/inteligencia-artificial/feed/' },
+  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'ia', url: 'https://olhardigital.com.br/tag/inteligencia-artificial/feed/' },
+  { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'ia', url: 'https://canaltech.com.br/rss/inteligencia-artificial/' },
+  { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'ia', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml' },
+  { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'ia', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
+  { name: 'VentureBeat', site: 'https://venturebeat.com', lang: 'en', column: 'ia', url: 'https://venturebeat.com/category/ai/feed/' },
+  { name: 'MIT Technology Review', site: 'https://www.technologyreview.com', lang: 'en', column: 'ia', url: 'https://www.technologyreview.com/topic/artificial-intelligence/feed' },
+  { name: 'The Decoder', site: 'https://the-decoder.com', lang: 'en', column: 'ia', url: 'https://the-decoder.com/feed/' },
+  { name: 'OpenAI', site: 'https://openai.com/news', lang: 'en', column: 'ia', url: 'https://openai.com/news/rss.xml' },
+  { name: 'Google DeepMind', site: 'https://deepmind.google', lang: 'en', column: 'ia', url: 'https://deepmind.google/blog/rss.xml' },
+  { name: 'Hugging Face', site: 'https://huggingface.co/blog', lang: 'en', column: 'ia', url: 'https://huggingface.co/blog/feed.xml' },
+
+  // Tecnologia (fontes generalistas: redirecionam para IA, redes, e-commerce e startups)
+  { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'tecnologia', url: 'https://tecnoblog.net/feed/', routes: techRoutes },
+  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'tecnologia', url: 'https://olhardigital.com.br/feed/', routes: techRoutes },
+  { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'tecnologia', url: 'https://canaltech.com.br/rss/', routes: techRoutes },
+  { name: 'TecMundo', site: 'https://www.tecmundo.com.br', lang: 'pt', column: 'tecnologia', url: 'https://rss.tecmundo.com.br/feed', routes: techRoutes },
+  { name: 'g1 Tecnologia', site: 'https://g1.globo.com/tecnologia/', lang: 'pt', column: 'tecnologia', url: 'https://g1.globo.com/rss/g1/tecnologia/', routes: techRoutes },
+  { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'tecnologia', url: 'https://www.theverge.com/rss/tech/index.xml', routes: techRoutes },
+  { name: 'Ars Technica', site: 'https://arstechnica.com', lang: 'en', column: 'tecnologia', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', routes: techRoutes },
+  { name: 'Wired', site: 'https://www.wired.com', lang: 'en', column: 'tecnologia', url: 'https://www.wired.com/feed/rss', routes: techRoutes },
+
+  // Marketing
+  { name: 'Meio & Mensagem', site: 'https://www.meioemensagem.com.br', lang: 'pt', column: 'marketing', url: 'https://www.meioemensagem.com.br/feed', routes: [{ column: 'publicidade', match: ADS }, { column: 'social', match: SOCIAL }] },
+  { name: 'Mundo do Marketing', site: 'https://www.mundodomarketing.com.br', lang: 'pt', column: 'marketing', url: 'https://www.mundodomarketing.com.br/feed/' },
+  { name: 'Consumidor Moderno', site: 'https://www.consumidormoderno.com.br', lang: 'pt', column: 'marketing', url: 'https://www.consumidormoderno.com.br/feed/', routes: [{ column: 'ecommerce', match: ECOM }] },
+  { name: 'Marketing Dive', site: 'https://www.marketingdive.com', lang: 'en', column: 'marketing', url: 'https://www.marketingdive.com/feeds/news/' },
+  { name: 'MarTech', site: 'https://martech.org', lang: 'en', column: 'marketing', url: 'https://martech.org/feed/' },
+  { name: 'Search Engine Journal', site: 'https://www.searchenginejournal.com', lang: 'en', column: 'marketing', url: 'https://www.searchenginejournal.com/feed/' },
+  { name: 'Search Engine Land', site: 'https://searchengineland.com', lang: 'en', column: 'marketing', url: 'https://searchengineland.com/feed' },
+  { name: 'HubSpot', site: 'https://blog.hubspot.com/marketing', lang: 'en', column: 'marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
+
+  // Design
+  { name: 'Choco la Design', site: 'https://chocoladesign.com', lang: 'pt', column: 'design', url: 'https://chocoladesign.com/feed' },
+  { name: 'Design Culture', site: 'https://designculture.com.br', lang: 'pt', column: 'design', url: 'https://designculture.com.br/feed' },
+  { name: 'Smashing Magazine', site: 'https://www.smashingmagazine.com', lang: 'en', column: 'design', url: 'https://www.smashingmagazine.com/feed/' },
+  { name: 'Creative Bloq', site: 'https://www.creativebloq.com', lang: 'en', column: 'design', url: 'https://www.creativebloq.com/feeds.xml' },
+  { name: 'UX Collective', site: 'https://uxdesign.cc', lang: 'en', column: 'design', url: 'https://uxdesign.cc/feed' },
+  { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml' },
+  { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/' },
+  { name: 'Nielsen Norman Group', site: 'https://www.nngroup.com', lang: 'en', column: 'design', url: 'https://www.nngroup.com/feed/rss/' },
+
+  // Publicidade
+  { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/' },
+  { name: 'ADNEWS', site: 'https://adnews.com.br', lang: 'pt', column: 'publicidade', url: 'https://adnews.com.br/feed/', routes: [{ column: 'social', match: SOCIAL }] },
+  { name: 'B9', site: 'https://www.b9.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.b9.com.br/feed/' },
+  { name: 'Clube de Criação', site: 'https://www.clubedecriacao.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.clubedecriacao.com.br/feed/' },
+  { name: 'Adweek', site: 'https://www.adweek.com', lang: 'en', column: 'publicidade', url: 'https://www.adweek.com/feed/' },
+  { name: 'Creative Review', site: 'https://www.creativereview.co.uk', lang: 'en', column: 'publicidade', url: 'https://www.creativereview.co.uk/feed/' },
+  { name: 'The Drum', site: 'https://www.thedrum.com', lang: 'en', column: 'publicidade', url: 'https://www.thedrum.com/feeds/news' },
+
+  // Redes sociais
+  { name: 'Social Media Today', site: 'https://www.socialmediatoday.com', lang: 'en', column: 'social', url: 'https://www.socialmediatoday.com/feeds/news/' },
+  { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'social', url: 'https://techcrunch.com/category/social/feed/' },
+  { name: 'Tubefilter', site: 'https://www.tubefilter.com', lang: 'en', column: 'social', url: 'https://www.tubefilter.com/feed/' },
+  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'social', url: 'https://olhardigital.com.br/tag/redes-sociais/feed/' },
+  { name: 'mLabs', site: 'https://www.mlabs.com.br/blog', lang: 'pt', column: 'social', url: 'https://www.mlabs.com.br/blog/feed' },
+
+  // E-commerce e varejo
+  { name: 'E-Commerce Brasil', site: 'https://www.ecommercebrasil.com.br', lang: 'pt', column: 'ecommerce', url: 'https://www.ecommercebrasil.com.br/feed' },
+  { name: 'Mercado & Consumo', site: 'https://mercadoeconsumo.com.br', lang: 'pt', column: 'ecommerce', url: 'https://mercadoeconsumo.com.br/feed/' },
+  { name: 'Modern Retail', site: 'https://www.modernretail.co', lang: 'en', column: 'ecommerce', url: 'https://www.modernretail.co/feed/' },
+  { name: 'Retail Dive', site: 'https://www.retaildive.com', lang: 'en', column: 'ecommerce', url: 'https://www.retaildive.com/feeds/news/' },
+  { name: 'Practical Ecommerce', site: 'https://www.practicalecommerce.com', lang: 'en', column: 'ecommerce', url: 'https://www.practicalecommerce.com/feed' },
+
+  // Startups e negócios
+  { name: 'Startups', site: 'https://startups.com.br', lang: 'pt', column: 'startups', url: 'https://startups.com.br/feed/' },
+  { name: 'Startupi', site: 'https://startupi.com.br', lang: 'pt', column: 'startups', url: 'https://startupi.com.br/feed/' },
+  { name: 'NeoFeed', site: 'https://neofeed.com.br', lang: 'pt', column: 'startups', url: 'https://neofeed.com.br/feed/' },
+  { name: 'LatamList', site: 'https://latamlist.com', lang: 'en', column: 'startups', url: 'https://latamlist.com/feed/' },
+  { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'startups', url: 'https://techcrunch.com/category/startups/feed/' },
+];
+
+/**
+ * Assuntos fora do radar: Google Ads e Google Meu Negócio (Perfil da Empresa no Google).
+ * Qualquer manchete que cite esses termos no título, no resumo, nas categorias ou na URL é descartada.
+ */
+export const blocklist = [
+  /google[\s-]*ads?\b/i, // Google Ads, Google Ad
+  /\bad[\s-]*words\b/i, // AdWords
+  /\bperformance[\s-]*max\b/i, // campanhas Performance Max
+  /\bpmax\b/i,
+  /\bsmart[\s-]*bidding\b/i,
+  /\bkeyword[\s-]*planner\b/i,
+  /planejador de palavras[\s-]*chave/i,
+  /\blocal[\s-]*services[\s-]*ads\b/i,
+  /google[\s-]*meu[\s-]*neg[oó]cio/i,
+  /google[\s-]*my[\s-]*business/i,
+  /google[\s-]*business[\s-]*profiles?/i,
+  /perfil (?:da )?empresa no google/i,
+  /\bGMB\b/,
+];
+
+/**
+ * Ruído que não é notícia: posts de oferta/cupom, guias de compra e tutoriais passo a passo.
+ * Vale só para o título.
+ */
+export const noise = [
+  /\b\d{1,2}\s?% (?:de desconto|off|mais barat[oa])\b/i,
+  /\b(?:cupom|cupons|desconto agressivo|menor pre[cç]o|melhor(?:es)? pre[cç]os?|melhor oferta|em promo[cç][aã]o|queda de pre[cç]o|despenca de pre[cç]o|pela metade do pre[cç]o|sem juros)\b/i,
+  /\b(?:cai|caem|fica|ficam|sai|saem)\s(?:quase\s)?\d{1,2}\s?%/i,
+  /^(?:aproveite|oferta|ofertas|promo[cç][aã]o)\b/i,
+  /\b\d+\s(?:modelos|op[cç][oõ]es)\s(?:para comprar|para jogos)\b|\bqual (?:modelo )?comprar\b|\bpara comprar em 20\d\d\b/i,
+  /^como (?:usar|fazer|baixar|recuperar|ativar|desativar|espelhar|justificar|ver|mudar|trocar|configurar|limpar|apagar|excluir|instalar|atualizar|colocar|tirar|cancelar|consultar|emitir|transferir|conectar|resetar|formatar|desbloquear|bloquear|salvar|converter|gravar|editar|imprimir|assistir|ligar|desligar|saber se)\b/i,
+  /\b(?:best .+ deals|deal of the day|lowest price|on sale|promo codes?|coupons?|\d{1,2}% off)\b/i,
+  /\bhor[oó]scopo\b|\bloterias?\b|\bmega-?sena\b|\bresultado da quina\b/i,
+];
+
+/**
+ * Termos monitorados para o "Em alta". Além destes, o radar detecta sozinho nomes
+ * próprios que aparecem em várias fontes ao mesmo tempo.
+ */
+export const watchlist = [
+  // IA
+  { label: 'OpenAI', match: /\bOpen\s?AI\b/i },
+  { label: 'ChatGPT', match: /\bChat\s?GPT\b/i },
+  { label: 'Gemini', match: /\bGemini\b/ },
+  { label: 'Claude', match: /\bClaude\b/ },
+  { label: 'Anthropic', match: /\bAnthropic\b/ },
+  { label: 'Meta AI', match: /\bMeta AI\b|\bLlama\b/ },
+  { label: 'DeepSeek', match: /\bDeepSeek\b/i },
+  { label: 'Grok', match: /\bGrok\b|\bxAI\b/ },
+  { label: 'Perplexity', match: /\bPerplexity\b/ },
+  { label: 'Copilot', match: /\bCopilot\b/ },
+  { label: 'Midjourney', match: /\bMidjourney\b/i },
+  { label: 'Sora', match: /\bSora\b/ },
+  { label: 'Veo', match: /\bVeo\b/ },
+  { label: 'Agentes de IA', match: /\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b/i },
+  { label: 'IA generativa', match: /\bIA generativa\b|\bgenerative AI\b|\bGenAI\b/i },
+  { label: 'Nvidia', match: /\bNvidia\b/i },
+  // Big techs e plataformas
+  { label: 'Apple', match: /\bApple\b/ },
+  { label: 'iPhone', match: /\biPhone\b/ },
+  { label: 'Samsung', match: /\bSamsung\b|\bGalaxy\b/ },
+  { label: 'Microsoft', match: /\bMicrosoft\b/ },
+  { label: 'Meta', match: /\bMeta\b(?! AI)/ },
+  { label: 'Amazon', match: /\bAmazon\b/ },
+  { label: 'Google', match: /\bGoogle\b/ },
+  { label: 'Elon Musk', match: /\bMusk\b/ },
+  { label: 'Tesla', match: /\bTesla\b/ },
+  { label: 'Netflix', match: /\bNetflix\b/ },
+  { label: 'Spotify', match: /\bSpotify\b/ },
+  // Redes sociais
+  { label: 'Instagram', match: /\bInstagram\b/ },
+  { label: 'TikTok', match: /\bTikTok\b/i },
+  { label: 'YouTube', match: /\bYouTube\b/i },
+  { label: 'WhatsApp', match: /\bWhatsApp\b/i },
+  { label: 'LinkedIn', match: /\bLinkedIn\b/i },
+  { label: 'Threads', match: /\bThreads\b/ },
+  { label: 'X (Twitter)', match: /\bTwitter\b|\bX \(ex-Twitter\)|\bantigo Twitter\b/ },
+  { label: 'Bluesky', match: /\bBluesky\b/i },
+  { label: 'Pinterest', match: /\bPinterest\b/ },
+  { label: 'Creators e influência', match: /\binfluenciador(?:a|es|as)?\b|\binfluencers?\b|\bcreator economy\b|\beconomia dos criadores\b/i },
+  // Marketing, mídia e publicidade
+  { label: 'SEO', match: /\bSEO\b/ },
+  { label: 'Busca com IA', match: /\bAI Overviews?\b|\bAI Mode\b|\bGEO\b|generative engine optimi[sz]ation|\bbusca com IA\b|\bAI search\b/i },
+  { label: 'Retail media', match: /\bretail media\b/i },
+  { label: 'TV conectada', match: /\bCTV\b|\bconnected TV\b|\bTV conectada\b/i },
+  { label: 'Privacidade e dados', match: /\bLGPD\b|\bcookies?\b|\bfirst-party data\b|\bdados pr[oó]prios\b|\bprivacidade\b/i },
+  { label: 'Branding', match: /\brebrand\w*|\bbranding\b|\bnova identidade visual\b|\bnovo logo\b|\bnew logo\b|\bidentidade de marca\b/i },
+  { label: 'Cannes Lions', match: /\bCannes\b/ },
+  { label: 'Black Friday', match: /\bBlack Friday\b/i },
+  { label: 'Dia das Crianças', match: /\bDia das Crian[cç]as\b/i },
+  { label: 'Natal', match: /\bNatal\b|\bholiday season\b/ },
+  // Design
+  { label: 'Figma', match: /\bFigma\b/i },
+  { label: 'Adobe', match: /\bAdobe\b|\bPhotoshop\b|\bIllustrator\b|\bFirefly\b/ },
+  { label: 'Canva', match: /\bCanva\b/ },
+  { label: 'Tipografia', match: /\btipografia\b|\btypography\b|\btypefaces?\b/i },
+  { label: 'Acessibilidade', match: /\bacessibilidade\b|\baccessibility\b/i },
+  // E-commerce e negócios
+  { label: 'Mercado Livre', match: /\bMercado Livre\b/i },
+  { label: 'Shopee', match: /\bShopee\b/i },
+  { label: 'Shein e Temu', match: /\bShein\b|\bTemu\b/i },
+  { label: 'TikTok Shop', match: /\bTikTok Shop\b/i },
+  { label: 'Pix', match: /\bPix\b/ },
+  { label: 'Rodadas de investimento', match: /\brodada\b|\baporte\b|\bfunding round\b|\braises \$|\bSeries [A-E]\b|\bS[eé]rie [A-E]\b/i },
+  { label: 'Aquisições', match: /\baquisi[cç][aã]o\b|\bacquires?\b|\bacquisition\b|\bcompra a\b/i },
+  { label: 'Demissões', match: /\bdemiss\w+|\blayoffs?\b|\bcortes? de (?:vagas|empregos)\b/i },
+];
+
+/** Palavras que nunca viram "termo em alta" sozinhas (além das stopwords comuns). */
+export const trendStoplist = [
+  'IA', 'AI', 'Inteligência Artificial', 'Artificial Intelligence', 'Tecnologia', 'Marketing', 'Design',
+  'Publicidade', 'Brasil', 'Brazil', 'Brasileiro', 'Brasileira', 'Brasileiros', 'EUA', 'US', 'USA', 'UK', 'CEO',
+  'Review', 'Podcast', 'Newsletter', 'Episode', 'Webinar', 'Guide', 'Report', 'Oferta', 'Ofertas', 'Promoção',
+  'Vídeo', 'Video', 'Veja', 'Confira', 'Saiba', 'Entenda', 'Exclusivo', 'Exclusive', 'Opinião', 'Análise',
+  // Lugares aparecem demais e dizem pouco sobre o assunto.
+  'Estados Unidos', 'China', 'Europa', 'Europe', 'Japão', 'Japan', 'Índia', 'India', 'México', 'Mexico', 'Argentina',
+  'Colômbia', 'Chile', 'Portugal', 'Reino Unido', 'São Paulo', 'Rio', 'Rio de Janeiro', 'Nova York', 'New York',
+  'Califórnia', 'California', 'Washington', 'Londres', 'London', 'América Latina', 'Latin America', 'LatAm',
+];
+
+export const limits = {
+  /** Manchetes mais antigas que isso ficam de fora. */
+  maxAgeDays: 10,
+  /** Máximo de manchetes guardadas por editoria. */
+  perColumn: 36,
+  /** Máximo de manchetes de uma mesma fonte dentro de uma editoria. */
+  perSourcePerColumn: 7,
+  /** Quantidade de termos no "Em alta". */
+  trends: 12,
+  /** Abaixo disso a atualização é considerada falha e o site anterior é mantido. */
+  minItems: 40,
+};

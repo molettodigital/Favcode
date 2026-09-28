@@ -1,0 +1,56 @@
+name: Atualizar radar
+
+on:
+  schedule:
+    # A cada hora, no minuto 17 (evita a fila do minuto 0 no GitHub Actions).
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "config/**"
+      - "scripts/**"
+      - "src/**"
+      - "assets/**"
+      - ".github/workflows/radar.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: radar-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Testes
+        run: npm test
+
+      - name: Buscar manchetes e gerar index.html
+        run: node scripts/build.mjs
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
+
+      - name: Publicar no repositório
+        run: |
+          if git diff --quiet -- index.html; then
+            echo "Nada mudou."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "Radar: manchetes de $(TZ=America/Sao_Paulo date +'%d/%m %H:%M')"
+          for attempt in 1 2 3; do
+            git pull --rebase --quiet origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((attempt * 5))
+          done
+          exit 1
