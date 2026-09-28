@@ -107,7 +107,7 @@ function getTagAttrs(xml, name) {
   return [...xml.matchAll(re)].map((m) => parseAttrs(m[1]));
 }
 
-function parseAttrs(str) {
+export function parseAttrs(str) {
   const attrs = {};
   for (const m of str.matchAll(/([\w:.-]+)\s*=\s*(?:"([^"]*)"|'([^']*)')/g)) {
     attrs[m[1].toLowerCase()] = decodeEntities(m[2] ?? m[3] ?? '');

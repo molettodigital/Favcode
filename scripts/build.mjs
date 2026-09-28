@@ -18,6 +18,7 @@ import Anthropic from '@anthropic-ai/sdk';
 import * as config from '../config/radar.config.mjs';
 import { parseFeed, truncate } from './lib/feed-parser.mjs';
 import { DEFAULT_MODEL, translateItems } from './lib/translate.mjs';
+import { enrichImages } from './lib/images.mjs';
 import { computeTrends } from './lib/trends.mjs';
 import { cleanUrl, hashId, mapPool, matchesAny, normalizeTitle, slugify } from './lib/utils.mjs';
 
@@ -27,6 +28,7 @@ const OUTPUT = path.resolve(ROOT, process.env.RADAR_OUTPUT || 'index.html');
 const FIXTURES = process.env.RADAR_FIXTURES ? path.resolve(process.env.RADAR_FIXTURES) : '';
 const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
 const TRANSLATIONS = path.join(ROOT, 'data', 'translations.json');
+const IMAGES = path.join(ROOT, 'data', 'images.json');
 const USER_AGENT = 'Mozilla/5.0 (compatible; FavCodeRadar/1.0; +https://github.com/molettodigital/Favcode)';
 const DAY = 86_400_000;
 
@@ -213,6 +215,9 @@ async function build() {
   console.log(`Tradução: ${tr.cached} do cache, ${tr.translated} traduzidas agora, ${tr.dropped} sem tradução ficaram de fora.`);
   for (const failure of tr.failures) console.log(`  ✗ lote não traduzido: ${failure}`);
 
+  // Toda manchete com imagem: quando o feed não traz, usa a imagem de capa da matéria.
+  if (!FIXTURES) await enrichImages(items, { cacheFile: IMAGES, log: (msg) => console.log(msg) });
+
   if (items.length < config.limits.minItems) {
     throw new Error(`Só ${items.length} manchetes (mínimo ${config.limits.minItems}). O site anterior foi mantido.`);
   }
@@ -272,7 +277,10 @@ async function renderTemplateOnly() {
   const current = await readFile(OUTPUT, 'utf8');
   const m = /<script type="application\/json" id="radar-data">([\s\S]*?)<\/script>/.exec(current);
   if (!m) throw new Error(`Não encontrei as manchetes em ${path.relative(ROOT, OUTPUT)}. Rode o build completo.`);
-  await writeSite(JSON.parse(m[1]));
+  const data = JSON.parse(m[1]);
+  // Editorias (nomes, cores) vêm sempre da configuração atual.
+  data.columns = config.columns;
+  await writeSite(data);
   console.log(`✔ ${path.relative(ROOT, OUTPUT)} atualizado com o template atual.`);
 }
 

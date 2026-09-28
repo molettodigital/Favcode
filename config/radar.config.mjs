@@ -2,16 +2,20 @@
 // Editorias, fontes (feeds RSS/Atom), bloqueios e termos monitorados.
 // Para incluir uma fonte, adicione um objeto em `feeds`; para tirar, apague a linha.
 
-/** Editorias, na ordem em que aparecem no site e nos setores do radar. */
+/**
+ * Editorias, na ordem em que aparecem no site e nos setores do radar.
+ * Cores: paleta categórica validada (daltonismo e contraste) para fundo claro (`color`)
+ * e escuro (`colorDark`). A ordem importa: setores vizinhos no radar têm cores bem distintas.
+ */
 export const columns = [
-  { id: 'ia', name: 'Inteligência artificial', short: 'IA', code: 'IA', blurb: 'Modelos, agentes, ferramentas e o que muda no trabalho com IA.' },
-  { id: 'tecnologia', name: 'Tecnologia', short: 'Tecnologia', code: 'TEC', blurb: 'Big techs, gadgets, plataformas, regulação e infraestrutura.' },
-  { id: 'marketing', name: 'Marketing', short: 'Marketing', code: 'MKT', blurb: 'Estratégia, dados, SEO, CRM, marcas e comportamento do consumidor.' },
-  { id: 'design', name: 'Design', short: 'Design', code: 'DES', blurb: 'UX, UI, branding, tipografia, identidade visual e ferramentas.' },
-  { id: 'publicidade', name: 'Publicidade', short: 'Publicidade', code: 'PUB', blurb: 'Campanhas, agências, criatividade, mídia e premiações.' },
-  { id: 'social', name: 'Redes sociais', short: 'Redes sociais', code: 'SOC', blurb: 'Instagram, TikTok, YouTube, LinkedIn, creators e influência.' },
-  { id: 'ecommerce', name: 'E-commerce e varejo', short: 'E-commerce', code: 'ECOM', blurb: 'Marketplaces, varejo digital, pagamentos e datas sazonais.' },
-  { id: 'startups', name: 'Startups e negócios', short: 'Startups', code: 'STA', blurb: 'Rodadas, aquisições, lançamentos e movimentos do mercado.' },
+  { id: 'ia', name: 'Inteligência artificial', short: 'IA', code: 'IA', color: '#2a78d6', colorDark: '#3987e5', blurb: 'Modelos, agentes, ferramentas e o que muda no trabalho com IA.' },
+  { id: 'tecnologia', name: 'Tecnologia', short: 'Tecnologia', code: 'TEC', color: '#eb6834', colorDark: '#d95926', blurb: 'Big techs, gadgets, plataformas, regulação e infraestrutura.' },
+  { id: 'marketing', name: 'Marketing', short: 'Marketing', code: 'MKT', color: '#1baf7a', colorDark: '#199e70', blurb: 'Estratégia, dados, SEO, CRM, marcas e comportamento do consumidor.' },
+  { id: 'design', name: 'Design', short: 'Design', code: 'DES', color: '#eda100', colorDark: '#c98500', blurb: 'UX, UI, branding, tipografia, identidade visual e ferramentas.' },
+  { id: 'publicidade', name: 'Publicidade', short: 'Publicidade', code: 'PUB', color: '#e87ba4', colorDark: '#d55181', blurb: 'Campanhas, agências, criatividade, mídia e premiações.' },
+  { id: 'social', name: 'Redes sociais', short: 'Redes sociais', code: 'SOC', color: '#008300', colorDark: '#008300', blurb: 'Instagram, TikTok, YouTube, LinkedIn, creators e influência.' },
+  { id: 'ecommerce', name: 'E-commerce e varejo', short: 'E-commerce', code: 'ECOM', color: '#4a3aa7', colorDark: '#9085e9', blurb: 'Marketplaces, varejo digital, pagamentos e datas sazonais.' },
+  { id: 'startups', name: 'Startups e negócios', short: 'Startups', code: 'STA', color: '#e34948', colorDark: '#e66767', blurb: 'Rodadas, aquisições, lançamentos e movimentos do mercado.' },
 ];
 
 // Regras de redirecionamento: fontes generalistas mandam a manchete para a
