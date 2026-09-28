@@ -367,7 +367,7 @@
 
   /* ---------- Barra de editorias ---------- */
   .toolbar {
-    position: sticky; top: 0; z-index: 20; margin-top: clamp(16px, 2.4vw, 28px);
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; margin-top: clamp(16px, 2.4vw, 28px);
     background: var(--toolbar-bg); backdrop-filter: saturate(1.4) blur(14px); -webkit-backdrop-filter: saturate(1.4) blur(14px);
     border-bottom: 1px solid transparent; transition: border-color 0.2s ease;
   }
@@ -1202,10 +1202,11 @@
     if (navigator.share) {
       try {
         await navigator.share({ title: it.title, text, url: it.url });
+        return;
       } catch (e) {
-        /* compartilhamento cancelado */
+        if (e && e.name === 'AbortError') return; // a pessoa cancelou
+        /* navegador recusou o compartilhamento: copia o link */
       }
-      return;
     }
     try {
       await navigator.clipboard.writeText(`${it.title}\n${it.url}`);

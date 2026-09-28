@@ -41,7 +41,6 @@ export const feeds = [
   { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'ia', url: 'https://olhardigital.com.br/tag/inteligencia-artificial/feed/' },
   { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'ia', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml' },
   { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'ia', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
-  { name: 'VentureBeat', site: 'https://venturebeat.com', lang: 'en', column: 'ia', url: 'https://venturebeat.com/category/ai/feed/' },
   { name: 'MIT Technology Review', site: 'https://www.technologyreview.com', lang: 'en', column: 'ia', url: 'https://www.technologyreview.com/topic/artificial-intelligence/feed' },
   { name: 'The Decoder', site: 'https://the-decoder.com', lang: 'en', column: 'ia', url: 'https://the-decoder.com/feed/' },
   { name: 'OpenAI', site: 'https://openai.com/news', lang: 'en', column: 'ia', url: 'https://openai.com/news/rss.xml' },
@@ -92,7 +91,6 @@ export const feeds = [
 
   // E-commerce e varejo
   { name: 'Modern Retail', site: 'https://www.modernretail.co', lang: 'en', column: 'ecommerce', url: 'https://www.modernretail.co/feed/' },
-  { name: 'Novarejo', site: 'https://www.novarejo.com.br', lang: 'pt', column: 'ecommerce', url: 'https://www.novarejo.com.br/feed/', routes: [{ column: 'marketing', match: /\bmarketing\b|\bmarcas?\b|\bbranding\b/i }] },
   { name: 'Retail Dive', site: 'https://www.retaildive.com', lang: 'en', column: 'ecommerce', url: 'https://www.retaildive.com/feeds/news/' },
   { name: 'Practical Ecommerce', site: 'https://www.practicalecommerce.com', lang: 'en', column: 'ecommerce', url: 'https://www.practicalecommerce.com/feed' },
 
