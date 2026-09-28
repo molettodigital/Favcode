@@ -13,6 +13,10 @@
    "t": "Himkok RTD: dentro do novo design de embalagem da OlssønBarbieri",
    "s": "OlssønBarbieri criou um design de embalagem tátil para o Himkok RTD, combinando latas de alumínio fosco com referências nórdicas de destilação de farmácia. O Himkok está entre os melhores bares de coquetéis de Oslo. Quando os bares da cidade …"
   },
+  "02e1463c9544f53d": {
+   "t": "Escova de dentes inteligente com rastreamento de movimento da Philips usa IA para melhorar sua escovação",
+   "s": "Primeiramente anunciada em julho com lançamento limitado previsto para o final deste ano, a escova inteligente Philips Sonicare Next‑Generation DiamondClean 9900 Prestige já está disponível na Europa e nos EUA, com um lançamento global mais amplo a caminho…"
+  },
   "0373faace4f6a302": {
    "t": "Marcas abandonam modelos de remuneração de agências baseados em tempo, revela estudo da WFA",
    "s": "A pesquisa mostra foco crescente em entrega e desempenho."
@@ -37,10 +41,6 @@
    "t": "Por que você precisa parar de tratar LLMs como pessoas",
    "s": "Quando você trata os LLMs como parceiros de pensamento, acaba com prompts vagos, alucinações e resultados pouco confiáveis."
   },
-  "101ed6c4dc826858": {
-   "t": "Agentes de IA da OpenAI precisam avançar",
-   "s": "A OpenAI popularizou o chatbot de IA generativa moderno, mas ao se aproximar do DevDay 2026, está atrás em uma das categorias mais quentes da indústria: agentes de IA de execução contínua voltados ao consumidor. Na terça‑feira…"
-  },
   "111a83ecc873cafe": {
    "t": "Redator dá nota 95% a conteúdo feito por IA",
    "s": "Neville Medhora, do Swipe File, diz que o conteúdo de IA pode rivalizar com o humano e gerar 50 versões."
@@ -60,10 +60,6 @@
   "194aec3f958ea4c2": {
    "t": "Top 50 dos canais do YouTube mais inscritos no mundo – semana de 27/09/2026",
    "s": "Lucan Pevidor teve um setembro perfeito no Global Sub Top 50. Publicamos quatro edições da nossa lista de inscritos durante o nono mês do ano, e Pevidor ficou em primeiro lugar em todas as quatro. Pevidor…"
-  },
-  "1bd6ebbd0973ccbe": {
-   "t": "OpenAI continua atropelando matemáticos",
-   "s": "Em poucos meses caóticos, a OpenAI mostrou que pode fazer duas coisas com consistência notável: alcançar avanços impressionantes em matemática e, depois, cometer erros enormes ao anuncIá‑los. Agora a OpenAI tenta…"
   },
   "1c914a8a28b46e75": {
    "t": "IA está impulsionando ataques de hackers e hospitais e bancos locais não estão preparados",
@@ -333,10 +329,6 @@
    "t": "Como salvar o trabalho de UX júnior que ensina o ofício na era da IA. Nossa área depende disso.",
    "s": "A automação está assumindo tarefas com que os juniores aprendiam. Aqui estão sete tarefas que devolvem a prática, para manter o elemento humano da experiência do usuário e formar a equipe de 2030. Muitos times que conheço pararam de passar transcrições…"
   },
-  "8aa3ea7d8d4a91d8": {
-   "t": "Flórida busca proibir ChatGPT de agir como pessoa",
-   "s": "O procurador‑geral da Flórida, James Uthmeier, pede a um juiz que impeça a OpenAI de “atribuir ao ChatGPT características humanas falsas”, meses depois da Flórida processar a empresa de IA por questões de segurança. Segundo Uthmeier…"
-  },
   "8ea0187ef6ec1116": {
    "t": "Vendas digitais da Costco chegam a US$ 33 bilhões em 2026, com alta de mais de 20%",
    "s": "O negócio da Costco vive cada vez mais além das portas dos seus armazéns: as vendas digitais e as parcerias com plataformas como DoorDash e Uber Eats ajudam a atrair clientes novos e mais jovens."
@@ -525,6 +517,10 @@
    "t": "Alumínio e aço aparafusado transformam cama plataforma em peça arquitetônica na Paris Design Week",
    "s": "Roupas de cama de algodão egípcio da brut studios vestem a cama arquitetônica criada por rik frans jansen."
   },
+  "d5bfaca272bf2eeb": {
+   "t": "Nvidia diz que sua nova plataforma de segurança de IA pode conter agentes desonestos em ‘milissegundos’",
+   "s": "A Nvidia está lançando uma nova plataforma de segurança projetada para conter e monitorar agentes de IA, medida que responde a uma onda de incidentes de hacking desonesto, conforme noticiado anteriormente pela Reuters. Em um anúncio na segunda‑feira…"
+  },
   "d6d18fa9595b32c4": {
    "t": "McDonald's começa a testar anúncios de outras marcas nas telas de menu dos restaurantes",
    "s": "A gigante de fast‑food está testando promoções de terceiros, mirando uma nova fonte de receita de retail media."
@@ -572,6 +568,10 @@
   "e1729a1262d0b254": {
    "t": "Como Misko Iho faz filmes épicos com IPs famosas",
    "s": ""
+  },
+  "e6ceb96ce9d96aa8": {
+   "t": "Todo laboratório de IA acredita ser o responsável, e o pesquisador de segurança Ryan Greenblatt diz que isso mantém a corrida armamentista em andamento",
+   "s": "Ryan Greenblatt, cientista‑chefe da Redwood Research, estima o risco de uma tomada de controle por IA entre 50 e 60 % se o desenvolvimento continuar no caminho atual. Sam Harris afirma que isso não condiz com a velocidade da indústria…"
   },
   "e822b8f52b4a468e": {
    "t": "Walmart não vai subir preços com base no seu histórico de compras, diz CEO",
