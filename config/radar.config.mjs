@@ -35,9 +35,7 @@ const techRoutes = [
  */
 export const feeds = [
   // Inteligência artificial
-  { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'ia', url: 'https://tecnoblog.net/temas/inteligencia-artificial/feed/' },
   { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'ia', url: 'https://olhardigital.com.br/tag/inteligencia-artificial/feed/' },
-  { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'ia', url: 'https://canaltech.com.br/rss/inteligencia-artificial/' },
   { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'ia', url: 'https://www.theverge.com/rss/ai-artificial-intelligence/index.xml' },
   { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'ia', url: 'https://techcrunch.com/category/artificial-intelligence/feed/' },
   { name: 'VentureBeat', site: 'https://venturebeat.com', lang: 'en', column: 'ia', url: 'https://venturebeat.com/category/ai/feed/' },
@@ -51,7 +49,6 @@ export const feeds = [
   { name: 'Tecnoblog', site: 'https://tecnoblog.net', lang: 'pt', column: 'tecnologia', url: 'https://tecnoblog.net/feed/', routes: techRoutes },
   { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'tecnologia', url: 'https://olhardigital.com.br/feed/', routes: techRoutes },
   { name: 'Canaltech', site: 'https://canaltech.com.br', lang: 'pt', column: 'tecnologia', url: 'https://canaltech.com.br/rss/', routes: techRoutes },
-  { name: 'TecMundo', site: 'https://www.tecmundo.com.br', lang: 'pt', column: 'tecnologia', url: 'https://rss.tecmundo.com.br/feed', routes: techRoutes },
   { name: 'g1 Tecnologia', site: 'https://g1.globo.com/tecnologia/', lang: 'pt', column: 'tecnologia', url: 'https://g1.globo.com/rss/g1/tecnologia/', routes: techRoutes },
   { name: 'The Verge', site: 'https://www.theverge.com', lang: 'en', column: 'tecnologia', url: 'https://www.theverge.com/rss/tech/index.xml', routes: techRoutes },
   { name: 'Ars Technica', site: 'https://arstechnica.com', lang: 'en', column: 'tecnologia', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', routes: techRoutes },
@@ -59,16 +56,13 @@ export const feeds = [
 
   // Marketing
   { name: 'Meio & Mensagem', site: 'https://www.meioemensagem.com.br', lang: 'pt', column: 'marketing', url: 'https://www.meioemensagem.com.br/feed', routes: [{ column: 'publicidade', match: ADS }, { column: 'social', match: SOCIAL }] },
-  { name: 'Mundo do Marketing', site: 'https://www.mundodomarketing.com.br', lang: 'pt', column: 'marketing', url: 'https://www.mundodomarketing.com.br/feed/' },
   { name: 'Consumidor Moderno', site: 'https://www.consumidormoderno.com.br', lang: 'pt', column: 'marketing', url: 'https://www.consumidormoderno.com.br/feed/', routes: [{ column: 'ecommerce', match: ECOM }] },
   { name: 'Marketing Dive', site: 'https://www.marketingdive.com', lang: 'en', column: 'marketing', url: 'https://www.marketingdive.com/feeds/news/' },
   { name: 'MarTech', site: 'https://martech.org', lang: 'en', column: 'marketing', url: 'https://martech.org/feed/' },
   { name: 'Search Engine Journal', site: 'https://www.searchenginejournal.com', lang: 'en', column: 'marketing', url: 'https://www.searchenginejournal.com/feed/' },
-  { name: 'Search Engine Land', site: 'https://searchengineland.com', lang: 'en', column: 'marketing', url: 'https://searchengineland.com/feed' },
   { name: 'HubSpot', site: 'https://blog.hubspot.com/marketing', lang: 'en', column: 'marketing', url: 'https://blog.hubspot.com/marketing/rss.xml' },
 
   // Design
-  { name: 'Choco la Design', site: 'https://chocoladesign.com', lang: 'pt', column: 'design', url: 'https://chocoladesign.com/feed' },
   { name: 'Design Culture', site: 'https://designculture.com.br', lang: 'pt', column: 'design', url: 'https://designculture.com.br/feed' },
   { name: 'Smashing Magazine', site: 'https://www.smashingmagazine.com', lang: 'en', column: 'design', url: 'https://www.smashingmagazine.com/feed/' },
   { name: 'Creative Bloq', site: 'https://www.creativebloq.com', lang: 'en', column: 'design', url: 'https://www.creativebloq.com/feeds.xml' },
@@ -76,27 +70,26 @@ export const feeds = [
   { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml' },
   { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/' },
   { name: 'Nielsen Norman Group', site: 'https://www.nngroup.com', lang: 'en', column: 'design', url: 'https://www.nngroup.com/feed/rss/' },
+  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss' },
+  { name: 'Figma', site: 'https://www.figma.com/blog', lang: 'en', column: 'design', url: 'https://www.figma.com/blog/feed/atom.xml' },
 
   // Publicidade
   { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/' },
   { name: 'ADNEWS', site: 'https://adnews.com.br', lang: 'pt', column: 'publicidade', url: 'https://adnews.com.br/feed/', routes: [{ column: 'social', match: SOCIAL }] },
   { name: 'B9', site: 'https://www.b9.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.b9.com.br/feed/' },
-  { name: 'Clube de Criação', site: 'https://www.clubedecriacao.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.clubedecriacao.com.br/feed/' },
   { name: 'Adweek', site: 'https://www.adweek.com', lang: 'en', column: 'publicidade', url: 'https://www.adweek.com/feed/' },
-  { name: 'Creative Review', site: 'https://www.creativereview.co.uk', lang: 'en', column: 'publicidade', url: 'https://www.creativereview.co.uk/feed/' },
-  { name: 'The Drum', site: 'https://www.thedrum.com', lang: 'en', column: 'publicidade', url: 'https://www.thedrum.com/feeds/news' },
+  { name: 'Muse by Clio', site: 'https://musebycl.io', lang: 'en', column: 'publicidade', url: 'https://musebycl.io/rss.xml' },
+  { name: 'Campaign', site: 'https://www.campaignlive.com', lang: 'en', column: 'publicidade', url: 'https://www.campaignlive.com/rss/news' },
 
   // Redes sociais
   { name: 'Social Media Today', site: 'https://www.socialmediatoday.com', lang: 'en', column: 'social', url: 'https://www.socialmediatoday.com/feeds/news/' },
   { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'social', url: 'https://techcrunch.com/category/social/feed/' },
   { name: 'Tubefilter', site: 'https://www.tubefilter.com', lang: 'en', column: 'social', url: 'https://www.tubefilter.com/feed/' },
   { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'social', url: 'https://olhardigital.com.br/tag/redes-sociais/feed/' },
-  { name: 'mLabs', site: 'https://www.mlabs.com.br/blog', lang: 'pt', column: 'social', url: 'https://www.mlabs.com.br/blog/feed' },
 
   // E-commerce e varejo
-  { name: 'E-Commerce Brasil', site: 'https://www.ecommercebrasil.com.br', lang: 'pt', column: 'ecommerce', url: 'https://www.ecommercebrasil.com.br/feed' },
-  { name: 'Mercado & Consumo', site: 'https://mercadoeconsumo.com.br', lang: 'pt', column: 'ecommerce', url: 'https://mercadoeconsumo.com.br/feed/' },
   { name: 'Modern Retail', site: 'https://www.modernretail.co', lang: 'en', column: 'ecommerce', url: 'https://www.modernretail.co/feed/' },
+  { name: 'Novarejo', site: 'https://www.novarejo.com.br', lang: 'pt', column: 'ecommerce', url: 'https://www.novarejo.com.br/feed/', routes: [{ column: 'marketing', match: /\bmarketing\b|\bmarcas?\b|\bbranding\b/i }] },
   { name: 'Retail Dive', site: 'https://www.retaildive.com', lang: 'en', column: 'ecommerce', url: 'https://www.retaildive.com/feeds/news/' },
   { name: 'Practical Ecommerce', site: 'https://www.practicalecommerce.com', lang: 'en', column: 'ecommerce', url: 'https://www.practicalecommerce.com/feed' },
 
