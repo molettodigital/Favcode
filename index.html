@@ -21,10 +21,9 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/png" href="assets/favcode-mark-96.png">
 <link rel="apple-touch-icon" href="assets/favcode-mark-180.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Sora:wght@600;700&display=swap">
-<!-- PIXEL: cole aqui o código do Meta Pixel e do GA4 -->
+<link rel="preload" href="assets/fonts/figtree.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/sora.woff2" as="font" type="font/woff2" crossorigin>
+<!-- PIXEL: cole aqui o código do Meta Pixel (e de outra ferramenta de análise, se usar) -->
 <script>
   (function () {
     var t = null;
@@ -35,6 +34,11 @@
   })();
 </script>
 <style>
+  /* Fontes hospedadas junto com o site (SIL Open Font License, ver assets/fonts). */
+  @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 300 900; font-display: swap; src: url('assets/fonts/figtree.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: 'Sora'; font-style: normal; font-weight: 100 800; font-display: swap; src: url('assets/fonts/sora.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: swap; src: url('assets/fonts/jetbrains-mono.woff2') format('woff2'); unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD; }
+
   :root {
     --navy-950: #04052a;
     --navy-900: #060737;

@@ -5,7 +5,7 @@ import { blocklist, columns, feeds, noise, trendStoplist, watchlist } from '../c
 import { computeTrends, extractProperNouns } from '../scripts/lib/trends.mjs';
 import { cleanUrl, matchesAny } from '../scripts/lib/utils.mjs';
 
-test('bloqueia Google Ads e Google Meu Negócio em todas as grafias', () => {
+test('bloqueia tudo que é do Google: marca, produtos, anúncios e Meu Negócio', () => {
   const blocked = [
     'Google Ads lança novo recurso de lances',
     'Como otimizar campanhas no GOOGLE ADS em 2026',
@@ -19,16 +19,34 @@ test('bloqueia Google Ads e Google Meu Negócio em todas as grafias', () => {
     'Novidades no Perfil da Empresa no Google',
     'Local Services Ads chegam ao Brasil',
     'Dicas de GMB para dentistas',
+    'Google lança satélite com IA',
+    'Gemini ganha modo de voz em português',
+    'DeepMind apresenta novo modelo de previsão do tempo',
+    'Android 17 chega aos celulares Galaxy',
+    'Chrome passa a bloquear cookies de terceiros',
+    'Gmail troca cor de estrelas e marcadores na versão web',
+    'Alphabet supera expectativas no trimestre',
+    'Sundar Pichai fala sobre o futuro da busca',
+    'AI Overviews reduzem cliques em sites de notícia',
+    'September 2026 core update is rolling out',
+    'Como usar o GA4 para medir campanhas',
+    'Search Console ganha relatório de consultas',
+    'AdSense muda pagamento para criadores',
+    'Waymo expande robotáxis para mais cidades',
+    'Pixel 11 Pro vaza com câmera nova',
+    'Googlebot passa a renderizar mais JavaScript',
   ];
   for (const text of blocked) assert.ok(matchesAny(blocklist, text), `deveria bloquear: ${text}`);
 
   const allowed = [
-    'Google lança Gemini 3 com agentes',
-    'Google AdSense muda pagamento para criadores',
     'Meta Ads: novos formatos no Reels',
     'Adweek: as melhores campanhas do ano',
-    'Google Business Messages é descontinuado',
     'Amazon Ads amplia retail media',
+    'YouTube lança edição de vídeo com IA',
+    'OpenAI lança agentes para empresas',
+    'Pixel art volta com força no branding',
+    'Meta Pixel ganha novos eventos de conversão',
+    'Apple atualiza o iPhone com novos recursos de acessibilidade',
   ];
   for (const text of allowed) assert.equal(matchesAny(blocklist, text), null, `não deveria bloquear: ${text}`);
 });

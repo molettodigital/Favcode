@@ -7,7 +7,7 @@ Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, de
 - Busca nas manchetes (atalho `/`), filtro de idioma (PT/EN), tema claro/escuro.
 - **Favoritos** com a estrela (salvos no navegador) e botão de compartilhar.
 - Marca o que chegou desde a última visita e avisa quando há manchetes novas.
-- Não publica nada sobre **Google Ads** nem **Google Meu Negócio** (Perfil da Empresa no Google): essas manchetes são descartadas na coleta.
+- Não publica nada relacionado ao **Google**: a marca e os produtos dele (Google Ads, Google Meu Negócio, Gemini, Android, Chrome, Analytics, Search Console…) são descartados na coleta. O site também não carrega nada do Google: as fontes tipográficas ficam em `assets/fonts`.
 
 ## Como funciona
 
@@ -39,7 +39,7 @@ Para o workflow conseguir salvar o `index.html`, Settings → Actions → Genera
 Tudo fica em `config/radar.config.mjs`:
 
 - `feeds`: cada fonte tem nome, site, idioma, editoria e URL do feed. `routes` manda manchetes de fontes generalistas para a editoria certa (ex.: uma notícia de IA no Tecnoblog vai para a coluna de IA).
-- `blocklist`: assuntos que nunca entram (Google Ads, AdWords, Performance Max, Google Meu Negócio, Perfil da Empresa no Google…).
+- `blocklist`: assuntos que nunca entram (Google e todos os produtos e serviços dele). O YouTube continua; para tirar, acrescente `/\bYouTube\b/i` à lista.
 - `noise`: posts que não são notícia (ofertas, cupons, guias de compra, tutoriais, listas).
 - `exclude` e `excludeUrl` por fonte: tiram assuntos ou seções fora do tema (ciência, games e carros dos portais de tecnologia, por exemplo).
 - `watchlist`: termos acompanhados no "Em alta". Nomes próprios que aparecem em várias fontes entram sozinhos.
@@ -55,4 +55,4 @@ npm run render  # só reaplica o template (src/) às manchetes atuais, sem inter
 
 Para testar sem internet, salve os feeds em uma pasta como `<fonte>-<editoria>.xml` (ex.: `tecnoblog-tecnologia.xml`) e rode `RADAR_FIXTURES=pasta npm run build`.
 
-Espaço reservado para Meta Pixel e GA4: comentário `<!-- PIXEL -->` no `<head>` de `src/index.template.html`.
+Espaço reservado para o Meta Pixel: comentário `<!-- PIXEL -->` no `<head>` de `src/index.template.html`.

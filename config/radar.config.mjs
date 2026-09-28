@@ -16,7 +16,7 @@ export const columns = [
 
 // Regras de redirecionamento: fontes generalistas mandam a manchete para a
 // editoria mais específica quando o título casa com o padrão.
-const AI = /\b(?:IA|AI|LLMs?|GenAI)\b|intelig[eê]ncia artificial|artificial intelligence|\bChat\s?GPT\b|\bOpen\s?AI\b|\bGPT-?\d|\bGemini\b|\bClaude\b|\bAnthropic\b|\bCopilot\b|\bMidjourney\b|\bDeepSeek\b|\bLlama\b|\bMistral\b|\bPerplexity\b|\bGrok\b|\bxAI\b|machine learning|aprendizado de m[aá]quina|\bchatbots?\b|\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b|\bgenerativ[ao]s?\b|\bgenerative\b/;
+const AI = /\b(?:IA|AI|LLMs?|GenAI)\b|intelig[eê]ncia artificial|artificial intelligence|\bChat\s?GPT\b|\bOpen\s?AI\b|\bGPT-?\d|\bClaude\b|\bAnthropic\b|\bCopilot\b|\bMidjourney\b|\bDeepSeek\b|\bLlama\b|\bMistral\b|\bPerplexity\b|\bGrok\b|\bxAI\b|machine learning|aprendizado de m[aá]quina|\bchatbots?\b|\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b|\bgenerativ[ao]s?\b|\bgenerative\b/;
 const SOCIAL = /\b(?:Instagram|TikTok|Threads|YouTube|YouTubers?|WhatsApp|LinkedIn|Bluesky|Facebook|Snapchat|Pinterest|Kwai|Twitch|Reels|Stories)\b|\binfluenciador(?:a|es|as)?\b|\binfluencers?\b|\bcreators?\b|criador(?:es|as)? de conte[uú]do|redes sociais|social media|creator economy/i;
 const ECOM = /\be-?commerce\b|\bvarejo\b|\bvarejistas?\b|\bShopee\b|\bMercado Livre\b|\bMagalu\b|\bShein\b|\bTemu\b|\bmarketplaces?\b|\bBlack Friday\b|loja virtual|com[eé]rcio eletr[oô]nico|\bretail(?:ers?)?\b|\bTikTok Shop\b/i;
 const STARTUP = /\bstartups?\b|\brodada\b|\baporte\b|\bunic[oó]rnios?\b|\bunicorns?\b|venture capital|\bSeries [A-E]\b|\bS[eé]rie [A-E]\b|\braises \$|\bfunding\b|\bIPO\b|\badquire\b|\baquisi[cç][aã]o\b|\bacquires?\b|\bacquisition\b/i;
@@ -44,7 +44,6 @@ export const feeds = [
   { name: 'MIT Technology Review', site: 'https://www.technologyreview.com', lang: 'en', column: 'ia', url: 'https://www.technologyreview.com/topic/artificial-intelligence/feed' },
   { name: 'The Decoder', site: 'https://the-decoder.com', lang: 'en', column: 'ia', url: 'https://the-decoder.com/feed/' },
   { name: 'OpenAI', site: 'https://openai.com/news', lang: 'en', column: 'ia', url: 'https://openai.com/news/rss.xml' },
-  { name: 'Google DeepMind', site: 'https://deepmind.google', lang: 'en', column: 'ia', url: 'https://deepmind.google/blog/rss.xml' },
   { name: 'Hugging Face', site: 'https://huggingface.co/blog', lang: 'en', column: 'ia', url: 'https://huggingface.co/blog/feed.xml' },
 
   // Tecnologia (fontes generalistas: redirecionam para IA, redes, e-commerce e startups)
@@ -103,22 +102,28 @@ export const feeds = [
 ];
 
 /**
- * Assuntos fora do radar: Google Ads e Google Meu Negócio (Perfil da Empresa no Google).
+ * Nada do Google entra no radar: a marca, as pessoas que a comandam e os produtos e serviços
+ * dela (Ads, Meu Negócio, Gemini, Android, Chrome, Analytics, Search Console…).
  * Qualquer manchete que cite esses termos no título, no resumo, nas categorias ou na URL é descartada.
+ * O YouTube continua no radar por ser uma rede social à parte; para tirar, inclua /\bYouTube\b/i aqui.
  */
 export const blocklist = [
-  /google[\s-]*ads?\b/i, // Google Ads, Google Ad
-  /\bad[\s-]*words\b/i, // AdWords
-  /\bperformance[\s-]*max\b/i, // campanhas Performance Max
-  /\bpmax\b/i,
-  /\bsmart[\s-]*bidding\b/i,
-  /\bkeyword[\s-]*planner\b/i,
-  /planejador de palavras[\s-]*chave/i,
-  /\blocal[\s-]*services[\s-]*ads\b/i,
-  /google[\s-]*meu[\s-]*neg[oó]cio/i,
-  /google[\s-]*my[\s-]*business/i,
-  /google[\s-]*business[\s-]*profiles?/i,
-  /perfil (?:da )?empresa no google/i,
+  /\bgoogl\w*/i, // Google, Googlebot, "googlar"
+  /\bAlphabet\b/,
+  /\bSundar Pichai\b|\bPichai\b|\bDemis Hassabis\b/i,
+  // IA do Google
+  /\bGemini\b|\bGemma\b|\bVeo\b|\bImagen \d/,
+  /\bDeepMind\b|\bNotebookLM\b|\bNano Banana\b|\bSynthID\b|\bTensorFlow\b|\bKaggle\b|\bTPUs?\b/i,
+  // Sistemas, apps e aparelhos
+  /\bAndroid\b|\bGmail\b|\bWaze\b|\bWaymo\b|\bFitbit\b|\bWear ?OS\b|\bPixel (?:\d|Watch|Buds|Fold|Tablet)/i,
+  /\bChrome(?:OS|books?)?\b/,
+  // Anúncios: Google Ads, AdWords, Performance Max e afins
+  /\bad[\s-]*words\b|\bAdSense\b|\bAdMob\b|\bDV360\b/i,
+  /\bperformance[\s-]*max\b|\bpmax\b|\bsmart[\s-]*bidding\b|\bkeyword[\s-]*planner\b|planejador de palavras[\s-]*chave|\blocal[\s-]*services[\s-]*ads\b/i,
+  // Busca e análise: AI Overviews, atualizações do algoritmo, GA4, Search Console
+  /\bAI Overviews?\b|\bAI Mode\b|\bcore (?:algorithm )?update\b|\bspam update\b/i,
+  /\bSearch Console\b|\bGSC\b|\bGA4\b|\bLooker Studio\b|\bData Studio\b|\bFirebase\b|\bBigQuery\b/i,
+  // Google Meu Negócio / Perfil da Empresa (o nome "Google" já é pego acima)
   /\bGMB\b/,
 ];
 
@@ -150,7 +155,6 @@ export const watchlist = [
   // IA
   { label: 'OpenAI', match: /\bOpen\s?AI\b/i },
   { label: 'ChatGPT', match: /\bChat\s?GPT\b/i },
-  { label: 'Gemini', match: /\bGemini\b/ },
   { label: 'Claude', match: /\bClaude\b/ },
   { label: 'Anthropic', match: /\bAnthropic\b/ },
   { label: 'Meta AI', match: /\bMeta AI\b|\bLlama\b/ },
@@ -160,7 +164,6 @@ export const watchlist = [
   { label: 'Copilot', match: /\bCopilot\b/ },
   { label: 'Midjourney', match: /\bMidjourney\b/i },
   { label: 'Sora', match: /\bSora\b/ },
-  { label: 'Veo', match: /\bVeo\b/ },
   { label: 'Agentes de IA', match: /\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b/i },
   { label: 'IA generativa', match: /\bIA generativa\b|\bgenerative AI\b|\bGenAI\b/i },
   { label: 'Nvidia', match: /\bNvidia\b/i },
@@ -171,7 +174,6 @@ export const watchlist = [
   { label: 'Microsoft', match: /\bMicrosoft\b/ },
   { label: 'Meta', match: /\bMeta\b(?! AI)/ },
   { label: 'Amazon', match: /\bAmazon\b/ },
-  { label: 'Google', match: /\bGoogle\b/ },
   { label: 'Elon Musk', match: /\bMusk\b/ },
   { label: 'Tesla', match: /\bTesla\b/ },
   { label: 'Netflix', match: /\bNetflix\b/ },
@@ -189,7 +191,7 @@ export const watchlist = [
   { label: 'Creators e influência', match: /\binfluenciador(?:a|es|as)?\b|\binfluencers?\b|\bcreator economy\b|\beconomia dos criadores\b/i },
   // Marketing, mídia e publicidade
   { label: 'SEO', match: /\bSEO\b/ },
-  { label: 'Busca com IA', match: /\bAI Overviews?\b|\bAI Mode\b|\bGEO\b|generative engine optimi[sz]ation|\bbusca com IA\b|\bAI search\b/i },
+  { label: 'Busca com IA', match: /\bGEO\b|generative engine optimi[sz]ation|\bbusca com IA\b|\bAI search\b/i },
   { label: 'Retail media', match: /\bretail media\b/i },
   { label: 'TV conectada', match: /\bCTV\b|\bconnected TV\b|\bTV conectada\b/i },
   { label: 'Privacidade e dados', match: /\bLGPD\b|\bcookies?\b|\bfirst-party data\b|\bdados pr[oó]prios\b|\bprivacidade\b/i },
