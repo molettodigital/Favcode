@@ -121,6 +121,8 @@ test('descarta ofertas, guias de compra e tutoriais, mas mantém notícia', () =
     '12 Best White Elephant Gifts, Plus a Prank Box to Put Them In (2026)',
     'What’s the Best Pet DNA Test? We Tested the Most Popular Ones',
     'Last 24 hours to save up to $200 on TechCrunch Disrupt 2026. Reason 5 of 5 to attend: Momentum',
+    'KaBuM! chuta a porta e oferece Intel Core Ultra 5 por menos de R$ 600!',
+    'Jogos de hoje (28/09/26): onde assistir futebol ao vivo e horários das partidas',
   ];
   for (const t of junk) assert.ok(matchesAny(noise, t), `deveria descartar: ${t}`);
   const news = [

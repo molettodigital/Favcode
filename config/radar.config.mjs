@@ -153,6 +153,9 @@ export const noise = [
   /^(?:the\s+)?\d*\s*best\b.*\(20\d\d\)|^\d+\s+best\b|\bwe tested\b|\bgift guide\b|\bgifts? (?:for|ideas)\b/i,
   // Promoção de ingressos de eventos ("Last 24 hours to save up to $200 on TechCrunch Disrupt").
   /\bTechCrunch Disrupt\b|\bsave up to \$\d+|\bexpo\+? pass\b/i,
+  // Ofertas com preço no título e agenda de esportes.
+  /\bpor (?:menos de|apenas|s[oó]) R\$\s?\d|\bchuta a porta\b/i,
+  /\bjogos de hoje\b|\bonde assistir\b|\bfutebol ao vivo\b|\bhor[aá]rios? d[aoe]s? (?:jogos|partidas)\b/i,
   /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
 ];
 
