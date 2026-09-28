@@ -5,13 +5,14 @@
 /**
  * Dados do site e proteção contra cópia. `allowedHosts` são os únicos endereços onde o radar abre;
  * uma cópia publicada em qualquer outro domínio redireciona o visitante para `url`.
- * Ao ligar um domínio próprio (ex.: radar.favcode.com.br), acrescente-o aqui.
+ * Ao ligar outro domínio, acrescente-o aqui. O endereço .workers.dev continua na lista porque o
+ * Worker só passa a redirecioná-lo depois que a página com o domínio oficial está publicada.
  */
 export const site = {
   name: 'Radar FavCode',
   owner: 'FavCode',
-  url: 'https://radar-favcode.molettocomunicacao.workers.dev',
-  allowedHosts: ['radar-favcode.molettocomunicacao.workers.dev'],
+  url: 'https://radar.favcode.com.br',
+  allowedHosts: ['radar.favcode.com.br', 'radar-favcode.molettocomunicacao.workers.dev'],
 };
 
 /**

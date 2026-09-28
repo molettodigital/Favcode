@@ -41,15 +41,17 @@ Custo aproximado: com 10 a 20 manchetes novas em inglês por hora, fica na faixa
 
 ## Publicado na Cloudflare
 
-O site está em **https://radar-favcode.molettocomunicacao.workers.dev**, servido pelo Worker `radar-favcode` (código em `cloudflare/worker.mjs`):
+O site está em **https://radar.favcode.com.br**, servido pelo Worker `radar-favcode` (código em `cloudflare/worker.mjs`):
 
 - A cada 15 minutos o Worker busca o `index.html` mais recente do branch padrão do repositório e guarda no KV `radar-favcode`. Os visitantes recebem sempre a cópia guardada, mesmo que o GitHub esteja fora do ar.
 - Fontes e imagens de `assets/` são renovadas uma vez por dia.
-- As tags de compartilhamento (imagem e endereço) saem com o endereço do Worker, para a prévia aparecer no WhatsApp.
+- As tags de compartilhamento (imagem e endereço) saem com o domínio oficial, para a prévia aparecer no WhatsApp.
+- O domínio `favcode.com.br` é registrado no Registro.br e tem o DNS na Cloudflare (servidores `amber` e `hunts`). O subdomínio `radar` é um Custom Domain do Worker, com certificado HTTPS automático.
+- O endereço provisório https://radar-favcode.molettocomunicacao.workers.dev redireciona (301) para o domínio oficial, com o mesmo caminho: é o binding `CANONICAL_ORIGIN` do Worker.
 
 O agendamento de hora em hora do GitHub Actions costuma atrasar ou pular horários. Para garantir uma coleta por hora, o Worker pode disparar o workflow: crie um token em GitHub → Settings → Developer settings → Fine-grained tokens, com acesso só ao repositório `molettodigital/Favcode` e as permissões **Contents: Read-only** e **Actions: Read and write**, e cadastre-o na Cloudflare em Workers & Pages → `radar-favcode` → Settings → Variables and Secrets → Add, tipo **Secret**, nome `GITHUB_TOKEN`. Sem o token, o site continua funcionando com as coletas que o GitHub fizer.
 
-Para mudar o código do Worker, edite `cloudflare/worker.mjs` e publique de novo pela API da Cloudflare (upload do script com os bindings `RADAR`, `SOURCE`, `GITHUB_REPO` e `LIMITER`, mantendo `keep_bindings: ["secret_text"]` para não perder o token).
+Para mudar o código do Worker, edite `cloudflare/worker.mjs` e publique de novo pela API da Cloudflare (upload do script com os bindings `RADAR`, `SOURCE`, `GITHUB_REPO`, `LIMITER` e `CANONICAL_ORIGIN`, mantendo `keep_bindings: ["secret_text"]` para não perder o token).
 
 ## Direitos autorais e proteção contra cópia
 
