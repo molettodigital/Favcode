@@ -3,6 +3,18 @@
 // Para incluir uma fonte, adicione um objeto em `feeds`; para tirar, apague a linha.
 
 /**
+ * Dados do site e proteção contra cópia. `allowedHosts` são os únicos endereços onde o radar abre;
+ * uma cópia publicada em qualquer outro domínio redireciona o visitante para `url`.
+ * Ao ligar um domínio próprio (ex.: radar.favcode.com.br), acrescente-o aqui.
+ */
+export const site = {
+  name: 'Radar FavCode',
+  owner: 'FavCode',
+  url: 'https://radar-favcode.molettocomunicacao.workers.dev',
+  allowedHosts: ['radar-favcode.molettocomunicacao.workers.dev'],
+};
+
+/**
  * Editorias, na ordem em que aparecem no site e nos setores do radar.
  * Cores: paleta categórica validada (daltonismo e contraste) para fundo claro (`color`)
  * e escuro (`colorDark`). A ordem importa: setores vizinhos no radar têm cores bem distintas.

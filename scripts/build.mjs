@@ -14,6 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import Anthropic from '@anthropic-ai/sdk';
+import { transform } from 'esbuild';
 
 import * as config from '../config/radar.config.mjs';
 import { parseFeed, truncate } from './lib/feed-parser.mjs';
@@ -26,7 +27,7 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TEMPLATE = path.join(ROOT, 'src', 'index.template.html');
 const OUTPUT = path.resolve(ROOT, process.env.RADAR_OUTPUT || 'index.html');
 const FIXTURES = process.env.RADAR_FIXTURES ? path.resolve(process.env.RADAR_FIXTURES) : '';
-const SITE_URL = (process.env.SITE_URL || '').replace(/\/+$/, '');
+const SITE_URL = (process.env.SITE_URL || config.site.url || '').replace(/\/+$/, '');
 const TRANSLATIONS = path.join(ROOT, 'data', 'translations.json');
 const IMAGES = path.join(ROOT, 'data', 'images.json');
 const USER_AGENT = 'Mozilla/5.0 (compatible; FavCodeRadar/1.0; +https://github.com/molettodigital/Favcode)';
@@ -233,6 +234,7 @@ async function build() {
   });
 
   const data = {
+    copyright: copyrightLine(),
     generatedAt: new Date(now).toISOString(),
     columns: config.columns,
     sources: Object.fromEntries([...sources].filter(([id]) => usedSources.has(id))),
@@ -258,19 +260,56 @@ function printReport(report, items, stats, ms) {
   console.log('Por editoria:', Object.entries(perColumn).map(([k, v]) => `${k} ${v}`).join(' · '));
 }
 
+const YEAR = new Date().getFullYear();
+const copyrightLine = () => `© ${YEAR} ${config.site.owner}. Todos os direitos reservados. ${config.site.url}`;
+
+async function replaceAsync(str, re, fn) {
+  const parts = [];
+  let last = 0;
+  for (const m of str.matchAll(re)) {
+    parts.push(str.slice(last, m.index), await fn(...m));
+    last = m.index + m[0].length;
+  }
+  parts.push(str.slice(last));
+  return parts.join('');
+}
+
+/**
+ * Entrega o código compactado: scripts e estilos minificados, sem comentários nem recuo.
+ * Dificulta a cópia do código e deixa a página mais leve. O JSON de dados fica como está.
+ */
+async function minifyHtml(html) {
+  html = await replaceAsync(html, /<script>([\s\S]*?)<\/script>/g, async (_, code) => {
+    const out = await transform(code, { loader: 'js', minify: true, target: 'es2020', legalComments: 'none' });
+    return `<script>${out.code.trim()}</script>`;
+  });
+  html = await replaceAsync(html, /<style>([\s\S]*?)<\/style>/g, async (_, css) => {
+    const out = await transform(css, { loader: 'css', minify: true, legalComments: 'none' });
+    return `<style>${out.code.trim()}</style>`;
+  });
+  // Fora dos <script>: tira comentários (menos o de direitos autorais) e o recuo entre tags.
+  return html
+    .split(/(<script\b[\s\S]*?<\/script>)/)
+    .map((part, i) => (i % 2 ? part : part.replace(/<!--(?!\s*©)[\s\S]*?-->/g, '').replace(/>\s*\n\s*</g, '> <')))
+    .join('');
+}
+
 async function writeSite(data) {
   const template = await readFile(TEMPLATE, 'utf8');
   const mark = await readFile(path.join(ROOT, 'assets', 'favcode-mark-96.png'));
-  const json = JSON.stringify(data)
-    .replace(/</g, '\\u003c')
-    .replace(/\u2028/g, '\\u2028')
-    .replace(/\u2029/g, '\\u2029');
+  const escapeJson = (value) =>
+    JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028/g, '\\u2028').replace(/\u2029/g, '\\u2029');
+  const origin = (config.site.url || SITE_URL).replace(/\/+$/, '');
+  const guard = { origin, hosts: config.site.allowedHosts || [] };
   const html = template
-    .replace('<!-- BUILD_NOTICE -->', () => '<!-- Gerado por scripts/build.mjs. Para mudar o layout, edite src/index.template.html. -->')
+    .replace('<!-- BUILD_NOTICE -->', () => `<!-- ${copyrightLine()} Cópia, reprodução ou clonagem proibidas (Lei nº 9.610/1998). -->`)
     .replaceAll('__SITE_URL__', () => SITE_URL)
+    .replaceAll('__SITE_OWNER__', () => config.site.owner)
+    .replaceAll('__YEAR__', () => String(YEAR))
     .replaceAll('__LOGO_MARK__', () => `data:image/png;base64,${mark.toString('base64')}`)
-    .replace('__RADAR_DATA__', () => json);
-  await writeFile(OUTPUT, html);
+    .replaceAll('__GUARD__', () => escapeJson(guard))
+    .replace('__RADAR_DATA__', () => escapeJson({ ...data, copyright: copyrightLine() }));
+  await writeFile(OUTPUT, process.env.RADAR_NO_MINIFY ? html : await minifyHtml(html));
 }
 
 async function renderTemplateOnly() {

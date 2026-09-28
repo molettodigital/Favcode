@@ -7,6 +7,9 @@
 <title>Radar FavCode · notícias de IA, tecnologia, marketing, design e publicidade</title>
 <meta name="description" content="As notícias do dia sobre inteligência artificial, tecnologia, marketing, design, publicidade, redes sociais, e-commerce e startups, reunidas de dezenas de veículos do Brasil e do mundo e atualizadas a cada hora.">
 <meta name="theme-color" content="#F3F6FC">
+<meta name="author" content="__SITE_OWNER__">
+<meta name="copyright" content="© __YEAR__ __SITE_OWNER__. Todos os direitos reservados.">
+<meta name="robots" content="index, follow, noai, noimageai">
 <link rel="canonical" href="__SITE_URL__/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="pt_BR">
@@ -25,6 +28,24 @@
 <link rel="preload" href="assets/fonts/sora.woff2" as="font" type="font/woff2" crossorigin>
 <!-- PIXEL: cole aqui o código do Meta Pixel (e de outra ferramenta de análise, se usar) -->
 <script>
+  // Proteção contra cópia: o radar só abre nos endereços autorizados e nunca dentro de outro site.
+  (function () {
+    var G = __GUARD__;
+    var h = location.hostname;
+    var any = G.hosts.indexOf('*') >= 0;
+    var ok = any || location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1' ||
+      G.hosts.some(function (a) { return h === a || h.slice(-(a.length + 1)) === '.' + a; });
+    if (!ok) {
+      document.documentElement.style.display = 'none';
+      location.replace(G.origin + '/' + location.hash);
+      return;
+    }
+    if (!any && window.top !== window.self) {
+      // Dentro de outro site: some da tela e tenta abrir o original na janela principal.
+      document.documentElement.style.display = 'none';
+      try { window.top.location.replace(location.href); } catch (e) {}
+    }
+  })();
   (function () {
     var t = null;
     try { t = localStorage.getItem('radar:theme'); } catch (e) {}
@@ -555,6 +576,8 @@
   .footer__brand strong { display: block; font-family: var(--font-display); font-size: 1.125rem; letter-spacing: -0.02em; }
   .footer__brand span { display: block; font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted); }
   .footer p { margin: 0 0 10px; max-width: 70ch; }
+  .footer__legal { font-size: 0.8125rem; line-height: 1.5; }
+  .footer__legal strong { color: var(--ink-2); }
   .footer details summary { cursor: pointer; font-weight: 600; color: var(--link); width: fit-content; padding: 4px 0; }
   .footer details ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
   .footer details a { color: var(--ink-2); text-decoration: none; }
@@ -586,7 +609,7 @@
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="#" aria-label="Radar FavCode: voltar ao início">
-      <img src="__LOGO_MARK__" width="36" height="36" alt="">
+      <img src="__LOGO_MARK__" width="36" height="36" alt="" draggable="false">
       <span class="brand__word" translate="no"><span class="brand__fav">Fav</span><span class="brand__code">Code</span></span>
       <span class="brand__tag">Radar</span>
     </a>
@@ -659,11 +682,12 @@
 <footer class="footer">
   <div class="wrap">
     <div class="footer__brand">
-      <img src="__LOGO_MARK__" width="44" height="44" alt="" loading="lazy">
+      <img src="__LOGO_MARK__" width="44" height="44" alt="" loading="lazy" draggable="false">
       <div><strong translate="no">FavCode</strong><span>Testou. Funcionou. Favoritou.</span></div>
     </div>
     <div>
-      <p>O radar reúne títulos e links publicados pelos próprios veículos e é atualizado a cada hora. A matéria completa e os direitos são de cada fonte. Seus favoritos ficam salvos só neste navegador.</p>
+      <p>O radar reúne títulos e links publicados pelos próprios veículos e é atualizado a cada hora. A matéria completa, os títulos, os resumos e as imagens pertencem a cada fonte. Seus favoritos ficam salvos só neste navegador.</p>
+      <p class="footer__legal"><strong>© __YEAR__ <span translate="no">__SITE_OWNER__</span>. Todos os direitos reservados.</strong> O design, o código, a marca <span translate="no">FavCode</span> e a seleção e organização das notícias deste radar são protegidos pela Lei de Direitos Autorais (Lei nº 9.610/1998) e pela Lei da Propriedade Industrial (Lei nº 9.279/1996). É proibido copiar, clonar, reproduzir ou redistribuir o site, no todo ou em parte, sem autorização por escrito.</p>
       <details>
         <summary data-sources-summary>Ver as fontes</summary>
         <ul data-sources></ul>
@@ -1379,6 +1403,24 @@
     $('[data-sources-summary]').textContent = `Ver as ${used.length} fontes`;
     $('[data-sources]').innerHTML = used.map((s) => `<li><a href="${esc(s.site)}" target="_blank" rel="noopener">${esc(s.name)}</a></li>`).join('');
   }
+
+  // ---------- Direitos autorais ----------
+  // Segunda checagem de domínio (se alguém tirar a do <head>) e crédito automático ao copiar trechos grandes.
+  const GUARD = __GUARD__;
+  const allowedHere =
+    GUARD.hosts.includes('*') || location.protocol === 'file:' || ['localhost', '127.0.0.1'].includes(location.hostname) ||
+    GUARD.hosts.some((a) => location.hostname === a || location.hostname.endsWith(`.${a}`));
+  if (!allowedHere) {
+    document.body.innerHTML = `<p style="padding:24px;font:16px/1.5 system-ui">Cópia não autorizada do Radar FavCode. Acesse o original em <a href="${esc(GUARD.origin)}">${esc(GUARD.origin)}</a>.</p>`;
+    location.replace(`${GUARD.origin}/`);
+    return;
+  }
+  document.addEventListener('copy', (e) => {
+    const text = String(window.getSelection() || '');
+    if (text.length < 120 || !e.clipboardData) return;
+    e.clipboardData.setData('text/plain', `${text}\n\nFonte: Radar FavCode (${GUARD.origin})\n${DATA.copyright || ''}`.trim());
+    e.preventDefault();
+  });
 
   // ---------- Início ----------
   saveFavs();

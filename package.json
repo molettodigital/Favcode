@@ -14,5 +14,10 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.128.0"
-  }
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "license": "UNLICENSED",
+  "author": "FavCode"
 }

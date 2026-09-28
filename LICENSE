@@ -1,0 +1,18 @@
+Copyright (c) 2026 FavCode. Todos os direitos reservados.
+
+Este repositório e todo o seu conteúdo (código-fonte, design, textos, a marca e o
+logotipo FavCode, e a seleção e organização das notícias do Radar FavCode) são
+propriedade exclusiva de FavCode e estão protegidos pela Lei nº 9.610/1998 (Lei de
+Direitos Autorais) e pela Lei nº 9.279/1996 (Lei da Propriedade Industrial).
+
+Nenhuma licença de uso é concedida. É proibido copiar, clonar, modificar, publicar,
+distribuir, sublicenciar ou vender este material, no todo ou em parte, sem
+autorização prévia e por escrito do titular.
+
+Componentes de terceiros mantêm as próprias licenças:
+- Fontes Sora, Figtree e JetBrains Mono (assets/fonts): SIL Open Font License 1.1,
+  conforme os arquivos OFL-*.txt na mesma pasta.
+- Dependências instaladas pelo npm (@anthropic-ai/sdk, esbuild): licença MIT, não
+  incluídas neste repositório.
+- Títulos, resumos e imagens das notícias pertencem aos respectivos veículos, sempre
+  com link para a matéria original.
