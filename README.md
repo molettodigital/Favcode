@@ -36,7 +36,19 @@ Sem a chave (ou se a API falhar), o site nunca mostra manchete em inglês: as qu
 
 Custo aproximado: com 10 a 20 manchetes novas em inglês por hora, fica na faixa de US$ 20 a US$ 40 por mês com o `claude-opus-5`. Para gastar menos, crie a variável `RADAR_TRANSLATION_MODEL` (Settings → Secrets and variables → Actions → Variables) com `claude-sonnet-5` ou `claude-haiku-4-5`; o Haiku sai cerca de 5 vezes mais barato.
 
-## Publicar
+## Publicado na Cloudflare
+
+O site está em **https://radar-favcode.molettocomunicacao.workers.dev**, servido pelo Worker `radar-favcode` (código em `cloudflare/worker.mjs`):
+
+- A cada 15 minutos o Worker busca o `index.html` mais recente do branch padrão do repositório e guarda no KV `radar-favcode`. Os visitantes recebem sempre a cópia guardada, mesmo que o GitHub esteja fora do ar.
+- Fontes e imagens de `assets/` são renovadas uma vez por dia.
+- As tags de compartilhamento (imagem e endereço) saem com o endereço do Worker, para a prévia aparecer no WhatsApp.
+
+O agendamento de hora em hora do GitHub Actions costuma atrasar ou pular horários. Para garantir uma coleta por hora, o Worker pode disparar o workflow: crie um token em GitHub → Settings → Developer settings → Fine-grained tokens, com acesso só ao repositório `molettodigital/Favcode` e a permissão **Actions: Read and write**, e cadastre-o na Cloudflare em Workers & Pages → `radar-favcode` → Settings → Variables and Secrets → Add, tipo **Secret**, nome `GITHUB_TOKEN`. Sem o token, o site continua funcionando com as coletas que o GitHub fizer.
+
+Para mudar o código do Worker, edite `cloudflare/worker.mjs` e publique de novo pela API da Cloudflare (upload do script com os bindings `RADAR`, `SOURCE` e `GITHUB_REPO`, mantendo `keep_bindings: ["secret_text"]` para não perder o token).
+
+## Publicar em outro lugar
 
 O `index.html` e a pasta `assets/` formam o site inteiro. Qualquer hospedagem estática serve:
 
