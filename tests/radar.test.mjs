@@ -81,6 +81,8 @@ test('manda manchetes para Marca e branding e Pautas em alta', () => {
     ['Creative Review', 'Nomad designs identities for new Ultimate Sevens rugby league', 'marca'],
     ['Creative Review', 'New photo book celebrates 35 years of clubbing', 'design'],
     ['Creative Bloq', 'The new Jaguar logo is divisive', 'marca'],
+    ['Marketing Dive', 'DoorDash deepens WPP partnership, naming agency its global media partner', 'marketing'],
+    ['Meio & Mensagem', 'Como o naming da nova marca foi escolhido', 'marca'],
     ['Social Media Today', 'Instagram shares Reels creation tips in new guide', 'pautas'],
   ];
   for (const [name, title, want] of cases) assert.equal(route(feed(name), title), want, `${name}: ${title}`);
