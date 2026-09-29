@@ -14,8 +14,8 @@ export const CONSENT_VERSION = '2026-09-29';
 const DEFAULT_ORIGIN = 'https://radar.favcode.com.br';
 
 /**
- * Caixa da newsletter: remetente, resposta dos leitores e login do editor. Na Cloudflare
- * (Email Routing), noticias@favcode.com.br encaminha para o e-mail da conta.
+ * Caixa da newsletter: remetente, resposta dos leitores e login do editor.
+ * noticias@favcode.com.br é uma caixa do Zoho Mail (mail.zoho.com).
  */
 export const NEWSLETTER_EMAIL = 'noticias@favcode.com.br';
 const DEFAULT_FROM = `Clara Poleto · Radar FavCode <${NEWSLETTER_EMAIL}>`;

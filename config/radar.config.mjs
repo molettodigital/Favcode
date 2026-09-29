@@ -19,7 +19,7 @@ export const site = {
  * Newsletter semanal comentada pela Clara. Com `enabled`, o site pede cadastro (nome, e-mail e
  * telefone opcional) a partir da matéria número `freeReads + 1`. Só liga com `privacyEmail`
  * preenchido: a política de privacidade precisa de um contato para os pedidos da LGPD.
- * noticias@favcode.com.br é encaminhado pela Cloudflare (Email Routing) para o e-mail da conta.
+ * noticias@favcode.com.br é uma caixa do Zoho Mail (mail.zoho.com).
  * `consentVersion` acompanha o texto do consentimento e da política; ao mudar um deles, atualize
  * aqui e em cloudflare/newsletter/settings.mjs.
  */
