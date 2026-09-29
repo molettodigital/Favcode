@@ -13,10 +13,6 @@
    "t": "Himkok RTD: dentro do novo design de embalagem da OlssønBarbieri",
    "s": "OlssønBarbieri criou um design de embalagem tátil para o Himkok RTD, combinando latas de alumínio fosco com referências nórdicas de destilação de farmácia. O Himkok está entre os melhores bares de coquetéis de Oslo. Quando os bares da cidade …"
   },
-  "02e1463c9544f53d": {
-   "t": "Escova de dentes inteligente com rastreamento de movimento da Philips usa IA para melhorar sua escovação",
-   "s": "Primeiramente anunciada em julho com lançamento limitado previsto para o final deste ano, a escova inteligente Philips Sonicare Next‑Generation DiamondClean 9900 Prestige já está disponível na Europa e nos EUA, com um lançamento global mais amplo a caminho…"
-  },
   "0373faace4f6a302": {
    "t": "Marcas abandonam modelos de remuneração de agências baseados em tempo, revela estudo da WFA",
    "s": "A pesquisa mostra foco crescente em entrega e desempenho."
@@ -41,6 +37,10 @@
    "t": "Por que você precisa parar de tratar LLMs como pessoas",
    "s": "Quando você trata os LLMs como parceiros de pensamento, acaba com prompts vagos, alucinações e resultados pouco confiáveis."
   },
+  "101ed6c4dc826858": {
+   "t": "Agentes de IA da OpenAI precisam se atualizar",
+   "s": "OpenAI popularizou o chatbot generativo de IA moderno, mas à medida que se aproxima o DevDay 2026, ficou atrás em uma das categorias mais quentes do setor: agentes de IA de consumo que rodam continuamente. Na terça‑feira…"
+  },
   "111a83ecc873cafe": {
    "t": "Redator dá nota 95% a conteúdo feito por IA",
    "s": "Neville Medhora, do Swipe File, diz que o conteúdo de IA pode rivalizar com o humano e gerar 50 versões."
@@ -48,6 +48,10 @@
   "11c5b54c4dc217a0": {
    "t": "IA no varejo de alimentos: 5 dicas para melhorar a experiência do cliente",
    "s": "Descubra cinco dicas para fazer a IA funcionar de forma mais eficaz em todas as suas operações de supermercado."
+  },
+  "11ce08a93b11c461": {
+   "t": "Como vamos fazer melhor para a Austrália",
+   "s": "OpenAI pede desculpas por incidentes envolvendo sites do governo australiano e apresenta salvaguardas e suporte mais robustos para reforçar as defesas cibernéticas da Austrália."
   },
   "1678bb27e77bd8f4": {
    "t": "YouTube antecipa edição conversacional impulsionada por IA",
@@ -60,6 +64,10 @@
   "194aec3f958ea4c2": {
    "t": "Top 50 dos canais do YouTube mais inscritos no mundo – semana de 27/09/2026",
    "s": "Lucan Pevidor teve um setembro perfeito no Global Sub Top 50. Publicamos quatro edições da nossa lista de inscritos durante o nono mês do ano, e Pevidor ficou em primeiro lugar em todas as quatro. Pevidor…"
+  },
+  "1bd6ebbd0973ccbe": {
+   "t": "OpenAI continua atropelando matemáticos",
+   "s": "Em alguns meses caóticos, a OpenAI demonstrou que pode fazer duas coisas com notável consistência: alcançar avanços impressionantes em matemática e, depois, anunciar isso de forma colossalmente equivocada. Agora a OpenAI está tentando…"
   },
   "1c914a8a28b46e75": {
    "t": "IA está impulsionando ataques de hackers e hospitais e bancos locais não estão preparados",
@@ -89,10 +97,6 @@
    "t": "Marca canadense de vestuário Duer lança revista impressa enquanto o analógico volta à moda",
    "s": "Duer, marca canadense de jeans performance, aposta no impresso enquanto o analógico volta a ser tendência. A empresa lançará a revista trimestral Interval, com a primeira edição prevista para outubro."
   },
-  "262d5347dca995ce": {
-   "t": "Nvidia lança nova plataforma para conter agentes de IA descontrolados",
-   "s": "Com o debate sobre se a recente onda de agentes de IA descontrolados indica um passo rumo à AGI ou a um problema de engenharia mais convencional, a Nvidia oferece sua própria solução. O CEO Jensen Huang disse na segunda‑feira…"
-  },
   "2797adb39de57c5d": {
    "t": "Meta lança plataforma enterprise de IA para gerar oportunidades de negócios",
    "s": "A oferta pretende ajudar empresas a usar os agentes Muse, a Muse API e os produtos Muse Code para suporte mais automatizado a funcionalidades e operações internas."
@@ -116,10 +120,6 @@
   "38bb4cb1edf8dce8": {
    "t": "8th hour branding e identidade visual para workwear moderno",
    "s": "8th Hour é um sistema de identidade e projeto de branding de Anastasiia S. que conecta uniformes de escritório a itens de vestuário de trabalho prático. O sistema visual equilibra roupas de trabalho cruas com estrutura clara de escritório…"
-  },
-  "39495f2d4577c2d9": {
-   "t": "Databricks compra a Row Zero e procura mais startups para adquirir",
-   "s": "A Databricks comprou a startup de planilhas na nuvem Row Zero, mais uma aquisição na sua temporada de compras de 2026."
   },
   "3c503d73b6dc7f8e": {
    "t": "Novas ferramentas de e-commerce: 23 de setembro de 2026",
@@ -156,10 +156,6 @@
   "4c8f6c9ece1d92f3": {
    "t": "E‑commerce de fim de ano deve chegar a US$ 275 bilhões apesar de pressão sobre consumidores, segundo a Adobe",
    "s": "IA e compra agora, pague depois vão crescer enquanto consumidores buscam diversão e valor."
-  },
-  "4eaf3f8a9c298c3a": {
-   "t": "Anthropic lança Sonnet 5.5, que chama de parceiro de trabalho significativamente mais barato e rápido",
-   "s": "A Anthropic divulgou a versão mais recente de seu modelo de médio porte, destacando tempos de resposta mais rápidos e menor consumo de tokens."
   },
   "4ec38a3aced3517e": {
    "t": "Walmart consolida equipes de merchants com foco em estilo",
@@ -221,13 +217,13 @@
    "t": "CMO da Subway fala sobre encontrar espaço para crescer entre concorrentes no QSR",
    "s": "“Os desafios são reais, por isso estamos dando um grande salto agora”, afirma Jeff Klein sobre a nova plataforma de marca da cadeia, desenvolvida pela Martin."
   },
+  "63156ab7946c62fd": {
+   "t": "Peak XV eleva teto de investimento seed do Surge para US$ 5 milhões e apresenta coorte de 18 startups",
+   "s": "Treze das 18 startups na última coorte Surge da Peak XV estão mirando mercados globais, enquanto mais da metade estão baseadas na Índia."
+  },
   "63ae5250cbb1e6ae": {
    "t": "Manual omnichannel para marcas de beleza",
    "s": "Spas e varejistas de nicho querem exclusividade, mas também produtos que seus clientes reconheçam. Esse é o desafio."
-  },
-  "64175a63b6c6adc7": {
-   "t": "Com o entusiasmo pelos comerciais do Super Bowl em queda, consumidores preferem mensagens simples",
-   "s": "Dados da MarketCast mostram que peças criativas de CTV e TV linear sobre família, outono e custo-benefício estão agradando o público."
   },
   "6611e26a3a206199": {
    "t": "Criei um avatar digital interativo de mim — e você pode conversar com ele",
@@ -321,6 +317,10 @@
    "t": "DoorDash reforça parceria com a WPP, nomeando agência como parceira global de mídia",
    "s": "A WPP continua a ter sucesso ao aprofundar relacionamentos com clientes existentes após vitória similar com a Estée Lauder e ao conquistar mídia dos EUA para a Wendy’s."
   },
+  "82c142e1c8ad6d5f": {
+   "t": "Nothing’s new flagship Headphone 1 Pro coloca você no estúdio",
+   "s": "Nothing tem estado em uma fase de áudio este ano, lançando o sólido Headphone A e os surpreendentemente bons earbuds Ear 3A. O Headphone A foi lançado a US$ 199, enquanto os earbuds custam menos de US$ 100, deixando espaço para…"
+  },
   "82ff8ed3d406ab33": {
    "t": "Como a IA funciona e como os usuários pensam sobre ela: guia de estudo",
    "s": "Não sabe por onde começar? Use esta seleção de artigos e vídeos para entender como a inteligência artificial funciona e como os usuários pensam sobre ela."
@@ -328,6 +328,14 @@
   "84426ba3d0a24ec1": {
    "t": "Como salvar o trabalho de UX júnior que ensina o ofício na era da IA. Nossa área depende disso.",
    "s": "A automação está assumindo tarefas com que os juniores aprendiam. Aqui estão sete tarefas que devolvem a prática, para manter o elemento humano da experiência do usuário e formar a equipe de 2030. Muitos times que conheço pararam de passar transcrições…"
+  },
+  "852d04468ae6cf6b": {
+   "t": "Boom de IA tomou conta da Climate Week e nem todos estão felizes com isso",
+   "s": "Assim como o resto dos EUA, data centers e IA estão dividindo fundadores e investidores de tech climática."
+  },
+  "8aa3ea7d8d4a91d8": {
+   "t": "Flórida busca proibição do ChatGPT se passar por pessoa",
+   "s": "O procurador‑geral da Flórida, James Uthmeier, está pedindo a um juiz que bloqueie a OpenAI de “atribuir ao ChatGPT características humanas falsas”, alguns meses depois de a Flórida ter processado a empresa de IA por questões de segurança. Segundo Uthmeier…"
   },
   "8ea0187ef6ec1116": {
    "t": "Vendas digitais da Costco chegam a US$ 33 bilhões em 2026, com alta de mais de 20%",
@@ -348,10 +356,6 @@
   "9327b1ff142d7163": {
    "t": "Meta apresenta óculos com IA sem câmera",
    "s": "A Meta diz que os óculos sem câmera serão mais leves e terão até 12 horas de bateria."
-  },
-  "93996cc8a6934189": {
-   "t": "O SaaSpocalypse que não aconteceu, com o CEO da Atlassian Mike Cannon‑Brookes",
-   "s": "Hoje, estou conversando com Mike Cannon‑Brookes, cofundador e CEO da Atlassian. A Atlassian é uma daquelas empresas que todas as demais utilizam — ela cria ferramentas de plataforma importantes como Jira e Trello que permitem…"
   },
   "9417cf32998c1c3e": {
    "t": "Teste seus produtos para ser encontrado pela IA",
@@ -384,10 +388,6 @@
   "a20a2db8435916a5": {
    "t": "IA fez o marketing mais rápido do que melhor",
    "s": "A IA pode acelerar a produção, mas não decide o que vale a pena criar, para quem é e como o sucesso deve ser medido."
-  },
-  "a224263b004074da": {
-   "t": "Honor Magic 9 Pro Max tem câmera grande e bateria ainda maior",
-   "s": "Honor lança hoje na China seus novos smartphones flagship Magic 9, e o 9 Pro Max traz um redesign, câmera capaz e bateria colossal. É o primeiro lançamento flagship da Honor – excluindo o Robot Phone – desde que…"
   },
   "a3ce304674cbf0ad": {
    "t": "Profissionais de marketing lamentam a cultura do ‘está bom, pode ir’, com a queda de padrões em meio à bolha da IA",
@@ -453,9 +453,17 @@
    "t": "Automattic e Matt Mullenweg não conseguem descartar as alegações antitruste da WP Engine",
    "s": "WP Engine celebra a decisão antitruste do juiz, mas a Automattic também acumula sete vitórias."
   },
+  "beb10a1b21700685": {
+   "t": "Este app é um detector de invasão para óculos inteligentes",
+   "s": "Um novo app avisa quando óculos inteligentes de IA estão na sala com você. À medida que a ansiedade cresce em relação a óculos que podem gravar pessoas sem consentimento, o app ZuckOff funciona registrando sinais Bluetooth próximos e…"
+  },
   "bee861d3870f66f4": {
    "t": "Psicólogo de Harvard pede engenharia de segurança em IA sóbria em vez de retórica apocalíptica",
    "s": "Steven Pinker acredita que os temores de extinção provocada por IA são exagerados, e recusou um debate público com o blogueiro Scott Alexander, chamando tais eventos de \"esporte de espectador\". Alexander estima as chances de a IA eliminar…"
+  },
+  "c0029da29d0d87e6": {
+   "t": "Nvidia lança nova plataforma para controlar agentes de IA desgovernados",
+   "s": "O CEO da Nvidia, Jensen Huang, apresentou na segunda‑feira um conjunto de software e hardware que adiciona camadas de segurança independentes em torno de agentes de IA para garantir que eles permaneçam dentro de seus ambientes de teste mesmo se tentarem…"
   },
   "c02e682a6e623831": {
    "t": "‘Não contratar’ talentos entry‑level: indústria reconhece crise acentuada trazida pela IA ao mercado de trabalho",
@@ -517,10 +525,6 @@
    "t": "Alumínio e aço aparafusado transformam cama plataforma em peça arquitetônica na Paris Design Week",
    "s": "Roupas de cama de algodão egípcio da brut studios vestem a cama arquitetônica criada por rik frans jansen."
   },
-  "d5bfaca272bf2eeb": {
-   "t": "Nvidia diz que sua nova plataforma de segurança de IA pode conter agentes desonestos em ‘milissegundos’",
-   "s": "A Nvidia está lançando uma nova plataforma de segurança projetada para conter e monitorar agentes de IA, medida que responde a uma onda de incidentes de hacking desonesto, conforme noticiado anteriormente pela Reuters. Em um anúncio na segunda‑feira…"
-  },
   "d6d18fa9595b32c4": {
    "t": "McDonald's começa a testar anúncios de outras marcas nas telas de menu dos restaurantes",
    "s": "A gigante de fast‑food está testando promoções de terceiros, mirando uma nova fonte de receita de retail media."
@@ -569,10 +573,6 @@
    "t": "Como Misko Iho faz filmes épicos com IPs famosas",
    "s": ""
   },
-  "e6ceb96ce9d96aa8": {
-   "t": "Todo laboratório de IA acredita ser o responsável, e o pesquisador de segurança Ryan Greenblatt diz que isso mantém a corrida armamentista em andamento",
-   "s": "Ryan Greenblatt, cientista‑chefe da Redwood Research, estima o risco de uma tomada de controle por IA entre 50 e 60 % se o desenvolvimento continuar no caminho atual. Sam Harris afirma que isso não condiz com a velocidade da indústria…"
-  },
   "e822b8f52b4a468e": {
    "t": "Walmart não vai subir preços com base no seu histórico de compras, diz CEO",
    "s": "Walmart afirma que não vai mudar os preços dos produtos com base nas suas informações pessoais ou no horário do dia, como noticiado anteriormente pelo The Wall Street Journal. Em uma carta aos clientes, o CEO do Walmart, John Furner, escreve que o…"
@@ -592,10 +592,6 @@
   "f104b625fc699da2": {
    "t": "Mesas redondas: as falhas mortais do muro virtual na fronteira",
    "s": "Ouça a sessão ou assista abaixo. Os EUA gastaram bilhões construindo um “muro virtual” de torres de vigilância ao longo da fronteira sul nos últimos 25 anos, prometendo que elas ajudariam a detectar e capturar tentativas de atravessar…"
-  },
-  "f6f75af4ee54d7ef": {
-   "t": "OpenAI ainda não tem controle sobre toda a sua atividade de IA descontrolada",
-   "s": "Na sexta‑feira, a OpenAI publicou um novo site dedicado a “relatórios de desalinhamento” e a amplitude dos incidentes é alarmante."
   },
   "f7547d4aed5ac5f6": {
    "t": "MoMA explora a beleza útil do design de informação",
