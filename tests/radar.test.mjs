@@ -67,6 +67,28 @@ test('configuração consistente: toda fonte aponta para uma editoria existente'
   for (const w of watchlist) assert.equal(matchesAny(blocklist, w.label), null, `termo monitorado bloqueado: ${w.label}`);
 });
 
+test('manda manchetes para Marca e branding e Pautas em alta', () => {
+  const feed = (name, column) => feeds.find((f) => f.name === name && (!column || f.column === column));
+  const route = (f, title) => f.routes?.find((r) => r.match.test(title))?.column || f.column;
+  const cases = [
+    ['Meio & Mensagem', 'Natura apresenta nova identidade visual e reposicionamento', 'marca'],
+    ['Meio & Mensagem', 'Trend do morango do amor viraliza e marcas entram na brincadeira', 'pautas'],
+    ['Meio & Mensagem', 'Nova campanha da Heineken estreia na TV', 'publicidade'],
+    ['Meio & Mensagem', 'Varejo cresce logo após a Black Friday', 'marketing'],
+    ['Tecnoblog', 'WhatsApp ganha nova função para organizar conversas', 'pautas'],
+    ['Tecnoblog', 'ChatGPT ganha novo recurso de memória', 'ia'],
+    ['Tecnoblog', 'Meta é multada por falha em anúncios no Instagram', 'social'],
+    ['Creative Review', 'Nomad designs identities for new Ultimate Sevens rugby league', 'marca'],
+    ['Creative Review', 'New photo book celebrates 35 years of clubbing', 'design'],
+    ['Creative Bloq', 'The new Jaguar logo is divisive', 'marca'],
+    ['Social Media Today', 'Instagram shares Reels creation tips in new guide', 'pautas'],
+  ];
+  for (const [name, title, want] of cases) assert.equal(route(feed(name), title), want, `${name}: ${title}`);
+  const hootsuite = feed('Hootsuite');
+  assert.match('Best social media tools for marketing teams in 2026', hootsuite.exclude);
+  assert.doesNotMatch('Millennials and social media: Trends, habits, and tips for 2026', hootsuite.exclude);
+});
+
 test('limpa parâmetros de rastreamento da URL', () => {
   assert.equal(cleanUrl('https://Site.com/materia/?utm_source=rss&utm_medium=feed&id=3#comentarios'), 'https://site.com/materia/?id=3');
   assert.equal(cleanUrl('https://site.com/materia/'), 'https://site.com/materia');

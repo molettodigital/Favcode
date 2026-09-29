@@ -12,13 +12,19 @@ export const NEWSLETTER = {
 export const CONSENT_VERSION = '2026-09-29';
 
 const DEFAULT_ORIGIN = 'https://radar.favcode.com.br';
-const DEFAULT_FROM = 'Clara Poleto · Radar FavCode <clara@favcode.com.br>';
+
+/**
+ * Caixa da newsletter: remetente, resposta dos leitores e login do editor. Na Cloudflare
+ * (Email Routing), noticias@favcode.com.br encaminha para o e-mail da conta.
+ */
+export const NEWSLETTER_EMAIL = 'noticias@favcode.com.br';
+const DEFAULT_FROM = `Clara Poleto · Radar FavCode <${NEWSLETTER_EMAIL}>`;
 
 export const siteOrigin = (env) => env.CANONICAL_ORIGIN || DEFAULT_ORIGIN;
 export const fromAddress = (env) => env.NEWSLETTER_FROM || DEFAULT_FROM;
-export const replyTo = (env) => env.NEWSLETTER_REPLY_TO || '';
+export const replyTo = (env) => env.NEWSLETTER_REPLY_TO || NEWSLETTER_EMAIL;
 export const editorEmails = (env) =>
-  String(env.EDITOR_EMAILS || '')
+  String(env.EDITOR_EMAILS || NEWSLETTER_EMAIL)
     .split(',')
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean);

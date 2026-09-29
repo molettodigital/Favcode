@@ -1,8 +1,8 @@
 # Radar FavCode
 
-Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, design, publicidade, redes sociais, e-commerce e startups**, reunidas de dezenas de veículos do Brasil e do mundo.
+Radar de notícias com as manchetes do dia sobre **IA, tecnologia, marketing, marca e branding, design, publicidade, redes sociais, pautas em alta, e-commerce e startups**, reunidas de dezenas de veículos do Brasil e do mundo.
 
-- 8 editorias em colunas, com a manchete principal de cada uma em destaque.
+- 10 editorias em colunas, com a manchete principal de cada uma em destaque. "Pautas em alta" junta virais, trends, datas e novidades úteis para usar em conteúdo; "Marca e branding" junta rebrands, identidades visuais e posicionamento.
 - **Em alta agora**: os termos mais citados nas últimas horas, desenhados num radar e listados em ranking.
 - Tudo em português: manchetes de veículos em inglês chegam traduzidas (veja "Tradução").
 - Busca nas manchetes (atalho `/`) e tema claro/escuro.
@@ -76,13 +76,13 @@ Nenhum site público é 100% à prova de cópia: tudo o que o navegador mostra p
 
 Toda sexta-feira quem se cadastra recebe as notícias mais importantes da semana com os comentários de Clara Poleto (Redatora Publicitária e Colunista do FavCode).
 
-**No site.** A primeira matéria abre direto; a partir da segunda, abrir uma matéria pede um cadastro rápido: nome, e-mail, WhatsApp (opcional) e a caixa de consentimento da LGPD. Quem se cadastra fica marcado no navegador e não vê mais a janela. O rodapé também convida para a newsletter. O formulário é protegido pelo Cloudflare Turnstile (anti-robô, sem cookies de publicidade). Tudo liga com `newsletter.enabled` em `config/radar.config.mjs`, e só liga com `newsletter.privacyEmail` preenchido, porque a política de privacidade (`/privacidade`) precisa de um contato para os pedidos da LGPD.
+**No site.** A primeira matéria abre direto; a partir da segunda, abrir uma matéria pede um cadastro rápido: nome, e-mail, WhatsApp (opcional) e a caixa de consentimento da LGPD. Quem se cadastra fica marcado no navegador e não vê mais a janela. O rodapé também convida para a newsletter. O formulário é protegido pelo Cloudflare Turnstile (anti-robô, sem cookies de publicidade). Tudo liga com `newsletter.enabled` em `config/radar.config.mjs`, e só liga com `newsletter.privacyEmail` preenchido, porque a política de privacidade (`/privacidade`) precisa de um contato para os pedidos da LGPD (hoje, noticias@favcode.com.br).
 
 **Cadastro.** `POST /api/subscribe` (Worker) valida os dados, confere o Turnstile e grava no banco D1 `radar-favcode` (tabela `subscribers`, com data e versão do consentimento). Em seguida o contato vai para o Resend, no segmento "Newsletter Radar FavCode", e recebe um e-mail de boas-vindas. O telefone fica só no D1, não vai para o Resend. Se o Resend falhar ou ainda não estiver configurado, o cadastro fica guardado e é enviado depois (a cada 15 minutos).
 
 **Rascunho semanal.** O Worker registra no D1 as manchetes que passam pelo radar (com o "calor" dos termos em alta). Toda sexta às 6h45 (Brasília) ele escolhe as mais repercutidas de cada editoria, pede à IA da Cloudflare (`gpt-oss-120b`) as 8 principais com uma sugestão de comentário para cada, de assunto e de abertura, grava o rascunho e manda para quem edita um e-mail com o link de acesso.
 
-**Editor (`/editor`).** Entra-se com um link enviado ao e-mail (sem senha; só os e-mails de `EDITOR_EMAILS`). Dá para editar assunto, pré-cabeçalho, abertura, títulos e comentários (com a sugestão da IA ao lado), reordenar, tirar e acrescentar notícias da semana, ver a prévia, enviar um teste para si, enviar para a lista na hora ou agendar, e baixar a planilha de inscritos (com telefone). Depois de enviada, a edição fica travada.
+**Editor (`/editor`).** Entra-se com um link enviado ao e-mail (sem senha; só os e-mails de `EDITOR_EMAILS`, por padrão noticias@favcode.com.br). Dá para editar assunto, pré-cabeçalho, abertura, títulos e comentários (com a sugestão da IA ao lado), reordenar, tirar e acrescentar notícias da semana, ver a prévia, enviar um teste para si, enviar para a lista na hora ou agendar, e baixar a planilha de inscritos (com telefone). Depois de enviada, a edição fica travada.
 
 Configuração no Worker `radar-favcode` (Cloudflare → Workers & Pages → Settings → Variables and Secrets):
 
@@ -93,9 +93,11 @@ Configuração no Worker `radar-favcode` (Cloudflare → Workers & Pages → Set
 | `TURNSTILE_SECRET` | segredo | chave secreta do Turnstile "Radar FavCode" |
 | `SESSION_SECRET` | segredo | assina os links e a sessão do editor |
 | `RESEND_API_KEY` | segredo | chave da API do Resend (Full access) |
-| `EDITOR_EMAILS` | texto | e-mails com acesso ao editor, separados por vírgula |
-| `NEWSLETTER_FROM` | texto | remetente, padrão `Clara Poleto · Radar FavCode <clara@favcode.com.br>` |
-| `NEWSLETTER_REPLY_TO` | texto | opcional: para onde vão as respostas dos leitores |
+| `EDITOR_EMAILS` | texto | opcional: e-mails com acesso ao editor, separados por vírgula (padrão `noticias@favcode.com.br`) |
+| `NEWSLETTER_FROM` | texto | opcional: remetente (padrão `Clara Poleto · Radar FavCode <noticias@favcode.com.br>`) |
+| `NEWSLETTER_REPLY_TO` | texto | opcional: para onde vão as respostas dos leitores (padrão `noticias@favcode.com.br`) |
+
+**E-mail noticias@favcode.com.br.** É o remetente da newsletter, o endereço de resposta, o contato da LGPD e o login do editor. Não é uma caixa própria: o Email Routing da Cloudflare (zona `favcode.com.br` → Email → Email Routing) encaminha tudo o que chega nele para o e-mail da conta Cloudflare. Para mandar para outra caixa, cadastre-a em Destination addresses e troque o destino da regra `noticias@`. O domínio tem SPF do Email Routing e DMARC em modo de monitoramento (`p=none`).
 
 Para o Resend enviar em nome de `favcode.com.br`: crie a conta em resend.com, vá em Domains → Add domain → `favcode.com.br` e use "Sign in to Cloudflare" para ele criar os registros de DNS sozinho (ou me passe os registros). Depois crie a API key e cadastre como `RESEND_API_KEY`. O plano gratuito cobre a newsletter até 1.000 inscritos, com envios ilimitados; os e-mails avulsos (boas-vindas, teste, link de acesso) contam no limite de 100 por dia e 3.000 por mês.
 

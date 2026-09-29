@@ -6,7 +6,7 @@ import { signToken, verifyToken } from '../cloudflare/lib/util.mjs';
 import { createWeeklyDraft, editionId, weekLabel } from '../cloudflare/newsletter/draft.mjs';
 import { renderNewsletter } from '../cloudflare/newsletter/email.mjs';
 import { recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
-import { CONSENT_VERSION } from '../cloudflare/newsletter/settings.mjs';
+import { CONSENT_VERSION, editorEmails, fromAddress, replyTo } from '../cloudflare/newsletter/settings.mjs';
 import { normalizePhone, syncSubscribers, validateSubscriber } from '../cloudflare/newsletter/subscribe.mjs';
 import { newsletter as siteNewsletter } from '../config/radar.config.mjs';
 import { fakeD1, fakeKV } from './helpers/fake-d1.mjs';
@@ -404,4 +404,12 @@ test('editor: agendamento no futuro e lista de inscritos em CSV sem fórmulas', 
   assert.match(csv, /ana@exemplo\.com\.br;Bia =SOMA\(1\);'\+5511987654321/);
   res = await call('/api/editor/inscritos.csv');
   assert.equal(res.status, 401);
+});
+
+test('sem configuração, a newsletter usa noticias@favcode.com.br', () => {
+  assert.equal(fromAddress({}), 'Clara Poleto · Radar FavCode <noticias@favcode.com.br>');
+  assert.equal(replyTo({}), 'noticias@favcode.com.br');
+  assert.deepEqual(editorEmails({}), ['noticias@favcode.com.br']);
+  assert.deepEqual(editorEmails({ EDITOR_EMAILS: ' Clara@Exemplo.com , outra@exemplo.com' }), ['clara@exemplo.com', 'outra@exemplo.com']);
+  assert.equal(siteNewsletter.privacyEmail, 'noticias@favcode.com.br');
 });
