@@ -1,11 +1,12 @@
 import { test, beforeEach } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import worker from '../cloudflare/worker.mjs';
 import { signToken, verifyToken } from '../cloudflare/lib/util.mjs';
 import { createWeeklyDraft, editionId, weekLabel } from '../cloudflare/newsletter/draft.mjs';
 import { renderNewsletter } from '../cloudflare/newsletter/email.mjs';
-import { recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
+import { extractPageData, recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
 import { CONSENT_VERSION, editorEmails, fromAddress, replyTo } from '../cloudflare/newsletter/settings.mjs';
 import { normalizePhone, syncSubscribers, validateSubscriber } from '../cloudflare/newsletter/subscribe.mjs';
 import { newsletter as siteNewsletter } from '../config/radar.config.mjs';
@@ -188,10 +189,10 @@ const pageData = (now) => ({
     { id: 'ia', name: 'Inteligência artificial' },
     { id: 'marketing', name: 'Marketing' },
   ],
-  sources: [
-    ['tb', { name: 'Tecnoblog' }],
-    ['mm', { name: 'Meio & Mensagem' }],
-  ],
+  sources: {
+    tb: { name: 'Tecnoblog' },
+    mm: { name: 'Meio & Mensagem' },
+  },
   items: [
     { id: 'a1', column: 'ia', source: 'tb', title: 'OpenAI lança agentes', url: 'https://tb.example/a1', date: now - 1000, summary: 'Resumo A1', image: 'https://img.example/a1.jpg' },
     { id: 'a2', column: 'ia', source: 'tb', title: 'Nvidia apresenta chip', url: 'https://tb.example/a2', date: now - 2000, summary: '', image: '' },
@@ -218,6 +219,16 @@ test('registra as manchetes com o calor dos termos em alta e escolhe as da seman
   assert.deepEqual(candidates.map((c) => c.id), ['a1', 'm1']);
   const old = await weekNews(env, { now: now + 8 * DAY });
   assert.equal(old.candidates.length, 0);
+});
+
+test('registra as manchetes da página de verdade gerada pelo build (index.html)', async () => {
+  const data = extractPageData(readFileSync(new URL('../index.html', import.meta.url), 'utf8'));
+  assert.ok(data?.items?.length, 'index.html sem manchetes');
+  const n = await recordNews(env, data);
+  assert.equal(n, data.items.length);
+  const row = await env.DB.prepare('SELECT source, column_id FROM news LIMIT 1').first();
+  assert.ok(Object.values(data.sources).some((s) => s.name === row.source), `fonte sem nome: ${row.source}`);
+  assert.ok(data.columns.some((c) => c.id === row.column_id));
 });
 
 test('rascunho semanal: IA escolhe e sugere, e o aviso leva um link de acesso válido', async () => {

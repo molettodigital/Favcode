@@ -27,7 +27,8 @@ export async function recordNews(env, data, now = Date.now()) {
   for (const trend of data.trends || []) {
     for (const id of trend.ids || []) heat.set(id, (heat.get(id) || 0) + (Number(trend.score) || 0));
   }
-  const sources = new Map(data.sources || []);
+  // O build grava as fontes como objeto { id: { name } }; aceita também a lista de pares.
+  const sources = new Map(Array.isArray(data.sources) ? data.sources : Object.entries(data.sources || {}));
   const stmt = env.DB.prepare(
     `INSERT INTO news (id, title, summary, url, source, column_id, image, published_at, first_seen, heat)
      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)
