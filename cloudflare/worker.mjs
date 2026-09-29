@@ -11,6 +11,10 @@
 // Só atende o GitHub Actions deste repositório, que se identifica com um token OIDC assinado
 // pelo GitHub; não há senha guardada em lugar nenhum.
 //
+// Newsletter: cadastro (POST /api/subscribe) guardado no D1 e enviado ao Resend, política de
+// privacidade (/privacidade), registro das notícias da semana, rascunho semanal com sugestões da
+// IA (sexta de manhã) e o editor da Clara (/editor). Código em cloudflare/newsletter/.
+//
 // Proteção contra cópia: bloqueia programas de clonagem, raspadores e robôs de IA,
 // proíbe abrir o site dentro de outro (iframe), impede que outros sites usem as fontes e
 // o logo e, com o binding LIMITER, limita o número de acessos por IP.
@@ -20,6 +24,15 @@
 // Actions: Read and write — com ele o repositório pode ser privado), LIMITER (rate limit) e
 // CANONICAL_ORIGIN (endereço oficial, ex.: https://radar.favcode.com.br; o endereço
 // .workers.dev passa a redirecionar para ele).
+// Newsletter: DB (D1), FORM_LIMITER (rate limit do formulário), TURNSTILE_SECRET, SESSION_SECRET,
+// RESEND_API_KEY (segredos), EDITOR_EMAILS, NEWSLETTER_FROM e NEWSLETTER_REPLY_TO (texto).
+
+import { AI_MODEL, runJson } from './lib/ai.mjs';
+import { json } from './lib/util.mjs';
+import { createWeeklyDraft } from './newsletter/draft.mjs';
+import { handleEditor } from './newsletter/editor.mjs';
+import { cleanupNews, extractPageData, recordNews } from './newsletter/news.mjs';
+import { handleSubscribe, syncSubscribers } from './newsletter/subscribe.mjs';
 
 const PAGE_KEY = 'page';
 const PAGE_VERSION_KEY = 'page:generatedAt';
@@ -34,8 +47,12 @@ const ASSETS = {
   '/assets/favcode-mark-180.png': 'image/png',
   '/assets/og-image.jpg': 'image/jpeg',
 };
-// A imagem de compartilhamento precisa abrir no WhatsApp e nas redes; o resto é só do site.
-const PUBLIC_ASSETS = new Set(['/assets/og-image.jpg']);
+// A imagem de compartilhamento precisa abrir no WhatsApp e nas redes e o logo grande aparece nos
+// e-mails da newsletter; o resto é só do site.
+const PUBLIC_ASSETS = new Set(['/assets/og-image.jpg', '/assets/favcode-mark-180.png']);
+
+// Outras páginas geradas pelo build, guardadas no KV junto com a principal.
+const EXTRA_PAGES = { '/privacidade': 'privacidade.html', '/editor': 'editor.html' };
 
 // Programas que baixam sites inteiros, bibliotecas de raspagem, navegadores automatizados e
 // robôs que coletam conteúdo para IA. As prévias de link (WhatsApp, Facebook, LinkedIn,
@@ -111,13 +128,36 @@ async function fetchPage(env) {
   return html;
 }
 
-/** Grava a página nova no KV só quando a coleta mudou (economiza escritas). */
+async function fetchExtraPage(env, file) {
+  const res = await fetchSource(env, `/${file}`);
+  if (!res.ok) throw new Error(`GitHub respondeu ${res.status} para ${file}`);
+  const html = await res.text();
+  if (!html.includes('<html')) throw new Error(`${file} inválido`);
+  return html;
+}
+
+async function refreshExtraPages(env) {
+  for (const [path, file] of Object.entries(EXTRA_PAGES)) {
+    try {
+      await env.RADAR.put(`page:${path}`, await fetchExtraPage(env, file));
+    } catch {
+      /* mantém a cópia anterior */
+    }
+  }
+}
+
+/**
+ * Grava a página nova no KV só quando a coleta mudou (economiza escritas). Junto, atualiza as
+ * páginas extras e registra as manchetes no D1 para o rascunho semanal da newsletter.
+ */
 async function refreshPage(env) {
   const html = await fetchPage(env);
   const version = generatedAt(html);
   if (version && version === (await env.RADAR.get(PAGE_VERSION_KEY))) return false;
   await env.RADAR.put(PAGE_KEY, html);
   await env.RADAR.put(PAGE_VERSION_KEY, version);
+  await refreshExtraPages(env);
+  if (env.DB) await recordNews(env, extractPageData(html));
   return true;
 }
 
@@ -198,7 +238,7 @@ function foreignReferer(request, url) {
 
 // ---------- Tradução (Workers AI) ----------
 
-const TRANSLATION_MODEL = '@cf/openai/gpt-oss-120b';
+const TRANSLATION_MODEL = AI_MODEL;
 const OIDC_ISSUER = 'https://token.actions.githubusercontent.com';
 const TRANSLATE_AUDIENCE = 'radar-favcode-translate';
 const MAX_TRANSLATE_ITEMS = 25;
@@ -274,39 +314,18 @@ async function verifyGithubToken(token, env, { fetchImpl = fetch, now = Date.now
   return claims;
 }
 
-/** Texto da resposta do modelo, qualquer que seja o formato (Responses ou chat). */
-function modelText(result) {
-  if (typeof result === 'string') return result;
-  if (typeof result?.response === 'string') return result.response;
-  if (Array.isArray(result?.output)) {
-    return result.output
-      .filter((o) => o.type === 'message')
-      .flatMap((o) => o.content || [])
-      .map((c) => c.text || '')
-      .join('');
-  }
-  return result?.choices?.[0]?.message?.content || '';
-}
-
 async function translateWithAI(env, system, items) {
-  const result = await env.AI.run(TRANSLATION_MODEL, {
-    input: [
-      { role: 'system', content: system },
-      { role: 'user', content: `Traduza estes itens:\n${JSON.stringify(items)}` },
-    ],
-    reasoning: { effort: 'low' },
-    text: { format: { type: 'json_schema', name: 'traducao', schema: TRANSLATION_SCHEMA, strict: true } },
+  const parsed = await runJson(env, {
+    system,
+    user: `Traduza estes itens:\n${JSON.stringify(items)}`,
+    schema: TRANSLATION_SCHEMA,
+    name: 'traducao',
   });
-  const text = modelText(result);
-  const parsed = JSON.parse(text.slice(text.indexOf('{'), text.lastIndexOf('}') + 1));
   const wanted = new Set(items.map((it) => it.id));
   return (parsed.items || [])
     .filter((it) => wanted.has(it.id) && String(it.title || '').trim())
     .map((it) => ({ id: it.id, title: String(it.title).trim(), summary: String(it.summary || '').trim() }));
 }
-
-const json = (status, body) =>
-  new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' } });
 
 async function handleTranslate(request, env) {
   if (request.method !== 'POST') return json(405, { error: 'use POST' });
@@ -342,6 +361,15 @@ export default {
       return Response.redirect(`${env.CANONICAL_ORIGIN}${url.pathname}${url.search}`, 301);
     }
     if (url.pathname === '/api/translate') return handleTranslate(request, env);
+
+    // Newsletter: cadastro e editor aceitam POST; programas de cópia e robôs continuam barrados.
+    if (url.pathname === '/api/subscribe' || url.pathname.startsWith('/api/editor/') || url.pathname === '/editor/entrar') {
+      const ua = request.headers.get('user-agent') || '';
+      if (!ua.trim() || BLOCKED_AGENTS.test(ua)) return denied(403, 'Acesso bloqueado.');
+      if (url.pathname === '/api/subscribe') return handleSubscribe(request, env, ctx);
+      return handleEditor(request, env, ctx, url);
+    }
+
     const head = request.method === 'HEAD';
     if (request.method !== 'GET' && !head) {
       return new Response('Método não permitido', { status: 405, headers: { allow: 'GET, HEAD' } });
@@ -382,6 +410,21 @@ export default {
       return new Response(head ? null : absolutize(html, url.origin), { headers: HTML_HEADERS });
     }
 
+    const extra = EXTRA_PAGES[url.pathname];
+    if (extra) {
+      let html = await env.RADAR.get(`page:${url.pathname}`, { cacheTtl: 60 });
+      if (!html) {
+        try {
+          html = await fetchExtraPage(env, extra);
+          ctx.waitUntil(env.RADAR.put(`page:${url.pathname}`, html));
+        } catch {
+          return new Response('Página indisponível no momento.', { status: 503, headers: { 'content-type': 'text/plain; charset=utf-8' } });
+        }
+      }
+      const headers = url.pathname === '/editor' ? { ...HTML_HEADERS, 'cache-control': 'no-store', 'x-robots-tag': 'noindex, nofollow' } : HTML_HEADERS;
+      return new Response(head ? null : html, { headers });
+    }
+
     const type = ASSETS[url.pathname];
     if (type) {
       const shared = PUBLIC_ASSETS.has(url.pathname);
@@ -403,12 +446,21 @@ export default {
 
   async scheduled(controller, env, ctx) {
     const tasks = [];
-    if (controller.cron === ASSET_CRON) tasks.push(refreshAssets(env));
+    if (controller.cron === ASSET_CRON) {
+      tasks.push(refreshAssets(env));
+      if (env.DB) tasks.push(cleanupNews(env));
+    }
     if (controller.cron === PAGE_CRON) {
       tasks.push(refreshPage(env));
+      const when = new Date(controller.scheduledTime);
       // Uma vez por hora (na execução do minuto 0).
-      const minute = new Date(controller.scheduledTime).getUTCMinutes();
-      if (env.GITHUB_TOKEN && minute < 15) tasks.push(dispatchCollection(env));
+      if (env.GITHUB_TOKEN && when.getUTCMinutes() < 15) tasks.push(dispatchCollection(env));
+      // Inscritos que ainda não foram para o Resend.
+      if (env.DB && env.RESEND_API_KEY) tasks.push(syncSubscribers(env));
+      // Rascunho da newsletter: sexta, 6h45 em Brasília (9h45 UTC).
+      if (env.DB && when.getUTCDay() === 5 && when.getUTCHours() === 9 && when.getUTCMinutes() >= 45) {
+        tasks.push(createWeeklyDraft(env, { now: controller.scheduledTime }));
+      }
     }
     ctx.waitUntil(
       Promise.allSettled(tasks).then((results) => {

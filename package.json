@@ -10,7 +10,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "render": "node scripts/build.mjs --template-only",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --no-warnings --test tests/*.test.mjs",
+    "worker:build": "esbuild cloudflare/worker.mjs --bundle --format=esm --platform=neutral --minify --legal-comments=none --outfile=cloudflare/dist/worker.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "0.128.0"

@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editor da newsletter · Radar FavCode</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/favcode-mark-96.png" type="image/png">
+<style>
+  @font-face { font-family: 'Figtree'; font-style: normal; font-weight: 300 900; font-display: swap; src: url('/assets/fonts/figtree.woff2') format('woff2'); }
+  @font-face { font-family: 'Sora'; font-style: normal; font-weight: 100 800; font-display: swap; src: url('/assets/fonts/sora.woff2') format('woff2'); }
+  :root {
+    --bg: #f3f6fc; --surface: #fff; --surface-2: #edf2fb; --ink: #0a0d2e; --ink-2: #2e3558; --muted: #535c82;
+    --line: #dde4f2; --line-strong: #c4cfe6; --link: #0847ee; --navy: #060737; --azure: #026fff; --ok: #0f7a4f; --warn: #9a5b00; --err: #c43030;
+    --display: 'Sora', 'Segoe UI', system-ui, sans-serif; --text: 'Figtree', 'Segoe UI', system-ui, sans-serif;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 var(--text); }
+  a { color: var(--link); }
+  button, input, textarea, select { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--azure); outline-offset: 2px; }
+  .top { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: rgba(243, 246, 252, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .brand { display: inline-flex; align-items: center; gap: 8px; font: 700 1.05rem var(--display); color: var(--ink); text-decoration: none; letter-spacing: -0.02em; }
+  .brand img { width: 28px; height: 28px; }
+  .brand b { font-weight: 700; }
+  .brand span { color: var(--azure); }
+  .brand small { font: 600 0.7rem var(--text); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-left: 4px; }
+  .top__who { margin-left: auto; font-size: 0.85rem; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 20px 16px 120px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 20px; margin: 0 0 16px; }
+  h1 { font: 700 1.5rem/1.2 var(--display); letter-spacing: -0.02em; margin: 0 0 6px; }
+  h2 { font: 700 1.1rem/1.3 var(--display); margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  .row { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: var(--surface-2); color: var(--ink-2); }
+  .badge--draft { background: #fff3d6; color: var(--warn); }
+  .badge--sent, .badge--scheduled { background: #dcf5ea; color: var(--ok); }
+  .alert { padding: 12px 14px; border-radius: 12px; background: #fff3d6; color: #5c3900; font-size: 0.92rem; margin: 12px 0 0; }
+  label.f { display: block; margin: 0 0 14px; }
+  label.f > span { display: flex; justify-content: space-between; gap: 8px; font-weight: 600; font-size: 0.9rem; color: var(--ink-2); margin: 0 0 5px; }
+  label.f > span small { font-weight: 400; color: var(--muted); }
+  input[type='text'], input[type='email'], input[type='datetime-local'], input[type='search'], textarea { width: 100%; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; }
+  textarea { min-height: 96px; resize: vertical; line-height: 1.55; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-strong); background: var(--surface); color: var(--ink); font-weight: 600; font-size: 0.92rem; cursor: pointer; text-decoration: none; }
+  .btn:hover { background: var(--surface-2); }
+  .btn--primary { background: var(--navy); border-color: var(--navy); color: #fff; }
+  .btn--primary:hover { background: #10146a; }
+  .btn--blue { background: var(--link); border-color: var(--link); color: #fff; }
+  .btn--danger { color: var(--err); }
+  .btn--sm { min-height: 32px; padding: 0 12px; font-size: 0.82rem; }
+  .btn[disabled] { opacity: 0.55; cursor: not-allowed; }
+  .item { display: grid; grid-template-columns: 96px 1fr; gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+  .item:first-child { border-top: 0; padding-top: 0; }
+  .item__img { width: 96px; height: 64px; border-radius: 10px; object-fit: cover; background: var(--surface-2); }
+  .item__meta { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin: 0 0 4px; }
+  .item__title { width: 100%; font-weight: 700; font-size: 1rem; }
+  .item__tools { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; }
+  .sugg { margin: 6px 0 0; font-size: 0.85rem; color: var(--muted); }
+  .sugg summary { cursor: pointer; color: var(--link); font-weight: 600; }
+  .sugg p { margin: 6px 0; padding: 8px 10px; border-radius: 10px; background: var(--surface-2); color: var(--ink-2); }
+  @media (max-width: 560px) { .item { grid-template-columns: 1fr; } .item__img { width: 100%; height: 140px; } }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -10px 30px -18px rgba(6, 7, 55, 0.3); }
+  .bar__in { max-width: 860px; margin: 0 auto; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .bar__status { margin-right: auto; font-size: 0.85rem; color: var(--muted); }
+  dialog { border: 0; border-radius: 18px; padding: 0; width: min(720px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); box-shadow: 0 30px 80px -20px rgba(4, 5, 42, 0.5); }
+  dialog::backdrop { background: rgba(4, 5, 42, 0.55); }
+  .dlg { padding: 18px; }
+  .dlg__head { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; }
+  .dlg__head h2 { margin: 0; }
+  .dlg__head .btn { margin-left: auto; }
+  .preview { width: 100%; height: min(70dvh, 760px); border: 1px solid var(--line); border-radius: 12px; background: #f3f6fc; }
+  .cands { max-height: 55dvh; overflow: auto; margin: 10px 0 0; padding: 0; list-style: none; }
+  .cands li { display: flex; gap: 10px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+  .cands li span { flex: 1; font-size: 0.92rem; }
+  .cands li small { display: block; color: var(--muted); font-size: 0.78rem; }
+  .login { max-width: 420px; margin: 8vh auto; }
+  .toast { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); z-index: 20; padding: 10px 16px; border-radius: 12px; background: var(--navy); color: #fff; font-size: 0.9rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); }
+  .toast--err { background: var(--err); }
+</style>
+</head>
+<body>
+<!-- BUILD_NOTICE -->
+<header class="top">
+  <a class="brand" href="/"><img src="/assets/favcode-mark-96.png" alt="" width="28" height="28"><b translate="no">Fav<span>Code</span></b><small>Newsletter</small></a>
+  <span class="top__who" data-who></span>
+  <button class="btn btn--sm" type="button" data-logout hidden>Sair</button>
+</header>
+
+<div class="wrap">
+  <p class="muted" data-loading>Carregando…</p>
+
+  <!-- Login -->
+  <section class="panel login" data-login hidden>
+    <h1>Editor da newsletter</h1>
+    <p class="muted">Informe seu e-mail. Se ele tiver acesso, você recebe um link para entrar, sem senha.</p>
+    <p class="alert" data-login-expired hidden>O link expirou ou não é válido. Peça um novo.</p>
+    <form data-login-form>
+      <label class="f"><span>E-mail</span><input type="email" name="email" autocomplete="email" required></label>
+      <button class="btn btn--primary" type="submit">Receber link de acesso</button>
+    </form>
+    <p class="muted" data-login-sent hidden>Pronto. Se este e-mail tiver acesso, o link chega em instantes (confira também o spam). Ele vale por 30 minutos.</p>
+  </section>
+
+  <!-- Editor -->
+  <section data-app hidden>
+    <div class="panel">
+      <div class="row">
+        <h1 data-title>Newsletter</h1>
+        <span class="badge" data-status></span>
+      </div>
+      <p class="muted" data-week></p>
+      <div class="row">
+        <span data-subs></span>
+        <a class="btn btn--sm" href="/api/editor/inscritos.csv" download>Baixar inscritos (planilha)</a>
+        <button class="btn btn--sm" type="button" data-generate>Montar novo rascunho</button>
+      </div>
+      <p class="alert" data-no-resend hidden>O envio de e-mails ainda não está configurado (falta a chave do Resend na Cloudflare). Dá para editar e ver a prévia; o envio fica desativado.</p>
+      <p class="alert" data-ai-error hidden>A IA não conseguiu sugerir comentários desta vez. As notícias mais repercutidas já estão aqui; é só escrever os comentários.</p>
+      <p class="alert" data-locked hidden></p>
+    </div>
+
+    <div class="panel" data-empty hidden>
+      <h2>Ainda não há rascunho desta semana</h2>
+      <p class="muted">O rascunho é montado sozinho toda sexta às 6h45. Se quiser, monte agora com as notícias dos últimos 7 dias.</p>
+      <button class="btn btn--primary" type="button" data-generate>Montar rascunho agora</button>
+    </div>
+
+    <form data-form hidden>
+      <div class="panel">
+        <h2>Abertura</h2>
+        <label class="f"><span>Assunto do e-mail <small data-count="subject"></small></span><input type="text" name="subject" maxlength="150"></label>
+        <label class="f"><span>Pré-cabeçalho <small>texto que aparece ao lado do assunto na caixa de entrada</small></span><input type="text" name="preheader" maxlength="200"></label>
+        <label class="f"><span>Texto de abertura</span><textarea name="intro" rows="5"></textarea></label>
+        <details class="sugg" data-intro-sugg hidden><summary>Ver a sugestão da IA</summary><p data-intro-sugg-text></p><button class="btn btn--sm" type="button" data-use-intro>Usar a sugestão</button></details>
+      </div>
+
+      <div class="panel">
+        <div class="row" style="margin-bottom:12px"><h2 style="margin:0">Notícias <span class="muted" data-items-count></span></h2><button class="btn btn--sm" type="button" data-add style="margin-left:auto">+ Adicionar notícia da semana</button></div>
+        <div data-items></div>
+      </div>
+
+      <div class="panel">
+        <h2>Encerramento</h2>
+        <label class="f"><span>Despedida e assinatura</span><textarea name="closing" rows="3"></textarea></label>
+      </div>
+    </form>
+  </section>
+</div>
+
+<div class="bar" data-bar hidden>
+  <div class="bar__in">
+    <span class="bar__status" data-save-status></span>
+    <button class="btn" type="button" data-preview>Prévia</button>
+    <button class="btn" type="button" data-test>Enviar teste para mim</button>
+    <button class="btn btn--blue" type="button" data-send>Enviar…</button>
+  </div>
+</div>
+
+<dialog data-preview-dlg aria-label="Prévia do e-mail">
+  <div class="dlg">
+    <div class="dlg__head"><h2>Prévia</h2><button class="btn btn--sm" type="button" data-close>Fechar</button></div>
+    <iframe class="preview" data-preview-frame title="Prévia do e-mail" sandbox="allow-popups allow-popups-to-escape-sandbox"></iframe>
+  </div>
+</dialog>
+
+<dialog data-add-dlg aria-label="Adicionar notícia">
+  <div class="dlg">
+    <div class="dlg__head"><h2>Notícias da semana</h2><button class="btn btn--sm" type="button" data-close>Fechar</button></div>
+    <input type="search" placeholder="Buscar pelo título ou pela fonte" data-cand-search>
+    <ul class="cands" data-cands></ul>
+  </div>
+</dialog>
+
+<dialog data-send-dlg aria-label="Enviar newsletter">
+  <form class="dlg" data-send-form>
+    <div class="dlg__head"><h2>Enviar a newsletter</h2><button class="btn btn--sm" type="button" data-close>Cancelar</button></div>
+    <p data-send-summary></p>
+    <label class="f"><span><span><input type="radio" name="when" value="now" checked> Enviar agora</span></span></label>
+    <label class="f"><span><span><input type="radio" name="when" value="later"> Agendar para</span></span><input type="datetime-local" name="at"></label>
+    <p class="muted">Depois de enviada, a edição não pode mais ser alterada. Se quiser conferir, envie um teste antes.</p>
+    <button class="btn btn--blue" type="submit" data-send-confirm>Enviar</button>
+  </form>
+</dialog>
+
+<script>
+(() => {
+  const $ = (s, root = document) => root.querySelector(s);
+  const $$ = (s, root = document) => [...root.querySelectorAll(s)];
+  const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+  const fmtTime = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
+  const fmtFull = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeStyle: 'short' });
+  const state = { edition: null, data: null, subs: { total: 0 }, resend: false, locked: false, saveTimer: null, saving: null, candidates: null };
+
+  async function api(path, { method = 'GET', body } = {}) {
+    const res = await fetch(path, {
+      method,
+      headers: { 'x-radar-editor': '1', ...(body ? { 'content-type': 'application/json' } : {}) },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'same-origin',
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      const err = new Error(data.error || `Erro ${res.status}`);
+      err.status = res.status;
+      throw err;
+    }
+    return data;
+  }
+
+  let toastTimer;
+  function toast(text, error = false) {
+    let el = $('.toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'toast';
+      el.setAttribute('role', 'status');
+      document.body.appendChild(el);
+    }
+    el.textContent = text;
+    el.classList.toggle('toast--err', error);
+    el.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => (el.hidden = true), 4500);
+  }
+
+  // ---------- Login ----------
+  function showLogin() {
+    $('[data-loading]').hidden = true;
+    $('[data-login]').hidden = false;
+    $('[data-login-expired]').hidden = !new URLSearchParams(location.search).has('link');
+    $('[data-login-form] input').focus();
+  }
+  $('[data-login-form]').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const button = $('button', form);
+    button.disabled = true;
+    try {
+      await api('/api/editor/login', { method: 'POST', body: { email: form.email.value } });
+      $('[data-login-sent]').hidden = false;
+      form.hidden = true;
+    } catch (err) {
+      toast(err.message, true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+  $('[data-logout]').addEventListener('click', async () => {
+    await api('/api/editor/logout', { method: 'POST' }).catch(() => {});
+    location.href = '/editor';
+  });
+
+  // ---------- Edição ----------
+  const STATUS = { draft: 'Rascunho', sending: 'Enviando…', scheduled: 'Agendada', sent: 'Enviada' };
+
+  function renderHeader() {
+    const ed = state.edition;
+    $('[data-subs]').textContent = `${state.subs.total} ${state.subs.total === 1 ? 'inscrito' : 'inscritos'}${state.subs.pending ? ` (${state.subs.pending} aguardando envio ao Resend)` : ''}`;
+    $('[data-no-resend]').hidden = state.resend;
+    $('[data-empty]').hidden = Boolean(ed);
+    $('[data-form]').hidden = !ed;
+    $('[data-bar]').hidden = !ed;
+    if (!ed) {
+      $('[data-title]').textContent = 'Newsletter';
+      $('[data-status]').hidden = true;
+      $('[data-week]').textContent = '';
+      return;
+    }
+    $('[data-title]').textContent = `Edição ${ed.id}`;
+    const status = $('[data-status]');
+    status.hidden = false;
+    status.textContent = STATUS[ed.status] || ed.status;
+    status.className = `badge badge--${ed.status}`;
+    $('[data-week]').textContent = state.data.week || '';
+    $('[data-ai-error]').hidden = !state.data.aiError;
+    const locked = $('[data-locked]');
+    locked.hidden = !state.locked;
+    if (state.locked) {
+      locked.textContent = `Esta edição foi ${ed.status === 'scheduled' ? 'agendada para' : 'enviada em'} ${ed.sent_at ? fmtFull.format(new Date(ed.sent_at)) : ''} e não pode mais ser alterada. Para a próxima, use "Montar novo rascunho" na semana que vem.`;
+    }
+    $$('[data-form] input, [data-form] textarea, [data-form] button, [data-bar] button').forEach((el) => (el.disabled = state.locked));
+    $('[data-preview]').disabled = false;
+    $$('[data-test], [data-send]').forEach((el) => (el.disabled = state.locked || !state.resend));
+  }
+
+  function renderForm() {
+    const f = $('[data-form]');
+    for (const name of ['subject', 'preheader', 'intro', 'closing']) f.elements[name].value = state.data[name] || '';
+    const sugg = state.data.introSuggestion || '';
+    $('[data-intro-sugg]').hidden = !sugg;
+    $('[data-intro-sugg-text]').textContent = sugg;
+    counts();
+    renderItems();
+  }
+
+  function counts() {
+    const n = $('[data-form]').elements.subject.value.length;
+    $('[data-count="subject"]').textContent = `${n} caracteres${n > 60 ? ' · ideal até 60' : ''}`;
+  }
+
+  function renderItems() {
+    const items = state.data.items || [];
+    $('[data-items-count]').textContent = `(${items.length})`;
+    $('[data-items]').innerHTML = items
+      .map(
+        (it, i) => `
+      <article class="item" data-i="${i}">
+        ${it.image ? `<img class="item__img" src="${esc(it.image)}" alt="" loading="lazy" referrerpolicy="no-referrer">` : '<div class="item__img"></div>'}
+        <div>
+          <p class="item__meta">${esc([it.columnName, it.source].filter(Boolean).join(' · '))}</p>
+          <input class="item__title" type="text" data-field="title" value="${esc(it.title)}" aria-label="Título da notícia ${i + 1}">
+          <p class="muted" style="margin:4px 0 8px;font-size:.85rem"><a href="${esc(it.url)}" target="_blank" rel="noopener">Abrir a matéria</a>${it.summary ? ` · ${esc(it.summary.slice(0, 160))}${it.summary.length > 160 ? '…' : ''}` : ''}</p>
+          <label class="f" style="margin:0"><span>Seu comentário</span><textarea data-field="comment" rows="3">${esc(it.comment)}</textarea></label>
+          ${it.suggestion ? `<details class="sugg"><summary>Sugestão da IA</summary><p>${esc(it.suggestion)}</p><button class="btn btn--sm" type="button" data-use-sugg>Usar a sugestão</button></details>` : ''}
+          <div class="item__tools">
+            <button class="btn btn--sm" type="button" data-move="-1" ${i === 0 ? 'disabled' : ''} aria-label="Subir">↑ Subir</button>
+            <button class="btn btn--sm" type="button" data-move="1" ${i === items.length - 1 ? 'disabled' : ''} aria-label="Descer">↓ Descer</button>
+            <button class="btn btn--sm btn--danger" type="button" data-remove>Remover</button>
+          </div>
+        </div>
+      </article>`,
+      )
+      .join('');
+    if (state.locked) $$('[data-items] input, [data-items] textarea, [data-items] button').forEach((el) => (el.disabled = true));
+  }
+
+  function load(result) {
+    state.edition = result.edition;
+    state.data = result.edition ? result.edition.data : null;
+    state.locked = Boolean(result.edition && result.edition.status !== 'draft');
+    renderHeader();
+    if (state.data) renderForm();
+  }
+
+  // ---------- Salvar ----------
+  function collect() {
+    const f = $('[data-form]');
+    for (const name of ['subject', 'preheader', 'intro', 'closing']) state.data[name] = f.elements[name].value;
+  }
+  function changed() {
+    if (state.locked) return;
+    $('[data-save-status]').textContent = 'Alterações não salvas…';
+    clearTimeout(state.saveTimer);
+    state.saveTimer = setTimeout(save, 1200);
+  }
+  async function save() {
+    clearTimeout(state.saveTimer);
+    if (!state.edition || state.locked) return;
+    collect();
+    const job = api('/api/editor/edition', { method: 'PUT', body: { id: state.edition.id, data: state.data } })
+      .then(() => ($('[data-save-status]').textContent = `Salvo às ${fmtTime.format(new Date())}`))
+      .catch((err) => {
+        $('[data-save-status]').textContent = 'Não foi possível salvar';
+        toast(err.message, true);
+        throw err;
+      });
+    state.saving = job;
+    return job;
+  }
+  window.addEventListener('beforeunload', (e) => {
+    if (state.saveTimer && $('[data-save-status]').textContent.startsWith('Alterações')) e.preventDefault();
+  });
+
+  $('[data-form]').addEventListener('input', (e) => {
+    const item = e.target.closest('[data-i]');
+    if (item && e.target.dataset.field) state.data.items[Number(item.dataset.i)][e.target.dataset.field] = e.target.value;
+    if (e.target.name === 'subject') counts();
+    changed();
+  });
+  $('[data-form]').addEventListener('submit', (e) => e.preventDefault());
+  $('[data-use-intro]').addEventListener('click', () => {
+    $('[data-form]').elements.intro.value = state.data.introSuggestion || '';
+    changed();
+  });
+  $('[data-items]').addEventListener('click', (e) => {
+    const el = e.target.closest('[data-i]');
+    if (!el) return;
+    const i = Number(el.dataset.i);
+    const items = state.data.items;
+    if (e.target.closest('[data-use-sugg]')) {
+      items[i].comment = items[i].suggestion;
+      $('textarea[data-field="comment"]', el).value = items[i].comment;
+    } else if (e.target.closest('[data-move]')) {
+      const j = i + Number(e.target.closest('[data-move]').dataset.move);
+      [items[i], items[j]] = [items[j], items[i]];
+      renderItems();
+    } else if (e.target.closest('[data-remove]')) {
+      if (!confirm(`Tirar "${items[i].title}" desta edição?`)) return;
+      items.splice(i, 1);
+      renderItems();
+    } else return;
+    changed();
+  });
+
+  // ---------- Adicionar notícia ----------
+  function renderCandidates() {
+    const q = $('[data-cand-search]').value.trim().toLowerCase();
+    const inEdition = new Set(state.data.items.map((it) => it.id));
+    const list = (state.candidates || []).filter((c) => !inEdition.has(c.id) && (!q || `${c.title} ${c.source}`.toLowerCase().includes(q))).slice(0, 80);
+    $('[data-cands]').innerHTML = list.length
+      ? list.map((c) => `<li><span>${esc(c.title)}<small>${esc(c.source)}</small></span><button class="btn btn--sm" type="button" data-pick="${esc(c.id)}">Adicionar</button></li>`).join('')
+      : '<li><span class="muted">Nenhuma notícia encontrada.</span></li>';
+  }
+  $$('[data-add]').forEach((b) =>
+    b.addEventListener('click', async () => {
+      $('[data-add-dlg]').showModal();
+      if (!state.candidates) {
+        $('[data-cands]').innerHTML = '<li><span class="muted">Carregando…</span></li>';
+        try {
+          state.candidates = (await api('/api/editor/candidates')).items;
+        } catch (err) {
+          toast(err.message, true);
+          state.candidates = [];
+        }
+      }
+      renderCandidates();
+      $('[data-cand-search]').focus();
+    }),
+  );
+  $('[data-cand-search]').addEventListener('input', renderCandidates);
+  $('[data-cands]').addEventListener('click', (e) => {
+    const id = e.target.closest('[data-pick]')?.dataset.pick;
+    const c = id && state.candidates.find((x) => x.id === id);
+    if (!c) return;
+    const names = Object.fromEntries(state.data.items.map((it) => [it.column, it.columnName]));
+    state.data.items.push({ id: c.id, title: c.title, url: c.url, source: c.source, column: c.column, columnName: names[c.column] || '', image: c.image || '', summary: c.summary || '', comment: '', suggestion: '' });
+    renderItems();
+    renderCandidates();
+    changed();
+    toast('Notícia adicionada no fim da lista.');
+  });
+
+  // ---------- Prévia, teste e envio ----------
+  $$('dialog [data-close]').forEach((b) => b.addEventListener('click', () => b.closest('dialog').close()));
+  $('[data-preview]').addEventListener('click', async () => {
+    collect();
+    try {
+      const { html } = await api('/api/editor/preview', { method: 'POST', body: { id: state.edition.id, data: state.data } });
+      $('[data-preview-frame]').srcdoc = html;
+      $('[data-preview-dlg]').showModal();
+    } catch (err) {
+      toast(err.message, true);
+    }
+  });
+  $('[data-test]').addEventListener('click', async (e) => {
+    const button = e.currentTarget;
+    button.disabled = true;
+    try {
+      await save();
+      const { to } = await api('/api/editor/test', { method: 'POST', body: { id: state.edition.id, data: state.data } });
+      toast(`Teste enviado para ${to}.`);
+    } catch (err) {
+      toast(err.message, true);
+    } finally {
+      button.disabled = state.locked || !state.resend;
+    }
+  });
+  $('[data-send]').addEventListener('click', () => {
+    collect();
+    const n = state.subs.total;
+    $('[data-send-summary]').textContent = `"${state.data.subject}" com ${state.data.items.length} notícias para ${n} ${n === 1 ? 'inscrito' : 'inscritos'}.`;
+    const at = new Date(Date.now() + 3600_000);
+    at.setMinutes(0, 0, 0);
+    const local = new Date(at.getTime() - at.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+    $('[data-send-form]').elements.at.value = local;
+    $('[data-send-dlg]').showModal();
+  });
+  $('[data-send-form]').elements.at.addEventListener('focus', () => ($('[data-send-form]').elements.when.value = 'later'));
+  $('[data-send-form]').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const f = e.currentTarget; // guardado antes de qualquer await
+    const button = $('[data-send-confirm]');
+    const later = f.elements.when.value === 'later';
+    const scheduledAt = later && f.elements.at.value ? new Date(f.elements.at.value).toISOString() : null;
+    if (later && !scheduledAt) return toast('Escolha a data e a hora do envio.', true);
+    button.disabled = true;
+    try {
+      await save();
+      const res = await api('/api/editor/send', { method: 'POST', body: { id: state.edition.id, data: state.data, scheduledAt } });
+      $('[data-send-dlg]').close();
+      toast(res.status === 'scheduled' ? `Agendada para ${fmtFull.format(new Date(res.scheduledAt))}.` : `Enviada para ${res.subscribers} inscritos.`);
+      await refresh();
+    } catch (err) {
+      toast(err.message, true);
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  $$('[data-generate]').forEach((b) =>
+    b.addEventListener('click', async () => {
+      if (state.edition && !state.locked && !confirm('Montar um rascunho novo substitui o atual, com os comentários que você já escreveu. Continuar?')) return;
+      b.disabled = true;
+      const old = b.textContent;
+      b.textContent = 'Montando… (leva alguns segundos)';
+      try {
+        load(await api('/api/editor/generate', { method: 'POST' }));
+        state.candidates = null;
+        toast('Rascunho montado.');
+      } catch (err) {
+        toast(err.message, true);
+      } finally {
+        b.disabled = false;
+        b.textContent = old;
+      }
+    }),
+  );
+
+  async function refresh() {
+    const result = await api('/api/editor/state');
+    state.subs = result.subscribers;
+    state.resend = result.resend;
+    $('[data-who]').textContent = result.editor;
+    $('[data-logout]').hidden = false;
+    $('[data-loading]').hidden = true;
+    $('[data-app]').hidden = false;
+    load(result);
+    $('[data-save-status]').textContent = state.edition ? `Atualizado às ${fmtTime.format(new Date(state.edition.updated_at || Date.now()))}` : '';
+  }
+
+  refresh().catch((err) => {
+    if (err.status === 401) showLogin();
+    else {
+      $('[data-loading]').textContent = err.message;
+    }
+  });
+})();
+</script>
+</body>
+</html>

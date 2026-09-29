@@ -327,11 +327,59 @@ async function writeSite(data) {
     .replace('<!-- BUILD_NOTICE -->', () => `<!-- ${copyrightLine()} Cópia, reprodução ou clonagem proibidas (Lei nº 9.610/1998). -->`)
     .replaceAll('__SITE_URL__', () => SITE_URL)
     .replaceAll('__SITE_OWNER__', () => config.site.owner)
+    .replace('<!-- PRIVACY_LINK -->', () => (newsletterOn() ? ' <a href="/privacidade">Política de privacidade</a>.' : ''))
     .replaceAll('__YEAR__', () => String(YEAR))
     .replaceAll('__LOGO_MARK__', () => `data:image/png;base64,${mark.toString('base64')}`)
     .replaceAll('__GUARD__', () => escapeJson(guard))
+    .replaceAll('__NEWSLETTER__', () => escapeJson(newsletterClient()))
     .replace('__RADAR_DATA__', () => escapeJson({ ...data, copyright: copyrightLine() }));
   await writeFile(OUTPUT, process.env.RADAR_NO_MINIFY ? html : await minifyHtml(html));
+  await writeExtraPages(origin);
+}
+
+/** A newsletter só liga com o contato de privacidade preenchido (exigência da LGPD). */
+const newsletterOn = () => Boolean(config.newsletter?.enabled && config.newsletter?.privacyEmail);
+
+function newsletterClient() {
+  const nl = config.newsletter || {};
+  return {
+    enabled: newsletterOn(),
+    freeReads: nl.freeReads ?? 1,
+    author: nl.author,
+    role: nl.role,
+    day: nl.day,
+    siteKey: nl.turnstileSiteKey || '',
+  };
+}
+
+const escapeHtml = (value) =>
+  String(value ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+
+/** Política de privacidade e editor da newsletter, gerados ao lado do index.html. */
+async function writeExtraPages(origin) {
+  const nl = config.newsletter || {};
+  const [y, m, d] = String(nl.consentVersion || '').split('-').map(Number);
+  const updated = y ? new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' }).format(Date.UTC(y, m - 1, d)) : '';
+  const vars = {
+    __SITE_URL__: origin,
+    __SITE_HOST__: origin.replace(/^https?:\/\//, ''),
+    __SITE_OWNER__: config.site.owner,
+    __YEAR__: String(YEAR),
+    __CONTROLLER__: nl.controller || config.site.owner,
+    __PRIVACY_EMAIL__: nl.privacyEmail || 'contato a definir',
+    __AUTHOR__: nl.author || '',
+    __DAY__: nl.day || '',
+    __UPDATED__: updated,
+  };
+  const notice = `<!-- ${copyrightLine()} -->`;
+  for (const [template, output] of [
+    ['privacidade.template.html', 'privacidade.html'],
+    ['editor.template.html', 'editor.html'],
+  ]) {
+    let html = (await readFile(path.join(ROOT, 'src', template), 'utf8')).replace('<!-- BUILD_NOTICE -->', () => notice);
+    for (const [key, value] of Object.entries(vars)) html = html.replaceAll(key, () => escapeHtml(value));
+    await writeFile(path.join(path.dirname(OUTPUT), output), process.env.RADAR_NO_MINIFY ? html : await minifyHtml(html));
+  }
 }
 
 async function renderTemplateOnly() {

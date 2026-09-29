@@ -53,8 +53,8 @@ jobs:
 
       - name: Publicar no repositório
         run: |
-          git add index.html data/translations.json data/images.json
-          if git diff --cached --quiet -- index.html data/translations.json data/images.json; then
+          git add index.html privacidade.html editor.html data/translations.json data/images.json
+          if git diff --cached --quiet -- index.html privacidade.html editor.html data/translations.json data/images.json; then
             echo "Nada mudou."
             exit 0
           fi

@@ -578,6 +578,48 @@
   .footer p { margin: 0 0 10px; max-width: 70ch; }
   .footer__legal { font-size: 0.8125rem; line-height: 1.5; }
   .footer__legal strong { color: var(--ink-2); }
+  .footer__legal a { color: inherit; }
+  .footer__nl { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin: 0 0 18px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+  .footer__nl p { margin: 0; flex: 1 1 260px; }
+  .footer__nl strong { display: block; color: var(--ink); font-family: var(--font-display); }
+
+  /* Newsletter: janela de cadastro */
+  .nl { width: min(460px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 0; border-radius: var(--radius-lg); background: var(--surface); color: var(--ink); box-shadow: 0 30px 80px -20px rgba(4, 5, 42, 0.55); overflow: auto; }
+  .nl::backdrop { background: rgba(4, 5, 42, 0.62); backdrop-filter: blur(3px); }
+  .nl__card { position: relative; padding: 26px 24px 22px; }
+  .nl__close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: var(--muted); cursor: pointer; }
+  .nl__close:hover { background: var(--surface-2); color: var(--ink); }
+  .nl__close svg { width: 18px; height: 18px; }
+  .nl__eyebrow { margin: 0 0 8px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--link); }
+  .nl h2 { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 40px 8px 0; }
+  .nl__lede { margin: 0 0 14px; color: var(--ink-2); line-height: 1.5; }
+  .nl__author { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface-2); }
+  .nl__avatar { flex: none; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--code-bg); color: var(--code-ink); font-family: var(--font-display); font-weight: 700; }
+  .nl__author strong { display: block; font-size: 0.95rem; }
+  .nl__author small { display: block; color: var(--muted); font-size: 0.8rem; }
+  .nl__field { display: block; margin: 0 0 12px; }
+  .nl__field > span { display: block; margin: 0 0 5px; font-size: 0.875rem; font-weight: 600; color: var(--ink-2); }
+  .nl__field em { font-style: normal; font-weight: 400; color: var(--muted); }
+  .nl__field input { width: 100%; box-sizing: border-box; height: 46px; padding: 0 14px; border: 1px solid var(--line-strong); border-radius: 12px; background: var(--bg); color: var(--ink); font: inherit; font-size: 1rem; }
+  .nl__field input:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; border-color: transparent; }
+  .nl__field input[aria-invalid='true'] { border-color: #d64545; }
+  .nl__hint { display: block; margin: 5px 0 0; font-size: 0.78rem; color: var(--muted); }
+  .nl__check { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 12px; font-size: 0.85rem; line-height: 1.45; color: var(--ink-2); cursor: pointer; }
+  .nl__check input { flex: none; width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--link); }
+  .nl__check a { color: var(--link); }
+  .nl__captcha:empty { display: none; }
+  .nl__captcha { margin: 0 0 12px; }
+  .nl__error { margin: 0 0 10px; color: #d64545; font-size: 0.875rem; font-weight: 600; }
+  .nl__error:empty { display: none; }
+  :root[data-theme='dark'] .nl__error { color: #ff8a8a; }
+  .nl__submit { display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border: 0; border-radius: 999px; background: var(--chip-active-bg); color: var(--chip-active-ink); font: inherit; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; }
+  .nl__submit:hover { filter: brightness(1.12); }
+  .nl__submit[disabled] { opacity: 0.6; cursor: progress; }
+  .nl__fine { margin: 10px 0 0; text-align: center; font-size: 0.78rem; color: var(--muted); }
+  .nl__done h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 0 0 8px; }
+  .nl__done p { margin: 0 0 18px; color: var(--ink-2); line-height: 1.5; }
+  .nl__link { display: block; width: 100%; margin: 10px 0 0; padding: 10px; border: 0; background: none; color: var(--link); font: inherit; font-weight: 600; cursor: pointer; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .nl__error { color: #ff8a8a; } }
   .footer details summary { cursor: pointer; font-weight: 600; color: var(--link); width: fit-content; padding: 4px 0; }
   .footer details ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
   .footer details a { color: var(--ink-2); text-decoration: none; }
@@ -686,8 +728,12 @@
       <div><strong translate="no">FavCode</strong><span>Testou. Funcionou. Favoritou.</span></div>
     </div>
     <div>
+      <div class="footer__nl" data-nl-cta hidden>
+        <p><strong>Newsletter semanal</strong><span data-nl-cta-text></span></p>
+        <button type="button" class="pill-btn" data-nl-subscribe>Assinar a newsletter</button>
+      </div>
       <p>O radar reúne títulos e links publicados pelos próprios veículos e é atualizado a cada hora. A matéria completa, os títulos, os resumos e as imagens pertencem a cada fonte. Seus favoritos ficam salvos só neste navegador.</p>
-      <p class="footer__legal"><strong>© __YEAR__ <span translate="no">__SITE_OWNER__</span>. Todos os direitos reservados.</strong> O design, o código, a marca <span translate="no">FavCode</span> e a seleção e organização das notícias deste radar são protegidos pela Lei de Direitos Autorais (Lei nº 9.610/1998) e pela Lei da Propriedade Industrial (Lei nº 9.279/1996). É proibido copiar, clonar, reproduzir ou redistribuir o site, no todo ou em parte, sem autorização por escrito.</p>
+      <p class="footer__legal"><strong>© __YEAR__ <span translate="no">__SITE_OWNER__</span>. Todos os direitos reservados.</strong> O design, o código, a marca <span translate="no">FavCode</span> e a seleção e organização das notícias deste radar são protegidos pela Lei de Direitos Autorais (Lei nº 9.610/1998) e pela Lei da Propriedade Industrial (Lei nº 9.279/1996). É proibido copiar, clonar, reproduzir ou redistribuir o site, no todo ou em parte, sem autorização por escrito.<!-- PRIVACY_LINK --></p>
       <details>
         <summary data-sources-summary>Ver as fontes</summary>
         <ul data-sources></ul>
@@ -700,6 +746,32 @@
   <span>Chegaram notícias novas.</span>
   <button type="button" data-update-reload>Atualizar radar</button>
 </div>
+<dialog class="nl" data-nl aria-labelledby="nl-title">
+  <form class="nl__card" data-nl-form novalidate>
+    <button type="button" class="nl__close" data-nl-close aria-label="Fechar"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div data-nl-step="form">
+      <p class="nl__eyebrow">Newsletter do Radar FavCode</p>
+      <h2 id="nl-title" data-nl-title>Continue lendo de graça</h2>
+      <p class="nl__lede" data-nl-lede></p>
+      <div class="nl__author"><span class="nl__avatar" data-nl-initials aria-hidden="true"></span><span><strong data-nl-author></strong><small data-nl-role></small></span></div>
+      <label class="nl__field"><span>Nome</span><input name="name" autocomplete="name" maxlength="80" required></label>
+      <label class="nl__field"><span>E-mail</span><input name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required></label>
+      <label class="nl__field"><span>WhatsApp <em>(opcional)</em></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="(11) 98765-4321"><small class="nl__hint">Só para a FavCode falar com você por lá, se você quiser.</small></label>
+      <label class="nl__check"><input type="checkbox" name="consent" required><span>Aceito receber a newsletter semanal do Radar FavCode por e-mail e, se informei o telefone, mensagens da FavCode pelo WhatsApp. Li a <a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
+      <div class="nl__captcha" data-nl-captcha></div>
+      <p class="nl__error" role="alert" data-nl-error></p>
+      <button class="nl__submit" type="submit" data-nl-submit>Cadastrar e ler a matéria</button>
+      <p class="nl__fine">Sem spam. Você sai da lista quando quiser, pelo link em qualquer e-mail.</p>
+    </div>
+    <div class="nl__done" data-nl-step="done" hidden>
+      <p class="nl__eyebrow">Cadastro feito</p>
+      <h3 data-nl-done-title>Pronto!</h3>
+      <p data-nl-done-text></p>
+      <a class="nl__submit" data-nl-article href="/" target="_blank" rel="noopener">Ler a matéria</a>
+      <button type="button" class="nl__link" data-nl-close>Voltar ao radar</button>
+    </div>
+  </form>
+</dialog>
 <div class="toast" role="status" aria-live="polite" data-toast><span data-toast-text></span><button type="button" data-toast-action></button></div>
 <p class="sr-only" aria-live="polite" data-announcer></p>
 
@@ -820,7 +892,7 @@
         </div>
         <div class="card__body">
           ${tag && col ? `<p class="card__tag"><span class="dot" aria-hidden="true"></span>${esc(col.name)}</p>` : ''}
-          <h${level} class="card__title"><a href="${esc(it.url)}" target="_blank" rel="noopener"${it.lang === 'en' ? ' hreflang="en" title="Título traduzido. A matéria original está em inglês."' : ''}>${esc(it.title)}</a></h${level}>
+          <h${level} class="card__title"><a href="${esc(it.url)}" target="_blank" rel="noopener" data-article="${esc(it.id)}"${it.lang === 'en' ? ' hreflang="en" title="Título traduzido. A matéria original está em inglês."' : ''}>${esc(it.title)}</a></h${level}>
           ${feature && it.summary ? `<p class="card__summary">${esc(it.summary)}</p>` : ''}
           <div class="card__meta">
             ${state.newIds.has(it.id) ? '<span class="card__new">nova</span>' : ''}
@@ -1425,9 +1497,187 @@
     e.preventDefault();
   });
 
+  // ---------- Newsletter ----------
+  // A primeira matéria (NEWSLETTER.freeReads) abre direto; a partir daí, abrir uma matéria pede o
+  // cadastro. Quem se cadastra fica marcado neste navegador e não vê mais a janela.
+  const NEWSLETTER = __NEWSLETTER__;
+  const NL_READS = 'radar:leituras';
+  const NL_MEMBER = 'radar:assinante';
+  const nlStore = {
+    get(key) {
+      try { return localStorage.getItem(key); } catch { return null; }
+    },
+    set(key, value) {
+      try { localStorage.setItem(key, value); } catch { /* navegador sem armazenamento */ }
+    },
+  };
+  const nl = { reads: Number(nlStore.get(NL_READS)) || 0, member: nlStore.get(NL_MEMBER) === '1', pending: null, opener: null, widget: null, loading: null };
+
+  function nlTurnstile() {
+    if (!NEWSLETTER.siteKey) return Promise.resolve(null);
+    if (window.turnstile) return Promise.resolve(window.turnstile);
+    nl.loading ||= new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.onload = () => resolve(window.turnstile || null);
+      script.onerror = () => resolve(null);
+      document.head.appendChild(script);
+    });
+    return nl.loading;
+  }
+
+  async function nlCaptcha() {
+    const ts = await nlTurnstile();
+    if (!ts || nl.widget !== null) return;
+    nl.widget = ts.render($('[data-nl-captcha]'), {
+      sitekey: NEWSLETTER.siteKey,
+      appearance: 'interaction-only',
+      language: 'pt-br',
+      theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'auto',
+    });
+  }
+
+  /** Token do Turnstile; espera até 8 s pela verificação automática. */
+  async function nlToken() {
+    if (!NEWSLETTER.siteKey) return '';
+    for (let i = 0; i < 40; i++) {
+      const token = window.turnstile && nl.widget !== null ? window.turnstile.getResponse(nl.widget) : '';
+      if (token) return token;
+      await new Promise((r) => setTimeout(r, 200));
+    }
+    return '';
+  }
+
+  function openNewsletter({ url = '', opener = null } = {}) {
+    const dialog = $('[data-nl]');
+    nl.pending = url;
+    nl.opener = opener;
+    const gate = Boolean(url);
+    $('[data-nl-title]').textContent = gate ? 'Continue lendo de graça' : 'Receba a newsletter do radar';
+    $('[data-nl-lede]').textContent = `${gate ? 'Cadastre-se para abrir as matérias e receba' : 'Receba'} toda ${NEWSLETTER.day} as notícias mais importantes da semana, comentadas por ${NEWSLETTER.author}.`;
+    $('[data-nl-submit]').textContent = gate ? 'Cadastrar e ler a matéria' : 'Assinar a newsletter';
+    $('[data-nl-step="form"]').hidden = false;
+    $('[data-nl-step="done"]').hidden = true;
+    $('[data-nl-error]').textContent = '';
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+    $('[data-nl-form] input[name="name"]').focus();
+    nlCaptcha();
+  }
+
+  function closeNewsletter() {
+    const dialog = $('[data-nl]');
+    if (dialog.open) dialog.close();
+  }
+
+  async function submitNewsletter(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const error = $('[data-nl-error]');
+    const button = $('[data-nl-submit]');
+    const fields = Object.fromEntries(new FormData(form));
+    form.querySelectorAll('input').forEach((input) => input.removeAttribute('aria-invalid'));
+    const fail = (message, field) => {
+      error.textContent = message;
+      if (field) {
+        const input = form.querySelector(`[name="${field}"]`);
+        input?.setAttribute('aria-invalid', 'true');
+        input?.focus();
+      }
+    };
+    if (String(fields.name || '').trim().length < 2) return fail('Informe seu nome.', 'name');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(fields.email || '').trim())) return fail('Informe um e-mail válido.', 'email');
+    if (!form.consent.checked) return fail('Para continuar, aceite receber a newsletter.', 'consent');
+    button.disabled = true;
+    error.textContent = '';
+    try {
+      const token = await nlToken();
+      if (NEWSLETTER.siteKey && !token) {
+        fail('Só um instante: estamos confirmando que você não é um robô. Tente de novo.');
+        return;
+      }
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          name: fields.name,
+          email: fields.email,
+          phone: fields.phone,
+          consent: true,
+          token,
+          source: nl.pending ? 'leitura' : 'rodape',
+        }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        const field = body.fields ? Object.keys(body.fields)[0] : null;
+        fail(body.error || 'Não foi possível concluir o cadastro. Tente de novo.', field);
+        if (window.turnstile && nl.widget !== null) window.turnstile.reset(nl.widget);
+        return;
+      }
+      nl.member = true;
+      nlStore.set(NL_MEMBER, '1');
+      const first = String(fields.name).trim().split(/\s+/)[0];
+      $('[data-nl-done-title]').textContent = `Pronto, ${first}!`;
+      $('[data-nl-done-text]').textContent = `Toda ${NEWSLETTER.day} a newsletter chega no seu e-mail. ${nl.pending ? 'Agora é só abrir a matéria.' : 'Enquanto isso, o radar segue atualizado a cada hora.'}`;
+      const article = $('[data-nl-article]');
+      article.hidden = !nl.pending;
+      if (nl.pending) article.href = nl.pending;
+      $('[data-nl-step="form"]').hidden = true;
+      $('[data-nl-step="done"]').hidden = false;
+      (nl.pending ? article : $('[data-nl-step="done"] [data-nl-close]')).focus();
+      $('[data-nl-cta]').hidden = true;
+    } catch {
+      fail('Sem conexão. Confira a internet e tente de novo.');
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  function initNewsletter() {
+    if (!NEWSLETTER.enabled) return;
+    const initials = NEWSLETTER.author.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
+    $('[data-nl-initials]').textContent = initials;
+    $('[data-nl-author]').textContent = NEWSLETTER.author;
+    $('[data-nl-role]').textContent = NEWSLETTER.role;
+    if (!nl.member) {
+      $('[data-nl-cta]').hidden = false;
+      $('[data-nl-cta-text]').textContent = ` Toda ${NEWSLETTER.day}, as notícias mais importantes da semana comentadas por ${NEWSLETTER.author}.`;
+    }
+
+    const onArticle = (e) => {
+      const link = e.target.closest('a[data-article]');
+      if (!link || nl.member || (e.type === 'auxclick' && e.button !== 1)) return;
+      if (nl.reads < NEWSLETTER.freeReads) {
+        nl.reads++;
+        nlStore.set(NL_READS, String(nl.reads));
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      openNewsletter({ url: link.href, opener: link });
+    };
+    document.addEventListener('click', onArticle, true);
+    document.addEventListener('auxclick', onArticle, true);
+
+    $('[data-nl-form]').addEventListener('submit', submitNewsletter);
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-nl-subscribe]')) openNewsletter({ opener: e.target.closest('[data-nl-subscribe]') });
+      if (e.target.closest('[data-nl-close]')) closeNewsletter();
+      if (e.target.closest('[data-nl-article]')) setTimeout(closeNewsletter, 0);
+    });
+    // Clique fora do cartão fecha a janela.
+    $('[data-nl]').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget) closeNewsletter();
+    });
+    $('[data-nl]').addEventListener('close', () => nl.opener?.focus?.());
+  }
+
   // ---------- Início ----------
   saveFavs();
   applyThemeUI();
+  initNewsletter();
   renderConsole();
   renderTrends();
   renderRadar();

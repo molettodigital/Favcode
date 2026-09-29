@@ -21,6 +21,8 @@ data/translations.json    traduções já feitas (reaproveitadas a cada hora)
 src/index.template.html   layout, estilos e interação do site
 index.html                site pronto (gerado e minificado; não edite à mão)
 cloudflare/worker.mjs     Worker que publica o site na Cloudflare e aplica as proteções
+cloudflare/newsletter/    cadastro, rascunho semanal, editor e e-mails da newsletter
+src/privacidade.template.html, src/editor.template.html  política de privacidade e editor
 .github/workflows/radar.yml  roda o build a cada hora e publica o index.html
 LICENSE                   direitos reservados (uso proibido sem autorização)
 ```
@@ -69,6 +71,35 @@ Camadas de proteção:
 Nenhum site público é 100% à prova de cópia: tudo o que o navegador mostra pode ser salvo por alguém determinado, e um raspador que se passa por navegador comum não tem como ser identificado com certeza. As camadas acima tiram a cópia fácil e deixam registrado de quem é o conteúdo, o que dá base para pedir a remoção de uma cópia (ao provedor, pela Lei nº 9.610/1998, ou pelo formulário de denúncia de violação de direitos autorais da hospedagem).
 
 **Repositório privado.** Enquanto o repositório for público, qualquer um pode baixar o código completo no GitHub. Para fechar essa porta: cadastre o `GITHUB_TOKEN` na Cloudflare (seção anterior; com ele o Worker lê o repositório privado pela API do GitHub) e depois vá em GitHub → Settings → General → Danger Zone → Change repository visibility → Private. O site continua no ar. Em repositório privado o GitHub Actions passa a descontar minutos do plano: cada coleta leva menos de 1 minuto e, somando o agendamento do GitHub com o disparo do Worker, o total fica entre 700 e 1.500 minutos por mês, dentro dos 2.000 gratuitos.
+
+## Newsletter comentada pela Clara
+
+Toda sexta-feira quem se cadastra recebe as notícias mais importantes da semana com os comentários de Clara Poleto (Redatora Publicitária e Colunista do FavCode).
+
+**No site.** A primeira matéria abre direto; a partir da segunda, abrir uma matéria pede um cadastro rápido: nome, e-mail, WhatsApp (opcional) e a caixa de consentimento da LGPD. Quem se cadastra fica marcado no navegador e não vê mais a janela. O rodapé também convida para a newsletter. O formulário é protegido pelo Cloudflare Turnstile (anti-robô, sem cookies de publicidade). Tudo liga com `newsletter.enabled` em `config/radar.config.mjs`, e só liga com `newsletter.privacyEmail` preenchido, porque a política de privacidade (`/privacidade`) precisa de um contato para os pedidos da LGPD.
+
+**Cadastro.** `POST /api/subscribe` (Worker) valida os dados, confere o Turnstile e grava no banco D1 `radar-favcode` (tabela `subscribers`, com data e versão do consentimento). Em seguida o contato vai para o Resend, no segmento "Newsletter Radar FavCode", e recebe um e-mail de boas-vindas. O telefone fica só no D1, não vai para o Resend. Se o Resend falhar ou ainda não estiver configurado, o cadastro fica guardado e é enviado depois (a cada 15 minutos).
+
+**Rascunho semanal.** O Worker registra no D1 as manchetes que passam pelo radar (com o "calor" dos termos em alta). Toda sexta às 6h45 (Brasília) ele escolhe as mais repercutidas de cada editoria, pede à IA da Cloudflare (`gpt-oss-120b`) as 8 principais com uma sugestão de comentário para cada, de assunto e de abertura, grava o rascunho e manda para quem edita um e-mail com o link de acesso.
+
+**Editor (`/editor`).** Entra-se com um link enviado ao e-mail (sem senha; só os e-mails de `EDITOR_EMAILS`). Dá para editar assunto, pré-cabeçalho, abertura, títulos e comentários (com a sugestão da IA ao lado), reordenar, tirar e acrescentar notícias da semana, ver a prévia, enviar um teste para si, enviar para a lista na hora ou agendar, e baixar a planilha de inscritos (com telefone). Depois de enviada, a edição fica travada.
+
+Configuração no Worker `radar-favcode` (Cloudflare → Workers & Pages → Settings → Variables and Secrets):
+
+| Nome | Tipo | Para quê |
+| --- | --- | --- |
+| `DB` | D1 | banco `radar-favcode` (esquema em `cloudflare/schema.sql`) |
+| `FORM_LIMITER` | rate limit | até 10 envios de formulário por minuto por IP |
+| `TURNSTILE_SECRET` | segredo | chave secreta do Turnstile "Radar FavCode" |
+| `SESSION_SECRET` | segredo | assina os links e a sessão do editor |
+| `RESEND_API_KEY` | segredo | chave da API do Resend (Full access) |
+| `EDITOR_EMAILS` | texto | e-mails com acesso ao editor, separados por vírgula |
+| `NEWSLETTER_FROM` | texto | remetente, padrão `Clara Poleto · Radar FavCode <clara@favcode.com.br>` |
+| `NEWSLETTER_REPLY_TO` | texto | opcional: para onde vão as respostas dos leitores |
+
+Para o Resend enviar em nome de `favcode.com.br`: crie a conta em resend.com, vá em Domains → Add domain → `favcode.com.br` e use "Sign in to Cloudflare" para ele criar os registros de DNS sozinho (ou me passe os registros). Depois crie a API key e cadastre como `RESEND_API_KEY`. O plano gratuito cobre a newsletter até 1.000 inscritos, com envios ilimitados; os e-mails avulsos (boas-vindas, teste, link de acesso) contam no limite de 100 por dia e 3.000 por mês.
+
+O código fica em `cloudflare/newsletter/`. Para publicar o Worker: `npm run worker:build` gera `cloudflare/dist/worker.js`, que vai para a API da Cloudflare com os bindings acima (mantendo `keep_bindings: ["secret_text"]`).
 
 ## Publicar em outro lugar
 
