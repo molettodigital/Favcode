@@ -39,17 +39,16 @@ export const newsletter = {
  * Editorias, na ordem em que aparecem no site e nos setores do radar.
  * Cores: paleta categórica validada (daltonismo e contraste) para fundo claro (`color`)
  * e escuro (`colorDark`). A ordem importa: setores vizinhos no radar têm cores bem distintas.
- * Com dez editorias a cor nunca identifica sozinha: todo card e setor leva o nome ou a sigla.
+ * Com nove editorias a cor nunca identifica sozinha: todo card e setor leva o nome ou a sigla.
  */
 export const columns = [
+  { id: 'pautas', name: 'Pautas em alta', short: 'Pautas', code: 'PAUTA', color: '#9d024c', colorDark: '#9a4855', blurb: 'Virais, trends, redes sociais, datas e novidades úteis do momento para usar em conteúdo e campanhas.' },
   { id: 'ia', name: 'Inteligência artificial', short: 'IA', code: 'IA', color: '#2a78d6', colorDark: '#3987e5', blurb: 'Modelos, agentes, ferramentas e o que muda no trabalho com IA.' },
   { id: 'tecnologia', name: 'Tecnologia', short: 'Tecnologia', code: 'TEC', color: '#eb6834', colorDark: '#d95926', blurb: 'Big techs, gadgets, plataformas, regulação e infraestrutura.' },
-  { id: 'marketing', name: 'Marketing', short: 'Marketing', code: 'MKT', color: '#1baf7a', colorDark: '#199e70', blurb: 'Estratégia, dados, SEO, CRM e comportamento do consumidor.' },
-  { id: 'marca', name: 'Marca e branding', short: 'Branding', code: 'BRAND', color: '#a150a2', colorDark: '#903ab2', blurb: 'Rebrands, identidade visual, posicionamento, naming, embalagens e reputação de marca.' },
-  { id: 'design', name: 'Design', short: 'Design', code: 'DES', color: '#eda100', colorDark: '#c98500', blurb: 'UX, UI, tipografia, ilustração, motion e ferramentas.' },
+  { id: 'marketing', name: 'Marketing', short: 'Marketing', code: 'MKT', color: '#1baf7a', colorDark: '#199e70', blurb: 'Estratégia, dados, SEO, CRM, marcas e comportamento do consumidor.' },
+  { id: 'pme', name: 'MEI e pequenas empresas', short: 'MEI e PMEs', code: 'MEI', color: '#a150a2', colorDark: '#903ab2', blurb: 'Impostos, crédito, prazos, leis, gestão e oportunidades para MEI, ME e quem empreende.' },
+  { id: 'design', name: 'Design', short: 'Design', code: 'DES', color: '#eda100', colorDark: '#c98500', blurb: 'UX, UI, branding, tipografia, identidade visual e ferramentas.' },
   { id: 'publicidade', name: 'Publicidade', short: 'Publicidade', code: 'PUB', color: '#e87ba4', colorDark: '#d55181', blurb: 'Campanhas, agências, criatividade, mídia e premiações.' },
-  { id: 'social', name: 'Redes sociais', short: 'Redes sociais', code: 'SOC', color: '#008300', colorDark: '#008300', blurb: 'Instagram, TikTok, YouTube, LinkedIn, creators e influência.' },
-  { id: 'pautas', name: 'Pautas em alta', short: 'Pautas', code: 'PAUTA', color: '#9d024c', colorDark: '#9a4855', blurb: 'Virais, trends, datas e novidades úteis do momento para usar em conteúdo, redes e campanhas.' },
   { id: 'ecommerce', name: 'E-commerce e varejo', short: 'E-commerce', code: 'ECOM', color: '#4a3aa7', colorDark: '#9085e9', blurb: 'Marketplaces, varejo digital, pagamentos e datas sazonais.' },
   { id: 'startups', name: 'Startups e negócios', short: 'Startups', code: 'STA', color: '#e34948', colorDark: '#e66767', blurb: 'Rodadas, aquisições, lançamentos e movimentos do mercado.' },
 ];
@@ -57,13 +56,14 @@ export const columns = [
 // Regras de redirecionamento: fontes generalistas mandam a manchete para a
 // editoria mais específica quando o título casa com o padrão.
 const AI = /\b(?:IA|AI|LLMs?|GenAI)\b|intelig[eê]ncia artificial|artificial intelligence|\bChat\s?GPT\b|\bOpen\s?AI\b|\bGPT-?\d|\bClaude\b|\bAnthropic\b|\bCopilot\b|\bMidjourney\b|\bDeepSeek\b|\bLlama\b|\bMistral\b|\bPerplexity\b|\bGrok\b|\bxAI\b|machine learning|aprendizado de m[aá]quina|\bchatbots?\b|\bagentes? de IA\b|\bAI agents?\b|\bagentic\b|\bag[eê]ntic[ao]s?\b|\bgenerativ[ao]s?\b|\bgenerative\b/;
-const SOCIAL = /\b(?:Instagram|TikTok|Threads|YouTube|YouTubers?|WhatsApp|LinkedIn|Bluesky|Facebook|Snapchat|Pinterest|Kwai|Twitch|Reels|Stories)\b|\binfluenciador(?:a|es|as)?\b|\binfluencers?\b|\bcreators?\b|criador(?:es|as)? de conte[uú]do|redes sociais|social media|creator economy/i;
 const ECOM = /\be-?commerce\b|\bvarejo\b|\bvarejistas?\b|\bShopee\b|\bMercado Livre\b|\bMagalu\b|\bShein\b|\bTemu\b|\bmarketplaces?\b|\bBlack Friday\b|loja virtual|com[eé]rcio eletr[oô]nico|\bretail(?:ers?)?\b|\bTikTok Shop\b/i;
 const STARTUP = /\bstartups?\b|\brodada\b|\baporte\b|\bunic[oó]rnios?\b|\bunicorns?\b|venture capital|\bSeries [A-E]\b|\bS[eé]rie [A-E]\b|\braises \$|\bfunding\b|\bIPO\b|\badquire\b|\baquisi[cç][aã]o\b|\bacquires?\b|\bacquisition\b/i;
-// Marca: rebrands, identidade, posicionamento, naming e embalagem.
-const BRAND = /\brebrand\w*|\bbranding\b|\bbrand (?:identity|refresh|strategy|positioning|purpose|platform|architecture|equity|guidelines|values?)\b|\bvisual identit\w*|\bidentit(?:y|ies)\b|\bnew\b[\w\s'’-]{0,30}\blogo\b|\blogos\b|\blogo (?:design|redesign|refresh|change|reveal)\b|\blogo(?:tipo|marca)\b|\bidentidades? visua(?:l|is)\b|\bnova identidade\b|\bnova marca\b|\bnov[oa] logo\b|\breposicion\w*|\bposicionamento de marca\b|\b(?:o|de|do|um|novo) naming\b|\bnaming (?:de|da|do|e)\b|\bbrand naming\b|\bembalage(?:m|ns)\b|\bpackaging\b|\bmascotes?\b|\bmascots?\b|\bmost valuable brands?\b|\bmarcas? mais valiosas?\b|\bInterbrand\b|\bBrandZ\b|\bbrand value\b|\bvalor de marca\b/i;
 // Pautas: virais, memes, trends, datas e recursos novos que dá para usar no conteúdo.
 const TRENDING = /\bvira(?:l|is)\b|\bviraliz\w*|\b(?:goes|went|gone) viral\b|\bmemes?\b|\btrends?\b|\btrending\b|\btend[eê]ncias?\b|\b(?:TikTok|viral|dance) challenges?\b|\bdesafio (?:viral|do TikTok)\b|\bdatas? comemorativ\w*|\bcalend[aá]rio (?:de conte[uú]do|editorial|de datas|de marketing)\b|\bhashtags?\b|\bem alta\b|\bbombou\b|\bnovos? recursos?\b|\bnovas? fun[cç](?:ão|ões)\b|\b(?:novidades?|recursos?) d[oa]s? (?:Instagram|TikTok|WhatsApp|YouTube|LinkedIn|Threads|Reels|Canva|CapCut|redes)\b|\bnew features?\b|\bdicas?\b|\btips\b|\bpasso a passo\b|\bmais (?:vist[oa]s|visualizad[oa]s|ouvid[oa]s|baixad[oa]s|buscad[oa]s|assistid[oa]s|comentad[oa]s)\b|\bmost[\s-](?:viewed|watched|downloaded|searched|subscribed|shared)\b/i;
+// MEI e pequenas empresas: o que ajuda quem empreende (Simples, impostos, crédito, gestão).
+const PME = /\bMEIs?\b|\bmicroempreendedor\w*|\bmicro ?empresas?\b|\bmicro e pequen\w+|\bpequen[oa]s? (?:e médi[oa]s? )?(?:empresas?|negócios?|empreendedor\w*)\b|\bPMEs?\b|\bSimples Nacional\b|\bSebrae\b|\bempreendedor(?:a|es|as)?\b|\bempreendedorismo\b|\bempreender\b|\bCNPJ\b|\bDAS-?MEI\b|\bnotas? fisca(?:l|is)\b|\bPronampe\b|\bcapital de giro\b|\bsmall business(?:es)?\b/i;
+// Nas fontes de contabilidade e economia, só entra o que interessa a quem tem empresa.
+const PME_USEFUL = new RegExp(`${PME.source}|\\breforma tributária\\b|\\bIBS\\b|\\bCBS\\b|\\bsplit payment\\b|\\bimpostos?\\b|\\btribut\\w+|\\bReceita Federal\\b|\\beSocial\\b|\\bfolha de pagamento\\b|\\bsua empresa\\b|\\bempresas\\b|\\bjuros\\b|\\bcrédito\\b|\\binadimplência\\b|\\bPix\\b`, 'i');
 const ADS = /\bag[eê]ncias?\b|\bcampanhas?\b|\bpublicidade\b|\bpropaganda\b|\bpublicit[aá]ri[oa]s?\b|\bcomerciais?\b|\bfilme publicit|\bCannes\b|\bLe[oõ]es\b|\bcria[cç][aã]o\b|\bcriativ[oa]s?\b|\bad campaign\b|\bagency\b|\bagencies\b|\bcampaign\b/i;
 
 // Fontes generalistas também publicam ciência, carros e curiosidades: fora do radar.
@@ -72,7 +72,6 @@ const OFF_TOPIC = /\b(?:placas? tect[oô]nicas?|asteroides?|cometas?|gal[aá]xia
 const techRoutes = [
   { column: 'ia', match: AI },
   { column: 'pautas', match: TRENDING },
-  { column: 'social', match: SOCIAL },
   { column: 'ecommerce', match: ECOM },
   { column: 'startups', match: STARTUP },
 ];
@@ -100,44 +99,46 @@ export const feeds = [
   { name: 'Ars Technica', site: 'https://arstechnica.com', lang: 'en', column: 'tecnologia', url: 'https://feeds.arstechnica.com/arstechnica/technology-lab', routes: techRoutes },
 
   // Marketing
-  { name: 'Meio & Mensagem', site: 'https://www.meioemensagem.com.br', lang: 'pt', column: 'marketing', url: 'https://www.meioemensagem.com.br/feed', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }, { column: 'publicidade', match: ADS }, { column: 'social', match: SOCIAL }] },
-  { name: 'Consumidor Moderno', site: 'https://www.consumidormoderno.com.br', lang: 'pt', column: 'marketing', url: 'https://www.consumidormoderno.com.br/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }, { column: 'ecommerce', match: ECOM }] },
-  { name: 'Marketing Dive', site: 'https://www.marketingdive.com', lang: 'en', column: 'marketing', url: 'https://www.marketingdive.com/feeds/news/', routes: [{ column: 'marca', match: BRAND }] },
+  { name: 'Meio & Mensagem', site: 'https://www.meioemensagem.com.br', lang: 'pt', column: 'marketing', url: 'https://www.meioemensagem.com.br/feed', routes: [{ column: 'pautas', match: TRENDING }, { column: 'pme', match: PME }, { column: 'publicidade', match: ADS }] },
+  { name: 'Consumidor Moderno', site: 'https://www.consumidormoderno.com.br', lang: 'pt', column: 'marketing', url: 'https://www.consumidormoderno.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }, { column: 'pme', match: PME }, { column: 'ecommerce', match: ECOM }] },
+  { name: 'Marketing Dive', site: 'https://www.marketingdive.com', lang: 'en', column: 'marketing', url: 'https://www.marketingdive.com/feeds/news/' },
   { name: 'MarTech', site: 'https://martech.org', lang: 'en', column: 'marketing', url: 'https://martech.org/feed/' },
   { name: 'Search Engine Journal', site: 'https://www.searchenginejournal.com', lang: 'en', column: 'marketing', url: 'https://www.searchenginejournal.com/feed/' },
   { name: 'HubSpot', site: 'https://blog.hubspot.com/marketing', lang: 'en', column: 'marketing', url: 'https://blog.hubspot.com/marketing/rss.xml', routes: [{ column: 'pautas', match: TRENDING }] },
 
-  // Marca e branding
-  { name: 'BP&O', site: 'https://bpando.org', lang: 'en', column: 'marca', url: 'https://bpando.org/feed/' },
-  { name: 'Brandingmag', site: 'https://www.brandingmag.com', lang: 'en', column: 'marca', url: 'https://www.brandingmag.com/feed/' },
-  { name: 'GKPB', site: 'https://gkpb.com.br', lang: 'pt', column: 'marca', url: 'https://gkpb.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }, { column: 'publicidade', match: ADS }] },
+  // MEI e pequenas empresas
+  { name: 'Agência Sebrae', site: 'https://agenciasebrae.com.br', lang: 'pt', column: 'pme', url: 'https://agenciasebrae.com.br/feed/' },
+  { name: 'Revista Empreendedor', site: 'https://empreendedor.com.br', lang: 'pt', column: 'pme', url: 'https://empreendedor.com.br/feed/', include: PME_USEFUL },
+  { name: 'Jornal Contábil', site: 'https://www.jornalcontabil.com.br', lang: 'pt', column: 'pme', url: 'https://www.jornalcontabil.com.br/feed/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|\bfutebol\b/i },
+  { name: 'Contábeis', site: 'https://www.contabeis.com.br', lang: 'pt', column: 'pme', url: 'https://www.contabeis.com.br/rss/noticias/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|\bórgãos públicos\b|\bMunicípios?\b/i },
+  { name: 'Agência Brasil', site: 'https://agenciabrasil.ebc.com.br/economia', lang: 'pt', column: 'pme', url: 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml', include: PME_USEFUL },
 
   // Design
-  { name: 'Design Culture', site: 'https://designculture.com.br', lang: 'pt', column: 'design', url: 'https://designculture.com.br/feed', routes: [{ column: 'marca', match: BRAND }] },
+  { name: 'Design Culture', site: 'https://designculture.com.br', lang: 'pt', column: 'design', url: 'https://designculture.com.br/feed' },
   { name: 'Smashing Magazine', site: 'https://www.smashingmagazine.com', lang: 'en', column: 'design', url: 'https://www.smashingmagazine.com/feed/' },
-  { name: 'Creative Bloq', site: 'https://www.creativebloq.com', lang: 'en', column: 'design', url: 'https://www.creativebloq.com/feeds.xml', routes: [{ column: 'marca', match: BRAND }], exclude: /\breview:|\b(?:laptops?|batter(?:y|ies)|gaming|PS5|PlayStation|Xbox|Nintendo|Marvel|Wolverine|TVs?|monitors?|headphones|earbuds|VPN|Black Friday|Prime Day)\b/i },
+  { name: 'Creative Bloq', site: 'https://www.creativebloq.com', lang: 'en', column: 'design', url: 'https://www.creativebloq.com/feeds.xml', exclude: /\breview:|\b(?:laptops?|batter(?:y|ies)|gaming|PS5|PlayStation|Xbox|Nintendo|Marvel|Wolverine|TVs?|monitors?|headphones|earbuds|VPN|Black Friday|Prime Day)\b/i },
   { name: 'UX Collective', site: 'https://uxdesign.cc', lang: 'en', column: 'design', url: 'https://uxdesign.cc/feed' },
-  { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml', routes: [{ column: 'marca', match: BRAND }] },
-  { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/', routes: [{ column: 'marca', match: BRAND }] },
+  { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml' },
+  { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/' },
   { name: 'Nielsen Norman Group', site: 'https://www.nngroup.com', lang: 'en', column: 'design', url: 'https://www.nngroup.com/feed/rss/' },
-  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss', routes: [{ column: 'marca', match: BRAND }], exclude: /\b(?:Mars|Martian|climate|carbon|glaciers?|reefs?|yeast|species|fossil fuels?|heat waves?|floods?)\b/i },
+  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss', exclude: /\b(?:Mars|Martian|climate|carbon|glaciers?|reefs?|yeast|species|fossil fuels?|heat waves?|floods?)\b/i },
   { name: 'Figma', site: 'https://www.figma.com/blog', lang: 'en', column: 'design', url: 'https://www.figma.com/blog/feed/atom.xml' },
-  { name: 'Creative Review', site: 'https://www.creativereview.co.uk', lang: 'en', column: 'design', url: 'https://www.creativereview.co.uk/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'publicidade', match: ADS }] },
-  { name: 'Creative Boom', site: 'https://www.creativeboom.com', lang: 'en', column: 'design', url: 'https://www.creativeboom.com/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'publicidade', match: ADS }] },
+  { name: 'Creative Review', site: 'https://www.creativereview.co.uk', lang: 'en', column: 'design', url: 'https://www.creativereview.co.uk/feed/', routes: [{ column: 'publicidade', match: ADS }] },
+  { name: 'Creative Boom', site: 'https://www.creativeboom.com', lang: 'en', column: 'design', url: 'https://www.creativeboom.com/feed/', routes: [{ column: 'publicidade', match: ADS }] },
 
   // Publicidade
-  { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }], excludeUrl: /\/acervo\// },
-  { name: 'ADNEWS', site: 'https://adnews.com.br', lang: 'pt', column: 'publicidade', url: 'https://adnews.com.br/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }, { column: 'social', match: SOCIAL }] },
-  { name: 'B9', site: 'https://www.b9.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.b9.com.br/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }] },
-  { name: 'Adweek', site: 'https://www.adweek.com', lang: 'en', column: 'publicidade', url: 'https://www.adweek.com/feed/', routes: [{ column: 'marca', match: BRAND }, { column: 'pautas', match: TRENDING }] },
-  { name: 'Muse by Clio', site: 'https://musebycl.io', lang: 'en', column: 'publicidade', url: 'https://musebycl.io/rss.xml', routes: [{ column: 'marca', match: BRAND }] },
-  { name: 'Campaign', site: 'https://www.campaignlive.com', lang: 'en', column: 'publicidade', url: 'https://www.campaignlive.com/rss/news', routes: [{ column: 'marca', match: BRAND }] },
+  { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }], excludeUrl: /\/acervo\// },
+  { name: 'ADNEWS', site: 'https://adnews.com.br', lang: 'pt', column: 'publicidade', url: 'https://adnews.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
+  { name: 'B9', site: 'https://www.b9.com.br', lang: 'pt', column: 'publicidade', url: 'https://www.b9.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
+  { name: 'Adweek', site: 'https://www.adweek.com', lang: 'en', column: 'publicidade', url: 'https://www.adweek.com/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
+  { name: 'Muse by Clio', site: 'https://musebycl.io', lang: 'en', column: 'publicidade', url: 'https://musebycl.io/rss.xml' },
+  { name: 'Campaign', site: 'https://www.campaignlive.com', lang: 'en', column: 'publicidade', url: 'https://www.campaignlive.com/rss/news' },
 
-  // Redes sociais
-  { name: 'Social Media Today', site: 'https://www.socialmediatoday.com', lang: 'en', column: 'social', url: 'https://www.socialmediatoday.com/feeds/news/', routes: [{ column: 'pautas', match: TRENDING }] },
-  { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'social', url: 'https://techcrunch.com/category/social/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
-  { name: 'Tubefilter', site: 'https://www.tubefilter.com', lang: 'en', column: 'social', url: 'https://www.tubefilter.com/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
-  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'social', url: 'https://olhardigital.com.br/tag/redes-sociais/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
+  // Redes sociais: novidades das plataformas e dos creators entram em Pautas em alta; o resto, em Tecnologia
+  { name: 'Social Media Today', site: 'https://www.socialmediatoday.com', lang: 'en', column: 'pautas', url: 'https://www.socialmediatoday.com/feeds/news/' },
+  { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'tecnologia', url: 'https://techcrunch.com/category/social/feed/', routes: [{ column: 'ia', match: AI }, { column: 'pautas', match: TRENDING }] },
+  { name: 'Tubefilter', site: 'https://www.tubefilter.com', lang: 'en', column: 'pautas', url: 'https://www.tubefilter.com/feed/' },
+  { name: 'Olhar Digital', site: 'https://olhardigital.com.br', lang: 'pt', column: 'tecnologia', url: 'https://olhardigital.com.br/tag/redes-sociais/feed/', routes: [{ column: 'pautas', match: TRENDING }] },
 
   // Pautas em alta (guias de ferramentas dos próprios fornecedores ficam de fora)
   { name: 'YOUPIX', site: 'https://youpix.com.br', lang: 'pt', column: 'pautas', url: 'https://youpix.com.br/feed/' },
@@ -152,9 +153,9 @@ export const feeds = [
   { name: 'Practical Ecommerce', site: 'https://www.practicalecommerce.com', lang: 'en', column: 'ecommerce', url: 'https://www.practicalecommerce.com/feed' },
 
   // Startups e negócios
-  { name: 'Startups', site: 'https://startups.com.br', lang: 'pt', column: 'startups', url: 'https://startups.com.br/feed/' },
-  { name: 'Startupi', site: 'https://startupi.com.br', lang: 'pt', column: 'startups', url: 'https://startupi.com.br/feed/' },
-  { name: 'NeoFeed', site: 'https://neofeed.com.br', lang: 'pt', column: 'startups', url: 'https://neofeed.com.br/feed/', excludeUrl: /neofeed\.com\.br\/(?:finde|insiders|economia|lifestyle|lideres)\// },
+  { name: 'Startups', site: 'https://startups.com.br', lang: 'pt', column: 'startups', url: 'https://startups.com.br/feed/', routes: [{ column: 'pme', match: PME }] },
+  { name: 'Startupi', site: 'https://startupi.com.br', lang: 'pt', column: 'startups', url: 'https://startupi.com.br/feed/', routes: [{ column: 'pme', match: PME }] },
+  { name: 'NeoFeed', site: 'https://neofeed.com.br', lang: 'pt', column: 'startups', url: 'https://neofeed.com.br/feed/', routes: [{ column: 'pme', match: PME }], excludeUrl: /neofeed\.com\.br\/(?:finde|insiders|economia|lifestyle|lideres)\// },
   { name: 'LatamList', site: 'https://latamlist.com', lang: 'en', column: 'startups', url: 'https://latamlist.com/feed/' },
   { name: 'TechCrunch', site: 'https://techcrunch.com', lang: 'en', column: 'startups', url: 'https://techcrunch.com/category/startups/feed/' },
 ];

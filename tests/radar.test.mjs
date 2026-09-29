@@ -67,25 +67,27 @@ test('configuração consistente: toda fonte aponta para uma editoria existente'
   for (const w of watchlist) assert.equal(matchesAny(blocklist, w.label), null, `termo monitorado bloqueado: ${w.label}`);
 });
 
-test('manda manchetes para Marca e branding e Pautas em alta', () => {
+test('manda manchetes para Pautas em alta e MEI e pequenas empresas', () => {
   const feed = (name, column) => feeds.find((f) => f.name === name && (!column || f.column === column));
   const route = (f, title) => f.routes?.find((r) => r.match.test(title))?.column || f.column;
   const cases = [
-    ['Meio & Mensagem', 'Natura apresenta nova identidade visual e reposicionamento', 'marca'],
     ['Meio & Mensagem', 'Trend do morango do amor viraliza e marcas entram na brincadeira', 'pautas'],
+    ['Meio & Mensagem', 'Sebrae lança programa para pequenos negócios anunciarem na TV', 'pme'],
     ['Meio & Mensagem', 'Nova campanha da Heineken estreia na TV', 'publicidade'],
-    ['Meio & Mensagem', 'Varejo cresce logo após a Black Friday', 'marketing'],
+    ['Meio & Mensagem', 'Natura apresenta nova identidade visual', 'marketing'],
     ['Tecnoblog', 'WhatsApp ganha nova função para organizar conversas', 'pautas'],
     ['Tecnoblog', 'ChatGPT ganha novo recurso de memória', 'ia'],
-    ['Tecnoblog', 'Meta é multada por falha em anúncios no Instagram', 'social'],
-    ['Creative Review', 'Nomad designs identities for new Ultimate Sevens rugby league', 'marca'],
-    ['Creative Review', 'New photo book celebrates 35 years of clubbing', 'design'],
-    ['Creative Bloq', 'The new Jaguar logo is divisive', 'marca'],
-    ['Marketing Dive', 'DoorDash deepens WPP partnership, naming agency its global media partner', 'marketing'],
-    ['Meio & Mensagem', 'Como o naming da nova marca foi escolhido', 'marca'],
-    ['Social Media Today', 'Instagram shares Reels creation tips in new guide', 'pautas'],
+    ['Tecnoblog', 'Meta é multada por falha em anúncios no Instagram', 'tecnologia'],
+    ['Startups', 'Fintech lança conta digital para MEI com emissão de nota fiscal', 'pme'],
+    ['Startups', 'Startup de logística capta R$ 40 milhões', 'startups'],
+    ['Creative Review', 'Nomad designs identities for new Ultimate Sevens rugby league', 'design'],
+    ['Social Media Today', 'Instagram adds new editing options for Reels', 'pautas'],
   ];
   for (const [name, title, want] of cases) assert.equal(route(feed(name), title), want, `${name}: ${title}`);
+  assert.equal(columns[0].id, 'pautas', 'Pautas em alta é a primeira editoria');
+  const economy = feed('Agência Brasil');
+  assert.match('Prazo para empresas optarem por Simples é prorrogado para outubro', economy.include);
+  assert.doesNotMatch('Petrobras fecha acordo para comprar gás dos EUA', economy.include);
   const hootsuite = feed('Hootsuite');
   assert.match('Best social media tools for marketing teams in 2026', hootsuite.exclude);
   assert.doesNotMatch('Millennials and social media: Trends, habits, and tips for 2026', hootsuite.exclude);
