@@ -4,7 +4,7 @@
 import { json } from '../lib/util.mjs';
 import { renderWelcome } from './email.mjs';
 import { resendClient } from './resend.mjs';
-import { CONSENT_VERSION, fromAddress, replyTo, siteOrigin } from './settings.mjs';
+import { CONSENT_VERSION, replyTo, siteOrigin, teamFromAddress } from './settings.mjs';
 
 const EMAIL = /^[^\s@<>()[\]\\,;:"]+@[^\s@<>()[\]\\,;:"]+\.[a-z]{2,}$/i;
 
@@ -126,7 +126,7 @@ export async function syncSubscribers(env, { emails, limit = 20, now = Date.now(
       if (!welcomed) {
         try {
           const mail = renderWelcome({ name: row.name, origin });
-          await resend.sendEmail({ from: fromAddress(env), to: row.email, replyTo: replyTo(env), ...mail });
+          await resend.sendEmail({ from: teamFromAddress(env), to: row.email, replyTo: replyTo(env), ...mail });
           welcomed = stamp;
         } catch {
           /* sem boas-vindas não impede a inscrição */

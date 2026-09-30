@@ -74,7 +74,7 @@ Nenhum site público é 100% à prova de cópia: tudo o que o navegador mostra p
 
 ## Newsletter comentada
 
-Toda sexta-feira quem se cadastra recebe as notícias mais importantes da semana, selecionadas e comentadas. A newsletter é assinada pela marca (remetente "Radar FavCode"), sem nome de pessoa no site, nos e-mails ou na política de privacidade.
+Toda sexta-feira quem se cadastra recebe as notícias mais importantes da semana, selecionadas e comentadas. O resumo da semana sai assinado por Clara Poletto - Colunista FavCode (remetente "Clara Poletto · Colunista FavCode"); as boas-vindas e os avisos do editor saem como "Equipe FavCode". O site e a política de privacidade não citam nome de pessoa.
 
 **No site.** A primeira matéria abre direto; a partir da segunda, abrir uma matéria pede um cadastro rápido: nome, e-mail, WhatsApp (opcional) e a caixa de consentimento da LGPD. Quem se cadastra fica marcado no navegador e não vê mais a janela. O rodapé também convida para a newsletter. O formulário é protegido pelo Cloudflare Turnstile (anti-robô, sem cookies de publicidade). Tudo liga com `newsletter.enabled` em `config/radar.config.mjs`, e só liga com `newsletter.privacyEmail` preenchido, porque a política de privacidade (`/privacidade`) precisa de um contato para os pedidos da LGPD (hoje, noticias@favcode.com.br).
 
@@ -96,7 +96,7 @@ Configuração no Worker `radar-favcode` (Cloudflare → Workers & Pages → Set
 | `SESSION_SECRET` | segredo | assina os links e a sessão do editor |
 | `RESEND_API_KEY` | segredo | chave da API do Resend (Full access) |
 | `EDITOR_EMAILS` | texto | opcional: e-mails com acesso ao editor, separados por vírgula (padrão `noticias@favcode.com.br`) |
-| `NEWSLETTER_FROM` | texto | opcional: remetente (padrão `Radar FavCode <noticias@favcode.com.br>`) |
+| `NEWSLETTER_FROM` | texto | opcional: remetente (padrão `Clara Poletto · Colunista FavCode <noticias@favcode.com.br>`); `TEAM_FROM` faz o mesmo para boas-vindas e avisos (padrão `Equipe FavCode <noticias@favcode.com.br>`) |
 | `NEWSLETTER_REPLY_TO` | texto | opcional: para onde vão as respostas dos leitores (padrão `noticias@favcode.com.br`) |
 
 **E-mail noticias@favcode.com.br.** É o remetente da newsletter, o endereço de resposta, o contato da LGPD e o login do editor. É uma caixa do Zoho Mail (plano gratuito: até 5 endereços no domínio, acesso por mail.zoho.com e pelo app Zoho Mail). No DNS da Cloudflare: MX `mx.zoho.com` (10), `mx2.zoho.com` (20) e `mx3.zoho.com` (50), SPF `v=spf1 include:zohomail.com ~all`, DKIM do Zoho em `zmail._domainkey`, o TXT de verificação do Zoho e DMARC em modo de monitoramento (`p=none`). O Email Routing da Cloudflare fica desligado, porque ele e o Zoho não podem receber o mesmo domínio ao mesmo tempo. Os registros do Resend ficam no subdomínio `send`, sem conflito com o Zoho.

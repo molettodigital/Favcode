@@ -7,7 +7,7 @@ import { signToken, verifyToken } from '../cloudflare/lib/util.mjs';
 import { createWeeklyDraft, editionId, weekLabel } from '../cloudflare/newsletter/draft.mjs';
 import { renderNewsletter, renderWelcome } from '../cloudflare/newsletter/email.mjs';
 import { extractPageData, recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
-import { CONSENT_VERSION, editorEmails, fromAddress, replyTo } from '../cloudflare/newsletter/settings.mjs';
+import { CONSENT_VERSION, editorEmails, fromAddress, replyTo, teamFromAddress } from '../cloudflare/newsletter/settings.mjs';
 import { normalizePhone, syncSubscribers, validateSubscriber } from '../cloudflare/newsletter/subscribe.mjs';
 import { newsletter as siteNewsletter } from '../config/radar.config.mjs';
 import { fakeD1, fakeKV } from './helpers/fake-d1.mjs';
@@ -147,6 +147,7 @@ test('cadastro grava o consentimento, envia ao Resend no segmento e manda boas-v
   assert.equal(contact.phone, undefined, 'o telefone não vai para o Resend');
   assert.equal(resend.emails.length, 1);
   assert.match(resend.emails[0].subject, /Boas-vindas/);
+  assert.equal(resend.emails[0].from, 'Equipe FavCode <noticias@favcode.com.br>', 'boas-vindas saem pela equipe');
   assert.equal(await env.RADAR.get('resend:segment'), 'seg-1');
 
   // Segundo cadastro com o mesmo e-mail: atualiza, mantém o telefone e não repete as boas-vindas.
@@ -329,13 +330,15 @@ test('e-mail da newsletter escapa o texto e traz o link de descadastro do Resend
   assert.ok(html.includes('Campanha &lt;b&gt;Y&lt;/b&gt; &amp; cia'));
   assert.ok(html.includes('https://mm.example/m2?a=1&amp;b=2'));
   assert.ok(html.includes('{{{RESEND_UNSUBSCRIBE_URL}}}'));
-  assert.ok(html.includes('>Comentário</p>'));
-  assert.ok(!/Clara|Poleto/.test(html + text), 'a newsletter não cita o nome de quem escreve');
+  assert.ok(html.includes('Comentário da Clara'));
+  assert.ok(html.includes('Clara Poletto') && html.includes('Colunista FavCode'), 'resumo da semana assinado pela colunista');
+  assert.match(text, /Clara Poletto - Colunista FavCode/);
   assert.ok(html.includes(`${ORIGIN}/assets/favcode-mark-180.png`));
   assert.match(text, /Ler a matéria: https:\/\/mm\.example\/m2/);
   const welcome = renderWelcome({ name: 'Ana Souza', origin: ORIGIN });
   assert.ok(welcome.html.includes('Oi, Ana!'));
-  assert.ok(!/Clara|Poleto/.test(welcome.html + welcome.text), 'boas-vindas assinadas pela marca');
+  assert.ok(!/Clara|Polett?o/.test(welcome.html + welcome.text), 'boas-vindas sem o nome da colunista');
+  assert.match(welcome.text, /Até sexta,\nEquipe FavCode/);
 });
 
 // ---------- Editor ----------
@@ -451,7 +454,8 @@ test('editor: agendamento no futuro e lista de inscritos em CSV sem fórmulas', 
 });
 
 test('sem configuração, a newsletter usa noticias@favcode.com.br', () => {
-  assert.equal(fromAddress({}), 'Radar FavCode <noticias@favcode.com.br>');
+  assert.equal(fromAddress({}), 'Clara Poletto · Colunista FavCode <noticias@favcode.com.br>');
+  assert.equal(teamFromAddress({}), 'Equipe FavCode <noticias@favcode.com.br>');
   assert.equal(replyTo({}), 'noticias@favcode.com.br');
   assert.deepEqual(editorEmails({}), ['noticias@favcode.com.br']);
   assert.deepEqual(editorEmails({ EDITOR_EMAILS: ' Clara@Exemplo.com , outra@exemplo.com' }), ['clara@exemplo.com', 'outra@exemplo.com']);

@@ -6,7 +6,7 @@ import { createWeeklyDraft, getEdition, latestEdition, saveDraft } from './draft
 import { renderEditorLink, renderNewsletter } from './email.mjs';
 import { weekNews } from './news.mjs';
 import { resendClient } from './resend.mjs';
-import { editorEmails, fromAddress, replyTo, siteOrigin } from './settings.mjs';
+import { editorEmails, fromAddress, replyTo, siteOrigin, teamFromAddress } from './settings.mjs';
 
 const COOKIE = 'radar_editor';
 const SESSION_DAYS = 30;
@@ -104,7 +104,7 @@ export async function handleEditor(request, env, ctx, url) {
     if (editorEmails(env).includes(email)) {
       const token = await signToken(env.SESSION_SECRET, { p: 'login', e: email, x: Date.now() + LOGIN_MINUTES * 60_000 });
       const mail = renderEditorLink({ link: `${origin}/editor/entrar?t=${token}`, origin });
-      await resend.sendEmail({ from: fromAddress(env), to: email, ...mail });
+      await resend.sendEmail({ from: teamFromAddress(env), to: email, ...mail });
     }
     // Mesma resposta para qualquer e-mail: não revela quem tem acesso.
     return json(200, { ok: true });
