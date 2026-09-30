@@ -147,7 +147,7 @@ test('cadastro grava o consentimento, envia ao Resend no segmento e manda boas-v
   assert.equal(contact.phone, undefined, 'o telefone não vai para o Resend');
   assert.equal(resend.emails.length, 1);
   assert.match(resend.emails[0].subject, /Boas-vindas/);
-  assert.equal(resend.emails[0].from, 'Equipe FavCode <noticias@favcode.com.br>', 'boas-vindas saem pela equipe');
+  assert.equal(resend.emails[0].from, 'Radar FavCode <noticias@favcode.com.br>', 'todo e-mail chega como Radar FavCode');
   assert.equal(await env.RADAR.get('resend:segment'), 'seg-1');
 
   // Segundo cadastro com o mesmo e-mail: atualiza, mantém o telefone e não repete as boas-vindas.
@@ -454,8 +454,8 @@ test('editor: agendamento no futuro e lista de inscritos em CSV sem fórmulas', 
 });
 
 test('sem configuração, a newsletter usa noticias@favcode.com.br', () => {
-  assert.equal(fromAddress({}), 'Clara Poletto · Colunista FavCode <noticias@favcode.com.br>');
-  assert.equal(teamFromAddress({}), 'Equipe FavCode <noticias@favcode.com.br>');
+  assert.equal(fromAddress({}), 'Radar FavCode <noticias@favcode.com.br>');
+  assert.equal(teamFromAddress({}), 'Radar FavCode <noticias@favcode.com.br>');
   assert.equal(replyTo({}), 'noticias@favcode.com.br');
   assert.deepEqual(editorEmails({}), ['noticias@favcode.com.br']);
   assert.deepEqual(editorEmails({ EDITOR_EMAILS: ' Clara@Exemplo.com , outra@exemplo.com' }), ['clara@exemplo.com', 'outra@exemplo.com']);
