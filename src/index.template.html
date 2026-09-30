@@ -593,10 +593,6 @@
   .nl__eyebrow { margin: 0 0 8px; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--link); }
   .nl h2 { font-family: var(--font-display); font-size: 1.45rem; line-height: 1.2; letter-spacing: -0.02em; margin: 0 40px 8px 0; }
   .nl__lede { margin: 0 0 14px; color: var(--ink-2); line-height: 1.5; }
-  .nl__author { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; padding: 10px 12px; border-radius: var(--radius-md); background: var(--surface-2); }
-  .nl__avatar { flex: none; width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--code-bg); color: var(--code-ink); font-family: var(--font-display); font-weight: 700; }
-  .nl__author strong { display: block; font-size: 0.95rem; }
-  .nl__author small { display: block; color: var(--muted); font-size: 0.8rem; }
   .nl__field { display: block; margin: 0 0 12px; }
   .nl__field > span { display: block; margin: 0 0 5px; font-size: 0.875rem; font-weight: 600; color: var(--ink-2); }
   .nl__field em { font-style: normal; font-weight: 400; color: var(--muted); }
@@ -796,7 +792,6 @@
       <p class="nl__eyebrow">Newsletter do Radar FavCode</p>
       <h2 id="nl-title" data-nl-title>Continue lendo de graça</h2>
       <p class="nl__lede" data-nl-lede></p>
-      <div class="nl__author"><span class="nl__avatar" data-nl-initials aria-hidden="true"></span><span><strong data-nl-author></strong><small data-nl-role></small></span></div>
       <label class="nl__field"><span>Nome</span><input name="name" autocomplete="name" maxlength="80" required></label>
       <label class="nl__field"><span>E-mail</span><input name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" required></label>
       <label class="nl__field"><span>WhatsApp <em>(opcional)</em></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="(11) 98765-4321"><small class="nl__hint">Só para a FavCode falar com você por lá, se você quiser.</small></label>
@@ -1630,7 +1625,7 @@
     nl.opener = opener;
     const gate = Boolean(url);
     $('[data-nl-title]').textContent = gate ? 'Continue lendo de graça' : 'Receba a newsletter do radar';
-    $('[data-nl-lede]').textContent = `${gate ? 'Cadastre-se para abrir as matérias e receba' : 'Receba'} toda ${NEWSLETTER.day} as notícias mais importantes da semana, comentadas por ${NEWSLETTER.author}.`;
+    $('[data-nl-lede]').textContent = `${gate ? 'Cadastre-se para abrir as matérias e receba' : 'Receba'} toda ${NEWSLETTER.day} as notícias mais importantes da semana, selecionadas e comentadas.`;
     $('[data-nl-submit]').textContent = gate ? 'Cadastrar e ler a matéria' : 'Assinar a newsletter';
     $('[data-nl-step="form"]').hidden = false;
     $('[data-nl-step="done"]').hidden = true;
@@ -1817,13 +1812,9 @@
 
   function initNewsletter() {
     if (!NEWSLETTER.enabled) return;
-    const initials = NEWSLETTER.author.split(/\s+/).map((w) => w[0]).slice(0, 2).join('');
-    $('[data-nl-initials]').textContent = initials;
-    $('[data-nl-author]').textContent = NEWSLETTER.author;
-    $('[data-nl-role]').textContent = NEWSLETTER.role;
     if (!nl.member) {
       $('[data-nl-cta]').hidden = false;
-      $('[data-nl-cta-text]').textContent = ` Toda ${NEWSLETTER.day}, as notícias mais importantes da semana comentadas por ${NEWSLETTER.author}.`;
+      $('[data-nl-cta-text]').textContent = ` Toda ${NEWSLETTER.day}, as notícias mais importantes da semana, selecionadas e comentadas.`;
     }
 
     const onArticle = (e) => {

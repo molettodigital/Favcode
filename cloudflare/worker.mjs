@@ -13,7 +13,7 @@
 //
 // Newsletter: cadastro (POST /api/subscribe) guardado no D1 e enviado ao Resend, política de
 // privacidade (/privacidade), registro das notícias da semana, rascunho semanal com sugestões da
-// IA (sexta de manhã) e o editor da Clara (/editor). Código em cloudflare/newsletter/.
+// IA (sexta de manhã) e o editor da newsletter (/editor). Código em cloudflare/newsletter/.
 //
 // Proteção contra cópia: bloqueia programas de clonagem, raspadores e robôs de IA,
 // proíbe abrir o site dentro de outro (iframe), impede que outros sites usem as fontes e

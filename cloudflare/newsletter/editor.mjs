@@ -36,8 +36,6 @@ export function sanitizeEdition(input, id) {
     intro: clip(input?.intro, 6000),
     introSuggestion: clip(input?.introSuggestion, 6000),
     closing: clip(input?.closing, 2000),
-    author: clip(input?.author, 80),
-    role: clip(input?.role, 120),
     items: items
       .map((it) => ({
         id: clip(it?.id, 40),

@@ -16,7 +16,7 @@ export const site = {
 };
 
 /**
- * Newsletter semanal comentada pela Clara. Com `enabled`, o site pede cadastro (nome, e-mail e
+ * Newsletter semanal comentada, assinada pelo Radar FavCode. Com `enabled`, o site pede cadastro (nome, e-mail e
  * telefone opcional) a partir da matéria número `freeReads + 1`. Só liga com `privacyEmail`
  * preenchido: a política de privacidade precisa de um contato para os pedidos da LGPD.
  * noticias@favcode.com.br é uma caixa do Zoho Mail (mail.zoho.com).
@@ -26,8 +26,6 @@ export const site = {
 export const newsletter = {
   enabled: true,
   freeReads: 1,
-  author: 'Clara Poleto',
-  role: 'Redatora Publicitária e Colunista do FavCode',
   day: 'sexta-feira',
   controller: 'FavCode',
   privacyEmail: 'noticias@favcode.com.br',

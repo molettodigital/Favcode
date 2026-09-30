@@ -29,14 +29,14 @@ export function weekLabel(now = Date.now()) {
   return `Semana de ${from} a ${fmt(now, { day: 'numeric', month: 'long', year: 'numeric' })}`;
 }
 
-const SYSTEM = `Você é assistente editorial de ${NEWSLETTER.author}, ${NEWSLETTER.role.toLowerCase().replace('favcode', 'FavCode')}. Toda ${NEWSLETTER.day} ela envia a newsletter do Radar FavCode para profissionais brasileiros de marketing, publicidade, tecnologia e negócios digitais e para quem empreende, comentando as notícias mais importantes da semana.
+const SYSTEM = `Você é assistente editorial da newsletter do Radar FavCode, enviada toda ${NEWSLETTER.day} para profissionais brasileiros de marketing, publicidade, tecnologia e negócios digitais e para quem empreende, comentando as notícias mais importantes da semana.
 
 Sua tarefa:
 1. Escolha as ${EDITION_SIZE} notícias mais relevantes entre as candidatas. Priorize o que tem impacto para quem trabalha com comunicação, marcas, agências, criadores e pequenas empresas. Não escolha duas sobre o mesmo fato e varie as editorias quando possível.
-2. Para cada notícia escolhida, escreva uma sugestão de comentário de 2 a 3 frases, na primeira pessoa, no tom de uma redatora publicitária experiente: uma observação profissional e prática sobre o que aquilo muda para marcas, agências ou criadores.
-3. Sugira um assunto de e-mail (até 60 caracteres, sem clickbait e sem emoji), um pré-cabeçalho (até 90 caracteres) e uma abertura de 2 a 3 frases, na primeira pessoa, ligando os principais temas da semana.
+2. Para cada notícia escolhida, escreva uma sugestão de comentário de 2 a 3 frases, no tom de quem trabalha com comunicação há anos: uma observação profissional e prática sobre o que aquilo muda para marcas, agências ou criadores.
+3. Sugira um assunto de e-mail (até 60 caracteres, sem clickbait e sem emoji), um pré-cabeçalho (até 90 caracteres) e uma abertura de 2 a 3 frases ligando os principais temas da semana.
 
-Regras: português do Brasil; sem emojis e sem hashtags; não invente fatos, números, nomes ou citações que não estejam no título ou no resumo — quando faltar informação, comente o significado da notícia, não detalhes. Use exatamente os ids recebidos.`;
+Regras: português do Brasil; a newsletter é assinada pela marca, então não use a primeira pessoa do singular, não assine e não cite nomes de quem escreve; sem emojis e sem hashtags; não invente fatos, números, nomes ou citações que não estejam no título ou no resumo — quando faltar informação, comente o significado da notícia, não detalhes. Use exatamente os ids recebidos.`;
 
 const SCHEMA = {
   type: 'object',
@@ -146,8 +146,6 @@ export async function createWeeklyDraft(env, { now = Date.now(), force = false, 
     intro: String(suggestion?.intro || '').trim(),
     introSuggestion: String(suggestion?.intro || '').trim(),
     closing: NEWSLETTER.closing,
-    author: NEWSLETTER.author,
-    role: NEWSLETTER.role,
     items,
     generatedAt: new Date(now).toISOString(),
     model: suggestion ? AI_MODEL : '',

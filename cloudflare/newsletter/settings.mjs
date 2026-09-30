@@ -3,10 +3,10 @@
 
 export const NEWSLETTER = {
   name: 'Newsletter do Radar FavCode',
-  author: 'Clara Poleto',
-  role: 'Redatora Publicitária e Colunista do FavCode',
+  // A newsletter é assinada pela marca, sem nome de pessoa (no remetente, no texto e no site).
+  signature: 'Radar FavCode',
   day: 'sexta-feira',
-  closing: 'Até a próxima sexta,\nClara Poleto',
+  closing: 'Até a próxima sexta,\nRadar FavCode',
 };
 
 export const CONSENT_VERSION = '2026-09-30';
@@ -18,7 +18,7 @@ const DEFAULT_ORIGIN = 'https://radar.favcode.com.br';
  * noticias@favcode.com.br é uma caixa do Zoho Mail (mail.zoho.com).
  */
 export const NEWSLETTER_EMAIL = 'noticias@favcode.com.br';
-const DEFAULT_FROM = `Clara Poleto · Radar FavCode <${NEWSLETTER_EMAIL}>`;
+const DEFAULT_FROM = `${NEWSLETTER.signature} <${NEWSLETTER_EMAIL}>`;
 
 export const siteOrigin = (env) => env.CANONICAL_ORIGIN || DEFAULT_ORIGIN;
 export const fromAddress = (env) => env.NEWSLETTER_FROM || DEFAULT_FROM;

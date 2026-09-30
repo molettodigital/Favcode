@@ -5,7 +5,7 @@ import { readFileSync } from 'node:fs';
 import worker from '../cloudflare/worker.mjs';
 import { signToken, verifyToken } from '../cloudflare/lib/util.mjs';
 import { createWeeklyDraft, editionId, weekLabel } from '../cloudflare/newsletter/draft.mjs';
-import { renderNewsletter } from '../cloudflare/newsletter/email.mjs';
+import { renderNewsletter, renderWelcome } from '../cloudflare/newsletter/email.mjs';
 import { extractPageData, recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
 import { CONSENT_VERSION, editorEmails, fromAddress, replyTo } from '../cloudflare/newsletter/settings.mjs';
 import { normalizePhone, syncSubscribers, validateSubscriber } from '../cloudflare/newsletter/subscribe.mjs';
@@ -320,7 +320,7 @@ test('e-mail da newsletter escapa o texto e traz o link de descadastro do Resend
       week: 'Semana de 19 a 25 de setembro de 2026',
       subject: 'Assunto',
       intro: 'Oi <script>alert(1)</script>\n\nSegundo parágrafo',
-      closing: 'Até,\nClara',
+      closing: 'Até,\nRadar FavCode',
       items: [{ title: 'Campanha <b>Y</b> & cia', url: 'https://mm.example/m2?a=1&b=2', source: 'Meio & Mensagem', columnName: 'Marketing', comment: 'Bom "exemplo"' }],
     },
     { origin: ORIGIN },
@@ -329,9 +329,13 @@ test('e-mail da newsletter escapa o texto e traz o link de descadastro do Resend
   assert.ok(html.includes('Campanha &lt;b&gt;Y&lt;/b&gt; &amp; cia'));
   assert.ok(html.includes('https://mm.example/m2?a=1&amp;b=2'));
   assert.ok(html.includes('{{{RESEND_UNSUBSCRIBE_URL}}}'));
-  assert.ok(html.includes('Comentário da Clara'));
+  assert.ok(html.includes('>Comentário</p>'));
+  assert.ok(!/Clara|Poleto/.test(html + text), 'a newsletter não cita o nome de quem escreve');
   assert.ok(html.includes(`${ORIGIN}/assets/favcode-mark-180.png`));
   assert.match(text, /Ler a matéria: https:\/\/mm\.example\/m2/);
+  const welcome = renderWelcome({ name: 'Ana Souza', origin: ORIGIN });
+  assert.ok(welcome.html.includes('Oi, Ana!'));
+  assert.ok(!/Clara|Poleto/.test(welcome.html + welcome.text), 'boas-vindas assinadas pela marca');
 });
 
 // ---------- Editor ----------
@@ -447,7 +451,7 @@ test('editor: agendamento no futuro e lista de inscritos em CSV sem fórmulas', 
 });
 
 test('sem configuração, a newsletter usa noticias@favcode.com.br', () => {
-  assert.equal(fromAddress({}), 'Clara Poleto · Radar FavCode <noticias@favcode.com.br>');
+  assert.equal(fromAddress({}), 'Radar FavCode <noticias@favcode.com.br>');
   assert.equal(replyTo({}), 'noticias@favcode.com.br');
   assert.deepEqual(editorEmails({}), ['noticias@favcode.com.br']);
   assert.deepEqual(editorEmails({ EDITOR_EMAILS: ' Clara@Exemplo.com , outra@exemplo.com' }), ['clara@exemplo.com', 'outra@exemplo.com']);

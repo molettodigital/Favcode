@@ -55,27 +55,7 @@ ${body}
 
 const small = (html) => `<p style="margin:0 0 8px;font-family:${FONT};font-size:12px;line-height:1.55;color:${C.muted};">${html}</p>`;
 
-function authorBlock({ author, role, photoUrl }) {
-  const initials = author
-    .split(/\s+/)
-    .map((w) => w[0])
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
-  const avatar = photoUrl
-    ? `<img src="${escapeHtml(photoUrl)}" width="48" height="48" alt="" style="display:block;border-radius:24px;border:0;">`
-    : `<div style="width:48px;height:48px;border-radius:24px;background:${C.soft};color:${C.link};font-family:${DISPLAY};font-weight:700;font-size:17px;line-height:48px;text-align:center;">${escapeHtml(initials)}</div>`;
-  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 18px;"><tr>
-    <td style="padding-right:12px;vertical-align:middle;">${avatar}</td>
-    <td style="vertical-align:middle;font-family:${FONT};">
-      <div style="font-size:15px;font-weight:700;color:${C.ink};">${escapeHtml(author)}</div>
-      <div style="font-size:13px;color:${C.muted};">${escapeHtml(role)}</div>
-    </td>
-  </tr></table>`;
-}
-
-function itemBlock(item, { author }) {
-  const firstName = author.split(/\s+/)[0];
+function itemBlock(item) {
   const meta = [item.columnName, item.source].filter(Boolean).map(escapeHtml).join(' · ');
   const image =
     item.image && /^https:\/\//.test(item.image)
@@ -89,7 +69,7 @@ function itemBlock(item, { author }) {
     ${
       comment.length
         ? `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 12px;"><tr><td style="background:${C.soft};border-left:3px solid ${C.link};border-radius:0 10px 10px 0;padding:14px 16px;">
-        <p style="margin:0 0 6px;font-family:${FONT};font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${C.link};">Comentário da ${escapeHtml(firstName)}</p>
+        <p style="margin:0 0 6px;font-family:${FONT};font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:${C.link};">Comentário</p>
         ${comment.map((c) => `<p style="margin:0 0 8px;font-family:${FONT};font-size:15px;line-height:1.6;color:${C.ink2};">${c}</p>`).join('')}
       </td></tr></table>`
         : ''
@@ -99,9 +79,7 @@ function itemBlock(item, { author }) {
 }
 
 /** Newsletter semanal. Com `unsubscribeUrl` omitido, usa o marcador que o Resend troca pelo link de descadastro. */
-export function renderNewsletter(edition, { origin, unsubscribeUrl = UNSUBSCRIBE_PLACEHOLDER, photoUrl = '' } = {}) {
-  const author = edition.author || NEWSLETTER.author;
-  const role = edition.role || NEWSLETTER.role;
+export function renderNewsletter(edition, { origin, unsubscribeUrl = UNSUBSCRIBE_PLACEHOLDER } = {}) {
   const items = (edition.items || []).filter((it) => it && it.title && it.url);
   const intro = paragraphs(edition.intro);
   const closing = paragraphs(edition.closing);
@@ -110,11 +88,10 @@ export function renderNewsletter(edition, { origin, unsubscribeUrl = UNSUBSCRIBE
   const body = `
 <tr><td style="padding:28px 28px 8px;">
   ${edition.week ? `<p style="margin:0 0 16px;font-family:${FONT};font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:${C.muted};">${escapeHtml(edition.week)}</p>` : ''}
-  ${authorBlock({ author, role, photoUrl })}
   ${intro.map((x) => p(x)).join('')}
 </td></tr>
 <tr><td style="padding:0 28px;"><div style="height:1px;background:${C.line};margin:6px 0 22px;"></div></td></tr>
-${items.map((it) => itemBlock(it, { author })).join('\n')}
+${items.map((it) => itemBlock(it)).join('\n')}
 <tr><td style="padding:4px 28px 26px;">
   ${closing.map((x) => p(x)).join('')}
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:10px 0 0;"><tr><td style="background:${C.navy};border-radius:999px;">
@@ -134,8 +111,6 @@ ${items.map((it) => itemBlock(it, { author })).join('\n')}
 
   const text = [
     edition.week,
-    '',
-    `${author} — ${role}`,
     '',
     edition.intro,
     '',
@@ -165,23 +140,22 @@ export function renderWelcome({ name, origin }) {
   const subject = 'Boas-vindas à newsletter do Radar FavCode';
   const intro = [
     `Oi${first ? `, ${escapeHtml(first)}` : ''}! Que bom ter você por aqui.`,
-    `Toda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com os meus comentários sobre o que cada uma muda para quem trabalha com comunicação ou empreende.`,
+    `Toda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com comentários sobre o que cada uma muda para quem trabalha com comunicação ou empreende.`,
     'Enquanto a primeira edição não chega, o radar segue atualizado a cada hora:',
   ];
   const body = `<tr><td style="padding:28px 28px 26px;">
-    ${authorBlock({ author: NEWSLETTER.author, role: NEWSLETTER.role })}
     ${intro.map((x) => p(x)).join('')}
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:4px 0 18px;"><tr><td style="background:${C.navy};border-radius:999px;">
       <a href="${escapeHtml(origin)}/" style="display:inline-block;padding:12px 22px;font-family:${FONT};font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">Abrir o radar</a>
     </td></tr></table>
-    ${p(`Até sexta,<br>${escapeHtml(NEWSLETTER.author)}`)}
+    ${p(`Até sexta,<br>${escapeHtml(NEWSLETTER.signature)}`)}
   </td></tr>`;
   const footer = [
     small(`Você recebeu este e-mail porque se cadastrou em <a href="${escapeHtml(origin)}/" style="color:${C.muted};">radar.favcode.com.br</a>. Se não foi você, responda este e-mail que tiramos seu endereço da lista. Toda newsletter também tem um link para descadastrar.`),
     small(`<a href="${escapeHtml(origin)}/privacidade" style="color:${C.muted};">Política de privacidade</a> · © ${new Date().getFullYear()} FavCode`),
   ].join('');
-  const text = `Oi${first ? `, ${first}` : ''}! Que bom ter você por aqui.\n\nToda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com os meus comentários.\n\nO radar: ${origin}/\n\nAté sexta,\n${NEWSLETTER.author}\n\nPolítica de privacidade: ${origin}/privacidade`;
-  return { subject, html: layout({ title: subject, preheader: 'Toda sexta, as notícias da semana comentadas por Clara Poleto.', body, footer, origin }), text };
+  const text = `Oi${first ? `, ${first}` : ''}! Que bom ter você por aqui.\n\nToda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com comentários sobre o que cada uma muda.\n\nO radar: ${origin}/\n\nAté sexta,\n${NEWSLETTER.signature}\n\nPolítica de privacidade: ${origin}/privacidade`;
+  return { subject, html: layout({ title: subject, preheader: 'Toda sexta, as notícias mais importantes da semana, comentadas.', body, footer, origin }), text };
 }
 
 /** Link de acesso ao editor (pedido de login ou aviso de rascunho pronto). */

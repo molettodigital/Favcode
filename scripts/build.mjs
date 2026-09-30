@@ -345,8 +345,6 @@ function newsletterClient() {
   return {
     enabled: newsletterOn(),
     freeReads: nl.freeReads ?? 1,
-    author: nl.author,
-    role: nl.role,
     day: nl.day,
     siteKey: nl.turnstileSiteKey || '',
   };
@@ -367,7 +365,6 @@ async function writeExtraPages(origin) {
     __YEAR__: String(YEAR),
     __CONTROLLER__: nl.controller || config.site.owner,
     __PRIVACY_EMAIL__: nl.privacyEmail || 'contato a definir',
-    __AUTHOR__: nl.author || '',
     __DAY__: nl.day || '',
     __UPDATED__: updated,
   };
