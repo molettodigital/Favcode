@@ -128,14 +128,28 @@ export function untranslated(original, translated) {
   return en >= 2 && en > pt;
 }
 
-/** Devolve a maiúscula inicial que o modelo às vezes tira ("wayfair aumenta…"). */
+/**
+ * Desfaz o que o modelo estraga ao passar a manchete para caixa de frase: devolve a maiúscula
+ * inicial ("wayfair aumenta…"), a grafia de marcas e siglas do original ("Tiktok" → "TikTok",
+ * "ios" → "iOS") e "IA" quando o original fala em AI.
+ */
 export function fixInitial(original, translated) {
-  const first = translated.charAt(0);
-  const originalFirst = String(original || '').trim().charAt(0);
-  if (first && first === first.toLocaleLowerCase('pt-BR') && originalFirst && originalFirst !== originalFirst.toLocaleLowerCase('en')) {
-    return first.toLocaleUpperCase('pt-BR') + translated.slice(1);
+  let out = String(translated || '');
+  const source = String(original || '');
+  // Palavras do original com maiúscula no meio ou só maiúsculas (TikTok, YouTube, iOS, NASA).
+  const special = new Set(source.match(/[\p{L}\p{N}]*\p{Ll}\p{Lu}[\p{L}\p{N}]*|\b\p{Lu}{2,}[\p{N}]*\b/gu) || []);
+  for (const word of special) {
+    if (word === 'AI') continue;
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    out = out.replace(new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'giu'), word);
   }
-  return translated;
+  if (/\bAI\b/.test(source)) out = out.replace(/(?<![\p{L}\p{N}])ia(?![\p{L}\p{N}])/gu, 'IA');
+  const first = out.charAt(0);
+  const originalFirst = source.trim().charAt(0);
+  if (first && first === first.toLocaleLowerCase('pt-BR') && originalFirst && originalFirst !== originalFirst.toLocaleLowerCase('en') && !special.has(out.split(/\s/)[0])) {
+    out = first.toLocaleUpperCase('pt-BR') + out.slice(1);
+  }
+  return out;
 }
 
 /** Map(id -> { title, summary }) com os itens do lote que voltaram com título traduzido. */

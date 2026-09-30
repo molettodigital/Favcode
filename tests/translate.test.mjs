@@ -196,4 +196,8 @@ test('reconhece título não traduzido sem barrar nomes próprios nem títulos e
   assert.equal(untranslated('OpenAI launches Dots', 'OpenAI lança Dots, agentes que trabalham sozinhos'), false);
   assert.equal(fixInitial('Wayfair ups spend', 'wayfair aumenta'), 'Wayfair aumenta');
   assert.equal(fixInitial('iPhone 18 leaks', 'iPhone 18 vaza'), 'iPhone 18 vaza');
+  assert.equal(fixInitial('TikTok wants creators to see green', 'Tiktok quer que creators vejam verde'), 'TikTok quer que creators vejam verde');
+  assert.equal(fixInitial('Twitch uses AI to find streamers', 'Twitch usa ia para descobrir streamers'), 'Twitch usa IA para descobrir streamers');
+  assert.equal(fixInitial('Apple ships iOS 27.2', 'Apple libera ios 27.2'), 'Apple libera iOS 27.2');
+  assert.equal(fixInitial('He was going home', 'Ele ia para casa'), 'Ele ia para casa');
 });

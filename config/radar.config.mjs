@@ -110,7 +110,7 @@ export const feeds = [
   { name: 'Agência Sebrae', site: 'https://agenciasebrae.com.br', lang: 'pt', column: 'pme', url: 'https://agenciasebrae.com.br/feed/' },
   { name: 'Revista Empreendedor', site: 'https://empreendedor.com.br', lang: 'pt', column: 'pme', url: 'https://empreendedor.com.br/feed/', include: PME_USEFUL },
   { name: 'Jornal Contábil', site: 'https://www.jornalcontabil.com.br', lang: 'pt', column: 'pme', url: 'https://www.jornalcontabil.com.br/feed/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|\bfutebol\b/i },
-  { name: 'Contábeis', site: 'https://www.contabeis.com.br', lang: 'pt', column: 'pme', url: 'https://www.contabeis.com.br/rss/noticias/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|\bórgãos públicos\b|\bMunicípios?\b/i },
+  { name: 'Contábeis', site: 'https://www.contabeis.com.br', lang: 'pt', column: 'pme', url: 'https://www.contabeis.com.br/rss/noticias/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|(?:^|\s)órgãos públicos|\bentes públicos|\bMunicípios?\b|\bprefeituras?\b|\bservidores\b/i },
   { name: 'Agência Brasil', site: 'https://agenciabrasil.ebc.com.br/economia', lang: 'pt', column: 'pme', url: 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml', include: PME_USEFUL },
 
   // Design
