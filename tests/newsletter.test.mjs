@@ -99,9 +99,10 @@ test('telefone: aceita celular e fixo do Brasil com ou sem +55 e número interna
   assert.equal(normalizePhone('abc').ok, false);
 });
 
-test('formulário: nome, e-mail e consentimento obrigatórios', () => {
+test('formulário: e-mail e consentimento obrigatórios; nome, se vier, precisa ser um nome', () => {
   assert.deepEqual(validateSubscriber(signup()).errors, {});
   assert.equal(validateSubscriber(signup()).value.email, 'ana@exemplo.com.br');
+  assert.deepEqual(validateSubscriber({ email: 'ana@exemplo.com.br', consent: true }).errors, {}, 'o convite pede só o e-mail');
   const bad = validateSubscriber({ name: 'A', email: 'ana@', consent: false, phone: '123' }).errors;
   assert.deepEqual(Object.keys(bad).sort(), ['consent', 'email', 'name', 'phone']);
   assert.ok(validateSubscriber(signup({ name: 'www.spam.com' })).errors.name);
@@ -112,6 +113,24 @@ test('a versão do consentimento do site é a mesma do Worker', () => {
 });
 
 // ---------- Cadastro ----------
+test('convite só com e-mail: cadastra sem nome e não apaga o nome de quem já estava na lista', async () => {
+  let res = await call('/api/subscribe', { method: 'POST', body: { email: 'Bia@Exemplo.com', consent: true, token: 'tok', source: 'convite' }, headers: { origin: ORIGIN } });
+  assert.equal(res.status, 200);
+  await settle();
+  let row = await env.DB.prepare("SELECT * FROM subscribers WHERE email = 'bia@exemplo.com'").first();
+  assert.equal(row.name, '');
+  assert.equal(row.source, 'convite');
+  assert.match(resend.emails.at(-1).text, /^Oi! Que bom/);
+
+  await call('/api/subscribe', { method: 'POST', body: signup({ email: 'bia@exemplo.com', name: 'Bia Lima' }), headers: { origin: ORIGIN } });
+  await call('/api/subscribe', { method: 'POST', body: { email: 'bia@exemplo.com', consent: true, token: 'tok', source: 'convite' }, headers: { origin: ORIGIN } });
+  await settle();
+  row = await env.DB.prepare("SELECT * FROM subscribers WHERE email = 'bia@exemplo.com'").first();
+  assert.equal(row.name, 'Bia Lima');
+  res = await call('/api/subscribe', { method: 'POST', body: { email: 'bia@exemplo.com', token: 'tok', source: 'convite' }, headers: { origin: ORIGIN } });
+  assert.equal(res.status, 422, 'sem consentimento não cadastra');
+});
+
 test('cadastro grava o consentimento, envia ao Resend no segmento e manda boas-vindas uma vez', async () => {
   const res = await call('/api/subscribe', { method: 'POST', body: signup({ phone: '(11) 98765-4321' }), headers: { origin: ORIGIN } });
   assert.equal(res.status, 200);
@@ -408,6 +427,16 @@ test('editor: agendamento no futuro e lista de inscritos em CSV sem fórmulas', 
   res = await call('/api/editor/send', { method: 'POST', body: { id: edition.id, scheduledAt: when }, headers: editorHeaders(cookie) });
   assert.equal((await res.json()).status, 'scheduled');
   assert.equal(resend.broadcasts[0].scheduled_at, when);
+
+  res = await call('/api/editor/inscritos', { headers: { cookie } });
+  assert.equal(res.status, 200);
+  const { items: subs } = await res.json();
+  const ana = subs.find((s) => s.email === 'ana@exemplo.com.br');
+  assert.equal(ana.name, 'Bia =SOMA(1)');
+  assert.equal(ana.phone, '+5511987654321');
+  assert.ok(['ok', 'pendente', 'erro'].includes(ana.status));
+  assert.ok(ana.createdAt);
+  assert.equal((await call('/api/editor/inscritos')).status, 401);
 
   res = await call('/api/editor/inscritos.csv', { headers: { cookie } });
   assert.equal(res.status, 200);

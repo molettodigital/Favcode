@@ -620,6 +620,49 @@
   .nl__done p { margin: 0 0 18px; color: var(--ink-2); line-height: 1.5; }
   .nl__link { display: block; width: 100%; margin: 10px 0 0; padding: 10px; border: 0; background: none; color: var(--link); font: inherit; font-weight: 600; cursor: pointer; }
   @media (prefers-color-scheme: dark) { :root:not([data-theme='light']) .nl__error { color: #ff8a8a; } }
+  /* Convite da newsletter: só o e-mail. Cartão sempre escuro, nos dois temas. */
+  .pop { width: min(540px, calc(100vw - 24px)); max-height: calc(100dvh - 24px); padding: 0; border: 0; border-radius: 26px; background: #060737; color: #fff; box-shadow: 0 40px 100px -24px rgba(2, 111, 255, 0.55), 0 0 0 1px rgba(191, 249, 255, 0.14); overflow: auto; }
+  .pop::backdrop { background: rgba(4, 5, 42, 0.66); backdrop-filter: blur(4px); }
+  .pop[open] { animation: pop-in 0.42s cubic-bezier(0.2, 0.9, 0.25, 1.15); }
+  @keyframes pop-in { from { opacity: 0; transform: translateY(18px) scale(0.96); } to { opacity: 1; transform: none; } }
+  .pop__card { position: relative; padding: 34px 30px 26px; background:
+      radial-gradient(420px 260px at 100% 0%, rgba(2, 111, 255, 0.55), transparent 70%),
+      radial-gradient(300px 220px at 0% 100%, rgba(10, 160, 247, 0.28), transparent 70%),
+      repeating-radial-gradient(circle at 100% 0%, rgba(191, 249, 255, 0.08) 0 1px, transparent 1px 34px); }
+  .pop__close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; display: grid; place-items: center; border: 0; border-radius: 50%; background: rgba(255, 255, 255, 0.08); color: #dfe6ff; cursor: pointer; }
+  .pop__close:hover { background: rgba(255, 255, 255, 0.18); color: #fff; }
+  .pop__close svg { width: 18px; height: 18px; }
+  .pop__badge { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px; padding: 6px 12px; border-radius: 999px; background: rgba(191, 249, 255, 0.12); color: #bff9ff; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+  .pop__pulse { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #3dffb0; box-shadow: 0 0 0 0 rgba(61, 255, 176, 0.7); animation: pop-pulse 1.8s infinite; }
+  @keyframes pop-pulse { 70% { box-shadow: 0 0 0 10px rgba(61, 255, 176, 0); } 100% { box-shadow: 0 0 0 0 rgba(61, 255, 176, 0); } }
+  .pop h2 { margin: 0 34px 10px 0; font-family: var(--font-display); font-size: clamp(1.55rem, 5vw, 2rem); line-height: 1.12; letter-spacing: -0.03em; color: #fff; }
+  .pop h2 span { color: #5cc8ff; }
+  .pop__lede { margin: 0 0 20px; color: #cdd4f2; font-size: 1rem; line-height: 1.55; }
+  .pop__lede strong { color: #fff; }
+  .pop__row { display: flex; gap: 8px; padding: 6px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6); }
+  .pop__row input { flex: 1; min-width: 0; height: 48px; padding: 0 16px; border: 0; border-radius: 999px; background: transparent; color: #0a0d2e; font: inherit; font-size: 1rem; }
+  .pop__row input::placeholder { color: #6b7396; }
+  .pop__row input:focus-visible { outline: 2px solid #026fff; outline-offset: 0; }
+  .pop__row input[aria-invalid='true'] { outline: 2px solid #ff6b6b; }
+  .pop__submit { flex: none; min-height: 48px; padding: 0 22px; border: 0; border-radius: 999px; background: #026fff; color: #fff; font: inherit; font-weight: 800; font-size: 1rem; cursor: pointer; white-space: nowrap; }
+  .pop__submit:hover { background: #1a7dff; }
+  .pop__submit[disabled] { opacity: 0.65; cursor: progress; }
+  .pop .nl__captcha { margin: 12px 0 0; }
+  .pop__error { margin: 10px 0 0; color: #ffb3b3; font-size: 0.9rem; font-weight: 600; }
+  .pop__error:empty { display: none; }
+  .pop__fine { margin: 14px 0 0; color: #9ba4d0; font-size: 0.8rem; line-height: 1.5; }
+  .pop__fine a { color: #bff9ff; }
+  .pop__points { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 20px; padding: 0; list-style: none; color: #dfe6ff; font-size: 0.88rem; }
+  .pop__points li::before { content: '✓'; margin-right: 6px; color: #3dffb0; font-weight: 800; }
+  .pop__done-btn { width: 100%; margin: 6px 0 0; }
+  @media (max-width: 480px) {
+    .pop__card { padding: 30px 20px 22px; }
+    .pop__badge { margin-right: 44px; font-size: 0.66rem; letter-spacing: 0.08em; }
+    .pop__row { flex-direction: column; border-radius: 18px; }
+    .pop__row input { flex: none; width: 100%; border-radius: 12px; }
+    .pop__submit { width: 100%; border-radius: 12px; }
+  }
+  @media (prefers-reduced-motion: reduce) { .pop[open], .pop__pulse { animation: none; } }
   .footer details summary { cursor: pointer; font-weight: 600; color: var(--link); width: fit-content; padding: 4px 0; }
   .footer details ul { list-style: none; padding: 0; margin: 12px 0 0; display: flex; flex-wrap: wrap; gap: 6px 14px; }
   .footer details a { color: var(--ink-2); text-decoration: none; }
@@ -769,6 +812,31 @@
       <p data-nl-done-text></p>
       <a class="nl__submit" data-nl-article href="/" target="_blank" rel="noopener">Ler a matéria</a>
       <button type="button" class="nl__link" data-nl-close>Voltar ao radar</button>
+    </div>
+  </form>
+</dialog>
+<dialog class="pop" data-pop aria-labelledby="pop-title">
+  <form class="pop__card" data-pop-form novalidate>
+    <button type="button" class="pop__close" data-pop-close aria-label="Fechar"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div data-pop-step="form">
+      <p class="pop__badge"><span class="pop__pulse" aria-hidden="true"></span><span>Newsletter grátis · toda <span data-pop-day>sexta</span></span></p>
+      <h2 id="pop-title">As notícias que importam, <span>direto no seu e-mail</span></h2>
+      <p class="pop__lede">O resumo semanal do Radar FavCode: as principais notícias de pautas em alta, IA, marketing e pequenos negócios, comentadas por <strong data-pop-author>Clara Poleto</strong>.</p>
+      <ul class="pop__points"><li>1 e-mail por semana</li><li>Sem spam</li><li>Sai quando quiser</li></ul>
+      <div class="pop__row">
+        <label for="pop-email" class="sr-only">Seu e-mail</label>
+        <input id="pop-email" name="email" type="email" autocomplete="email" inputmode="email" maxlength="254" placeholder="Seu melhor e-mail" required>
+        <button class="pop__submit" type="submit" data-pop-submit>Quero receber</button>
+      </div>
+      <div class="nl__captcha" data-pop-captcha></div>
+      <p class="pop__error" role="alert" data-pop-error></p>
+      <p class="pop__fine">Ao clicar em “Quero receber”, você aceita receber a newsletter semanal do Radar FavCode por e-mail. Veja a <a href="/privacidade" target="_blank" rel="noopener">política de privacidade</a>.</p>
+    </div>
+    <div data-pop-step="done" hidden>
+      <p class="pop__badge"><span class="pop__pulse" aria-hidden="true"></span>Inscrição feita</p>
+      <h2>Pronto! <span>Nos vemos na <span data-pop-day>sexta</span>.</span></h2>
+      <p class="pop__lede">Enviamos um e-mail de boas-vindas. Se não aparecer, confira a aba Promoções ou o spam.</p>
+      <button type="button" class="pop__submit pop__done-btn" data-pop-close>Voltar ao radar</button>
     </div>
   </form>
 </dialog>
@@ -1511,7 +1579,7 @@
       try { localStorage.setItem(key, value); } catch { /* navegador sem armazenamento */ }
     },
   };
-  const nl = { reads: Number(nlStore.get(NL_READS)) || 0, member: nlStore.get(NL_MEMBER) === '1', pending: null, opener: null, widget: null, loading: null };
+  const nl = { reads: Number(nlStore.get(NL_READS)) || 0, member: nlStore.get(NL_MEMBER) === '1', pending: null, opener: null, widgets: new Map(), loading: null };
 
   function nlTurnstile() {
     if (!NEWSLETTER.siteKey) return Promise.resolve(null);
@@ -1527,26 +1595,33 @@
     return nl.loading;
   }
 
-  async function nlCaptcha() {
+  /** Um widget do Turnstile por formulário (janela de cadastro e convite). */
+  async function nlCaptcha(box = $('[data-nl-captcha]'), theme) {
     const ts = await nlTurnstile();
-    if (!ts || nl.widget !== null) return;
-    nl.widget = ts.render($('[data-nl-captcha]'), {
+    if (!ts || nl.widgets.has(box)) return;
+    nl.widgets.set(box, ts.render(box, {
       sitekey: NEWSLETTER.siteKey,
       appearance: 'interaction-only',
       language: 'pt-br',
-      theme: document.documentElement.dataset.theme === 'dark' ? 'dark' : 'auto',
-    });
+      theme: theme || (document.documentElement.dataset.theme === 'dark' ? 'dark' : 'auto'),
+    }));
   }
 
   /** Token do Turnstile; espera até 8 s pela verificação automática. */
-  async function nlToken() {
+  async function nlToken(box = $('[data-nl-captcha]')) {
     if (!NEWSLETTER.siteKey) return '';
     for (let i = 0; i < 40; i++) {
-      const token = window.turnstile && nl.widget !== null ? window.turnstile.getResponse(nl.widget) : '';
+      const id = nl.widgets.get(box);
+      const token = window.turnstile && id !== undefined ? window.turnstile.getResponse(id) : '';
       if (token) return token;
       await new Promise((r) => setTimeout(r, 200));
     }
     return '';
+  }
+
+  function nlResetCaptcha(box = $('[data-nl-captcha]')) {
+    const id = nl.widgets.get(box);
+    if (window.turnstile && id !== undefined) window.turnstile.reset(id);
   }
 
   function openNewsletter({ url = '', opener = null } = {}) {
@@ -1613,7 +1688,7 @@
       if (!res.ok) {
         const field = body.fields ? Object.keys(body.fields)[0] : null;
         fail(body.error || 'Não foi possível concluir o cadastro. Tente de novo.', field);
-        if (window.turnstile && nl.widget !== null) window.turnstile.reset(nl.widget);
+        nlResetCaptcha();
         return;
       }
       nl.member = true;
@@ -1632,6 +1707,112 @@
       fail('Sem conexão. Confira a internet e tente de novo.');
     } finally {
       button.disabled = false;
+    }
+  }
+
+  // ---------- Convite (popup só com e-mail) ----------
+  // Aparece uma vez depois de alguns segundos de leitura, ao rolar boa parte da página ou quando o
+  // mouse sai pela parte de cima da janela. Quem fecha só vê de novo em 7 dias; quem assina, nunca.
+  const POP_SEEN = 'radar:convite';
+  const POP_SNOOZE = 7 * 24 * 60 * 60 * 1000;
+  const pop = { shown: false, start: Date.now(), cleanup: [] };
+
+  function popAllowed() {
+    if (!NEWSLETTER.enabled || nl.member || pop.shown) return false;
+    return Date.now() - (Number(nlStore.get(POP_SEEN)) || 0) > POP_SNOOZE;
+  }
+
+  function openPop({ force = false } = {}) {
+    if (!force && !popAllowed()) return;
+    if (!force && document.querySelector('dialog[open]')) return; // não atropela outra janela
+    const dialog = $('[data-pop]');
+    if (dialog.open) return;
+    pop.shown = true;
+    pop.cleanup.forEach((off) => off());
+    nlStore.set(POP_SEEN, String(Date.now()));
+    $('[data-pop-step="form"]').hidden = false;
+    $('[data-pop-step="done"]').hidden = true;
+    $('[data-pop-error]').textContent = '';
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+    setTimeout(() => $('#pop-email').focus(), 60);
+    nlCaptcha($('[data-pop-captcha]'), 'dark');
+  }
+
+  function closePop() {
+    const dialog = $('[data-pop]');
+    if (dialog.open) dialog.close();
+  }
+
+  async function submitPop(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const input = form.elements.email;
+    const error = $('[data-pop-error]');
+    const button = $('[data-pop-submit]');
+    const email = String(input.value || '').trim();
+    input.removeAttribute('aria-invalid');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      error.textContent = 'Informe um e-mail válido.';
+      input.setAttribute('aria-invalid', 'true');
+      input.focus();
+      return;
+    }
+    button.disabled = true;
+    error.textContent = '';
+    const box = $('[data-pop-captcha]');
+    try {
+      const token = await nlToken(box);
+      if (NEWSLETTER.siteKey && !token) {
+        error.textContent = 'Só um instante: estamos confirmando que você não é um robô. Tente de novo.';
+        return;
+      }
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ email, consent: true, token, source: 'convite' }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        error.textContent = body.error || 'Não foi possível concluir o cadastro. Tente de novo.';
+        nlResetCaptcha(box);
+        return;
+      }
+      nl.member = true;
+      nlStore.set(NL_MEMBER, '1');
+      $('[data-nl-cta]').hidden = true;
+      $('[data-pop-step="form"]').hidden = true;
+      $('[data-pop-step="done"]').hidden = false;
+      $('[data-pop-step="done"] [data-pop-close]').focus();
+    } catch {
+      error.textContent = 'Sem conexão. Confira a internet e tente de novo.';
+    } finally {
+      button.disabled = false;
+    }
+  }
+
+  function initPop() {
+    $$('[data-pop-day]').forEach((el) => (el.textContent = NEWSLETTER.day.replace('-feira', '')));
+    $('[data-pop-author]').textContent = NEWSLETTER.author;
+    $('[data-pop-form]').addEventListener('submit', submitPop);
+    $('[data-pop]').addEventListener('click', (e) => {
+      if (e.target === e.currentTarget || e.target.closest('[data-pop-close]')) closePop();
+    });
+    if (!popAllowed()) return;
+    const on = (target, type, fn, opts) => {
+      target.addEventListener(type, fn, opts);
+      pop.cleanup.push(() => target.removeEventListener(type, fn, opts));
+    };
+    const timer = setTimeout(() => openPop(), 18000);
+    pop.cleanup.push(() => clearTimeout(timer));
+    on(window, 'scroll', () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      if (max > 0 && scrollY / max > 0.45 && Date.now() - pop.start > 6000) openPop();
+    }, { passive: true });
+    if (matchMedia('(pointer: fine)').matches) {
+      on(document, 'mouseout', (e) => {
+        if (!e.relatedTarget && e.clientY <= 0 && Date.now() - pop.start > 5000) openPop();
+      });
     }
   }
 
@@ -1663,7 +1844,7 @@
 
     $('[data-nl-form]').addEventListener('submit', submitNewsletter);
     document.addEventListener('click', (e) => {
-      if (e.target.closest('[data-nl-subscribe]')) openNewsletter({ opener: e.target.closest('[data-nl-subscribe]') });
+      if (e.target.closest('[data-nl-subscribe]')) openPop({ force: true });
       if (e.target.closest('[data-nl-close]')) closeNewsletter();
       if (e.target.closest('[data-nl-article]')) setTimeout(closeNewsletter, 0);
     });
@@ -1672,6 +1853,7 @@
       if (e.target === e.currentTarget) closeNewsletter();
     });
     $('[data-nl]').addEventListener('close', () => nl.opener?.focus?.());
+    initPop();
   }
 
   // ---------- Início ----------

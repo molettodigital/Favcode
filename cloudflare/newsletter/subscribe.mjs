@@ -31,7 +31,8 @@ export function validateSubscriber(body) {
   const name = String(body?.name ?? '').replace(/\s+/g, ' ').trim();
   const email = String(body?.email ?? '').trim().toLowerCase();
   const errors = {};
-  if (name.length < 2 || name.length > 80 || /https?:|www\.|[<>@]/i.test(name)) errors.name = 'Informe seu nome.';
+  // O nome é opcional (o convite do site pede só o e-mail); se vier, precisa parecer um nome.
+  if (name && (name.length < 2 || name.length > 80 || /https?:|www\.|[<>@]/i.test(name))) errors.name = 'Informe seu nome.';
   if (email.length > 254 || !EMAIL.test(email)) errors.email = 'Informe um e-mail válido.';
   const { phone, ok } = normalizePhone(body?.phone);
   if (!ok) errors.phone = 'Confira o telefone, com DDD.';
@@ -82,7 +83,7 @@ export async function handleSubscribe(request, env, ctx) {
     `INSERT INTO subscribers (email, name, phone, source, consent_at, consent_version, created_at, updated_at)
      VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?5, ?5)
      ON CONFLICT(email) DO UPDATE SET
-       name = excluded.name,
+       name = CASE WHEN excluded.name <> '' THEN excluded.name ELSE subscribers.name END,
        phone = COALESCE(excluded.phone, subscribers.phone),
        consent_at = excluded.consent_at,
        consent_version = excluded.consent_version,

@@ -9,7 +9,7 @@ export const NEWSLETTER = {
   closing: 'Até a próxima sexta,\nClara Poleto',
 };
 
-export const CONSENT_VERSION = '2026-09-29';
+export const CONSENT_VERSION = '2026-09-30';
 
 const DEFAULT_ORIGIN = 'https://radar.favcode.com.br';
 

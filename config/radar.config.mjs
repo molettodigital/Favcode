@@ -31,7 +31,7 @@ export const newsletter = {
   day: 'sexta-feira',
   controller: 'FavCode',
   privacyEmail: 'noticias@favcode.com.br',
-  consentVersion: '2026-09-29',
+  consentVersion: '2026-09-30',
   turnstileSiteKey: '0x4AAAAAAFIhmsH5ZAf0Qnyv',
 };
 

@@ -165,7 +165,7 @@ export function renderWelcome({ name, origin }) {
   const subject = 'Boas-vindas à newsletter do Radar FavCode';
   const intro = [
     `Oi${first ? `, ${escapeHtml(first)}` : ''}! Que bom ter você por aqui.`,
-    `Toda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana em IA, tecnologia, marketing, design e publicidade, com os meus comentários sobre o que cada uma muda para quem trabalha com comunicação.`,
+    `Toda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com os meus comentários sobre o que cada uma muda para quem trabalha com comunicação ou empreende.`,
     'Enquanto a primeira edição não chega, o radar segue atualizado a cada hora:',
   ];
   const body = `<tr><td style="padding:28px 28px 26px;">
@@ -180,7 +180,7 @@ export function renderWelcome({ name, origin }) {
     small(`Você recebeu este e-mail porque se cadastrou em <a href="${escapeHtml(origin)}/" style="color:${C.muted};">radar.favcode.com.br</a>. Se não foi você, responda este e-mail que tiramos seu endereço da lista. Toda newsletter também tem um link para descadastrar.`),
     small(`<a href="${escapeHtml(origin)}/privacidade" style="color:${C.muted};">Política de privacidade</a> · © ${new Date().getFullYear()} FavCode`),
   ].join('');
-  const text = `Oi${first ? `, ${first}` : ''}! Que bom ter você por aqui.\n\nToda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana em IA, tecnologia, marketing, design e publicidade, com os meus comentários.\n\nO radar: ${origin}/\n\nAté sexta,\n${NEWSLETTER.author}\n\nPolítica de privacidade: ${origin}/privacidade`;
+  const text = `Oi${first ? `, ${first}` : ''}! Que bom ter você por aqui.\n\nToda ${NEWSLETTER.day} você vai receber as notícias mais importantes da semana: o que está em alta no digital, IA, tecnologia, marketing e pequenos negócios, com os meus comentários.\n\nO radar: ${origin}/\n\nAté sexta,\n${NEWSLETTER.author}\n\nPolítica de privacidade: ${origin}/privacidade`;
   return { subject, html: layout({ title: subject, preheader: 'Toda sexta, as notícias da semana comentadas por Clara Poleto.', body, footer, origin }), text };
 }
 

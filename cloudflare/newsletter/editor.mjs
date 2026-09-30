@@ -139,6 +139,23 @@ export async function handleEditor(request, env, ctx, url) {
     });
   }
 
+  if (path === '/api/editor/inscritos' && request.method === 'GET') {
+    const { results = [] } = await env.DB.prepare(
+      'SELECT email, name, phone, source, created_at, synced_at, sync_error FROM subscribers ORDER BY created_at DESC LIMIT 5000',
+    ).all();
+    const items = results.map((r) => ({
+      email: r.email,
+      name: r.name,
+      phone: r.phone || '',
+      source: r.source,
+      createdAt: r.created_at,
+      // ok: já está na lista do Resend; pendente: ainda vai; erro: o Resend recusou (tenta de novo a cada 15 min).
+      status: r.synced_at ? 'ok' : r.sync_error ? 'erro' : 'pendente',
+      error: r.sync_error || '',
+    }));
+    return json(200, { items }, { 'cache-control': 'no-store' });
+  }
+
   if (path === '/api/editor/inscritos.csv' && request.method === 'GET') {
     const { results = [] } = await env.DB.prepare(
       'SELECT email, name, phone, source, created_at, consent_at, consent_version, synced_at FROM subscribers ORDER BY created_at DESC',

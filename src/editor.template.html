@@ -78,6 +78,25 @@
   .login { max-width: 420px; margin: 8vh auto; }
   .toast { position: fixed; left: 50%; bottom: 90px; transform: translateX(-50%); z-index: 20; padding: 10px 16px; border-radius: 12px; background: var(--navy); color: #fff; font-size: 0.9rem; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); }
   .toast--err { background: var(--err); }
+  .subs__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 0 0 12px; }
+  .subs__head h2 { margin: 0; }
+  .subs__head .btn { margin-left: auto; }
+  .subs table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .subs th { text-align: left; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--line); }
+  .subs td { padding: 10px; border-bottom: 1px solid var(--line); vertical-align: top; overflow-wrap: anywhere; }
+  .subs td small { display: block; color: var(--muted); font-size: 0.78rem; }
+  .subs tr:last-child td { border-bottom: 0; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+  .pill--ok { background: #dcf5ea; color: var(--ok); }
+  .pill--pendente { background: #fff3d6; color: var(--warn); }
+  .pill--erro { background: #fde2e2; color: var(--err); }
+  .subs__more { margin: 12px 0 0; }
+  @media (max-width: 640px) {
+    .subs thead { display: none; }
+    .subs tr { display: block; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .subs tr:last-child { border-bottom: 0; }
+    .subs td { display: block; padding: 2px 0; border: 0; }
+  }
 </style>
 </head>
 <body>
@@ -113,12 +132,21 @@
       <p class="muted" data-week></p>
       <div class="row">
         <span data-subs></span>
-        <a class="btn btn--sm" href="/api/editor/inscritos.csv" download>Baixar inscritos (planilha)</a>
         <button class="btn btn--sm" type="button" data-generate>Montar novo rascunho</button>
       </div>
       <p class="alert" data-no-resend hidden>O envio de e-mails ainda não está configurado (falta a chave do Resend na Cloudflare). Dá para editar e ver a prévia; o envio fica desativado.</p>
       <p class="alert" data-ai-error hidden>A IA não conseguiu sugerir comentários desta vez. As notícias mais repercutidas já estão aqui; é só escrever os comentários.</p>
       <p class="alert" data-locked hidden></p>
+    </div>
+
+    <div class="panel subs">
+      <div class="subs__head">
+        <h2>Inscritos <span class="muted" data-subs-count></span></h2>
+        <a class="btn btn--sm" href="/api/editor/inscritos.csv" download>Baixar planilha</a>
+      </div>
+      <input type="search" placeholder="Buscar por nome, e-mail ou telefone" aria-label="Buscar inscritos" data-subs-search hidden style="margin:0 0 10px">
+      <div data-subs-list><p class="muted">Carregando…</p></div>
+      <button class="btn btn--sm subs__more" type="button" data-subs-more hidden></button>
     </div>
 
     <div class="panel" data-empty hidden>
@@ -191,7 +219,8 @@
   const esc = (v) => String(v ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
   const fmtTime = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' });
   const fmtFull = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeStyle: 'short' });
-  const state = { edition: null, data: null, subs: { total: 0 }, resend: false, locked: false, saveTimer: null, saving: null, candidates: null };
+  const fmtDate = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  const state = { edition: null, data: null, subs: { total: 0 }, resend: false, locked: false, saveTimer: null, saving: null, candidates: null, people: null, allPeople: false };
 
   async function api(path, { method = 'GET', body } = {}) {
     const res = await fetch(path, {
@@ -489,6 +518,68 @@
     }
   });
 
+  // ---------- Inscritos ----------
+  const ORIGIN_LABEL = { convite: 'pelo convite (popup)', leitura: 'ao abrir uma matéria', rodape: 'pelo convite do rodapé', site: 'pelo site' };
+  const STATUS_LABEL = { ok: 'Recebe a newsletter', pendente: 'Entrando na lista', erro: 'Erro ao entrar na lista' };
+  const PAGE = 50;
+  function fmtPhone(phone) {
+    const d = String(phone || '').replace(/\D/g, '');
+    if (d.startsWith('55') && (d.length === 12 || d.length === 13)) {
+      const n = d.slice(2);
+      return `(${n.slice(0, 2)}) ${n.slice(2, -4)}-${n.slice(-4)}`;
+    }
+    return phone || '';
+  }
+  function renderPeople() {
+    const box = $('[data-subs-list]');
+    const people = state.people || [];
+    $('[data-subs-count]').textContent = `(${people.length})`;
+    $('[data-subs-search]').hidden = people.length < 8;
+    const q = $('[data-subs-search]').value.trim().toLowerCase();
+    const qDigits = q.replace(/\D/g, '');
+    const found = q
+      ? people.filter((p) => `${p.name} ${p.email}`.toLowerCase().includes(q) || (qDigits.length >= 3 && p.phone.replace(/\D/g, '').includes(qDigits)))
+      : people;
+    const shown = q || state.allPeople ? found : found.slice(0, PAGE);
+    const more = $('[data-subs-more]');
+    more.hidden = shown.length >= found.length;
+    more.textContent = `Mostrar todos os ${found.length}`;
+    if (!people.length) {
+      box.innerHTML = '<p class="muted">Ninguém se cadastrou ainda. Os inscritos aparecem aqui assim que preenchem o formulário do site.</p>';
+      return;
+    }
+    if (!found.length) {
+      box.innerHTML = '<p class="muted">Nenhum inscrito encontrado.</p>';
+      return;
+    }
+    box.innerHTML = `<table><thead><tr><th>Nome</th><th>E-mail</th><th>WhatsApp</th><th>Cadastro</th><th>Situação</th></tr></thead><tbody>${shown
+      .map((p) => {
+        const digits = p.phone.replace(/\D/g, '');
+        return `<tr>
+          <td>${p.name ? `<strong>${esc(p.name)}</strong>` : '<span class="muted">sem nome</span>'}</td>
+          <td><a href="mailto:${esc(p.email)}">${esc(p.email)}</a></td>
+          <td>${digits ? `<a href="https://wa.me/${esc(digits)}" target="_blank" rel="noopener">${esc(fmtPhone(p.phone))}</a>` : '<span class="muted">—</span>'}</td>
+          <td>${p.createdAt ? esc(fmtDate.format(new Date(p.createdAt))) : ''}<small>${esc(ORIGIN_LABEL[p.source] || '')}</small></td>
+          <td><span class="pill pill--${esc(p.status)}"${p.error ? ` title="${esc(p.error)}"` : ''}>${esc(STATUS_LABEL[p.status] || p.status)}</span></td>
+        </tr>`;
+      })
+      .join('')}</tbody></table>`;
+  }
+  async function loadPeople() {
+    try {
+      state.people = (await api('/api/editor/inscritos')).items;
+    } catch (err) {
+      $('[data-subs-list]').innerHTML = `<p class="muted">Não foi possível carregar os inscritos: ${esc(err.message)}</p>`;
+      return;
+    }
+    renderPeople();
+  }
+  $('[data-subs-search]').addEventListener('input', renderPeople);
+  $('[data-subs-more]').addEventListener('click', () => {
+    state.allPeople = true;
+    renderPeople();
+  });
+
   $$('[data-generate]').forEach((b) =>
     b.addEventListener('click', async () => {
       if (state.edition && !state.locked && !confirm('Montar um rascunho novo substitui o atual, com os comentários que você já escreveu. Continuar?')) return;
@@ -517,6 +608,7 @@
     $('[data-loading]').hidden = true;
     $('[data-app]').hidden = false;
     load(result);
+    loadPeople();
     $('[data-save-status]').textContent = state.edition ? `Atualizado às ${fmtTime.format(new Date(state.edition.updated_at || Date.now()))}` : '';
   }
 
