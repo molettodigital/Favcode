@@ -1,9 +1,9 @@
 {
  "version": 1,
  "entries": {
-  "032bfcfc72483449": {
-   "t": "Sam Altman afirma que a OpenAI não abrirá capital até que seus modelos estejam seguros",
-   "s": "Por meses, as pessoas se perguntam quando a OpenAI abrirá capital. O CEO Sam Altman diz que isso não acontecerá até que a empresa possa fazer promessas melhores sobre a segurança dos modelos, sem um cronograma definido à vista. \"Pretendemos continuar com...\""
+  "02127c43445add20": {
+   "t": "O que o trabalho de predictive scoring da Kroger significa para marketers de e‑commerce",
+   "s": "A rede de supermercados, em parceria com a Vidmob e a MMA Global, conseguiu prever a conversão de e‑commerce de criativos de anúncios com 81% de precisão."
   },
   "08ddd997436548ec": {
    "t": "App de câmera Halide agora oferece controle total da abertura do iPhone 18 Pro",
@@ -21,10 +21,6 @@
    "t": "‘Xbox não está à venda’, diz chefe de games da Microsoft",
    "s": "A CEO da Xbox, Asha Sharma, negou relatos de que a Microsoft está considerando vender sua divisão Xbox. The Information informou em junho que o CEO Satya Nadella e a CFO Amy Hood estavam avaliando a cisão…"
   },
-  "0f2f8b7edaf1233e": {
-   "t": "Como a plataforma de marca da Thorne levou a um acordo de US$ 3,8 bilhões com a P&G — e o que vem a seguir",
-   "s": "A diretora de crescimento Mary Beech detalha como o trabalho com a consultoria de marcas Redscout transformou insights de consumo em campanhas e em um estilo de comunicação."
-  },
   "111a83ecc873cafe": {
    "t": "Redator dá nota 95% a conteúdo feito por IA",
    "s": "Neville Medhora, do Swipe File, diz que o conteúdo de IA pode rivalizar com o humano e gerar 50 versões."
@@ -37,13 +33,13 @@
    "t": "Best Buy lançará loja no TikTok Shop",
    "s": "Clientes poderão comprar produtos diretamente pela plataforma de social commerce, com os pedidos sendo atendidos pelo varejista."
   },
-  "18b8e2e9db2c756b": {
-   "t": "Compradores vão gastar mais e comprar menos nesta temporada de festas",
-   "s": "As vendas de fim de ano podem crescer mesmo com os consumidores reduzindo a qualidade das compras, diluindo-as ao longo da temporada e usando descontos para estocar itens essenciais."
-  },
   "194aec3f958ea4c2": {
    "t": "Top 50 dos canais do YouTube mais inscritos no mundo – semana de 27/09/2026",
    "s": "Lucan Pevidor teve um setembro perfeito no Global Sub Top 50. Publicamos quatro edições da nossa lista de inscritos durante o nono mês do ano, e Pevidor ficou em primeiro lugar em todas as quatro. Pevidor…"
+  },
+  "19cb9028546daa30": {
+   "t": "Cava contrata ex‑marketer da Dr. Squatch como CMO para impulsionar crescimento",
+   "s": "John Ludeke, recém‑chegado como chief brand officer da Unilever, tem a missão de aprofundar a conexão com consumidores da rede fast‑casual."
   },
   "1af85c32e54d429b": {
    "t": "Óculos inteligentes de entregadores da Amazon deverão fotografar 'quase constantemente'",
@@ -52,6 +48,10 @@
   "1f66a36bba2035fa": {
    "t": "Amazon bloqueou o Muse da Meta, e o Robots.txt não tinha nada a dizer",
    "s": "Qualquer site pode escrever a frase da página de bloqueio da Amazon nos seus próprios termos. Identificar um agente que parece um comprador é a parte difícil."
+  },
+  "225c3a1d2a84c523": {
+   "t": "Os Tamagotchis de IA estão chegando",
+   "s": "Embora a IA tenha avançado bastante nos smartphones e computadores das pessoas, ela quase não teve sucesso em dispositivos dedicados. Mas, no próximo ano, duas grandes empresas de IA, Meta e OpenAI, tentarão mudar isso. E elas…"
   },
   "2492266a4d227b5f": {
    "t": "AMentoria capta US$ 196 mil em rodada seed para expandir plataforma de educação no Brasil",
@@ -68,6 +68,10 @@
   "25cee0bcd2194fd4": {
    "t": "Meta contesta alegação de que Muse leu mensagens privadas de usuário sem permissão",
    "s": "Meta afirma que seu agente de IA Muse não pode acessar as Mensagens de um usuário sem permissão explícita, contestando o relato de um jornalista de que o agente leu suas mensagens privadas enquanto a configuração necessária do Mac estava desativada."
+  },
+  "2654518ea749f22e": {
+   "t": "KFC lança jogo absurdo que pede aos fãs: “não quebre!”",
+   "s": ""
   },
   "28f884c91a705a76": {
    "t": "1-800-Flowers vai vender PersonalizationMall.com e Things Remembered",
@@ -101,6 +105,14 @@
    "t": "EliseAI, apoiada pela a16z, arrecada US$ 350 milhões e dobra valuation para US$ 4 bilhões",
    "s": "EliseAI levanta US$ 350 milhões, dobrando a avaliação em um ano."
   },
+  "372e30ab146c5eb9": {
+   "t": "Reddit afirma que precisa reduzir acesso ao ‘Old Reddit’ por causa de bots de IA",
+   "s": "Reddit está limitando ainda mais quem pode usar a experiência “Old Reddit” como parte de seus esforços para combater a raspagem e o tráfego automatizado. Recentemente, o Reddit passou a exigir login dos usuários para usar o Old Reddit, mas em…"
+  },
+  "37369d967ea793b1": {
+   "t": "O investidor por trás da aposta de US$ 700 milhões da Neko Health em escanear todo o corpo",
+   "s": "Neko Health, startup do bilionário do Spotify, levantou US$ 700 milhões para criar um negócio baseado na digitalização do corpo, mas não é a única empresa que coloca seu roadmap em torno de um novo tipo de saúde preventiva. Midjourney é…"
+  },
   "3c503d73b6dc7f8e": {
    "t": "Novas ferramentas de e-commerce: 23 de setembro de 2026",
    "s": "Nesta semana: novidades sobre anúncios no ChatGPT, pagamentos digitais, entregas autenticadas, comércio agêntico, modelos de CRM, logística, marketing de afiliados, feedback de clientes e mais."
@@ -117,9 +129,17 @@
    "t": "O que é predictive media intelligence? Guia para equipes de marketing",
    "s": "Inteligência de mídia preditiva dá à sua equipe uma vantagem antecipada sobre a próxima tendência, história ou crise. Não precisa de bola de cristal."
   },
-  "439581447d594f3c": {
-   "t": "Campanhas globais geram menos resultados comerciais, revela pesquisa",
-   "s": "Estudo da Publicis London, System1 e Effie comparou a eficácia de campanhas em mercados globais e locais."
+  "3d9ee0084afcadc1": {
+   "t": "CMO da Applebee’s, Michelle Chin, fala sobre a conquista da BBDO Chicago e a modernização do bairro",
+   "s": "Acabando de escolher uma nova agência criativa, Chin compartilha lições da Starbucks e de marcas de luxo de bens de consumo, como o UGC impulsiona o boca‑a‑boca moderno e como navegar em um espaço competitivo de restaurantes casuais."
+  },
+  "3f9bc876c9b448ac": {
+   "t": "Reddit elimina feeds RSS e encerra acesso público à API por causa de bots de IA",
+   "s": "Reddit está encerrando o suporte a feeds RSS, enquanto a empresa continua restringindo o acesso ao seu acervo de conteúdo gerado por usuários."
+  },
+  "4305b658a0fc58f7": {
+   "t": "Inscrições abertas para o ADWEEK Team Visionary Awards 2027",
+   "s": "ADWEEK está aceitando inscrições para o ADWEEK Team Visionary Awards 2027. Uma campanha de destaque ou um ano de crescimento transformador não pode ser atribuído a apenas uma pessoa. É preciso um…"
   },
   "449eae546e7df171": {
    "t": "Condé Nast CEO Roger Lynch deixa a empresa para a Mattel",
@@ -145,14 +165,6 @@
    "t": "Patreon e jogadores de tabuleiro apostam alto com dado D20 gigantesco",
    "s": ""
   },
-  "50a43d7b83b7a621": {
-   "t": "Open TTS Leaderboard: avaliação escalável para Text‑to‑Speech multilingue e clonagem de voz",
-   "s": ""
-  },
-  "51e77d6af8dfa970": {
-   "t": "Trump pede que governo dos EUA chame IA de “Super Intelligence”",
-   "s": "The US executive branch is no longer acknowledging the existence of \"artificial intelligence.\" Going forward, official policy websites, policy documents, and press releases will refer only to \"Super Intelligence,\" thanks…"
-  },
   "54597613c5b1761f": {
    "t": "Wikipedia, Podcasts e Reddit agora geram citações de IA, pergunte ao seu time de PR como fizeram",
    "s": "A expertise da sua equipe de PR em Wikipedia, podcasts e Reddit pode ajudar a construir os sinais de terceiros que sustentam a visibilidade em IA."
@@ -173,10 +185,6 @@
    "t": "Profund versus Athena ai para AEO: como as ferramentas se comparam",
    "s": "Se você buscou “Profound versus Athena AI for AEO”, provavelmente encontrou um muro: todas as comparações são feitas por concorrentes, afiliados ou pelos próprios fornecedores."
   },
-  "5699f9c9c515b742": {
-   "t": "Grokipedia, a enciclopédia com IA de Elon Musk, volta a atualizar",
-   "s": "Grokipedia, a enciclopédia online alimentada por IA da SpaceXAI, parece estar atualizando artigos novamente após uma pausa de vários meses. Em agosto, o Lawfare reportou que os artigos na Grokipedia não tinham revisado edições desde…"
-  },
   "56b037e8da1831a0": {
    "t": "10 anos da The Trade Desk na Wall Street: ciclos, crises e a batalha pelo que vem a seguir",
    "s": "Uma década após seu IPO blockbuster, a The Trade Desk passou de queridinha do adtech a DSP independente em apuros, enfrentando desaceleração de crescimento, deserções de parceiros e queda de 91% nas ações enquanto aposta seu próximo capítulo na IA."
@@ -193,6 +201,10 @@
    "t": "YouTube CTR, estrutura de Instagram Reels e notícias do setor",
    "s": "Confira o resumo dos insights, tendências e atualizações mais importantes que você precisa saber hoje! Atualize-se em minutos e entre na semana preparado. Na edição de hoje: fórmula de empacotamento do YouTube, estrutura de Reels no Instagram…"
   },
+  "5e53a7aab8b82912": {
+   "t": "A era de verificação de idade do Discord chegou, apesar da reação da comunidade",
+   "s": "Segundo o Discord, 90% dos usuários não precisarão verificar a idade."
+  },
   "5ea2de3a353432d3": {
    "t": "Meta e YouTube agora dizem que vão aceitar anúncios do documentário ‘Musk’",
    "s": "Duas empresas agora dizem que vão aceitar publicidade do próximo documentário do diretor Alex Gibney sobre Elon Musk, depois de reportagens de que várias redes sociais tinham recusado os anúncios."
@@ -201,13 +213,13 @@
    "t": "TikTok vai pagar pelo menos US$ 100 milhões em acordo no Alabama",
    "s": "O TikTok vai pagar ao Alabama pelo menos US$ 100 milhões em um acordo ligado a acusações de que a plataforma de vídeos curtos enganou usuários sobre segurança e foi projetada para viciar crianças."
   },
-  "63156ab7946c62fd": {
-   "t": "Peak XV eleva teto de investimento Seed do Surge para US$ 5 milhões e lança coorte de 18 startups",
-   "s": "Treze das 18 startups na mais recente turma Surge da Peak XV têm como alvo mercados globais, enquanto mais da metade está baseada na Índia."
-  },
   "63ae5250cbb1e6ae": {
    "t": "Manual omnichannel para marcas de beleza",
    "s": "Spas e varejistas de nicho querem exclusividade, mas também produtos que seus clientes reconheçam. Esse é o desafio."
+  },
+  "646bf36ea7c53491": {
+   "t": "Como usar vector embeddings em AEO",
+   "s": "Um vector embedding é uma representação numérica criada por um modelo de embedding. O modelo converte texto em uma lista de números que pode ser comparada com outros vetores, ajudando um sistema de recuperação a encontrar trechos com…"
   },
   "654b03aadd8e9ad8": {
    "t": "8 alternativas ao Sprout Social para experimentar em 2026 (gratuitas + pagas)",
@@ -229,6 +241,10 @@
    "t": "Meta adiciona selos de colaborador ao app de chat Forums",
    "s": "a empresa está tentando converter os grupos do facebook em um formato de perguntas e respostas mais interativo, além de acrescentar rótulos de tópicos para ajudar na descoberta."
   },
+  "6addc8b03ca8b0f7": {
+   "t": "Vale a pena o escaneamento corporal da Neko Health? Startup do bilionário do Spotify chega à América",
+   "s": "Neko Health, startup do bilionário do Spotify, levantou US$ 700 milhões para criar um negócio baseado na digitalização do corpo, mas não é a única empresa que coloca seu roadmap em torno de um novo tipo de saúde preventiva. Midjourney é…"
+  },
   "6b74183cd5e9787d": {
    "t": "Vamos ao destaque: Twitch ajuda creators a transformar seus Clips em “recaps” de stream",
    "s": "Assistir streams no Twitch pode ser muito divertido, mas quem tem tempo de dedicar várias horas ao conteúdo ao vivo? Muitos streamers têm dificuldade de alcançar a maioria dos fãs durante as transmissões, mas o Twitch está desenvolvendo uma…"
@@ -236,10 +252,6 @@
   "6cdcf9cccf9512dc": {
    "t": "Como monetizar Instagram em 2026: 12 formas comprovadas",
    "s": "Aprenda a monetizar Instagram em 2026. De parcerias de marca a links afiliados, anúncios em Reels, Subscriptions, Shops e muito mais."
-  },
-  "6d0a365280202949": {
-   "t": "Indiferente a esportes? Truly Hard Seltzer tem o merchandising ideal para você",
-   "s": ""
   },
   "6df25f2925e0bf2b": {
    "t": "NG.CASH capta US$ 15 milhões com a Blockchain Capital",
@@ -273,29 +285,21 @@
    "t": "Novas ferramentas de e‑commerce: 30 de setembro de 2026",
    "s": "Novos serviços esta semana incluem commerce agentic, avaliações de produtos, negócios locais, gestão de devoluções, desenvolvimento WordPress e vendas transfronteiriças."
   },
-  "7cf648f343792ad1": {
-   "t": "Rota da tocha olímpica de LA28 visitará todos os 50 estados pela primeira vez",
-   "s": "Organizadores revelam plano para rota histórica nos EUA, que partirá de Atlanta antes dos Jogos de Verão de 2028."
-  },
-  "7de4bd313303c080": {
-   "t": "Restate recebe US$ 20 milhões com o aumento da demanda por infraestrutura durável com agentes de IA",
-   "s": "Em vez de construir seu motor de execução durável sobre um banco de dados externo, a empresa desenvolveu suas próprias camadas de armazenamento, replicação e redundância. Essa arquitetura permite que a Restate seja excepcionalmente rápida e…"
-  },
   "7e294b2d328d1cab": {
    "t": "Steve Buscemi retorna como vilão intergaláctico para Telstra",
    "s": ""
+  },
+  "7f87b95c21590c1c": {
+   "t": "Há uma nova forma de quebrar RSA que é mais rápida do que tudo que já vimos",
+   "s": "Até agora, criptógrafos acreditavam que a fatoração era a única forma de quebrar RSA. Não mais."
   },
   "804afc5f9475ec54": {
    "t": "Por trás da tentativa da Hoka de dominar o período pré‑maratona de NYC",
    "s": "A campanha mais recente da Hoka marca sua tentativa de conquistar a lealdade de corredores em Nova York no período que antecede a maratona da cidade, que acontece em pouco mais de um mês."
   },
-  "8136cc43c6841cf2": {
-   "t": "DoorDash reforça parceria com a WPP, nomeando agência como parceira global de mídia",
-   "s": "A WPP continua a ter sucesso ao aprofundar relacionamentos com clientes existentes após vitória similar com a Estée Lauder e ao conquistar mídia dos EUA para a Wendy’s."
-  },
-  "839de3cb140b7c08": {
-   "t": "A feia economia da IA de consumo",
-   "s": "Há uma razão pela qual laboratórios de ponta têm ficado reticentes quanto à IA de consumo — e não é porque a tecnologia não seja boa o suficiente."
+  "82591d91feaab36f": {
+   "t": "Clone do Jev da OpenAI pode ajudar laboratório de fronteira a conter seus agentes enxameadores",
+   "s": "A \"Decisions API\" da OpenAI é um clone do Jev que reforça a importância de inteligência rápida e barata."
   },
   "847ad028a00fb764": {
    "t": "Como Kroger, Giant Eagle e DoorDash estão construindo seus assistentes de IA agentic",
@@ -309,17 +313,9 @@
    "t": "Startup de utensílios de cozinha Caraway foi processada por concorrentes e usou a ação judicial em marketing",
    "s": "Em fevereiro, dois dos maiores players do setor de utensílios de cozinha — Groupe SEB e Meyer — moveram uma ação contra a Caraway, acusando a empresa de alegações falsas e enganosas de publicidade. Em vez de se afastar da..."
   },
-  "8a44748afe7bb9b7": {
-   "t": "Airbnb adiciona busca por IA e mais recursos sociais",
-   "s": "A Airbnb também está lançando novos serviços, como entrega de refeições e lavanderia em algumas localidades."
-  },
   "8a7acad307afb758": {
    "t": "CMOs precisam repensar talentos juniores à medida que IA altera necessidades de marketing: Gartner",
    "s": "Muitos profissionais de marketing poderão eliminar cargos de nível básico até 2030, mas o pesquisador recomenda dar maior responsabilidade às novas contratações."
-  },
-  "8cfbbe127582afc4": {
-   "t": "Novas recomendações de produtos da Instinct deixam alguns usuários irritados",
-   "s": "A Instinct está lançando recomendações de produtos e viagens curadas por humanos, mas alguns usuários não estão satisfeitos ao receber sugestões que nunca pediram."
   },
   "8d315c8376843c7f": {
    "t": "Confiança como alavanca de conversão: como testar credibilidade em indústria regulada",
@@ -349,9 +345,9 @@
    "t": "TikTok quer que creators vejam verde: nova funcionalidade fintech paga acordos de marca em até 30 dias",
    "s": "#FinTok ganha um novo sentido. com o hub de e‑com TikTok Shop projetado para gerar mais de US$ 100 bilhões em GMV só neste ano, o TikTok vem explorando como colocar ainda mais dinheiro fluindo pelo app…"
   },
-  "99fb0ada40ee7f9c": {
-   "t": "Ex‑equipe da Tesla levanta US$ 12,5 milhões para colocar cadeias de suprimentos no piloto automático",
-   "s": "O software de supply chain agentic da Atomic já está sendo usado por empresas como DoorDash e HelloFresh."
+  "9a7c302fa2c52f84": {
+   "t": "WPP Media contrata Laura Ryan como chief Media officer",
+   "s": "Ela chega da Orion Worldwide."
   },
   "9c0659200c3e974a": {
    "t": "OpenAI Dots executam pesquisa somente leitura quando ninguém está perguntando",
@@ -361,21 +357,17 @@
    "t": "Estados reescrevem as regras das redes sociais",
    "s": "Meta’s settlement, TikTok’s Alabama deal, and cases against YouTube show states building new rules for how platforms operate and sell advertising."
   },
+  "9e95a171d1fbca62": {
+   "t": "Conteúdo de creator vira mídia paga graças ao novo produto da ShopMy",
+   "s": "Ao se posicionar no centro do boom de marketing de creators, a ShopMy recebeu milhões de firmas de venture capital enquanto ampliava uma rede de parceiros que inclui agora 350 mil \"curators\" e dezenas de milhares de marcas…"
+  },
   "a18f524f51cf0e4d": {
    "t": "Emma Armstrong e Michael Aimette deixam a bbd o NY",
    "s": "Ex‑CEO e CCO ingressou via aquisição da Omnicom da IPG."
   },
-  "a1ba916a514438ba": {
-   "t": "Top 50 dos canais do YouTube mais visualizados no mundo – semana de 27/09/2026",
-   "s": "A T-Series completou seu setembro dominante. O selo indiano liderou a tabela por um mês inteiro no Global Top 50. Para fechar a sequência de vitórias, a T-Series acumulou 946,5 milhões de visualizações semanais, impulsionando…"
-  },
   "a505040e414df804": {
    "t": "Threads amplia opções de engajamento em chat ao vivo",
    "s": "O app adicionou reações ao vivo e recurso de levantar a mão, e em breve lançará chats ao vivo baseados na web."
-  },
-  "a8926125bf06d819": {
-   "t": "Análise de desempenho no YouTube, mudanças nos Facebook Ads e notícias do setor",
-   "s": "Recap dos insights, tendências e atualizações mais importantes que você precisa saber hoje! Atualize-se em minutos e encare a semana preparado. Na edição de hoje: encontrar vídeos de longo prazo no YouTube…"
   },
   "a8e43615a4d0c113": {
    "t": "NHL escolhe a Adobe como parceira criativa, de marketing e IA",
@@ -393,10 +385,6 @@
    "t": "O que você precisa saber sobre Posts colaborativos no LinkedIn",
    "s": "O LinkedIn acabou de lançar Collaborative Posts. veja tudo o que sabemos até agora."
   },
-  "b1a22cc8f3427c77": {
-   "t": "Como a Kroger usa IA e scoring preditivo para ligar criativo à conversão",
-   "s": "The grocer, in partnership with Vidmob and MMA Global, was able to forecast e-commerce conversion of ad creative with 81% accuracy."
-  },
   "b239d29c4a2e80cb": {
    "t": "Charter Space levanta US$ 5 milhões para levar seguros às estrelas",
    "s": "Como a Charter explica em seu site, uma experiência comum para empresas espaciais é que seguradoras tradicionais \"ouviram um monte de palavras de ciência assustadoras e entraram em pânico\"."
@@ -409,6 +397,10 @@
    "t": "Como turbinar Instagram Reels: guia passo a passo 2026",
    "s": "Impulsione Reels no Instagram sem adivinhar: descubra 6 passos dentro do app, além de checklist de elegibilidade, orientação de orçamento e mais."
   },
+  "b32071cd54559b81": {
+   "t": "Superfãs da KFC provam devoção ao frango em Game Show de 30 minutos",
+   "s": "Último capítulo da campanha “Believe in Chicken” se expande para entretenimento de formato longo"
+  },
   "b4fb811f13fa99e7": {
    "t": "Brands Briefing: Hanna Andersson chega à Amazon com sortimento 90 % exclusivo",
    "s": "A marca de roupas infantis Hanna Andersson fará sua estreia oficial na Amazon em outubro, buscando atender ao desejo dos consumidores por conveniência."
@@ -417,13 +409,13 @@
    "t": "Pinterest dá dicas de marketing para o pós‑férias",
    "s": "A empresa disse que, na semana entre o Natal e o Ano Novo, especialistas em marketing devem mudar o foco de presentes para autocuidado."
   },
-  "b7c0b4c05566b263": {
-   "t": "Shamrock adquire participação majoritária na Saylor e a funde com a agência de games Mutiny",
-   "s": "A agência combinada está oferecendo expertise em fandoms para marcas muito além do entretenimento e dos games."
-  },
   "b86837c58c124a4e": {
    "t": "Galgo assegura linha de crédito de US$ 55 milhões da BBVA Spark",
    "s": "A plataforma chilena de financiamento de motocicletas Galgo garantiu uma linha de crédito de US$ 55 milhões da BBVA Spark para expandir suas operações em…"
+  },
+  "b96b59b2240666ff": {
+   "t": "Planilha de truques do CMO: Cava nomeia John Ludeke como chief marketing officer",
+   "s": "O ex‑chief brand officer da Dr. Squatch assume a liderança de marketing enquanto a cadeia fast‑casual se expande nacionalmente."
   },
   "b9d88902546d539e": {
    "t": "Como líderes de tecnologia vão se autorregular em segurança de IA sob acordo de Trump",
@@ -449,6 +441,10 @@
    "t": "Todas as novidades sobre o fofo e assustador agente Muse AI da Meta",
    "s": "Meta lançou um novo agente Muse AI que, segundo a empresa, pode ajudar em tudo, desde disparar e‑mails até comprar online. O Muse pode ser surpreendentemente eficaz ao cumprir essas promessas — se você estiver disposto a confiar na Meta…"
   },
+  "bfdfffd7d6bd5134": {
+   "t": "Como a Thorne construiu uma brand platform antes do acordo de US$ 3,8 bilhão com a P&G — e o que vem a seguir",
+   "s": "A chief growth officer Mary Beech explica como o trabalho com a consultoria de branding Redscout transformou insights de consumidores em campanhas e em um estilo de comunicação."
+  },
   "c0aaa196cae495de": {
    "t": "Instagram adiciona ‘assistant’ de IA para dizer como postar",
    "s": "Instagram é a mais nova plataforma social a adicionar recursos internos alimentados por IA que dão feedback aos usuários sobre suas postagens. A empresa anunciou na quarta‑feira que seu app independente Edits passará a incluir uma IA…"
@@ -456,10 +452,6 @@
   "c3334b10f3da5fb0": {
    "t": "Prometeo lança Risk Intelligence",
    "s": "Fintech uruguaia Prometeo ampliou seu serviço de verificação de contas para mais de 110 países em cinco continentes e lançou…"
-  },
-  "c3f12094a61691b1": {
-   "t": "Twisted Tea veste camuflagem em campanha colaborativa enquanto a marca enfrenta ventos contrários",
-   "s": "O esforço focado no outono aproveita tendências culturais de moda camuflada e surge quando um novo CMO se prepara para entrar na empresa‑mãe Boston Beer."
   },
   "c624dad90489b2c6": {
    "t": "Lerma’s José Julián Acosta sobre a disrupção e a promessa da IA",
@@ -473,6 +465,14 @@
    "t": "Shopify se abre para o Muse, da Meta; Amazon recua",
    "s": "O comércio agêntico está evoluindo, mas as duas reações opostas mostram que há muito em jogo."
   },
+  "cc51c45657ae459c": {
+   "t": "OpenAI e Synopsys unem forças para criar modelo de IA que projeta chips como engenheiro experiente",
+   "s": "OpenAI e Synopsys estão desenvolvendo o GPT‑Synopsys, um modelo de IA especializado para design de chips. Ele deverá operar as ferramentas EDA da Synopsys como um engenheiro experiente e otimizar projetos de forma autônoma. Testes iniciais com semicondutores…"
+  },
+  "cc8ba8dec3a60463": {
+   "t": "A feia economia da IA de consumo",
+   "s": "Há uma razão pela qual os laboratórios de ponta se tornaram cautelosos com a IA de consumo — e não é porque a tecnologia não seja boa o suficiente."
+  },
   "cee34f6ab870b4ad": {
    "t": "Por que Reels sem polimento ganham: estratégia de crescimento no Instagram para empresas",
    "s": "Quer saber como criar Instagram Reels que realmente atraiam seguidores leais sem equipamentos caros ou horas de edição? Conheça as fórmulas de hook, técnicas de edição e estratégias de teste que transformam…"
@@ -484,6 +484,10 @@
   "cf8917a98cf64f7c": {
    "t": "Como Kevin Indig transforma uma Newsletter em uma semana de Posts",
    "s": "Descubra como Kevin Indig usa o Buffer para reaproveitar cada newsletter em posts sociais, testa novas ideias no Substack Notes e economiza de 2 a 3 horas por semana na distribuição de conteúdo."
+  },
+  "d151fc88c7d67840": {
+   "t": "Por que a E.l.f. Cosmetics está trocando jingles por música original de talentos em ascensão",
+   "s": "Depois de nomear a artista Joaquina como brand ambassador, a E.l.f. trabalhou com a agência criativa latina Croing em uma música original."
   },
   "d28f010de9103586": {
    "t": "Agora você pode pedir DoorDash por textos e mensagens no Slack",
@@ -501,13 +505,9 @@
    "t": "18 meses, 31 protótipos e 1.700 horas de teste de uso: como a Knix trouxe sua roupa íntima de algodão sem costura ao mercado",
    "s": "Knix lançou a linha de roupas íntimas Invisible Cotton, cujo desenvolvimento técnico foi mais complexo do que sua natureza sem costura sugere. Foram necessários 18 meses, 31 protótipos e 1.700 horas de testes de uso para chegar ao produto final…"
   },
-  "db9b3d65482960f0": {
-   "t": "MAVI aposta no boom de IA criando demanda por um novo tipo de contador",
-   "s": "A empresa de recrutamento contábil MAVI sai do stealth com US$ 4 milhões em financiamento."
-  },
-  "e082a935e975e4ba": {
-   "t": "Sonos Ace Ultra são os fones que a Sonos deveria ter feito da primeira vez",
-   "s": "Os fones originais Sonos Ace deveriam ter sido uma entrada triunfal numa nova categoria de produtos. Em vez disso, foram ofuscados pela desastrosa reformulação do app da Sonos. Embora os Ace originais sejam bem construídos, o som…"
+  "e17144b279a33ab1": {
+   "t": "Ferramentas de otimização de busca IA: o que realmente funciona em 2026",
+   "s": "Ferramentas de otimização de busca IA ajudam os profissionais de marketing a entender onde uma marca aparece nas respostas geradas por IA, quais fontes recebem citações e o que melhorar a seguir. Elas complementam as ferramentas tradicionais de SEO ao invés de substituí‑las…"
   },
   "e462a04c4fa24e34": {
    "t": "Target corta preços enquanto o sentimento do consumidor se deteriora",
@@ -517,10 +517,6 @@
    "t": "Meta lança Muse AI para pequenas empresas",
    "s": "As ferramentas de inteligência artificial agentic da empresa podem ajudar pequenas empresas a melhorar fluxos de trabalho e integrar apps parceiros conectores."
   },
-  "e6f5b90a18579df8": {
-   "t": "Por que Josh Allan Dykstra acessa redes sociais apenas um dia por mês",
-   "s": "Como o podcaster Josh Allan Dykstra agenda um mês de posts em um único dia e republica seu vídeo short-form no Substack Notes usando o Buffer."
-  },
   "e9b0e6fc653b6e04": {
    "t": "Senado aprova projeto Common Cents",
    "s": "A proposta de oferecer aos comerciantes um framework de arredondamento de caixa e eliminar formalmente o centavo agora segue para a Casa Branca."
@@ -529,25 +525,21 @@
    "t": "Dashi AI revela a fórmula secreta que alinha robôs e humanos",
    "s": "\"Um dos maiores motivos de estarmos vencendo empresas de robótica é porque não somos uma empresa de robótica.\""
   },
-  "f01d80a9d5246c66": {
-   "t": "Instituto britânico de segurança em IA aponta que taxa de ataque rebelde do GPT‑6 Astra disparou cinco vezes em relação ao predecessor",
-   "s": "GPT‑6 Astra realizou ataques não autorizados à cadeia de suprimentos em 29,2 % das simulações conduzidas pelo British AI Security Institute com filtros de segurança desativados. O modelo usou identidades falsas e código malicioso, enquanto…"
-  },
   "f069fd7a49b1cd71": {
    "t": "Wayfair aumenta investimento em esportes para plataforma de marca focada em valores",
    "s": "A varejista está ampliando seu esforço mais recente ao aumentar o investimento em publicidade nas redes que transmitem jogos de futebol, tornando‑se cinco vezes maior que o gasto anterior."
   },
-  "f1a8d38617dd18f7": {
-   "t": "Fire TV Stick 4K da Amazon pode ser alimentado direto da TV",
-   "s": "O novo Fire TV Stick 4K será mais fácil de instalar que os sticks de streaming 4K anteriores da Amazon, pois não precisa mais de adaptador de energia. Você pode alimentar o dispositivo diretamente pela porta USB da TV, como o…"
-  },
-  "f7d46b2edec9f0b9": {
-   "t": "Bob Lord, da Horizon, ataca os modelos de precificação de FTE de holdings: “é o sistema antigo”",
-   "s": "CEO da Horizon Media questiona os modelos de precificação baseados em FTE de holdings, argumentando que a compensação baseada em valor é o modelo do futuro."
+  "f1bc1bdd6ae03428": {
+   "t": "Factory CEO acusa conselheiro do board de VC de espionar para a Cognition",
+   "s": "VC Chris Degnan e ex‑conselheiro do board da Factory AI assumiu o cargo de chief revenue officer da Cognition."
   },
   "f7f70b8842fda0f5": {
    "t": "Como a Amazon está simplificando compras de anúncios em múltiplos formatos com IA",
    "s": "A executiva de Amazon Ads, Kelly MacLean, apresenta os avanços anunciados hoje que prometem simplificar como os profissionais de marketing trabalham com a plataforma."
+  },
+  "f8279c802c3fe540": {
+   "t": "Startup de voz AI ElevenLabs duplica avaliação para US$ 22 bilhões",
+   "s": "O leilão de US$ 300 milhões para funcionários foi co‑liderado pela Wellington e pela T. Rowe Price."
   },
   "fcd0124f3a7a2777": {
    "t": "Mattel nomeia novo CEO",
@@ -556,6 +548,10 @@
   "fe599312868b3673": {
    "t": "Trump e ceos de tecnologia assinam código de conduta de IA que só tem validade moral",
    "s": "Presidente Trump e líderes de tecnologia, entre eles mark zuckerberg, greg brockman, jensen huang e elon musk, assinaram código de conduta de ia na Casa Branca que tem validade apenas “moralmente vinculante”. Auditores externos devem…"
+  },
+  "ff7eb45b30ae983f": {
+   "t": "Jeeves levanta US$ 110 milhões liderada pela CoinFund",
+   "s": "Plataforma de pagamentos corporativos Jeeves levantou US$ 110 milhões em rodada liderada pela CoinFund, com participação da AllianceBernstein, Andreessen Horowitz,…"
   }
  }
 }
