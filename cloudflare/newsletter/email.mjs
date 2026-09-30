@@ -94,7 +94,7 @@ function itemBlock(item, { author }) {
       </td></tr></table>`
         : ''
     }
-    <p style="margin:0;font-family:${FONT};font-size:14px;"><a href="${escapeHtml(item.url)}" style="color:${C.link};font-weight:600;text-decoration:none;">Ler a matéria${item.source ? ` no ${escapeHtml(item.source)}` : ''} →</a></p>
+    <p style="margin:0;font-family:${FONT};font-size:14px;"><a href="${escapeHtml(item.url)}" style="color:${C.link};font-weight:600;text-decoration:none;">Ler a matéria completa →</a></p>
   </td></tr>`;
 }
 
