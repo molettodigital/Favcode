@@ -200,6 +200,7 @@ export const offers = [
   /\b(?:best .+ deals|deal of the day|lowest price|on sale|promo codes?|coupons?|\d{1,2}% off)\b/i,
   /\bpor (?:menos de|apenas|s[oó]) R\$\s?\d|\bchuta a porta\b/i,
   /\bsele[cç][aã]o de .*ofertas\b|\bofertas (?:em|de|para) (?:jogos|games|celulares|notebooks|tablets?|fones|TVs?)\b/i,
+  /\b(?:massive|big|huge|flash|early|holiday|Halloween|Black Friday|Cyber Monday|Prime Day|Labor Day) sale\b|\bup to \d{1,2}\s?% (?:off|of)\b/i,
 ];
 
 /**
@@ -218,7 +219,7 @@ export const noise = [
   // Guias de compra e testes de produto em inglês ("Best Party Speakers (2026)", "12 Best Gifts").
   /^(?:the\s+)?\d*\s*best\b.*\(20\d\d\)|^\d+\s+best\b|\bwe tested\b|\bgift guide\b|\bgifts? (?:for|ideas)\b/i,
   // Promoção de ingressos de eventos ("Last 24 hours to save up to $200 on TechCrunch Disrupt").
-  /\bTechCrunch Disrupt\b|\bsave up to \$\d+|\bexpo\+? pass\b/i,
+  /\bTechCrunch Disrupt\b|\bsave up to \$\d+|\bexpo\+? pass\b|\bways to Disrupt\b|\bside events\b/i,
   // Agenda de esportes.
   /\bjogos de hoje\b|\bonde assistir\b|\bfutebol ao vivo\b|\bhor[aá]rios? d[aoe]s? (?:jogos|partidas)\b/i,
 ];

@@ -22,6 +22,8 @@ Como traduzir:
 - Termos que o mercado brasileiro usa em inglês continuam em inglês (branding, creator, retail media, UX, prompt, startup, streaming, podcast).
 - Valores em dólar viram "US$" com a escala por extenso e vírgula decimal: "$100M" vira "US$ 100 milhões" e "$1.5B" vira "US$ 1,5 bilhão".
 - Não acrescente nem tire informação, não comente e não explique. Resumo vazio continua vazio; resumo que termina em "…" continua terminando em "…".
+- Traduza sempre o título e o resumo inteiros: nunca devolva o título em inglês. Só nomes próprios e os termos acima ficam como no original.
+- A manchete começa com letra maiúscula, a não ser que comece por um nome que se escreve com minúscula (iPhone, eBay).
 - Devolva todos os itens recebidos, cada um com o mesmo id.`;
 
 const OUTPUT_SCHEMA = {
@@ -107,15 +109,44 @@ export async function translateBatch(client, batch, { model = DEFAULT_MODEL } = 
   return collectTranslations(batch, JSON.parse(text).items);
 }
 
-/** Map(id -> { title, summary }) com os itens do lote que voltaram com título. */
+const EN_WORDS = new Set('the and of to in an it with for its is are was how why what when who which from on at by after over into inside behind your you we they this that these those new now not but all out up most gets get launches takes reveals finds says will can could should about more than their our has have had be been just'.split(' '));
+const PT_WORDS = new Set('de da do das dos para com que em uma um não na no nas nos ao aos à às pela pelo pelas pelos sobre como mais é são foi seu sua seus suas ou entre após já também até'.split(' '));
+const words = (text) => String(text || '').toLowerCase().match(/[\p{L}’']+/gu) || [];
+const normalize = (text) => words(text).join(' ');
+
+/**
+ * O modelo às vezes devolve o título em inglês (igual ao original ou quase) e traduz só o resumo.
+ * Conta como não traduzido: título igual ao original com alguma palavra inglesa comum ou com
+ * quatro palavras ou mais (nomes curtos, como "Figma Config 2026", podem ficar iguais), ou título
+ * com mais palavras inglesas comuns que portuguesas.
+ */
+export function untranslated(original, translated) {
+  const list = words(translated);
+  const en = list.filter((w) => EN_WORDS.has(w)).length;
+  const pt = list.filter((w) => PT_WORDS.has(w)).length;
+  if (normalize(original) === normalize(translated) && (en >= 1 || list.length >= 4)) return true;
+  return en >= 2 && en > pt;
+}
+
+/** Devolve a maiúscula inicial que o modelo às vezes tira ("wayfair aumenta…"). */
+export function fixInitial(original, translated) {
+  const first = translated.charAt(0);
+  const originalFirst = String(original || '').trim().charAt(0);
+  if (first && first === first.toLocaleLowerCase('pt-BR') && originalFirst && originalFirst !== originalFirst.toLocaleLowerCase('en')) {
+    return first.toLocaleUpperCase('pt-BR') + translated.slice(1);
+  }
+  return translated;
+}
+
+/** Map(id -> { title, summary }) com os itens do lote que voltaram com título traduzido. */
 export function collectTranslations(batch, returned) {
   const wanted = new Map(batch.map((it) => [it.id, it]));
   const out = new Map();
   for (const item of returned || []) {
     const original = wanted.get(item?.id);
     const title = String(item?.title || '').trim();
-    if (!original || !title) continue;
-    out.set(item.id, { title, summary: original.summary ? String(item.summary || '').trim() : '' });
+    if (!original || !title || untranslated(original.title, title)) continue;
+    out.set(item.id, { title: fixInitial(original.title, title), summary: original.summary ? String(item.summary || '').trim() : '' });
   }
   return out;
 }
@@ -167,8 +198,8 @@ export async function translateItems(items, { client, translator, cacheFile, mod
     if (item.lang !== 'en') continue;
     const key = translationKey(item.title, item.summary);
     item.translationKey = key;
-    if (cache[key]) {
-      used[key] = cache[key];
+    if (cache[key] && !untranslated(item.title, cache[key].t)) {
+      used[key] = { ...cache[key], t: fixInitial(item.title, cache[key].t) };
       stats.cached++;
     } else {
       pending.push(item);
@@ -176,26 +207,11 @@ export async function translateItems(items, { client, translator, cacheFile, mod
   }
 
   if (pending.length && translate) {
-    const batches = [];
-    for (let i = 0; i < pending.length; i += BATCH_SIZE) batches.push(pending.slice(i, i + BATCH_SIZE));
-    let next = 0;
-    const worker = async () => {
-      while (next < batches.length) {
-        const batch = batches[next++];
-        try {
-          const result = await translate(batch);
-          for (const item of batch) {
-            const done = result.get(item.id);
-            if (!done) continue;
-            used[item.translationKey] = { t: done.title, s: done.summary };
-            stats.translated++;
-          }
-        } catch (err) {
-          stats.failures.push(err?.message || String(err));
-        }
-      }
-    };
-    await Promise.all(Array.from({ length: Math.min(CONCURRENCY, batches.length) }, worker));
+    await runBatches(pending, translate, used, stats);
+    // O que voltou sem tradução (título em inglês, item faltando) tem mais uma chance, em lotes menores.
+    const missing = pending.filter((item) => !used[item.translationKey]);
+    if (missing.length) await runBatches(missing, translate, used, stats, Math.ceil(BATCH_SIZE / 2));
+    stats.retried = missing.length;
   } else if (pending.length) {
     log(`Sem tradutor disponível: ${pending.length} manchetes em inglês sem tradução guardada ficaram de fora.`);
   }
@@ -218,4 +234,28 @@ export async function translateItems(items, { client, translator, cacheFile, mod
 
   await saveCache(cacheFile, used);
   return { items: out, stats };
+}
+
+/** Traduz em lotes, com até CONCURRENCY pedidos ao mesmo tempo; guarda em `used` o que voltou traduzido. */
+async function runBatches(pending, translate, used, stats, size = BATCH_SIZE) {
+  const batches = [];
+  for (let i = 0; i < pending.length; i += size) batches.push(pending.slice(i, i + size));
+  let next = 0;
+  const worker = async () => {
+    while (next < batches.length) {
+      const batch = batches[next++];
+      try {
+        const result = await translate(batch);
+        for (const item of batch) {
+          const done = result.get(item.id);
+          if (!done) continue;
+          used[item.translationKey] = { t: done.title, s: done.summary };
+          stats.translated++;
+        }
+      } catch (err) {
+        stats.failures.push(err?.message || String(err));
+      }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(CONCURRENCY, batches.length) }, worker));
 }

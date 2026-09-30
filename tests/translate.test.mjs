@@ -4,7 +4,7 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 
-import { githubOidcToken, requestOptions, SYSTEM_PROMPT, translateItems, translationKey, WORKER_AUDIENCE, workerTranslator } from '../scripts/lib/translate.mjs';
+import { collectTranslations, fixInitial, githubOidcToken, requestOptions, saveCache, SYSTEM_PROMPT, translateItems, translationKey, untranslated, WORKER_AUDIENCE, workerTranslator } from '../scripts/lib/translate.mjs';
 
 const tmpCache = async () => path.join(await mkdtemp(path.join(os.tmpdir(), 'radar-')), 'translations.json');
 
@@ -71,7 +71,7 @@ test('sem chave, sem tradução ou com falha da API: a manchete em inglês sai d
 
   const failing = await translateItems(base.map((it) => ({ ...it })), { client: fakeClient({}, { fail: true }), cacheFile: await tmpCache() });
   assert.deepEqual(failing.items.map((it) => it.id), ['2']);
-  assert.equal(failing.stats.failures.length, 1);
+  assert.equal(failing.stats.failures.length, 2, 'falha na primeira tentativa e na nova tentativa');
 
   const refused = await translateItems(base.map((it) => ({ ...it })), { client: fakeClient({ 'Untranslated headline': 'x' }, { stopReason: 'refusal' }), cacheFile: await tmpCache() });
   assert.deepEqual(refused.items.map((it) => it.id), ['2']);
@@ -103,18 +103,21 @@ test('sem chave da Anthropic, traduz pelo Worker com o token OIDC do Actions', a
     requests.push({ url, init, body: JSON.parse(init.body) });
     const sent = JSON.parse(init.body).items;
     // O Worker devolve só o que traduziu; um id desconhecido é ignorado.
-    return Response.json({ items: [{ id: sent[0].id, title: 'OpenAI lança agentes', summary: 'Chegou.' }, { id: 'intruso', title: 'x', summary: '' }] });
+    const known = sent.filter((it) => it.id === '1').map((it) => ({ id: it.id, title: 'OpenAI lança agentes', summary: 'Chegou.' }));
+    return Response.json({ items: [...known, { id: 'intruso', title: 'x', summary: '' }] });
   };
   const translator = workerTranslator('https://radar.test/api/translate', { getToken: async () => 'tok-123', fetchImpl });
   const { items, stats } = await translateItems([en('1', 'OpenAI ships agents', 'It is here.'), en('2', 'Untranslated')], { translator, cacheFile });
 
-  assert.equal(requests.length, 1);
+  // O item que não voltou traduzido ganha uma nova tentativa, sozinho.
+  assert.equal(requests.length, 2);
+  assert.deepEqual(requests[1].body.items.map((it) => it.id), ['2']);
   assert.equal(requests[0].url, 'https://radar.test/api/translate');
   assert.equal(requests[0].init.headers.authorization, 'Bearer tok-123');
   assert.equal(requests[0].body.system, SYSTEM_PROMPT);
   assert.deepEqual(requests[0].body.items.map((it) => it.id), ['1', '2']);
   assert.deepEqual(items.map((it) => it.title), ['OpenAI lança agentes']);
-  assert.deepEqual(stats, { cached: 0, translated: 1, dropped: 1, failures: [] });
+  assert.deepEqual(stats, { cached: 0, translated: 1, dropped: 1, failures: [], retried: 1 });
   const saved = JSON.parse(await readFile(cacheFile, 'utf8')).entries;
   assert.deepEqual(Object.values(saved), [{ t: 'OpenAI lança agentes', s: 'Chegou.' }]);
 });
@@ -140,4 +143,57 @@ test('token OIDC pedido ao GitHub com o público do Worker', async () => {
   assert.equal(asked.url, 'https://gh.test/token?api-version=2.0&audience=radar-favcode-translate');
   assert.equal(asked.auth, 'bearer req');
   await assert.rejects(githubOidcToken(WORKER_AUDIENCE, { env: {}, fetchImpl }), /fora do GitHub Actions/);
+});
+
+test('título que volta em inglês não vale: tenta de novo e, se continuar, a manchete sai', async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'radar-tr-'));
+  const cacheFile = path.join(dir, 'translations.json');
+  const items = [
+    { id: 'a', lang: 'en', title: 'OpenAI launches Dots, its Muse competitor', summary: 'OpenAI is answering Meta.' },
+    { id: 'b', lang: 'en', title: 'Wayfair ups sports spend', summary: '' },
+    { id: 'c', lang: 'en', title: 'America gets a chatbot', summary: 'The federal government has a chatbot.' },
+  ];
+  const calls = [];
+  const translator = async (batch) => {
+    calls.push(batch.map((it) => it.id));
+    const round = calls.length;
+    return collectTranslations(batch, batch.map((it) => ({
+      id: it.id,
+      // 'a' só sai traduzido na segunda tentativa; 'c' continua em inglês; 'b' vem sem a maiúscula.
+      title: it.id === 'a' ? (round === 1 ? it.title : 'OpenAI lança Dots, rival do Muse') : it.id === 'b' ? 'wayfair aumenta gasto com esportes' : it.title,
+      summary: it.summary ? 'Resumo traduzido.' : '',
+    })));
+  };
+  const { items: out, stats } = await translateItems(items.map((it) => ({ ...it })), { translator, cacheFile });
+  assert.deepEqual(out.map((it) => [it.id, it.title]), [['a', 'OpenAI lança Dots, rival do Muse'], ['b', 'Wayfair aumenta gasto com esportes']]);
+  assert.deepEqual(calls, [['a', 'b', 'c'], ['a', 'c']]);
+  assert.equal(stats.dropped, 1);
+  assert.equal(stats.retried, 2);
+});
+
+test('tradução guardada que ficou em inglês é refeita', async () => {
+  const dir = await mkdtemp(path.join(os.tmpdir(), 'radar-tr-'));
+  const cacheFile = path.join(dir, 'translations.json');
+  const item = { id: 'a', lang: 'en', title: 'Here’s why OpenAI is absent from Nvidia’s effort', summary: '' };
+  await saveCache(cacheFile, { [translationKey(item.title, item.summary)]: { t: item.title, s: '' } });
+  let called = 0;
+  const translator = async (batch) => {
+    called++;
+    return collectTranslations(batch, [{ id: 'a', title: 'Por que a OpenAI está fora da iniciativa da Nvidia', summary: '' }]);
+  };
+  const { items: out, stats } = await translateItems([{ ...item }], { translator, cacheFile });
+  assert.equal(called, 1);
+  assert.equal(stats.cached, 0);
+  assert.equal(out[0].title, 'Por que a OpenAI está fora da iniciativa da Nvidia');
+});
+
+test('reconhece título não traduzido sem barrar nomes próprios nem títulos em português', () => {
+  assert.equal(untranslated('Patreon and Tabletop Gamers Roll Big With Ginormous D20 Die', 'Patreon and Tabletop Gamers Roll Big With Ginormous D20 Die'), true);
+  assert.equal(untranslated('es devlin’s rotating library holds 2,000 books inside london’s design museum', 'es devlin’s rotating library holds 2,000 books inside london’s design museum'), true);
+  assert.equal(untranslated('Trust As A Conversion Lever: How To Test Credibility', 'Trust As A Conversion Lever: How To Test Credibility'), true);
+  assert.equal(untranslated('Figma Config 2026', 'Figma Config 2026'), false);
+  assert.equal(untranslated('Lyle Yetman values the quiet before the storm', 'Lyle Yetman, da McKinney, valoriza ‘the quiet before the storm’ ao se preparar para um pitch'), false);
+  assert.equal(untranslated('OpenAI launches Dots', 'OpenAI lança Dots, agentes que trabalham sozinhos'), false);
+  assert.equal(fixInitial('Wayfair ups spend', 'wayfair aumenta'), 'Wayfair aumenta');
+  assert.equal(fixInitial('iPhone 18 leaks', 'iPhone 18 vaza'), 'iPhone 18 vaza');
 });
