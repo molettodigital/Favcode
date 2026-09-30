@@ -2,7 +2,7 @@
   "name": "favcode-radar",
   "version": "1.0.0",
   "private": true,
-  "description": "Radar FavCode: manchetes de IA, tecnologia, marketing, design e publicidade atualizadas a cada hora.",
+  "description": "Radar FavCode: manchetes de IA, tecnologia, marketing, publicidade e negócios atualizadas a cada hora.",
   "type": "module",
   "engines": {
     "node": ">=20"

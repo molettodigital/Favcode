@@ -39,7 +39,7 @@ export const newsletter = {
  * Editorias, na ordem em que aparecem no site e nos setores do radar.
  * Cores: paleta categórica validada (daltonismo e contraste) para fundo claro (`color`)
  * e escuro (`colorDark`). A ordem importa: setores vizinhos no radar têm cores bem distintas.
- * Com nove editorias a cor nunca identifica sozinha: todo card e setor leva o nome ou a sigla.
+ * Com oito editorias a cor nunca identifica sozinha: todo card e setor leva o nome ou a sigla.
  */
 export const columns = [
   { id: 'pautas', name: 'Pautas em alta', short: 'Pautas', code: 'PAUTA', color: '#9d024c', colorDark: '#9a4855', blurb: 'Virais, trends, redes sociais, datas e novidades úteis do momento para usar em conteúdo e campanhas.' },
@@ -47,7 +47,6 @@ export const columns = [
   { id: 'tecnologia', name: 'Tecnologia', short: 'Tecnologia', code: 'TEC', color: '#eb6834', colorDark: '#d95926', blurb: 'Big techs, gadgets, plataformas, regulação e infraestrutura.' },
   { id: 'marketing', name: 'Marketing', short: 'Marketing', code: 'MKT', color: '#1baf7a', colorDark: '#199e70', blurb: 'Estratégia, dados, SEO, CRM, marcas e comportamento do consumidor.' },
   { id: 'pme', name: 'MEI e pequenas empresas', short: 'MEI e PMEs', code: 'MEI', color: '#a150a2', colorDark: '#903ab2', blurb: 'Impostos, crédito, prazos, leis, gestão e oportunidades para MEI, ME e quem empreende.' },
-  { id: 'design', name: 'Design', short: 'Design', code: 'DES', color: '#eda100', colorDark: '#c98500', blurb: 'UX, UI, branding, tipografia, identidade visual e ferramentas.' },
   { id: 'publicidade', name: 'Publicidade', short: 'Publicidade', code: 'PUB', color: '#e87ba4', colorDark: '#d55181', blurb: 'Campanhas, agências, criatividade, mídia e premiações.' },
   { id: 'ecommerce', name: 'E-commerce e varejo', short: 'E-commerce', code: 'ECOM', color: '#4a3aa7', colorDark: '#9085e9', blurb: 'Marketplaces, varejo digital, pagamentos e datas sazonais.' },
   { id: 'startups', name: 'Startups e negócios', short: 'Startups', code: 'STA', color: '#e34948', colorDark: '#e66767', blurb: 'Rodadas, aquisições, lançamentos e movimentos do mercado.' },
@@ -113,18 +112,6 @@ export const feeds = [
   { name: 'Contábeis', site: 'https://www.contabeis.com.br', lang: 'pt', column: 'pme', url: 'https://www.contabeis.com.br/rss/noticias/', include: PME_USEFUL, exclude: /\bExame de Suficiência\b|^Contador(?:es)?\b|\baposentadori\w+|\bINSS\b|\bmesári\w+|(?:^|\s)órgãos públicos|\bentes públicos|\bMunicípios?\b|\bprefeituras?\b|\bservidores\b/i },
   { name: 'Agência Brasil', site: 'https://agenciabrasil.ebc.com.br/economia', lang: 'pt', column: 'pme', url: 'https://agenciabrasil.ebc.com.br/rss/economia/feed.xml', include: PME_USEFUL },
 
-  // Design
-  { name: 'Design Culture', site: 'https://designculture.com.br', lang: 'pt', column: 'design', url: 'https://designculture.com.br/feed' },
-  { name: 'Smashing Magazine', site: 'https://www.smashingmagazine.com', lang: 'en', column: 'design', url: 'https://www.smashingmagazine.com/feed/' },
-  { name: 'Creative Bloq', site: 'https://www.creativebloq.com', lang: 'en', column: 'design', url: 'https://www.creativebloq.com/feeds.xml', exclude: /\breview:|\b(?:laptops?|batter(?:y|ies)|gaming|PS5|PlayStation|Xbox|Nintendo|Marvel|Wolverine|TVs?|monitors?|headphones|earbuds|VPN|Black Friday|Prime Day)\b/i },
-  { name: 'UX Collective', site: 'https://uxdesign.cc', lang: 'en', column: 'design', url: 'https://uxdesign.cc/feed' },
-  { name: 'Abduzeedo', site: 'https://abduzeedo.com', lang: 'en', column: 'design', url: 'https://abduzeedo.com/rss.xml' },
-  { name: 'designboom', site: 'https://www.designboom.com', lang: 'en', column: 'design', url: 'https://www.designboom.com/design/feed/' },
-  { name: 'Nielsen Norman Group', site: 'https://www.nngroup.com', lang: 'en', column: 'design', url: 'https://www.nngroup.com/feed/rss/' },
-  { name: 'Fast Company', site: 'https://www.fastcompany.com/co-design', lang: 'en', column: 'design', url: 'https://www.fastcompany.com/co-design/rss', exclude: /\b(?:Mars|Martian|climate|carbon|glaciers?|reefs?|yeast|species|fossil fuels?|heat waves?|floods?)\b/i },
-  { name: 'Figma', site: 'https://www.figma.com/blog', lang: 'en', column: 'design', url: 'https://www.figma.com/blog/feed/atom.xml' },
-  { name: 'Creative Review', site: 'https://www.creativereview.co.uk', lang: 'en', column: 'design', url: 'https://www.creativereview.co.uk/feed/', routes: [{ column: 'publicidade', match: ADS }] },
-  { name: 'Creative Boom', site: 'https://www.creativeboom.com', lang: 'en', column: 'design', url: 'https://www.creativeboom.com/feed/', routes: [{ column: 'publicidade', match: ADS }] },
 
   // Publicidade
   { name: 'Propmark', site: 'https://propmark.com.br', lang: 'pt', column: 'publicidade', url: 'https://propmark.com.br/feed/', routes: [{ column: 'pautas', match: TRENDING }], excludeUrl: /\/acervo\// },
@@ -284,11 +271,10 @@ export const watchlist = [
   { label: 'Black Friday', match: /\bBlack Friday\b/i },
   { label: 'Dia das Crianças', match: /\bDia das Crian[cç]as\b/i },
   { label: 'Natal', match: /\bNatal\b|\bholiday season\b/ },
-  // Design
+  // Ferramentas criativas
   { label: 'Figma', match: /\bFigma\b/i },
   { label: 'Adobe', match: /\bAdobe\b|\bPhotoshop\b|\bIllustrator\b|\bFirefly\b/ },
   { label: 'Canva', match: /\bCanva\b/ },
-  { label: 'Tipografia', match: /\btipografia\b|\btypography\b|\btypefaces?\b/i },
   { label: 'Acessibilidade', match: /\bacessibilidade\b|\baccessibility\b/i },
   // E-commerce e negócios
   { label: 'Mercado Livre', match: /\bMercado Livre\b/i },

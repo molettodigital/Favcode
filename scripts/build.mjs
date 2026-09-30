@@ -389,6 +389,10 @@ async function renderTemplateOnly() {
   const data = JSON.parse(m[1]);
   // Editorias (nomes, cores) vêm sempre da configuração atual.
   data.columns = config.columns;
+  // Editoria que saiu da configuração some do site junto com as manchetes dela.
+  const columnIds = new Set(config.columns.map((c) => c.id));
+  data.items = data.items.filter((item) => columnIds.has(item.column));
+  data.trends = (data.trends || []).filter((trend) => columnIds.has(trend.column));
   await writeSite(data);
   console.log(`✔ ${path.relative(ROOT, OUTPUT)} atualizado com o template atual.`);
 }

@@ -29,7 +29,7 @@ export function weekLabel(now = Date.now()) {
   return `Semana de ${from} a ${fmt(now, { day: 'numeric', month: 'long', year: 'numeric' })}`;
 }
 
-const SYSTEM = `Você é assistente editorial de ${NEWSLETTER.author}, ${NEWSLETTER.role.toLowerCase().replace('favcode', 'FavCode')}. Toda ${NEWSLETTER.day} ela envia a newsletter do Radar FavCode para profissionais brasileiros de marketing, publicidade, design, tecnologia e negócios digitais e para quem empreende, comentando as notícias mais importantes da semana.
+const SYSTEM = `Você é assistente editorial de ${NEWSLETTER.author}, ${NEWSLETTER.role.toLowerCase().replace('favcode', 'FavCode')}. Toda ${NEWSLETTER.day} ela envia a newsletter do Radar FavCode para profissionais brasileiros de marketing, publicidade, tecnologia e negócios digitais e para quem empreende, comentando as notícias mais importantes da semana.
 
 Sua tarefa:
 1. Escolha as ${EDITION_SIZE} notícias mais relevantes entre as candidatas. Priorize o que tem impacto para quem trabalha com comunicação, marcas, agências, criadores e pequenas empresas. Não escolha duas sobre o mesmo fato e varie as editorias quando possível.

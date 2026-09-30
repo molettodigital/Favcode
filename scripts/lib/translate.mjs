@@ -14,7 +14,7 @@ export const WORKER_AUDIENCE = 'radar-favcode-translate';
 const BATCH_SIZE = 20;
 const CONCURRENCY = 2;
 
-export const SYSTEM_PROMPT = `Você traduz manchetes e resumos de notícias do inglês para o português do Brasil. Eles aparecem no Radar FavCode, um radar de notícias de IA, tecnologia, marketing, design, publicidade, redes sociais, e-commerce e startups lido por profissionais brasileiros dessas áreas.
+export const SYSTEM_PROMPT = `Você traduz manchetes e resumos de notícias do inglês para o português do Brasil. Eles aparecem no Radar FavCode, um radar de notícias de pautas em alta, IA, tecnologia, marketing, pequenas empresas, publicidade, e-commerce e startups lido por profissionais brasileiros dessas áreas.
 
 Como traduzir:
 - Escreva como a manchete de um bom veículo brasileiro: natural, direta e em caixa de frase (maiúscula só na primeira palavra e em nomes próprios), nunca em Title Case.

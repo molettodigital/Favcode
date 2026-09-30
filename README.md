@@ -1,8 +1,8 @@
 # Radar FavCode
 
-Radar de notícias com as manchetes do dia sobre **pautas em alta, IA, tecnologia, marketing, MEI e pequenas empresas, design, publicidade, e-commerce e startups**, reunidas de dezenas de veículos do Brasil e do mundo.
+Radar de notícias com as manchetes do dia sobre **pautas em alta, IA, tecnologia, marketing, MEI e pequenas empresas, publicidade, e-commerce e startups**, reunidas de dezenas de veículos do Brasil e do mundo.
 
-- 9 editorias em colunas, com a manchete principal de cada uma em destaque. "Pautas em alta" vem primeiro e junta virais, trends, novidades das redes sociais, datas e dicas úteis para usar em conteúdo; "MEI e pequenas empresas" junta Simples Nacional, impostos, crédito, prazos e gestão para quem empreende (Agência Sebrae, Jornal Contábil, Contábeis, Revista Empreendedor e Agência Brasil, filtradas para o que interessa a quem tem empresa).
+- 8 editorias em colunas, com a manchete principal de cada uma em destaque. "Pautas em alta" vem primeiro e junta virais, trends, novidades das redes sociais, datas e dicas úteis para usar em conteúdo; "MEI e pequenas empresas" junta Simples Nacional, impostos, crédito, prazos e gestão para quem empreende (Agência Sebrae, Jornal Contábil, Contábeis, Revista Empreendedor e Agência Brasil, filtradas para o que interessa a quem tem empresa).
 - **Em alta agora**: os termos mais citados nas últimas horas, desenhados num radar e listados em ranking.
 - Tudo em português: manchetes de veículos em inglês chegam traduzidas (veja "Tradução").
 - Busca nas manchetes (atalho `/`) e tema claro/escuro.

@@ -80,11 +80,12 @@ test('manda manchetes para Pautas em alta e MEI e pequenas empresas', () => {
     ['Tecnoblog', 'Meta é multada por falha em anúncios no Instagram', 'tecnologia'],
     ['Startups', 'Fintech lança conta digital para MEI com emissão de nota fiscal', 'pme'],
     ['Startups', 'Startup de logística capta R$ 40 milhões', 'startups'],
-    ['Creative Review', 'Nomad designs identities for new Ultimate Sevens rugby league', 'design'],
     ['Social Media Today', 'Instagram adds new editing options for Reels', 'pautas'],
   ];
   for (const [name, title, want] of cases) assert.equal(route(feed(name), title), want, `${name}: ${title}`);
   assert.equal(columns[0].id, 'pautas', 'Pautas em alta é a primeira editoria');
+  assert.ok(!columns.some((c) => c.id === 'design'), 'Design saiu do radar');
+  assert.ok(!feeds.some((f) => f.column === 'design' || f.routes?.some((r) => r.column === 'design')), 'nenhuma fonte manda para Design');
   const economy = feed('Agência Brasil');
   assert.match('Prazo para empresas optarem por Simples é prorrogado para outubro', economy.include);
   assert.doesNotMatch('Petrobras fecha acordo para comprar gás dos EUA', economy.include);
@@ -118,7 +119,7 @@ test('em alta: soma fontes e evita termos redundantes', () => {
     item('6', 'Nubank lança conta para empresas no México', 'e', 'startups'),
     item('7', 'Clientes do Nubank ganham Pix automático', 'f', 'startups'),
     item('8', 'Expansão do Nubank chega à Colômbia', 'g', 'startups'),
-    item('9', 'Figma apresenta nova ferramenta', 'h', 'design'),
+    item('9', 'Figma apresenta nova ferramenta', 'h', 'tecnologia'),
   ];
   const trends = computeTrends(items, { watchlist, stoplist: trendStoplist, columns, now, limit: 5 });
   const terms = trends.map((t) => t.term);
