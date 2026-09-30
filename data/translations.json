@@ -1,10 +1,6 @@
 {
  "version": 1,
  "entries": {
-  "00af964bbb752387": {
-   "t": "Batata por ar",
-   "s": "O drone de entrega Wing Hummingbird 7000W-B pesa menos de 15 libras. Possui 16 hélices – quatro para movimento horizontal e 12 para vertical – velocidade máxima de 60 milhas por hora, capacidade de carga de até 2,7 libras…"
-  },
   "032bfcfc72483449": {
    "t": "Sam Altman afirma que a OpenAI não abrirá capital até que seus modelos estejam seguros",
    "s": "Por meses, as pessoas se perguntam quando a OpenAI abrirá capital. O CEO Sam Altman diz que isso não acontecerá até que a empresa possa fazer promessas melhores sobre a segurança dos modelos, sem um cronograma definido à vista. \"Pretendemos continuar com...\""
@@ -25,10 +21,6 @@
    "t": "‘Xbox não está à venda’, diz chefe de games da Microsoft",
    "s": "A CEO da Xbox, Asha Sharma, negou relatos de que a Microsoft está considerando vender sua divisão Xbox. The Information informou em junho que o CEO Satya Nadella e a CFO Amy Hood estavam avaliando a cisão…"
   },
-  "0e8485b68b1bc24b": {
-   "t": "Instagram atualiza programa educacional de segurança",
-   "s": "The School Partnerships program offers educators a way to report potential safety issues directly."
-  },
   "0f2f8b7edaf1233e": {
    "t": "Como a plataforma de marca da Thorne levou a um acordo de US$ 3,8 bilhões com a P&G — e o que vem a seguir",
    "s": "A diretora de crescimento Mary Beech detalha como o trabalho com a consultoria de marcas Redscout transformou insights de consumo em campanhas e em um estilo de comunicação."
@@ -36,10 +28,6 @@
   "111a83ecc873cafe": {
    "t": "Redator dá nota 95% a conteúdo feito por IA",
    "s": "Neville Medhora, do Swipe File, diz que o conteúdo de IA pode rivalizar com o humano e gerar 50 versões."
-  },
-  "1169b63f471b2739": {
-   "t": "Threads amplia opções de engajamento em chat ao vivo",
-   "s": "Updates include new live reactions and the ability to raise a virtual hand, and the platform will soon launch web-based live chats."
   },
   "149981c3855ef198": {
    "t": "Snapchat lança pitch para gasto de anúncios B2B",
@@ -56,6 +44,10 @@
   "194aec3f958ea4c2": {
    "t": "Top 50 dos canais do YouTube mais inscritos no mundo – semana de 27/09/2026",
    "s": "Lucan Pevidor teve um setembro perfeito no Global Sub Top 50. Publicamos quatro edições da nossa lista de inscritos durante o nono mês do ano, e Pevidor ficou em primeiro lugar em todas as quatro. Pevidor…"
+  },
+  "1af85c32e54d429b": {
+   "t": "Óculos inteligentes de entregadores da Amazon deverão fotografar 'quase constantemente'",
+   "s": "Entregas da Amazon podem, em breve, vir com uma nova pegadinha: os óculos inteligentes dos entregadores vão fotografar tudo o que veem enquanto estão em uso, incluindo pessoas e propriedades privadas. Bloomberg relata que o…"
   },
   "1f66a36bba2035fa": {
    "t": "Amazon bloqueou o Muse da Meta, e o Robots.txt não tinha nada a dizer",
@@ -101,10 +93,6 @@
    "t": "O que é audience intelligence? Um guia para equipes de marketing",
    "s": "O que é audience intelligence e por que as equipes de marketing devem se importar? Aqui está um guia prático, sem enrolação."
   },
-  "2d7bd5c48e0120de": {
-   "t": "Meta lança Muse AI para PMEs",
-   "s": "The company’s agentic artificial intelligence tools are designed to help small businesses improve workflows and work with partner apps."
-  },
   "2eefdad056ca57b5": {
    "t": "O novo point dos alunos do ensino fundamental é a seção de comentários da NPR?",
    "s": "Quando funcionários da NPR marcaram como bots uns comentários estranhos nos podcasts da rádio no Spotify, foi preciso uma colega da geração Z para decifrar o mistério na hora."
@@ -112,10 +100,6 @@
   "34a963ee2d396171": {
    "t": "EliseAI, apoiada pela a16z, arrecada US$ 350 milhões e dobra valuation para US$ 4 bilhões",
    "s": "EliseAI levanta US$ 350 milhões, dobrando a avaliação em um ano."
-  },
-  "37a768d2b4f2ac28": {
-   "t": "ChatGPT agora alcança 1,2 bilhão de pessoas toda semana, OpenAI diz",
-   "s": "A taxa de receita anualizada da OpenAI está se aproximando de US$ 70 bilhões, um aumento de cerca de 70 % desde o início do terceiro trimestre. Vendas corporativas, o assistente de codificação Codex e uma guerra de preços agressiva impulsionam o crescimento. Anthropic está no caminho certo…"
   },
   "3c503d73b6dc7f8e": {
    "t": "Novas ferramentas de e-commerce: 23 de setembro de 2026",
@@ -133,9 +117,9 @@
    "t": "O que é predictive media intelligence? Guia para equipes de marketing",
    "s": "Inteligência de mídia preditiva dá à sua equipe uma vantagem antecipada sobre a próxima tendência, história ou crise. Não precisa de bola de cristal."
   },
-  "3d9ee0084afcadc1": {
-   "t": "CMO da Applebee’s, Michelle Chin, fala sobre vitória da BBDO Chicago e modernização do bairro",
-   "s": "Acabando de escolher uma nova agência criativa, Chin compartilha lições da Starbucks e de marcas de luxo CPG, como o UGC impulsiona o boca a boca moderno e como navegar em um mercado competitivo de restaurantes casuais."
+  "439581447d594f3c": {
+   "t": "Campanhas globais geram menos resultados comerciais, revela pesquisa",
+   "s": "Estudo da Publicis London, System1 e Effie comparou a eficácia de campanhas em mercados globais e locais."
   },
   "449eae546e7df171": {
    "t": "Condé Nast CEO Roger Lynch deixa a empresa para a Mattel",
@@ -269,6 +253,10 @@
    "t": "Ajudando pequenas empresas a colocar IA em prática",
    "s": "OpenAI firma parceria com o sbdc dos EUA para ampliar treinamento prático em ia e apoio local a pequenas empresas, além de publicar novo relatório sobre como equipes enxutas usam ia."
   },
+  "711a8df45001bc14": {
+   "t": "Instagram atualiza programa educacional de segurança",
+   "s": "As School Partnerships do app oferecem aos educadores uma forma de denunciar possíveis problemas de segurança diretamente, além de lançarem hubs in‑app relacionados a escolas."
+  },
   "737e1a6e52ea733f": {
    "t": "Tendências de compras de fim de ano 2026: tarifas, confiança e timing",
    "s": "Como o poema diz: “Consumidores vasculham as redes sociais com cuidado, sabendo que as festas logo chegam.” Ou algo assim. O principal…"
@@ -277,9 +265,17 @@
    "t": "Como criar seus próprios Apps de IA (sem precisar programar)",
    "s": "Você está gastando demais todo mês em assinaturas de software que não se encaixam na forma como seu negócio funciona? Quer saber como criar apps e ferramentas personalizados com IA, mesmo sem codificação ou conhecimento técnico…"
   },
+  "7c02659605ea3b4d": {
+   "t": "Meta evita bilhões em impostos nos EUA ao chamar seus data centers de IA de experimentos",
+   "s": "Meta classifica seus data centers de IA como \"modelos piloto\" e os chips da Nvidia como materiais experimentais para economizar bilhões em impostos federais. Só em 2025, isso chegou a US$ 3,9 bilhões. O crédito fiscal remonta a 1981, e…"
+  },
   "7c92cf1e26ece77f": {
    "t": "Novas ferramentas de e‑commerce: 30 de setembro de 2026",
    "s": "Novos serviços esta semana incluem commerce agentic, avaliações de produtos, negócios locais, gestão de devoluções, desenvolvimento WordPress e vendas transfronteiriças."
+  },
+  "7cf648f343792ad1": {
+   "t": "Rota da tocha olímpica de LA28 visitará todos os 50 estados pela primeira vez",
+   "s": "Organizadores revelam plano para rota histórica nos EUA, que partirá de Atlanta antes dos Jogos de Verão de 2028."
   },
   "7de4bd313303c080": {
    "t": "Restate recebe US$ 20 milhões com o aumento da demanda por infraestrutura durável com agentes de IA",
@@ -296,6 +292,10 @@
   "8136cc43c6841cf2": {
    "t": "DoorDash reforça parceria com a WPP, nomeando agência como parceira global de mídia",
    "s": "A WPP continua a ter sucesso ao aprofundar relacionamentos com clientes existentes após vitória similar com a Estée Lauder e ao conquistar mídia dos EUA para a Wendy’s."
+  },
+  "839de3cb140b7c08": {
+   "t": "A feia economia da IA de consumo",
+   "s": "Há uma razão pela qual laboratórios de ponta têm ficado reticentes quanto à IA de consumo — e não é porque a tecnologia não seja boa o suficiente."
   },
   "847ad028a00fb764": {
    "t": "Como Kroger, Giant Eagle e DoorDash estão construindo seus assistentes de IA agentic",
@@ -337,6 +337,10 @@
    "t": "OuterBox lança o OBxFrontier para eliminar tarefas repetitivas com IA customizada",
    "s": "OuterBox lança o OBxFrontier, um serviço de desenvolvimento de ia customizado que mapeia problemas de fluxo de trabalho dos clientes e cria agentes de ia integrados aos sistemas existentes."
   },
+  "922cc47ceb7a53e7": {
+   "t": "Desmantelando uma campanha coordenada de distilação de modelo",
+   "s": "Saiba como a OpenAI interrompeu uma campanha de extração de raciocínio protegido de modelo e está reforçando defesas contra destilação adversária."
+  },
   "99b9b53c656a5459": {
    "t": "Asus não diz como escapou da proibição de roteadores dos EUA",
    "s": "Na primavera, os Estados Unidos proibiram todos os futuros roteadores de consumo fabricados no exterior – praticamente todos os roteadores futuros – a menos que seus fabricantes pudessem 1) convencer o governo dos EUA de que não representavam uma ameaça à segurança nacional, e…"
@@ -348,10 +352,6 @@
   "99fb0ada40ee7f9c": {
    "t": "Ex‑equipe da Tesla levanta US$ 12,5 milhões para colocar cadeias de suprimentos no piloto automático",
    "s": "O software de supply chain agentic da Atomic já está sendo usado por empresas como DoorDash e HelloFresh."
-  },
-  "9a7c302fa2c52f84": {
-   "t": "WPP Media contrata Laura Ryan como chief Media officer",
-   "s": "Ela vem da Orion Worldwide."
   },
   "9c0659200c3e974a": {
    "t": "OpenAI Dots executam pesquisa somente leitura quando ninguém está perguntando",
@@ -369,6 +369,10 @@
    "t": "Top 50 dos canais do YouTube mais visualizados no mundo – semana de 27/09/2026",
    "s": "A T-Series completou seu setembro dominante. O selo indiano liderou a tabela por um mês inteiro no Global Top 50. Para fechar a sequência de vitórias, a T-Series acumulou 946,5 milhões de visualizações semanais, impulsionando…"
   },
+  "a505040e414df804": {
+   "t": "Threads amplia opções de engajamento em chat ao vivo",
+   "s": "O app adicionou reações ao vivo e recurso de levantar a mão, e em breve lançará chats ao vivo baseados na web."
+  },
   "a8926125bf06d819": {
    "t": "Análise de desempenho no YouTube, mudanças nos Facebook Ads e notícias do setor",
    "s": "Recap dos insights, tendências e atualizações mais importantes que você precisa saber hoje! Atualize-se em minutos e encare a semana preparado. Na edição de hoje: encontrar vídeos de longo prazo no YouTube…"
@@ -380,10 +384,6 @@
   "a932222070a6a2b1": {
    "t": "Pintando novo retrato de cães de resgate para quem pensa em adotar um Pet",
    "s": ""
-  },
-  "a9a519f612be96ef": {
-   "t": "TikTok adiciona níveis de certificação para agências parceiras",
-   "s": "The platform will offer Agency Partner or Premier Agency Partner badges to assure marketers that partnership requirements have been met."
   },
   "afb35492c4098f91": {
    "t": "Com a Dazzle, Marissa Mayer aposta que seu rolo de câmera tem mais informações sobre sua vida que sua caixa de entrada",
@@ -413,6 +413,10 @@
    "t": "Brands Briefing: Hanna Andersson chega à Amazon com sortimento 90 % exclusivo",
    "s": "A marca de roupas infantis Hanna Andersson fará sua estreia oficial na Amazon em outubro, buscando atender ao desejo dos consumidores por conveniência."
   },
+  "b514b597697b55cb": {
+   "t": "Pinterest dá dicas de marketing para o pós‑férias",
+   "s": "A empresa disse que, na semana entre o Natal e o Ano Novo, especialistas em marketing devem mudar o foco de presentes para autocuidado."
+  },
   "b7c0b4c05566b263": {
    "t": "Shamrock adquire participação majoritária na Saylor e a funde com a agência de games Mutiny",
    "s": "A agência combinada está oferecendo expertise em fandoms para marcas muito além do entretenimento e dos games."
@@ -429,13 +433,13 @@
    "t": "WhatsApp adiciona novos controles parentais para contas de adolescentes",
    "s": "Os pais podem limitar como os adolescentes usam canais, quais Status podem ver, quem pode ver suas atualizações de Status e controlar quem pode adicionar adolescentes a grupos."
   },
+  "bb3b51f039e6fe08": {
+   "t": "TikTok cria níveis de certificação para agências parceiras",
+   "s": "A plataforma passará a oferecer emblemas de Agency Partner ou Premier Agency Partner para garantir que os requisitos de parceria foram atendidos."
+  },
   "bbde78a0d040bb59": {
    "t": "Defesa de marca por funcionários em 2026: como montar um programa",
    "s": "A defesa de marca por funcionários funciona quando o compartilhamento é simples. Use este plano de 6 etapas para definir metas, identificar defensores, criar impulso e muito mais!"
-  },
-  "bd09ebf41a053cbe": {
-   "t": "America.gov fica bem estranho quando perguntado sobre Minecraft, mas não é erro",
-   "s": "para a segurança nacional, é um alívio saber que o america.gov não está alucinando ao ponto de escrever poesias extensas."
   },
   "bdb2a13de50a7016": {
    "t": "Dicas de execução de IA, vídeo de IA com qualidade profissional e notícias do setor",
@@ -481,10 +485,6 @@
    "t": "Como Kevin Indig transforma uma Newsletter em uma semana de Posts",
    "s": "Descubra como Kevin Indig usa o Buffer para reaproveitar cada newsletter em posts sociais, testa novas ideias no Substack Notes e economiza de 2 a 3 horas por semana na distribuição de conteúdo."
   },
-  "d151fc88c7d67840": {
-   "t": "Por que a E.l.f. Cosmetics está trocando jingles por músicas originais de novos talentos",
-   "s": "Depois de nomear a artista Joaquina como embaixadora da marca, a E.l.f. trabalhou com a agência criativa liderada por latinas Croing em uma música original."
-  },
   "d28f010de9103586": {
    "t": "Agora você pode pedir DoorDash por textos e mensagens no Slack",
    "s": "DoorDash revelou novos recursos de compras agentic para empresas e indivíduos."
@@ -512,6 +512,10 @@
   "e462a04c4fa24e34": {
    "t": "Target corta preços enquanto o sentimento do consumidor se deteriora",
    "s": "Com a temporada de festas se intensificando, a rede de varejo reduziu os preços de quase 2 mil produtos de casa e vestuário."
+  },
+  "e64f12a8dd608b51": {
+   "t": "Meta lança Muse AI para pequenas empresas",
+   "s": "As ferramentas de inteligência artificial agentic da empresa podem ajudar pequenas empresas a melhorar fluxos de trabalho e integrar apps parceiros conectores."
   },
   "e6f5b90a18579df8": {
    "t": "Por que Josh Allan Dykstra acessa redes sociais apenas um dia por mês",
@@ -544,10 +548,6 @@
   "f7f70b8842fda0f5": {
    "t": "Como a Amazon está simplificando compras de anúncios em múltiplos formatos com IA",
    "s": "A executiva de Amazon Ads, Kelly MacLean, apresenta os avanços anunciados hoje que prometem simplificar como os profissionais de marketing trabalham com a plataforma."
-  },
-  "fc51dde27492637b": {
-   "t": "Pinterest compartilha dicas de marketing pós‑feriado",
-   "s": "In the week between Christmas and New Year’s, marketing experts should shift from gifting to self-care, according to the platform."
   },
   "fcd0124f3a7a2777": {
    "t": "Mattel nomeia novo CEO",
