@@ -200,4 +200,7 @@ test('reconhece título não traduzido sem barrar nomes próprios nem títulos e
   assert.equal(fixInitial('Twitch uses AI to find streamers', 'Twitch usa ia para descobrir streamers'), 'Twitch usa IA para descobrir streamers');
   assert.equal(fixInitial('Apple ships iOS 27.2', 'Apple libera ios 27.2'), 'Apple libera iOS 27.2');
   assert.equal(fixInitial('He was going home', 'Ele ia para casa'), 'Ele ia para casa');
+  assert.equal(fixInitial('Sam Altman says OpenAI will not go public', 'Sam altman diz que OpenAI não abrirá capital'), 'Sam Altman diz que OpenAI não abrirá capital');
+  assert.equal(fixInitial("Internet thinks Elon Musk's xAI trolled OpenAI", 'Internet acredita que xAI de elon musk trollou a OpenAI'), 'Internet acredita que xAI de Elon Musk trollou a OpenAI');
+  assert.equal(fixInitial('Meta misses its target', 'Meta não bate a meta'), 'Meta não bate a meta');
 });

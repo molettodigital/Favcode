@@ -128,6 +128,9 @@ export function untranslated(original, translated) {
   return en >= 2 && en > pt;
 }
 
+// Nomes próprios em inglês que também são palavras comuns em português ficam como o modelo escreveu.
+const COMMON_PT = new Set(['meta', 'target', 'square', 'visa', 'uber', 'dados', 'sonic', 'nova', 'real', 'mais', 'casa']);
+
 /**
  * Desfaz o que o modelo estraga ao passar a manchete para caixa de frase: devolve a maiúscula
  * inicial ("wayfair aumenta…"), a grafia de marcas e siglas do original ("Tiktok" → "TikTok",
@@ -142,6 +145,13 @@ export function fixInitial(original, translated) {
     if (word === 'AI') continue;
     const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     out = out.replace(new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'giu'), word);
+  }
+  // Nomes com inicial maiúscula no original (Altman, Musk) que voltaram em minúscula, fora a primeira
+  // palavra da frase e nomes que também são palavras comuns em português.
+  for (const word of source.split(/\s+/).slice(1)) {
+    const name = (word.replace(/^[^\p{L}]+/u, '').match(/^\p{Lu}\p{Ll}+(?=$|[^\p{L}])/u) || [])[0] || '';
+    if (name.length < 3 || COMMON_PT.has(name.toLowerCase())) continue;
+    out = out.replace(new RegExp(`(?<![\\p{L}\\p{N}])${name.toLowerCase()}(?![\\p{L}\\p{N}])`, 'gu'), name);
   }
   if (/\bAI\b/.test(source)) out = out.replace(/(?<![\p{L}\p{N}])ia(?![\p{L}\p{N}])/gu, 'IA');
   const first = out.charAt(0);
