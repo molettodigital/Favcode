@@ -211,7 +211,7 @@ export const noise = [
   ...offers,
   /\b\d+\s(?:modelos|op[cç][oõ]es)\s(?:para comprar|para jogos)\b|\bqual (?:modelo )?comprar\b|\bpara comprar em 20\d\d\b/i,
   /^como (?:usar|fazer|baixar|recuperar|ativar|desativar|espelhar|justificar|ver|mudar|trocar|configurar|limpar|apagar|excluir|instalar|atualizar|colocar|tirar|cancelar|consultar|emitir|transferir|conectar|resetar|formatar|desbloquear|bloquear|salvar|converter|gravar|editar|imprimir|assistir|ligar|desligar|saber se)\b/i,
-  /\bhor[oó]scopo\b|\bloterias?\b|\bmega-?sena\b|\bresultado da quina\b/i,
+  /\bhor[oó]scopo\b|\bloterias?\b|\bmega-?sena\b|\blotof[aá]cil\b|\blotomania\b|\btimemania\b|\bdupla sena\b|\bdia de sorte\b|\bsuper sete\b|\bresultado da quina\b/i,
   // Listas, comparativos e curiosidades atemporais.
   /^\d+\s(?:pol[eê]micas|curiosidades|coisas|fatos|dicas|motivos|raz[oõ]es|erros|truques|segredos|jogos|filmes|s[eé]ries|apps|aplicativos|diferen[cç]as|celulares|notebooks|fones)\b/i,
   /\bqual (?:[eé] )?(?:o |a )?melhor\b|:\s*qual escolher\b|^quanto custaria\b/i,
