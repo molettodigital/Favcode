@@ -821,7 +821,7 @@
     <div data-pop-step="form">
       <p class="pop__badge"><span class="pop__pulse" aria-hidden="true"></span><span>Newsletter grátis · toda <span data-pop-day>sexta</span></span></p>
       <h2 id="pop-title">As notícias que importam, <span>direto no seu e-mail</span></h2>
-      <p class="pop__lede">O resumo semanal do Radar FavCode: as principais notícias de pautas em alta, IA, marketing e pequenos negócios, comentadas por <strong data-pop-author>Clara Poleto</strong>.</p>
+      <p class="pop__lede">O resumo semanal do Radar FavCode: as principais notícias de pautas em alta, IA, marketing e pequenos negócios, selecionadas e comentadas para você.</p>
       <ul class="pop__points"><li>1 e-mail por semana</li><li>Sem spam</li><li>Sai quando quiser</li></ul>
       <div class="pop__row">
         <label for="pop-email" class="sr-only">Seu e-mail</label>
@@ -1793,7 +1793,6 @@
 
   function initPop() {
     $$('[data-pop-day]').forEach((el) => (el.textContent = NEWSLETTER.day.replace('-feira', '')));
-    $('[data-pop-author]').textContent = NEWSLETTER.author;
     $('[data-pop-form]').addEventListener('submit', submitPop);
     $('[data-pop]').addEventListener('click', (e) => {
       if (e.target === e.currentTarget || e.target.closest('[data-pop-close]')) closePop();
