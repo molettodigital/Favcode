@@ -25,10 +25,6 @@
    "t": "Redator dá nota 95% a conteúdo feito por IA",
    "s": "Neville Medhora, do Swipe File, diz que o conteúdo de IA pode rivalizar com o humano e gerar 50 versões."
   },
-  "149981c3855ef198": {
-   "t": "Snapchat lança pitch para gasto de anúncios B2B",
-   "s": "Nova campanha reforça os esforços para promover oportunidades de alcançar públicos decisores-chave dentro do app."
-  },
   "15a9f353ae097bcb": {
    "t": "Best Buy lançará loja no TikTok Shop",
    "s": "Clientes poderão comprar produtos diretamente pela plataforma de social commerce, com os pedidos sendo atendidos pelo varejista."
@@ -49,10 +45,6 @@
    "t": "Investidor da Neko Health aposta US$ 700 milhões para escanear todo o seu corpo",
    "s": "Neko Health, de Daniel Ek, levantou US$ 700 milhões para criar um negócio em torno da varredura do corpo, mas não é a única empresa que centra seu roadmap em um novo tipo de saúde preventiva. Midjourney é…"
   },
-  "1f66a36bba2035fa": {
-   "t": "Amazon bloqueou o Muse da Meta, e o Robots.txt não tinha nada a dizer",
-   "s": "Qualquer site pode escrever a frase da página de bloqueio da Amazon nos seus próprios termos. Identificar um agente que parece um comprador é a parte difícil."
-  },
   "225c3a1d2a84c523": {
    "t": "Os Tamagotchis de IA estão chegando",
    "s": "Embora a IA tenha avançado bastante nos smartphones e computadores das pessoas, ela quase não teve sucesso em dispositivos dedicados. Mas, no próximo ano, duas grandes empresas de IA, Meta e OpenAI, tentarão mudar isso. E elas…"
@@ -64,10 +56,6 @@
   "249c8d6637bb8501": {
    "t": "Twitch usa IA para descobrir quais streamers não devem receber dinheiro de anúncios",
    "s": "a twitch está usando ia para descobrir quais streamers não deveriam receber dinheiro de anúncios. o CEO Dan Clancy contou aos hosts do The Snarketing Podcast que a twitch já usa ia para transcrever tudo que os streamers dizem ao vivo, e agora está…"
-  },
-  "25b8ddfff8b32a4d": {
-   "t": "Marca canadense de vestuário Duer lança revista impressa enquanto o analógico volta à moda",
-   "s": "Duer, marca canadense de jeans performance, aposta no impresso enquanto o analógico volta a ser tendência. A empresa lançará a revista trimestral Interval, com a primeira edição prevista para outubro."
   },
   "25cee0bcd2194fd4": {
    "t": "Meta contesta alegação de que Muse leu mensagens privadas de usuário sem permissão",
@@ -101,9 +89,17 @@
    "t": "O que é audience intelligence? Um guia para equipes de marketing",
    "s": "O que é audience intelligence e por que as equipes de marketing devem se importar? Aqui está um guia prático, sem enrolação."
   },
+  "2dcabdd2b0d14315": {
+   "t": "Meta adiciona assistente de IA ao Edits",
+   "s": "A empresa disse que seu “parceiro criativo” movido a inteligência artificial ajudará usuários a descobrir padrões e criar conteúdo no app de edição de vídeo."
+  },
   "2eefdad056ca57b5": {
    "t": "O novo point dos alunos do ensino fundamental é a seção de comentários da NPR?",
    "s": "Quando funcionários da NPR marcaram como bots uns comentários estranhos nos podcasts da rádio no Spotify, foi preciso uma colega da geração Z para decifrar o mistério na hora."
+  },
+  "2f60188fcaaa603a": {
+   "t": "Noel Miller sobre por que a TMG Studios está entrando em podcasts de ficção – e por que não vai tocar em gen AI",
+   "s": "“Se somos o último canal de mídia liderado por humanos e todo o resto é promptado e gerado em um data center, então que seja.” Esse é Noel Miller, o Viner que virou podcaster e dono de empresa de podcasts, que lançou a TMG…"
   },
   "34a963ee2d396171": {
    "t": "EliseAI, apoiada pela a16z, arrecada US$ 350 milhões e dobra valuation para US$ 4 bilhões",
@@ -145,6 +141,10 @@
    "t": "Reddit elimina feeds RSS e encerra acesso público à API por causa de bots de IA",
    "s": "Reddit está encerrando o suporte a feeds RSS, enquanto a empresa continua restringindo o acesso ao seu acervo de conteúdo gerado por usuários."
   },
+  "40f237f85e1978fe": {
+   "t": "Ad Council PSA revela as lutas secretas da nova maternidade",
+   "s": "Um bebê chorando. Estrias. Chorar no banho. Essas duras realidades da maternidade precoce são frequentemente mantidas em segredo, mas um novo anúncio de serviço público lançado hoje pelo…"
+  },
   "42f57577dcd5f26a": {
    "t": "Choque no C‑suite: David Ellison adiciona co‑CEO à Paramount‑WBD fundida",
    "s": "Ynon Kreiz se juntará à Paramount e à WBD combinadas para liderar ao lado de Ellison."
@@ -181,9 +181,9 @@
    "t": "Depois de perder a voz para o câncer, fundador cria ‘óculos para voz’",
    "s": "Uhura Bionics, participante do Startup Battlefield 200 no TechCrunch Disrupt, quer substituir dispositivos robóticos de voz sem emoção por um que carregue emoções."
   },
-  "4db767f51273c683": {
-   "t": "Patreon e jogadores de tabuleiro apostam alto com dado D20 gigantesco",
-   "s": ""
+  "50331c43d3d39226": {
+   "t": "Surpresa: Neon também está fazendo um filme da SCP Foundation, mas da forma correta",
+   "s": "A Neon, produtora dos filmes Parasite, Longlegs e Anora, decidiu que vai fazer seu próprio filme da SCP Foundation – e, ao contrário da A24, está realmente dialogando com as pessoas que administram a wiki SCP…"
   },
   "54597613c5b1761f": {
    "t": "Wikipedia, Podcasts e Reddit agora geram citações de IA, pergunte ao seu time de PR como fizeram",
@@ -197,25 +197,17 @@
    "t": "O que é social CRM? Guia completo para 2026",
    "s": "Social CRM transforma comentários, DMs e menções em contexto de CRM. Descubra um fluxo de trabalho passo a passo, roteamento com IA e sentimento, além de uma lista de ferramentas."
   },
-  "564db22d1b2476b1": {
-   "t": "Facebook volta à era dos forums com novo app",
-   "s": "limpe seu avatar, prepare suas tags HTML e prepare-se para perguntar “ASL”, porque o facebook está trazendo de volta o forum — pelo menos no nome. a plataforma flagship da meta lançou oficialmente o Forum, um app centrado na comunidade…"
-  },
   "567a5f56513daa6b": {
    "t": "Profund versus Athena ai para AEO: como as ferramentas se comparam",
    "s": "Se você buscou “Profound versus Athena AI for AEO”, provavelmente encontrou um muro: todas as comparações são feitas por concorrentes, afiliados ou pelos próprios fornecedores."
   },
-  "56b037e8da1831a0": {
-   "t": "10 anos da The Trade Desk na Wall Street: ciclos, crises e a batalha pelo que vem a seguir",
-   "s": "Uma década após seu IPO blockbuster, a The Trade Desk passou de queridinha do adtech a DSP independente em apuros, enfrentando desaceleração de crescimento, deserções de parceiros e queda de 91% nas ações enquanto aposta seu próximo capítulo na IA."
+  "58afda9c6aa99847": {
+   "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
+   "s": "No Shoptalk Fall, marcas como Favorite Daughter, SharkNinja e Bob's Discount Furniture falaram sobre o que aprenderam ao trabalhar com creators."
   },
   "5938fe48872225ee": {
    "t": "OrderEAT capta US$ 2 milhões para expandir plataforma de cantinas escolares",
    "s": "A OrderEAT captou US$ 2 milhões numa rodada liderada pela Chile Ventures, com participação de Driven VC, Add Ventures, Seedstars,…"
-  },
-  "5a5ee2ca15b873b0": {
-   "t": "CEO da Factory acusa conselheiro de VC de espionar para a Cognition",
-   "s": "O VC Chris Degnan e ex‑conselheiro do board da Factory AI assumiu o cargo de chief revenue officer da concorrente Cognition — e todo mundo está discutindo isso no X."
   },
   "5b01ffc293fac531": {
    "t": "YouTube CTR, estrutura de Instagram Reels e notícias do setor",
@@ -224,6 +216,10 @@
   "5ea2de3a353432d3": {
    "t": "Meta e YouTube agora dizem que vão aceitar anúncios do documentário ‘Musk’",
    "s": "Duas empresas agora dizem que vão aceitar publicidade do próximo documentário do diretor Alex Gibney sobre Elon Musk, depois de reportagens de que várias redes sociais tinham recusado os anúncios."
+  },
+  "5ec9fb6d5017923d": {
+   "t": "Vivo X Fold 6 acidentalmente dá sensação de nostalgia",
+   "s": "É uma peculiaridade do calendário de lançamentos que, quando o X Fold 6 da Vivo chegou à China em junho, era apenas mais um dobrável. Agora, pronto para o lançamento global, o tamanho e a proporção de tela parecem estranhamente antiquados…"
   },
   "5fdb74035146e4e6": {
    "t": "TikTok vai pagar pelo menos US$ 100 milhões em acordo no Alabama",
@@ -249,17 +245,9 @@
    "t": "As métricas de busca por IA que uso para analisar Pipelines de clientes",
    "s": "Veja se a busca por IA alcança compradores e gera oportunidades qualificadas com cinco métricas que cobrem presença da marca, precisão de respostas e atribuição."
   },
-  "6acf4c7ca912d948": {
-   "t": "Meta adiciona selos de colaborador ao app de chat Forums",
-   "s": "a empresa está tentando converter os grupos do facebook em um formato de perguntas e respostas mais interativo, além de acrescentar rótulos de tópicos para ajudar na descoberta."
-  },
   "6addc8b03ca8b0f7": {
    "t": "Vale a pena o escaneamento corporal da Neko Health? Startup do bilionário do Spotify chega à América",
    "s": "Neko Health, startup do bilionário do Spotify, levantou US$ 700 milhões para criar um negócio baseado na digitalização do corpo, mas não é a única empresa que coloca seu roadmap em torno de um novo tipo de saúde preventiva. Midjourney é…"
-  },
-  "6b74183cd5e9787d": {
-   "t": "Vamos ao destaque: Twitch ajuda creators a transformar seus Clips em “recaps” de stream",
-   "s": "Assistir streams no Twitch pode ser muito divertido, mas quem tem tempo de dedicar várias horas ao conteúdo ao vivo? Muitos streamers têm dificuldade de alcançar a maioria dos fãs durante as transmissões, mas o Twitch está desenvolvendo uma…"
   },
   "6cdcf9cccf9512dc": {
    "t": "Como monetizar Instagram em 2026: 12 formas comprovadas",
@@ -272,10 +260,6 @@
   "6ee08b6c7d629242": {
    "t": "Danny Hieber explica linguagem para a Internet",
    "s": "O linguista Danny Hieber converte cada edição de sua newsletter no Substack em dezenas de posts para Substack Notes e seis outras plataformas, programando tudo no Buffer para ser publicado nas semanas seguintes."
-  },
-  "711a8df45001bc14": {
-   "t": "Instagram atualiza programa educacional de segurança",
-   "s": "As School Partnerships do app oferecem aos educadores uma forma de denunciar possíveis problemas de segurança diretamente, além de lançarem hubs in‑app relacionados a escolas."
   },
   "737e1a6e52ea733f": {
    "t": "Tendências de compras de fim de ano 2026: tarifas, confiança e timing",
@@ -337,6 +321,10 @@
    "t": "Desmantelando uma campanha coordenada de distilação de modelo",
    "s": "Saiba como a OpenAI interrompeu uma campanha de extração de raciocínio protegido de modelo e está reforçando defesas contra destilação adversária."
   },
+  "943c5e4ca86de448": {
+   "t": "DoorDash adiciona novos varejistas e assistente de compras por texto",
+   "s": "Enquanto a DoorDash adiciona parceiros como Costco, a empresa também expande recursos de compra como Text DoorDash e Dasher Returns, numa tentativa de se tornar um marketplace tudo-em-um."
+  },
   "99b9b53c656a5459": {
    "t": "Asus não diz como escapou da proibição de roteadores dos EUA",
    "s": "Na primavera, os Estados Unidos proibiram todos os futuros roteadores de consumo fabricados no exterior – praticamente todos os roteadores futuros – a menos que seus fabricantes pudessem 1) convencer o governo dos EUA de que não representavam uma ameaça à segurança nacional, e…"
@@ -357,10 +345,6 @@
    "t": "Conteúdo de creator vira mídia paga graças ao novo produto da ShopMy",
    "s": "Ao se posicionar no centro do boom de marketing de creators, a ShopMy recebeu milhões de firmas de venture capital enquanto ampliava uma rede de parceiros que inclui agora 350 mil \"curators\" e dezenas de milhares de marcas…"
   },
-  "a505040e414df804": {
-   "t": "Threads amplia opções de engajamento em chat ao vivo",
-   "s": "O app adicionou reações ao vivo e recurso de levantar a mão, e em breve lançará chats ao vivo baseados na web."
-  },
   "a8e43615a4d0c113": {
    "t": "NHL escolhe a Adobe como parceira criativa, de marketing e IA",
    "s": "A parceria segue um aumento na relevância cultural da liga após as Olimpíadas de inverno e shows populares como “Heated Rivalry”."
@@ -368,6 +352,18 @@
   "a932222070a6a2b1": {
    "t": "Pintando novo retrato de cães de resgate para quem pensa em adotar um Pet",
    "s": ""
+  },
+  "a9a519f612be96ef": {
+   "t": "TikTok cria níveis de certificação para parceiros de agências",
+   "s": "A plataforma passará a oferecer os selos Agency Partner ou Premier Agency Partner para garantir que os requisitos de parceria foram atendidos."
+  },
+  "aae091c237f45844": {
+   "t": "LinkedIn atualiza seu bot de contratação movido a IA",
+   "s": "A plataforma anunciou o lançamento do Hiring Assistant 2, que traz maior capacidade de personalização e de pareamento de candidatos."
+  },
+  "af61be17075d6ee5": {
+   "t": "Reddit encerra suporte a feeds RSS",
+   "s": "A plataforma também anunciou o fim do acesso gratuito à API, enquanto tenta proteger seus dados de raspadores de inteligência artificial."
   },
   "afb35492c4098f91": {
    "t": "Com a Dazzle, Marissa Mayer aposta que seu rolo de câmera tem mais informações sobre sua vida que sua caixa de entrada",
@@ -397,10 +393,6 @@
    "t": "Brands Briefing: Hanna Andersson chega à Amazon com sortimento 90 % exclusivo",
    "s": "A marca de roupas infantis Hanna Andersson fará sua estreia oficial na Amazon em outubro, buscando atender ao desejo dos consumidores por conveniência."
   },
-  "b514b597697b55cb": {
-   "t": "Pinterest dá dicas de marketing para o pós‑férias",
-   "s": "A empresa disse que, na semana entre o Natal e o Ano Novo, especialistas em marketing devem mudar o foco de presentes para autocuidado."
-  },
   "b86837c58c124a4e": {
    "t": "Galgo assegura linha de crédito de US$ 55 milhões da BBVA Spark",
    "s": "A plataforma chilena de financiamento de motocicletas Galgo garantiu uma linha de crédito de US$ 55 milhões da BBVA Spark para expandir suas operações em…"
@@ -416,10 +408,6 @@
   "bab62ced41cc7a8f": {
    "t": "WhatsApp adiciona novos controles parentais para contas de adolescentes",
    "s": "Os pais podem limitar como os adolescentes usam canais, quais Status podem ver, quem pode ver suas atualizações de Status e controlar quem pode adicionar adolescentes a grupos."
-  },
-  "bb3b51f039e6fe08": {
-   "t": "TikTok cria níveis de certificação para agências parceiras",
-   "s": "A plataforma passará a oferecer emblemas de Agency Partner ou Premier Agency Partner para garantir que os requisitos de parceria foram atendidos."
   },
   "bbde78a0d040bb59": {
    "t": "Defesa de marca por funcionários em 2026: como montar um programa",
@@ -440,6 +428,10 @@
   "c0aaa196cae495de": {
    "t": "Instagram adiciona ‘assistant’ de IA para dizer como postar",
    "s": "Instagram é a mais nova plataforma social a adicionar recursos internos alimentados por IA que dão feedback aos usuários sobre suas postagens. A empresa anunciou na quarta‑feira que seu app independente Edits passará a incluir uma IA…"
+  },
+  "c0fccf8f55036a12": {
+   "t": "CEO da Factory acusa conselheiro de VC de espionar para a Cognition",
+   "s": "O VC Chris Degnan e ex‑conselheiro do board da Factory AI assumiu o cargo de chief revenue officer da concorrente Cognition — e todo mundo está debatendo sobre isso no X."
   },
   "c3334b10f3da5fb0": {
    "t": "Prometeo lança Risk Intelligence",
@@ -485,9 +477,9 @@
    "t": "É possível agendar Substack Notes?",
    "s": "Sim, você pode agendar Substack Notes. Saiba os dois métodos; via Substack e Buffer."
   },
-  "d3a4bffc79c77ff8": {
-   "t": "18 meses, 31 protótipos e 1.700 horas de teste de uso: como a Knix trouxe sua roupa íntima de algodão sem costura ao mercado",
-   "s": "Knix lançou a linha de roupas íntimas Invisible Cotton, cujo desenvolvimento técnico foi mais complexo do que sua natureza sem costura sugere. Foram necessários 18 meses, 31 protótipos e 1.700 horas de testes de uso para chegar ao produto final…"
+  "d9b79c232f3bc307": {
+   "t": "Instagram adiciona opção de impulsionar transmissões ao vivo",
+   "s": "O app já permite impulsionar promocionalmente posts, Stories e Reels, e agora creators podem usar um recurso dentro do app para aumentar o engajamento de seus vídeos ao vivo."
   },
   "de4240605fcef1bb": {
    "t": "Valor, Atreides e Sequoia apoiam startup de IA Flow Engineering em avaliação de US$ 750 milhões",
@@ -501,17 +493,25 @@
    "t": "Target corta preços enquanto o sentimento do consumidor se deteriora",
    "s": "Com a temporada de festas se intensificando, a rede de varejo reduziu os preços de quase 2 mil produtos de casa e vestuário."
   },
-  "e64f12a8dd608b51": {
-   "t": "Meta lança Muse AI para pequenas empresas",
-   "s": "As ferramentas de inteligência artificial agentic da empresa podem ajudar pequenas empresas a melhorar fluxos de trabalho e integrar apps parceiros conectores."
-  },
   "e9b0e6fc653b6e04": {
    "t": "Senado aprova projeto Common Cents",
    "s": "A proposta de oferecer aos comerciantes um framework de arredondamento de caixa e eliminar formalmente o centavo agora segue para a Casa Branca."
   },
+  "ea42ca2734b14306": {
+   "t": "TikTok hospeda lançamento de David Geffen Galleries",
+   "s": "O app ampliou sua série Museums Alive ao fazer parceria com o Los Angeles County Museum of Art para expor a coleção egípcia do museu."
+  },
   "f069fd7a49b1cd71": {
    "t": "Wayfair aumenta investimento em esportes para plataforma de marca focada em valores",
    "s": "A varejista está ampliando seu esforço mais recente ao aumentar o investimento em publicidade nas redes que transmitem jogos de futebol, tornando‑se cinco vezes maior que o gasto anterior."
+  },
+  "f1340ed7bc85a31a": {
+   "t": "WhatsApp adiciona novos controles parentais",
+   "s": "O app de mensagens implementou ferramentas que ajudarão a monitorar a quais grupos adolescentes se conectam e como certos recursos do app são usados."
+  },
+  "f7a02275f407aa50": {
+   "t": "LiveRamp expande acordo com OpenAI e inclui segmentação com dados de primeira‑parte",
+   "s": "A LiveRamp amplia sua parceria com OpenAI, trazendo audiências RampID de primeira‑parte para ChatGPT Ads, enquanto anunciantes ganham mais opções de segmentação e lances."
   },
   "f7f70b8842fda0f5": {
    "t": "Como a Amazon está simplificando compras de anúncios em múltiplos formatos com IA",
