@@ -5,10 +5,6 @@
    "t": "Ad Council revela o ‘segredo’ da maternidade em spot poderoso",
    "s": "O novo trabalho impactante da Mischief aborda tratamento de saúde mental materna como parte da campanha de longa data “Love, Your Mind”."
   },
-  "02127c43445add20": {
-   "t": "O que a pontuação preditiva da Kroger significa para marketers de e‑commerce",
-   "s": "O supermercado, em parceria com Vidmob e MMA Global, conseguiu prever a conversão de e‑commerce de criativos publicitários com 81% de precisão."
-  },
   "05e56d6f1bc8aebc": {
    "t": "Discord intensifica o jogo para anunciantes mobile com produto de vídeo recompensado",
    "s": "Um novo formato e o primeiro Ads Manager da plataforma de chat para executar campanhas chegam à medida que o gaming se torna um canal cada vez mais importante para os marqueteiros."
@@ -16,6 +12,10 @@
   "06783aed631e2250": {
    "t": "Rich Silverstein, da GS&P, coloca sua carreira lendária em perspectiva",
    "s": ""
+  },
+  "07684fdbcfa726ac": {
+   "t": "Faça mais com IA sem gastar mais",
+   "s": "O uso de IA encarece rápido. Prompting melhor, frameworks reutilizáveis, logs de prompt e guardrails ajudam as equipes a obter mais e gastar menos."
   },
   "0cb40a1492a24674": {
    "t": "O complemento eterno",
@@ -81,10 +81,6 @@
    "t": "AMentoria capta US$ 196 mil em rodada seed para expandir plataforma de educação no Brasil",
    "s": "A edtech brasileira AMentoria captou US$ 196 mil numa rodada seed liderada pela Triaxis Capital e pela Crescera Capital por meio do FIP Nordeste…"
   },
-  "249c8d6637bb8501": {
-   "t": "Twitch usa IA para descobrir quais streamers não devem receber dinheiro de anúncios",
-   "s": "a twitch está usando ia para descobrir quais streamers não deveriam receber dinheiro de anúncios. o CEO Dan Clancy contou aos hosts do The Snarketing Podcast que a twitch já usa ia para transcrever tudo que os streamers dizem ao vivo, e agora está…"
-  },
   "27ba24969b5e53f9": {
    "t": "Briefing de grandes varejistas: o que observar enquanto Amazon, Target e Walmart realizam suas vendas de outono",
    "s": "Na próxima semana, Amazon, Target e Walmart iniciarão suas grandes vendas de outono, o que será um teste crucial da demanda do consumidor antes da temporada de festas, tão importante. Veja o que estamos observando."
@@ -141,10 +137,6 @@
    "t": "Nuvia capta US$ 1,8 milhão para expandir agentes de vendas com IA pela América Latina",
    "s": "A startup brasileira de IA Nuvia captou US$ 1,8 milhão numa rodada liderada pela Amador Capital e pela Nascent. NXTP, Crivo Ventures,…"
   },
-  "4ad9fb0af0e995d0": {
-   "t": "Scrunch vs. Peec AI: escolhendo a ferramenta certa de AEO [2026]",
-   "s": "Esta comparação entre Scrunch e Peec AI avalia como ambas as ferramentas medem a representatividade do motor de respostas de IA entre diferentes segmentos de compradores, faixas de preço e escopos de funcionalidades."
-  },
   "4b5a703ce624b370": {
    "t": "Como aumentar o engajamento nas redes sociais em 2026",
    "s": "Como aumentar o engajamento nas redes sociais: aprenda táticas, benchmarks, melhores horários para postar e dicas para cada plataforma."
@@ -165,13 +157,21 @@
    "t": "O que é social CRM? Guia completo para 2026",
    "s": "Social CRM transforma comentários, DMs e menções em contexto de CRM. Descubra um fluxo de trabalho passo a passo, roteamento com IA e sentimento, além de uma lista de ferramentas."
   },
-  "567a5f56513daa6b": {
-   "t": "Profound vs. Athena AI para AEO: como as ferramentas se comparam",
-   "s": "Se você pesquisou “Profound versus Athena AI for AEO”, provavelmente já encontrou um obstáculo: toda comparação disponível foi escrita por concorrentes, afiliados ou pelos próprios fornecedores."
-  },
   "5772689fa529c8ab": {
    "t": "Instagram adiciona opção de impulsionar livestreams",
    "s": "Criadores agora podem usar um recurso dentro do app para aumentar o engajamento de seus vídeos ao vivo."
+  },
+  "57f7d5f8880dcd04": {
+   "t": "As últimas notícias e lançamentos de martech impulsionados por IA",
+   "s": "Pagamentos, identidade, autorização, infraestrutura e confiança podem manter a compra autônoma “bem próxima” por anos."
+  },
+  "580bd889131e6980": {
+   "t": "Salesforce compra startup de pesquisa de clientes com IA Listen Labs",
+   "s": "A startup de pesquisa em IA trazirá entrevistas com clientes, análises e comportamentos simulados de clientes mais próximo ao CRM e aos agentes de IA da Salesforce."
+  },
+  "58a0fb2de5e52614": {
+   "t": "Marketing no LinkedIn: o que você precisa saber",
+   "s": "Seu guia para as ferramentas, estratégias e boas práticas do LinkedIn. Atualizado com informações sobre o novo recurso Creator Discovery."
   },
   "58afda9c6aa99847": {
    "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
@@ -261,10 +261,6 @@
    "t": "Como criar seus próprios Apps de IA (sem precisar programar)",
    "s": "Você está gastando demais todo mês em assinaturas de software que não se encaixam na forma como seu negócio funciona? Quer saber como criar apps e ferramentas personalizados com IA, mesmo sem codificação ou conhecimento técnico…"
   },
-  "7c02659605ea3b4d": {
-   "t": "Meta evita bilhões em impostos nos EUA ao chamar seus data centers de IA de experimentos",
-   "s": "Meta classifica seus data centers de IA como \"modelos piloto\" e os chips da Nvidia como materiais experimentais para economizar bilhões em impostos federais. Só em 2025, isso chegou a US$ 3,9 bilhões. O crédito fiscal remonta a 1981, e…"
-  },
   "7c1b0d66e312e957": {
    "t": "Novo agente da OpenAI é uma investida contra a Meta — mas pode competir com o gratuito?",
    "s": "Na conferência anual DevDay da OpenAI, a empresa usou todos os recursos para competir com seus rivais — principalmente a Meta, cuja plataforma Muse AI agent tem tido sucesso imediato. O CEO Sam Altman subiu ao palco entre aplausos…"
@@ -293,9 +289,17 @@
    "t": "Startup de utensílios de cozinha Caraway foi processada por concorrentes e usou a ação judicial em marketing",
    "s": "Em fevereiro, dois dos maiores players do setor de utensílios de cozinha — Groupe SEB e Meyer — moveram uma ação contra a Caraway, acusando a empresa de alegações falsas e enganosas de publicidade. Em vez de se afastar da..."
   },
+  "8d9a4f5508b25983": {
+   "t": "A atribuição de marketing B2B é bagunçada. pode ser resolvida?",
+   "s": "Rastrear a receita B2B não deveria parecer uma caça a alvos em movimento. Mehul Nagrani, da Integrate, analisa a realidade da atribuição e o futuro da geração de demanda B2B."
+  },
   "8dae8557bf518e17": {
    "t": "OpenAI diz que impediu campanha para roubar raciocínio de seus modelos, mas truque ainda funcionou no Azure",
    "s": "OpenAI afirma ter interrompido uma campanha coordenada em que mais de 15 mil contas tentaram copiar o raciocínio oculto de seus modelos. A empresa vincula parte da atividade a pessoas ligadas à Moonshot AI. Mas pesquisadores…"
+  },
+  "8e6f2e9f35e018f2": {
+   "t": "7 mitos sobre busca com IA desmentidos por dados",
+   "s": "A IA está mudando a busca, mas algumas das afirmações mais altas sobre tráfego, conteúdo, mensuração e empregos em SEO não se sustentam quando se verifica os números."
   },
   "8fb870ad0fd2ccc9": {
    "t": "Preocupações sobre impacto negativo das redes sociais crescem",
@@ -324,6 +328,10 @@
   "9c0659200c3e974a": {
    "t": "OpenAI Dots executam pesquisa somente leitura quando ninguém está perguntando",
    "s": "Os Dots da OpenAI podem revisar aplicativos conectados e executar verificações agendadas entre conversas, com limites somente de leitura para pesquisas proativas."
+  },
+  "9c35d539fdc016eb": {
+   "t": "Estados estão reescrevendo as regras das redes sociais",
+   "s": "O acordo da Meta, o acordo da TikTok com o Alabama e processos contra o YouTube mostram estados criando novas regras sobre como as plataformas operam e vendem publicidade."
   },
   "9c8bb0c03fe7be75": {
    "t": "OpenAI corta relações com 3 pesquisadores de segurança, relata WSJ",
@@ -449,10 +457,6 @@
    "t": "Dicas de execução de IA, vídeo de IA com qualidade profissional e notícias do setor",
    "s": "Sexta-feira está chegando! Antes de desconectar, aqui vai mais um round de insights e atualizações. Leia agora ou guarde para depois, mas não perca. Na edição de hoje: usar formulários para informar e orientar…"
   },
-  "bfdfffd7d6bd5134": {
-   "t": "Como a Thorne criou uma plataforma de marca antes da compra de US$ 3,8 bilhão da P&G — e o que vem a seguir",
-   "s": "Chief Growth Officer Mary Beech detalha como o trabalho com a consultoria de marcas Redscout transformou insights de consumidores em campanhas e em um estilo de comunicação."
-  },
   "bfe97b57d549188a": {
    "t": "Entrevista com Brian Chesky: agentes de IA precisam de seu próprio operating system",
    "s": "Brian Chesky fala sobre tornar o Airbnb amigável para agentes, o estado da IA para consumidores e por que o mundo precisa de um operating system nativo de IA."
@@ -472,6 +476,10 @@
   "c7e1d578c10bd759": {
    "t": "Na sua conferência flagship unBoxed, Amazon Ads derruba silos de compra enquanto a IA assume papel maior nas decisões de mídia",
    "s": "Em sinal dos tempos de agilidade, a Amazon anunciou na terça-feira, em sua conferência anual UnBoxed, que renomeou sua plataforma unificada para Amazon Ads Agent. A empresa também anunciou Full-Funnel Campaigns, que combina..."
+  },
+  "ca9413fe4f4c02f0": {
+   "t": "Live Nation está aproveitando a economia creator com uma nova empresa",
+   "s": "A controladora da Ticketmaster, Live Nation, está entrando no negócio creator. A corporação multinacional de capital aberto, que se autodenomina “a maior empresa de entretenimento ao vivo do mundo”, está financiando uma nova empresa chamada Creator…"
   },
   "cb768912c9eeac9c": {
    "t": "Reddit encerra suporte a feeds RSS",
@@ -508,6 +516,10 @@
   "d0272dcf0df4eb60": {
    "t": "KnitWell Group nomeia chief digital and customer data officer",
    "s": "Angelica Munson foi nomeada para a função recém‑criada na empresa-mãe da Ann Taylor e da Chico’s."
+  },
+  "d181faf4b7fba846": {
+   "t": "AutoSynthData: gerando dados de treinamento para agentes corporativos",
+   "s": ""
   },
   "d1ad64051bbdf04a": {
    "t": "Cloudflare move Monetization Gateway & Pay Per Use para Beta",
