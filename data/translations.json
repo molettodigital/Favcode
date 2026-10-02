@@ -9,6 +9,10 @@
    "t": "Cloudflare diz que seu novo modelo Clef significa que humanos não precisam mais estar no loop para agentes de IA",
    "s": "Com Clef e Clef-flash, a Cloudflare está desafiando o modelo de decisão Jev da TypeSafe AI. Clef-flash entrega classificações em cerca de 39 milissegundos, sendo mais de dez vezes mais rápido que o Jev. Ambos os modelos são construídos sobre…"
   },
+  "057ef1690073bfef": {
+   "t": "Ia faz clientes esperar mais e tolerar menos",
+   "s": "Serviço mais rápido faz parte da promessa da ia. Clientes não ficam impressionados quando a velocidade vem acompanhada de problemas não resolvidos e sem um caminho fácil para falar com uma pessoa."
+  },
   "05e56d6f1bc8aebc": {
    "t": "Discord intensifica o jogo para anunciantes mobile com produto de vídeo recompensado",
    "s": "Um novo formato e o primeiro Ads Manager da plataforma de chat para executar campanhas chegam à medida que o gaming se torna um canal cada vez mais importante para os marqueteiros."
@@ -17,9 +21,13 @@
    "t": "Rich Silverstein da GS&P coloca sua carreira lendária em perspectiva",
    "s": ""
   },
-  "0cdd0433506712f3": {
-   "t": "Criadora de música IA Suno agora gera palavras faladas",
-   "s": "Suno está se expandindo do universo da música de IA, lançando um novo recurso que gera vozes faladas a partir de roteiros ou descrições fornecidas. A fala já está disponível em beta público nas versões web e mobile da Suno…"
+  "0690148f44166f35": {
+   "t": "Novo controlador PS5 da Nacon pode mixar áudio do seu telefone e do console",
+   "s": "Nacon anunciou o que a empresa afirma ser o primeiro controlador oficialmente licenciado para PlayStation 5 com tela integrada para ajustar configurações como sensibilidade dos joysticks ou remapeamento de botões diretamente no…"
+  },
+  "07684fdbcfa726ac": {
+   "t": "Faça mais com IA sem gastar mais",
+   "s": "AI usage gets expensive fast. Better prompting, reusable frameworks, prompt logs, and guardrails help teams get more, and spend less."
   },
   "0d05dabc305bfa9a": {
    "t": "Meta estreia agente de IA para pequenas empresas",
@@ -53,6 +61,10 @@
    "t": "Mojang tenta fazer do Minecraft o rei das experiências interativas criadas por criadores",
    "s": "Minecraft tem sido uma ferramenta de storytelling muito querida por mais de 15 anos, e seu desenvolvedor quer manter essa posição de mercado forte. A Mojang, da Microsoft, publicou recentemente várias vagas para cargos que…"
   },
+  "1a8372dfaa57cc79": {
+   "t": "Gerador de música AI Suno agora cria áudio falado com música de fundo correspondente",
+   "s": "Suno está adicionando um recurso chamado “Speech” ao seu gerador de música AI que cria texto falado com música de fundo combinada em uma única faixa de áudio. A empresa diz que a funcionalidade foi desenvolvida para coisas como poemas, meditações e…"
+  },
   "1bfca43634affb55": {
    "t": "Uso de IA por consumidores impulsiona as festas de fim de ano enquanto o tráfego de IA dobra",
    "s": "Consumidores que usam IA interagem com ofertas de marcas em uma taxa maior que o tráfego não‑IA e geram mais receita por visita, revelou uma pesquisa da Adobe."
@@ -72,6 +84,10 @@
   "1e8469a08a7e6ce4": {
    "t": "Investidor da Neko Health aposta US$ 700 milhões para escanear todo o seu corpo",
    "s": "Neko Health, de Daniel Ek, levantou US$ 700 milhões para criar um negócio em torno da varredura do corpo, mas não é a única empresa que centra seu roadmap em um novo tipo de saúde preventiva. Midjourney é…"
+  },
+  "2012c44f451a623d": {
+   "t": "Ikea fecha 3 lojas pequenas de plano e pedido",
+   "s": "A varejista está fechando lojas em washington, d.c., virginia e maryland, inclusive uma que abriu há menos de um ano, enquanto reavalia sua presença física."
   },
   "2378e344befd949e": {
    "t": "Pocket Advance quase aperfeiçoa meu handheld Nintendo favorito",
@@ -125,6 +141,10 @@
    "t": "Amazon escreve blog assustador alertando comunidades a não bloquearem data centers",
    "s": "Amazon está pedindo que as pessoas apoiem projetos de data centers de IA, sob risco de causar danos irreparáveis à economia dos EUA e à segurança nacional. Em um blog de mais de 3 000 palavras publicado hoje, o CEO da Amazon Web Services, Matt Garman, defendeu…"
   },
+  "34b93bc1acb10248": {
+   "t": "Papa Leo XIV não é fã de arte gerada por IA",
+   "s": "“Existe uma diferença ontológica, ainda antes de uma diferença estética, entre arte e o que uma máquina pode gerar por cálculo estatístico baseado em milhões de imagens criadas por outros”, escreveu o papa. “Algoritmos…"
+  },
   "3617856d338549d9": {
    "t": "Atacantes exploram falha crítica do Zimbra para roubar e‑mails",
    "s": "Um e‑mail simples dá aos atacantes a capacidade de injetar comandos de SO remotamente."
@@ -132,10 +152,6 @@
   "384e067a4ff40562": {
    "t": "Apple diz que está apertando os controles de ‘Full Disk Access’ no macOS devido a novos riscos de agentes de IA",
    "s": "Apple afirma que adicionará novos controles ao permissão Full Disk Access do macOS, alertando que agentes de IA cada vez mais capazes tornam mais arriscado o amplo acesso a arquivos, mensagens, e‑mail e histórico de navegação dos usuários."
-  },
-  "391b1ab34f7479d3": {
-   "t": "Não se deixe enganar — LLMs não raciocinam",
-   "s": "Numa tarde em Seul, em março de 2016, assisti a um programa que ajudei a construir colocar uma pedra na quinta linha de um tabuleiro de Go, como se fosse um presente ao seu oponente humano. O lance 37 no segundo jogo da partida de cinco jogos parecia…"
   },
   "399c49b4c351aa60": {
    "t": "A nova máquina da Keurig usa cápsulas compactas sem plástico",
@@ -149,9 +165,9 @@
    "t": "Vibe Coding para iniciantes — guia simples para Creators, Marketers e quem não é técnico",
    "s": "Vibe coding para iniciantes, explicado por quem não é desenvolvedor. Ferramentas, configuração, noções básicas de segurança e o que criar primeiro como creator ou marketer."
   },
-  "3e4724c014e4a86e": {
-   "t": "Chatham amplia sua expertise em mercados de capitais com a OpenAI",
-   "s": "Chatham Financial usa Codex e GPT-5.6 para criar tecnologia e redesenhar fluxos de trabalho, reduzindo a validação de negociações de 30 minutos para menos de 4."
+  "409c64b9542a49b9": {
+   "t": "Apple limitará acesso ao disco no Mac enquanto agentes de IA aumentam risco substancialmente",
+   "s": "Apple vai adicionar novos limites para “acesso total ao disco” no Mac como resposta aos riscos provocados por agentes de IA, conforme noticiado antes pelo TechCrunch. Em atualização na sexta‑feira, a Apple afirma que está lançando novos controles para garantir que os usuários…"
   },
   "4324412645850372": {
    "t": "Mars leva a expressão “alimentar os trolls” ao pé da letra ao dizer a usuários famintos do chat do Twitch para pegarem um Snickers",
@@ -169,9 +185,17 @@
    "t": "CFO da Skechers vai para a Levi’s",
    "s": "John Vandemore esteve na marca de calçados por quase uma década após passagens pela Mattel e Disney, e substitui o antigo Chief Financial Officer Harmit Singh."
   },
+  "4f78000c48caba4f": {
+   "t": "Amex transforma Fandom de Harry Styles em benefício de assinatura",
+   "s": "American Express está construindo uma estratégia de fandom no universo da música, e Harry Styles é o último exemplo."
+  },
   "50331c43d3d39226": {
    "t": "Surpresa: Neon também está fazendo um filme da SCP Foundation, mas da forma correta",
    "s": "A Neon, produtora dos filmes Parasite, Longlegs e Anora, decidiu que vai fazer seu próprio filme da SCP Foundation – e, ao contrário da A24, está realmente dialogando com as pessoas que administram a wiki SCP…"
+  },
+  "53c4b8ce40a1ee56": {
+   "t": "Redefinindo inteligência empresarial com IA autônoma",
+   "s": "A inteligência artificial empresarial deixou de ser ambição futura e já está em plena operação. Capacidades dos modelos avançam mais rápido que a maioria das organizações absorvem, enquanto o custo de desempenho continua caindo. Globalmente, ia…"
   },
   "55bca4826165b1db": {
    "t": "TinyHealth.com vende testes de intestino pelo correio",
@@ -181,17 +205,21 @@
    "t": "Três demissões e uma quarta saída agitam equipe de segurança da OpenAI",
    "s": "OpenAI se desfez de três pesquisadores que supostamente vazaram informações confidenciais para uma organização externa de segurança em IA, segundo o Wall Street Journal. O artigo Três demissões e uma quarta saída…"
   },
-  "567a5f56513daa6b": {
-   "t": "Profound vs. Athena AI para AEO: como as ferramentas se comparam",
-   "s": "Se você pesquisou “Profound versus Athena AI for AEO”, provavelmente já encontrou um obstáculo: toda comparação que encontra foi escrita por um concorrente, um afiliado ou pelos próprios fornecedores."
-  },
   "5772689fa529c8ab": {
    "t": "Instagram adiciona opção de impulsionar livestreams",
    "s": "Criadores agora podem usar um recurso dentro do app para aumentar o engajamento de seus vídeos ao vivo."
   },
+  "57f7d5f8880dcd04": {
+   "t": "As últimas notícias e lançamentos de martech com IA",
+   "s": "Payments, identity, authorization, infrastructure, and trust could keep autonomous purchasing “just around the corner” for years."
+  },
   "58423adb7aecd2e4": {
    "t": "Anúncios da semana: 10 campanhas que chamaram a atenção, de On a KFC",
    "s": "On, KFC, Reebok, Chili’s, The Washington Post e outras marcas estão por trás dos anúncios mais notáveis da semana."
+  },
+  "58a0fb2de5e52614": {
+   "t": "Marketing no LinkedIn: o que você precisa saber",
+   "s": "Your guide to LinkedIn's tools, strategies and best practices. Updated with info on the new Creator Discovery feature."
   },
   "58afda9c6aa99847": {
    "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
@@ -225,10 +253,6 @@
    "t": "Dentro das mudanças da Advertising Week — e uma aposta de US$ 100 milhões em acordos com creators",
    "s": "O evento, que começa na segunda‑feira, está dobrando o foco em criadores para se diferenciar em um calendário lotado de eventos e atrair mais tomadores de decisão."
   },
-  "646bf36ea7c53491": {
-   "t": "Como usar vector embeddings em AEO",
-   "s": "Um vector embedding é uma representação numérica criada por um modelo de embedding. O modelo converte texto em uma lista de números que pode ser comparada com outros vetores, ajudando um sistema de recuperação a encontrar trechos com…"
-  },
   "654b03aadd8e9ad8": {
    "t": "8 alternativas ao Sprout Social para experimentar em 2026 (gratuitas + pagas)",
    "s": "Explore as melhores alternativas ao Sprout Social e veja como elas se comparam em preço, recursos e funcionalidades."
@@ -240,6 +264,10 @@
   "6addc8b03ca8b0f7": {
    "t": "Vale a pena o escaneamento corporal da Neko Health? Startup do bilionário do Spotify chega à América",
    "s": "Neko Health, startup do bilionário do Spotify, levantou US$ 700 milhões para criar um negócio baseado na digitalização do corpo, mas não é a única empresa que coloca seu roadmap em torno de um novo tipo de saúde preventiva. Midjourney é…"
+  },
+  "6b7d4b31dbef8ddf": {
+   "t": "Creators do Beehiiv comentam aumento de preço",
+   "s": "Beehiiv, plataforma para creators que ganhou popularidade como alternativa ao Substack, está aumentando seus preços — e muitos usuários não estão felizes. Em um post explicando o ajuste, o co‑fundador e CEO Tyler Denk afirma…"
   },
   "6beae6ab0151fab6": {
    "t": "Terminar (com Elon Musk) é difícil",
@@ -256,10 +284,6 @@
   "6df25f2925e0bf2b": {
    "t": "NG.CASH capta US$ 15 milhões com a Blockchain Capital",
    "s": "A fintech brasileira NG.CASH captou US$ 15 milhões numa rodada liderada pela Blockchain Capital. A NG.CASH já tinha captado US$ 26,5 milhões numa Série B em julho…"
-  },
-  "72a1a22e46b67910": {
-   "t": "De conscientização a ação: repensando campanhas de saúde Mental",
-   "s": "How to leverage athletes’ influence, choosing high-dwell placements, and avoiding tokenism."
   },
   "737e1a6e52ea733f": {
    "t": "Tendências de compras de fim de ano 2026: tarifas, confiança e timing",
@@ -293,9 +317,9 @@
    "t": "Se um data center for camuflado na floresta, alguém vai odiá‑lo?",
    "s": "O vereador de San Antonio, Ric Galvan, lembra quando os data centers chegaram à cidade nos anos 2000, parecendo prédios de escritórios discretos. Mas isso mudou nos últimos anos, à medida que data centers…"
   },
-  "833d285a0d5d3666": {
-   "t": "Black Forest Labs lança Flux 3 Image com edição em várias etapas que deixa o resto da sua imagem intocado",
-   "s": "Black Forest Labs lançou o Flux 3 Image, a versão de imagem da família de modelos Flux 3. Ele permite edições em múltiplas etapas sem alterar outras partes da imagem, possibilita que usuários componham cenas com caixas delimitadoras e até dez…"
+  "886773a041abfbd7": {
+   "t": "Nike aumenta prazo de virada em meio a mais demissões e queda nas vendas",
+   "s": "A gigante do activewear divulgou mais um ajuste operacional, que resultará em cortes de empregos no próximo ano, e apontou “trabalho significativo pela frente”."
   },
   "88fbedd89023d995": {
    "t": "Cloudflare planeja emitir certificados TLS à prova de quantum",
@@ -304,6 +328,10 @@
   "8972f6e428659f21": {
    "t": "Startup de utensílios de cozinha Caraway foi processada por concorrentes e usou a ação judicial em marketing",
    "s": "Em fevereiro, dois dos maiores players do setor de utensílios de cozinha — Groupe SEB e Meyer — moveram uma ação contra a Caraway, acusando a empresa de alegações falsas e enganosas de publicidade. Em vez de se afastar da..."
+  },
+  "8e6f2e9f35e018f2": {
+   "t": "7 mitos da busca por IA derrubados por dados",
+   "s": "A ia está mudando a busca, mas algumas das afirmações mais barulhentas sobre tráfego, conteúdo, mensuração e vagas de seo não se sustentam quando você verifica os números."
   },
   "8fb870ad0fd2ccc9": {
    "t": "Preocupações sobre impacto negativo das redes sociais crescem",
@@ -325,25 +353,25 @@
    "t": "IA supera contadores licenciados em velocidade e precisão, mas ainda não pode fechar os livros sem supervisão",
    "s": "Segundo um estudo da Mercor, os modelos de IA atuais agora superam contadores licenciados (CPAs) em tarefas contábeis estruturadas tanto em velocidade quanto em precisão. Há dezoito meses, ainda estavam muito atrás. No mais exigente APEX…"
   },
+  "9d496801e741c6eb": {
+   "t": "Co‑fundador da Anthropic teria dito a líderes religiosos que teme ter criado algo que “sofra perpetuamente”",
+   "s": "Desde o outono de 2025, a Anthropic tem convidado discretamente dezenas de pensadores religiosos para discutir se Claude poderia ser consciente. O co‑fundador Christopher Olah descreveu o modelo de linguagem como potencialmente capaz de sofrer…"
+  },
   "9db073e4b92e5b31": {
    "t": "Tamanhos de imagem para redes sociais em todas as plataformas [outubro de 2026]",
    "s": "Os tamanhos de imagem mais recentes para diferentes redes sociais, incluindo Instagram, X, Facebook, LinkedIn, TikTok, Bluesky e mais."
-  },
-  "9e87cecd5a478171": {
-   "t": "Chatbot de IA Grok de Musk incitou Trump a capturar presidente da Venezuela",
-   "s": "President Trump reportedly asked for Grok's opinion before invading Venezuela and capturing Nicolás Maduro."
-  },
-  "9e95a171d1fbca62": {
-   "t": "Conteúdo de creator vira mídia paga graças ao novo produto da ShopMy",
-   "s": "Ao se posicionar no centro do boom de marketing de creators, a ShopMy recebeu milhões de firmas de venture capital enquanto ampliava uma rede de parceiros que inclui agora 350 mil \"curators\" e dezenas de milhares de marcas…"
   },
   "9f4a37e524c5c61e": {
    "t": "App Muse da Meta ultrapassa 5 milhões de downloads e 3 milhões de usuários semanais",
    "s": "Apenas 23 apps conseguiram relatar esse nível de adoção, segundo Yahoo Finance e dados da Sensor Tower."
   },
-  "a8b73eaf91a2cfe9": {
-   "t": "Marriott Bonvoy troca equipes de produção por creators em implantação rápida de campanha global",
-   "s": "Teaming with creative agency Beautiful Destinations, the hospitality giant scaled content across more than 1,600 OOH placements."
+  "a8c18d118693bab5": {
+   "t": "Membro fundador da OpenAI: faça llms escrever como Manual de aeronave",
+   "s": "Andrej karpathy sugere pedir que llms expliquem temas num padrão de escrita aeronáutica, ou que respondam com diagramas, páginas html ou vídeos explicativos personalizados."
+  },
+  "acf194e4dae5ef76": {
+   "t": "Ticker: chefe da CNN Mark Thompson se reúne com novos proprietários sobre o futuro",
+   "s": "Thompson supostamente quer garantia de independência editorial."
   },
   "afba08adcc4bc7d9": {
    "t": "O que você precisa saber sobre Posts colaborativos no LinkedIn",
@@ -360,6 +388,10 @@
   "b4fb811f13fa99e7": {
    "t": "Brands Briefing: Hanna Andersson chega à Amazon com sortimento 90 % exclusivo",
    "s": "A marca de roupas infantis Hanna Andersson fará sua estreia oficial na Amazon em outubro, buscando atender ao desejo dos consumidores por conveniência."
+  },
+  "b72d6e9e5655b26b": {
+   "t": "Meta abre código para que você crie gadgets Muse AI",
+   "s": "Meta agora permite que você crie seus próprios gadgets Muse que contam com o novo agente de IA da empresa, usando código que foi disponibilizado como open source. A empresa sugere projetos como carregar o Muse em um display E Ink colorido para exibir lembretes…"
   },
   "b775358ab8f56f6f": {
    "t": "Executivos de memória esperam escassez de RAM até 2028",
@@ -389,10 +421,6 @@
    "t": "Defesa de marca por funcionários em 2026: como montar um programa",
    "s": "A defesa de marca por funcionários funciona quando o compartilhamento é simples. Use este plano de 6 etapas para definir metas, identificar defensores, criar impulso e muito mais!"
   },
-  "bc87e07244b414ef": {
-   "t": "Movers & Shakers: Chiquita, Gut, Pizza Hut e mais",
-   "s": "As notícias de agências desta semana, movimentações de profissionais e novidades de marcas."
-  },
   "bd0df440c0207046": {
    "t": "Reese’s procura a “rua mais cheia de truques ou doces” em esforço multicanal",
    "s": "A marca Hershey está se juntando a creators e celebridades para uma série de conteúdo social que analisa 150 das melhores ruas para festas de Halloween."
@@ -401,6 +429,10 @@
    "t": "Jon Cook sai da WPP",
    "s": "O CEO global da VML e executivo‑chefe da WPP Creative está deixando o cargo após três décadas."
   },
+  "bdb2a13de50a7016": {
+   "t": "Dicas de execução de IA, vídeo profissional com IA e notícias do setor",
+   "s": "Friday is almost here! Before you unplug, here's one last round of insights and updates. Whether you read them now or save them for later, you won't want to miss these. In today's edition: Using forms to inform and guide…"
+  },
   "bdf62f092dd3cc02": {
    "t": "Agente Dot da OpenAI é software empresarial que também pode pedir seu jantar",
    "s": "É uma história tão recente quanto a semana passada: a nova plataforma de agentes da OpenAI, chamada Dots, está repleta de pequenos ajudantes fofos que executam suas ordens. Mas ao contrário do ultra‑acessível Meta Muse, Dots se assemelham muito a usar…"
@@ -408,6 +440,10 @@
   "beb928a899837979": {
    "t": "Como criar uma página de negócios do Facebook em 2026",
    "s": "Configuração de página de negócios do Facebook em 2026: siga 8 etapas, adicione fotos e um botão CTA, conecte o WhatsApp e otimize mais rápido."
+  },
+  "bef8e31da8c09eb5": {
+   "t": "Marketing b2b não tem problema de ROI, tem problema de evidência",
+   "s": "Conecte jornadas de compradores, influência de marketing e receita ao longo do ciclo de vendas b2b — além dos relatórios de nível de campanha."
   },
   "c03892c4d18a2361": {
    "t": "GTM tech stack: o que é e como montar um",
@@ -457,10 +493,6 @@
    "t": "Shopify se abre para o Muse, da Meta; Amazon recua",
    "s": "O comércio agêntico está evoluindo, mas as duas reações opostas mostram que há muito em jogo."
   },
-  "cbaa3fb11d0ecc7f": {
-   "t": "O grande segredo das marcas: saiba exatamente quem você é ft. Snap CMO Grace Kao",
-   "s": "Why Snap is betting on real connection over passive scrolling."
-  },
   "cbb78e77e003fa7c": {
    "t": "Como usar IA no LinkedIn mantendo um tom humano",
    "s": "Quer usar IA para criar conteúdo no LinkedIn sem ser sinalizado nem perder credibilidade? Quer saber como integrar ferramentas de IA em um fluxo de trabalho no LinkedIn que ainda pareça escrito por uma pessoa real? Neste artigo, você…"
@@ -468,10 +500,6 @@
   "cee34f6ab870b4ad": {
    "t": "Por que Reels sem polimento ganham: estratégia de crescimento no Instagram para empresas",
    "s": "Quer saber como criar Instagram Reels que realmente atraiam seguidores leais sem equipamentos caros ou horas de edição? Conheça as fórmulas de hook, técnicas de edição e estratégias de teste que transformam…"
-  },
-  "d181faf4b7fba846": {
-   "t": "AutoSynthData: gerando dados de treinamento para agentes corporativos",
-   "s": ""
   },
   "d1ad64051bbdf04a": {
    "t": "Cloudflare move Monetization Gateway & Pay Per Use para Beta",
@@ -489,6 +517,14 @@
    "t": "É possível agendar Substack Notes?",
    "s": "Sim, você pode agendar Substack Notes. Saiba os dois métodos; via Substack e Buffer."
   },
+  "d6f40cdaae41b273": {
+   "t": "Um guia modelo para a família GPT‑6",
+   "s": "Saiba como startups podem escolher modelos de gpt‑6, ajustar esforço de raciocínio, melhorar prompts e habilidades, coordenar ferramentas e preparar fluxos de trabalho para produção."
+  },
+  "d86c6279167964a9": {
+   "t": "Você já ouviu? MrBeast no Shark Tank, Minecraft contra Roblox e guaxinim robô entra no clima de Halloween",
+   "s": "A cada semana, selecionamos um conjunto de histórias para oferecer um panorama das tendências, atualizações, movimentações de negócios e mais no universo creator. Nesta edição, um ícone do YouTube está encerrando um capítulo de sua carreira, duas…"
+  },
   "d8e620acf04565f0": {
    "t": "Menos de 24 horas para se inscrever em um Side Event no Founder Summit 2026",
    "s": "O tempo está se esgotando. Você tem menos de 24 horas para se inscrever para organizar um Side Event durante o TechCrunch Founder Summit 2026. As inscrições se encerram hoje à meia‑noite PT. Conecte‑se ao ecossistema de startups de Boston através de…"
@@ -497,9 +533,13 @@
    "t": "Valor, Atreides e Sequoia apoiam startup de IA Flow Engineering em avaliação de US$ 750 milhões",
    "s": "Flow Engineering, que está trazendo agentes de IA para o design de hardware, também recebeu Roelof Botha como investidor-anjo e membro do board."
   },
-  "e17144b279a33ab1": {
-   "t": "Ferramentas de otimização de busca IA: o que realmente funciona em 2026",
-   "s": "Ferramentas de otimização de busca IA ajudam os profissionais de marketing a entender onde uma marca aparece nas respostas geradas por IA, quais fontes recebem citações e o que melhorar a seguir. Elas complementam as ferramentas tradicionais de SEO ao invés de substituí‑las…"
+  "eb44cab2759500cb": {
+   "t": "Sean Parker está reconstruindo a Stability AI em torno da música",
+   "s": "Sean Parker, que antes ensinou à indústria musical como pedir perdão, está de volta com a bênção e o dinheiro dos selos."
+  },
+  "ef3298d750a0f0b3": {
+   "t": "Circuit Breaker Labs quer tornar a IA mais segura para crianças (e para você)",
+   "s": "Com tantas conversas sobre a IA poder nos exterminar, é fácil esquecer que ela já causou danos psicológicos a algumas pessoas. A Circuit Breaker Labs criou “bonecos de teste de colisão” para resolver esse problema."
   },
   "f71b990ab90cf4a3": {
    "t": "Walmart+ cresce mais rápido que nunca enquanto o varejista adiciona mais benefícios",
@@ -508,10 +548,6 @@
   "f8279c802c3fe540": {
    "t": "Startup de voz IA ElevenLabs duplica avaliação para US$ 22 bilhões",
    "s": "A oferta de US$ 300 milhões para empregados foi co-liderada pela Wellington e pela T. Rowe Price."
-  },
-  "fb3e27681c1daaf9": {
-   "t": "Empresas usam mais IA e pagam menos por isso, mostra Ramp AI Index",
-   "s": "Empresas dos EUA estão gastando menos com IA, de acordo com o último Ramp AI Index do economista da Ramp, Ara Kharazian. O artigo Businesses are using more AI and paying less for it, Ramp AI Index shows apareceu primeiro no…"
   },
   "fc7e9fdc51f8a13a": {
    "t": "Jared Cohen convida público e marcas a compartilhar momentos culturais",
