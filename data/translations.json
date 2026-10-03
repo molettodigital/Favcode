@@ -9,10 +9,6 @@
    "t": "Cloudflare diz que seu novo modelo Clef significa que humanos não precisam mais estar no loop para agentes de IA",
    "s": "Com Clef e Clef-flash, a Cloudflare está desafiando o modelo de decisão Jev da TypeSafe AI. Clef-flash entrega classificações em cerca de 39 milissegundos, sendo mais de dez vezes mais rápido que o Jev. Ambos os modelos são construídos sobre…"
   },
-  "057ef1690073bfef": {
-   "t": "Ia faz clientes esperar mais e tolerar menos",
-   "s": "Serviço mais rápido faz parte da promessa da ia. Clientes não ficam impressionados quando a velocidade vem acompanhada de problemas não resolvidos e sem um caminho fácil para falar com uma pessoa."
-  },
   "05e56d6f1bc8aebc": {
    "t": "Discord intensifica o jogo para anunciantes mobile com produto de vídeo recompensado",
    "s": "Um novo formato e o primeiro Ads Manager da plataforma de chat para executar campanhas chegam à medida que o gaming se torna um canal cada vez mais importante para os marqueteiros."
@@ -24,10 +20,6 @@
   "0690148f44166f35": {
    "t": "Novo controlador PS5 da Nacon pode mixar áudio do seu telefone e do console",
    "s": "Nacon anunciou o que a empresa afirma ser o primeiro controlador oficialmente licenciado para PlayStation 5 com tela integrada para ajustar configurações como sensibilidade dos joysticks ou remapeamento de botões diretamente no…"
-  },
-  "07684fdbcfa726ac": {
-   "t": "Faça mais com IA sem gastar mais",
-   "s": "AI usage gets expensive fast. Better prompting, reusable frameworks, prompt logs, and guardrails help teams get more, and spend less."
   },
   "0d05dabc305bfa9a": {
    "t": "Meta estreia agente de IA para pequenas empresas",
@@ -121,10 +113,6 @@
    "t": "O que é audience intelligence? Um guia para equipes de marketing",
    "s": "O que é audience intelligence e por que as equipes de marketing devem se importar? Aqui está um guia prático, sem enrolação."
   },
-  "2eefdad056ca57b5": {
-   "t": "O novo point dos alunos do ensino fundamental é a seção de comentários da NPR?",
-   "s": "Quando funcionários da NPR marcaram como bots uns comentários estranhos nos podcasts da rádio no Spotify, foi preciso uma colega da geração Z para decifrar o mistério na hora."
-  },
   "2f60188fcaaa603a": {
    "t": "Noel Miller sobre por que a TMG Studios está entrando em podcasts de ficção – e por que não vai tocar em gen AI",
    "s": "“Se somos o último canal de mídia liderado por humanos e todo o resto é promptado e gerado em um data center, então que seja.” Esse é Noel Miller, o Viner que virou podcaster e dono de empresa de podcasts, que lançou a TMG…"
@@ -193,6 +181,10 @@
    "t": "Surpresa: Neon também está fazendo um filme da SCP Foundation, mas da forma correta",
    "s": "A Neon, produtora dos filmes Parasite, Longlegs e Anora, decidiu que vai fazer seu próprio filme da SCP Foundation – e, ao contrário da A24, está realmente dialogando com as pessoas que administram a wiki SCP…"
   },
+  "537a40c82024baed": {
+   "t": "Meta quer que seu próximo gadget seja infundido com Muse",
+   "s": "Meta quer Muse na sua TV e na sua torradeira, então está disponibilizando o código gratuitamente."
+  },
   "53c4b8ce40a1ee56": {
    "t": "Redefinindo inteligência empresarial com IA autônoma",
    "s": "A inteligência artificial empresarial deixou de ser ambição futura e já está em plena operação. Capacidades dos modelos avançam mais rápido que a maioria das organizações absorvem, enquanto o custo de desempenho continua caindo. Globalmente, ia…"
@@ -205,21 +197,17 @@
    "t": "Três demissões e uma quarta saída agitam equipe de segurança da OpenAI",
    "s": "OpenAI se desfez de três pesquisadores que supostamente vazaram informações confidenciais para uma organização externa de segurança em IA, segundo o Wall Street Journal. O artigo Três demissões e uma quarta saída…"
   },
+  "567a5f56513daa6b": {
+   "t": "Profound versus Athena AI para AEO: como as ferramentas se comparam",
+   "s": "Se você pesquisou “Profound versus Athena AI for AEO”, provavelmente já encontrou um obstáculo: toda comparação que aparece foi escrita por um concorrente, um afiliado ou pelos próprios fornecedores."
+  },
   "5772689fa529c8ab": {
    "t": "Instagram adiciona opção de impulsionar livestreams",
    "s": "Criadores agora podem usar um recurso dentro do app para aumentar o engajamento de seus vídeos ao vivo."
   },
-  "57f7d5f8880dcd04": {
-   "t": "As últimas notícias e lançamentos de martech com IA",
-   "s": "Payments, identity, authorization, infrastructure, and trust could keep autonomous purchasing “just around the corner” for years."
-  },
   "58423adb7aecd2e4": {
    "t": "Anúncios da semana: 10 campanhas que chamaram a atenção, de On a KFC",
    "s": "On, KFC, Reebok, Chili’s, The Washington Post e outras marcas estão por trás dos anúncios mais notáveis da semana."
-  },
-  "58a0fb2de5e52614": {
-   "t": "Marketing no LinkedIn: o que você precisa saber",
-   "s": "Your guide to LinkedIn's tools, strategies and best practices. Updated with info on the new Creator Discovery feature."
   },
   "58afda9c6aa99847": {
    "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
@@ -252,6 +240,10 @@
   "62d9bfbc0c51ab08": {
    "t": "Dentro das mudanças da Advertising Week — e uma aposta de US$ 100 milhões em acordos com creators",
    "s": "O evento, que começa na segunda‑feira, está dobrando o foco em criadores para se diferenciar em um calendário lotado de eventos e atrair mais tomadores de decisão."
+  },
+  "646bf36ea7c53491": {
+   "t": "Como usar embeddings vetoriais em AEO",
+   "s": "Um embedding vetorial é uma representação numérica criada por um modelo de embedding. O modelo converte texto em uma lista de números que podem ser comparados com outros vetores, ajudando um sistema de recuperação a encontrar trechos com…"
   },
   "654b03aadd8e9ad8": {
    "t": "8 alternativas ao Sprout Social para experimentar em 2026 (gratuitas + pagas)",
@@ -309,6 +301,10 @@
    "t": "Diagnosticando lacunas de AEO: um guia de auditoria de conteúdo",
    "s": "Se lhe pediram para diagnosticar e corrigir lacunas de AEO, o primeiro passo é realizar uma auditoria. Para a maioria das marcas, uma lacuna de AEO é qualquer motivo pelo qual um AI answer engine não pode (ou não quer) usar sua página como fonte."
   },
+  "81fdac941a4ee30d": {
+   "t": "Como a Litter Robot faz TikTok Shop sem grandes descontos",
+   "s": "Whisker está usando o TikTok Shop para alcançar consumidores mais jovens com seus demos virais do Litter Robot, mantendo a política de preços e trabalhando com criadores de conteúdo de nicho."
+  },
   "82391a1c96d67a6f": {
    "t": "TikTok U.S. relata gerar US$ 81 bilhões em valor econômico",
    "s": "Um novo estudo comissionado pelo app descreveu seu impacto em empregos, pequenas empresas e oportunidades de aprendizado dos consumidores."
@@ -329,10 +325,6 @@
    "t": "Startup de utensílios de cozinha Caraway foi processada por concorrentes e usou a ação judicial em marketing",
    "s": "Em fevereiro, dois dos maiores players do setor de utensílios de cozinha — Groupe SEB e Meyer — moveram uma ação contra a Caraway, acusando a empresa de alegações falsas e enganosas de publicidade. Em vez de se afastar da..."
   },
-  "8e6f2e9f35e018f2": {
-   "t": "7 mitos da busca por IA derrubados por dados",
-   "s": "A ia está mudando a busca, mas algumas das afirmações mais barulhentas sobre tráfego, conteúdo, mensuração e vagas de seo não se sustentam quando você verifica os números."
-  },
   "8fb870ad0fd2ccc9": {
    "t": "Preocupações sobre impacto negativo das redes sociais crescem",
    "s": "Nova pesquisa da Pew mostrou que a percepção sobre o uso de apps piorou nos últimos quatro anos, com adultos demonstrando preocupação estatisticamente maior que adolescentes."
@@ -341,6 +333,10 @@
    "t": "DoorDash adiciona novos varejistas e assistente de compras por texto",
    "s": "Enquanto a DoorDash adiciona parceiros como Costco, a empresa também expande recursos de compra como Text DoorDash e Dasher Returns, numa tentativa de se tornar um marketplace tudo-em-um."
   },
+  "944ba2b620d08ef3": {
+   "t": "Apple altera permissões de acesso total ao disco para conter abuso de agentes de IA",
+   "s": "Meta afirma que FDA não é suficiente para a leitura de mensagens do Muse. Apple discorda."
+  },
   "972e1b79520d3470": {
    "t": "Sociable: TikTok adiciona níveis de certificação para parceiros de agências",
    "s": "A plataforma oferecerá badges de Agency Partner ou Premier Agency Partner para garantir aos marqueteiros que os requisitos de parceria foram atendidos."
@@ -348,10 +344,6 @@
   "9b1ae5497e893ae4": {
    "t": "Compras com IA podem reduzir devoluções",
    "s": "Consumidores mais bem informados têm maior probabilidade de comprar produtos que vão manter."
-  },
-  "9d01452db1f68956": {
-   "t": "IA supera contadores licenciados em velocidade e precisão, mas ainda não pode fechar os livros sem supervisão",
-   "s": "Segundo um estudo da Mercor, os modelos de IA atuais agora superam contadores licenciados (CPAs) em tarefas contábeis estruturadas tanto em velocidade quanto em precisão. Há dezoito meses, ainda estavam muito atrás. No mais exigente APEX…"
   },
   "9d496801e741c6eb": {
    "t": "Co‑fundador da Anthropic teria dito a líderes religiosos que teme ter criado algo que “sofra perpetuamente”",
@@ -384,10 +376,6 @@
   "b3b3a3e2cacaa030": {
    "t": "Confira as classificações da TV a cabo para setembro de 2026",
    "s": "CNN e MS NOW disputam a batalha de audiência."
-  },
-  "b4fb811f13fa99e7": {
-   "t": "Brands Briefing: Hanna Andersson chega à Amazon com sortimento 90 % exclusivo",
-   "s": "A marca de roupas infantis Hanna Andersson fará sua estreia oficial na Amazon em outubro, buscando atender ao desejo dos consumidores por conveniência."
   },
   "b72d6e9e5655b26b": {
    "t": "Meta abre código para que você crie gadgets Muse AI",
@@ -441,10 +429,6 @@
    "t": "Como criar uma página de negócios do Facebook em 2026",
    "s": "Configuração de página de negócios do Facebook em 2026: siga 8 etapas, adicione fotos e um botão CTA, conecte o WhatsApp e otimize mais rápido."
   },
-  "bef8e31da8c09eb5": {
-   "t": "Marketing b2b não tem problema de ROI, tem problema de evidência",
-   "s": "Conecte jornadas de compradores, influência de marketing e receita ao longo do ciclo de vendas b2b — além dos relatórios de nível de campanha."
-  },
   "c03892c4d18a2361": {
    "t": "GTM tech stack: o que é e como montar um",
    "s": "Um GTM tech stack é o conjunto de ferramentas que uma empresa usa para executar atividades de go‑to‑market ao longo do ciclo de vida do cliente. Essas plataformas podem facilitar a conexão entre as equipes de marketing, sales e customer. Mas, se as peças…"
@@ -460,10 +444,6 @@
   "c3334b10f3da5fb0": {
    "t": "Prometeo lança Risk Intelligence",
    "s": "Fintech uruguaia Prometeo ampliou seu serviço de verificação de contas para mais de 110 países em cinco continentes e lançou…"
-  },
-  "c40949c7f847e23a": {
-   "t": "Microsoft AI lança novos modelos de transcrição e texto‑para‑fala para agentes de voz",
-   "s": "Microsoft AI lançou o MAI-Transcribe-2-Streaming, um novo modelo para transcrição em tempo real. O artigo Microsoft AI releases new transcription and text-to-speech models for voice agents apareceu primeiro no The Decoder."
   },
   "c4222238d5d6759b": {
    "t": "Tidy Cats aposta em Kumail Nanjiani e Jordan Howlett para paródia de true crime ‘Special Litter Unit’",
@@ -532,6 +512,10 @@
   "de4240605fcef1bb": {
    "t": "Valor, Atreides e Sequoia apoiam startup de IA Flow Engineering em avaliação de US$ 750 milhões",
    "s": "Flow Engineering, que está trazendo agentes de IA para o design de hardware, também recebeu Roelof Botha como investidor-anjo e membro do board."
+  },
+  "e17144b279a33ab1": {
+   "t": "Ferramentas de otimização de busca por IA: o que realmente funciona em 2026",
+   "s": "Ferramentas de otimização de busca por IA ajudam marketers a entender onde uma marca aparece em respostas geradas por IA, quais fontes recebem citações e o que melhorar a seguir. Elas complementam ferramentas tradicionais de SEO em vez de substituí‑las…"
   },
   "eb44cab2759500cb": {
    "t": "Sean Parker está reconstruindo a Stability AI em torno da música",
