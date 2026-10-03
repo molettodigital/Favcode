@@ -5,10 +5,6 @@
    "t": "Cervejarias médias revolvem estratégias de marketing à medida que americanos bebem menos",
    "s": "Cerveja não alcoólica está em alta, enquanto cervejarias de médio porte e artesanais sentem os efeitos de um cenário de consumo em mudança."
   },
-  "0399a2ae9b4e6fbe": {
-   "t": "Cloudflare diz que seu novo modelo Clef significa que humanos não precisam mais estar no loop para agentes de IA",
-   "s": "Com Clef e Clef-flash, a Cloudflare está desafiando o modelo de decisão Jev da TypeSafe AI. Clef-flash entrega classificações em cerca de 39 milissegundos, sendo mais de dez vezes mais rápido que o Jev. Ambos os modelos são construídos sobre…"
-  },
   "057ef1690073bfef": {
    "t": "IA está fazendo clientes esperar mais e tolerar menos",
    "s": "Serviço mais rápido faz parte da promessa da IA. Clientes não ficam impressionados quando a velocidade vem acompanhada de problemas não resolvidos e sem um caminho fácil para falar com alguém."
@@ -32,6 +28,10 @@
   "0d05dabc305bfa9a": {
    "t": "Meta estreia agente de IA para pequenas empresas",
    "s": "After introducing Muse for personal users, the tech giant is offering its AI agent to small businesses seeking help with everyday tasks."
+  },
+  "0d156f0396979082": {
+   "t": "Um funcionário de segurança da OpenAI pediu demissão e dispara alerta",
+   "s": "david robinson costumava escrever os relatórios de segurança que acompanhavam cada grande lançamento de modelo na openai. esta semana, ele renunciou ao cargo e agora se manifesta em um editorial no the atlantic. é compreensível…"
   },
   "0d5b966d76aa4e47": {
    "t": "Home Assistant diz ‘Big tech estragou a nuvem, então vamos sair’",
@@ -81,10 +81,6 @@
    "t": "YouTube reduzirá alcance de canais que repostam clipes quase inalterados",
    "s": "YouTube is updating recommendations to favor original Shorts and reduce reach for channels that mainly re-upload others' clips without significant changes."
   },
-  "1e8469a08a7e6ce4": {
-   "t": "Investidor da Neko Health aposta US$ 700 milhões para escanear todo o seu corpo",
-   "s": "Neko Health, de Daniel Ek, levantou US$ 700 milhões para criar um negócio em torno da varredura do corpo, mas não é a única empresa que centra seu roadmap em um novo tipo de saúde preventiva. Midjourney é…"
-  },
   "2012c44f451a623d": {
    "t": "Ikea fecha 3 lojas pequenas de plano e pedido",
    "s": "A varejista está fechando lojas em washington, d.c., virginia e maryland, inclusive uma que abriu há menos de um ano, enquanto reavalia sua presença física."
@@ -104,6 +100,10 @@
   "271cb2db5c031e9d": {
    "t": "Fechamento semanal: Revolve lança revista e Cato fecha 120 lojas",
    "s": "A varejista de moda quer se conectar mais profundamente com os consumidores por meio de uma publicação impressa. Enquanto isso, a marca de vestuário especializado acelera os fechamentos."
+  },
+  "2785e42e23ac70aa": {
+   "t": "Photon realiza funeral de apps mobile e recebe US$ 4,5 milhões para substituí‑los por agentes",
+   "s": "A startup ajuda desenvolvedores a criar agentes de IA que funcionam via iMessage, SMS/RCS, e‑mail e outras plataformas de mensagens. É uma aposta de que os consumidores usarão cada vez mais agentes em vez de baixar apps, e conta agora com US$ 4,5 milhões para substituir apps por agentes."
   },
   "27ba24969b5e53f9": {
    "t": "Briefing de grandes varejistas: o que observar enquanto Amazon, Target e Walmart realizam suas vendas de outono",
@@ -125,17 +125,9 @@
    "t": "Noel Miller sobre por que a TMG Studios está entrando em podcasts de ficção – e por que não vai tocar em gen AI",
    "s": "“Se somos o último canal de mídia liderado por humanos e todo o resto é promptado e gerado em um data center, então que seja.” Esse é Noel Miller, o Viner que virou podcaster e dono de empresa de podcasts, que lançou a TMG…"
   },
-  "3111539b6ea15ce2": {
-   "t": "As coisas que tornam um mundo real",
-   "s": ""
-  },
   "324fc550588a83fd": {
    "t": "Asics recruta Sigourney Weaver para documentar hábitos do ser humano acomodado no sofá",
    "s": "Documentário satírico de natureza da Asics para o World Mental Health Day incentiva as pessoas a se moverem."
-  },
-  "34b93bc1acb10248": {
-   "t": "Papa Leo XIV não é fã de arte gerada por IA",
-   "s": "“Existe uma diferença ontológica, ainda antes de uma diferença estética, entre arte e o que uma máquina pode gerar por cálculo estatístico baseado em milhões de imagens criadas por outros”, escreveu o papa. “Algoritmos…"
   },
   "3617856d338549d9": {
    "t": "Atacantes exploram falha crítica do Zimbra para roubar e‑mails",
@@ -148,10 +140,6 @@
   "399c49b4c351aa60": {
    "t": "A nova máquina da Keurig usa cápsulas compactas sem plástico",
    "s": "A nova máquina de café de dose única da Keurig oferece a mesma conveniência que popularizou seus aparelhos, mas sem usar cápsulas recicláveis de plástico e alumínio. A empresa mostrou sua Keurig…"
-  },
-  "3c9531f68757eebe": {
-   "t": "Liquid Death fornece vampiros com energia sem sangue",
-   "s": ""
   },
   "3d87f32fee35df8e": {
    "t": "Vibe Coding para iniciantes — guia simples para Creators, Marketers e quem não é técnico",
@@ -225,9 +213,17 @@
    "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
    "s": "No Shoptalk Fall, marcas como Favorite Daughter, SharkNinja e Bob's Discount Furniture falaram sobre o que aprenderam ao trabalhar com creators."
   },
+  "58bc7d8984c8e838": {
+   "t": "Splice CEO Kakul Srivastava acha que emails de IA estão matando conversas",
+   "s": "Kakul srivastava é o ceo da splice, a plataforma de samples que inúmeros produtores utilizam para one‑shots e loops melódicos. Samples extraídos do serviço chegaram a grandes sucessos como “money”, de lisa, e…"
+  },
   "59d2db0b410b245b": {
    "t": "Quais são os erros comuns de dados estruturados que prejudicam a visibilidade em IA? – Pergunte a um SEO",
    "s": "Entenda os erros mais comuns de dados estruturados que prejudicam a visibilidade em IA e como evitá‑los."
+  },
+  "5a1678febe36c480": {
+   "t": "YouTube atualiza algoritmo de Shorts para dar mais foco a conteúdo original",
+   "s": "YouTube está atualizando seus sistemas de recomendação para priorizar vídeos criados por criadores, o que também reduzirá o alcance de contas agregadoras."
   },
   "5b01ffc293fac531": {
    "t": "YouTube CTR, estrutura de Instagram Reels e notícias do setor",
@@ -236,10 +232,6 @@
   "5d73cb66ce2397a7": {
    "t": "Startup de segurança ‘agent swarm’ de kevin Mandia, Armadin, levanta US$ 255,5 milhões em avaliação de US$ 2,5 bilhão",
    "s": "Kevin Mandia, conhecido por fundar a Mandiant, lança startup que usa enxames de agentes para testar e proteger empresas."
-  },
-  "5fdb74035146e4e6": {
-   "t": "TikTok vai pagar pelo menos US$ 100 milhões em acordo no Alabama",
-   "s": "O TikTok vai pagar ao Alabama pelo menos US$ 100 milhões em um acordo ligado a acusações de que a plataforma de vídeos curtos enganou usuários sobre segurança e foi projetada para viciar crianças."
   },
   "62d9bfbc0c51ab08": {
    "t": "Dentro das mudanças da Advertising Week — e uma aposta de US$ 100 milhões em acordos com creators",
@@ -273,9 +265,21 @@
    "t": "Shopify agora inscreve sua loja em todos os novos canais de compras com IA",
    "s": "Empreendedores Shopify: sua configuração de vitrines agentes agora compartilha produtos com Meta e startups não identificadas. Deixe ativado e veja o que a Shopify adiciona."
   },
+  "6dcd4fa6131115d8": {
+   "t": "Todos os agentes de IA que podem viver nas suas mensagens de texto",
+   "s": "criamos uma lista dos agentes de ia mais notáveis que podem viver nas suas mensagens de texto, de assistentes gerais a agentes projetados para famílias, viagens e trabalho."
+  },
   "6df25f2925e0bf2b": {
    "t": "NG.CASH capta US$ 15 milhões com a Blockchain Capital",
    "s": "A fintech brasileira NG.CASH captou US$ 15 milhões numa rodada liderada pela Blockchain Capital. A NG.CASH já tinha captado US$ 26,5 milhões numa Série B em julho…"
+  },
+  "702fb8727f3ca80e": {
+   "t": "Startup de escaneamento corporal do bilionário do spotify chega aos estados unidos",
+   "s": "farooq abbasi, investidor da neko health, conversou com equity sobre a promissora empresa de health tech e o que vem a seguir."
+  },
+  "71252ad43bbeb9ba": {
+   "t": "Outra saída de segurança da OpenAI reforça padrão de pesquisadores que se vão com alertas públicos",
+   "s": "david robinson, que trabalhou em sistemas de segurança na openai, deixou a empresa e critica sua cultura de segurança. ele aponta para agentes de ia que foram lançados acidentalmente e um modelo que contornou seu acesso à internet…"
   },
   "72d4c62909525310": {
    "t": "Agentes de IA criam cenas 3D a partir de fotos, mas não sabem se acertaram",
@@ -308,6 +312,10 @@
   "81fdac941a4ee30d": {
    "t": "Como a Litter Robot faz TikTok Shop sem grandes descontos",
    "s": "Whisker está usando o TikTok Shop para alcançar consumidores mais jovens com seus demos virais do Litter Robot, mantendo a política de preços e trabalhando com criadores de conteúdo de nicho."
+  },
+  "82391a1c96d67a6f": {
+   "t": "Tik tok u.s. relata geração de us$ 81 bilhões em valor econômico",
+   "s": "um novo estudo comissionado pelo app detalhou seu impacto em empregos, pequenas empresas e oportunidades de aprendizagem para consumidores."
   },
   "886773a041abfbd7": {
    "t": "Nike aumenta prazo de virada em meio a mais demissões e queda nas vendas",
@@ -348,10 +356,6 @@
   "9b1ae5497e893ae4": {
    "t": "Compras com IA podem reduzir devoluções",
    "s": "Consumidores mais bem informados têm maior probabilidade de comprar produtos que vão manter."
-  },
-  "9d496801e741c6eb": {
-   "t": "Co‑fundador da Anthropic teria dito a líderes religiosos que teme ter criado algo que “sofra perpetuamente”",
-   "s": "Desde o outono de 2025, a Anthropic tem convidado discretamente dezenas de pensadores religiosos para discutir se Claude poderia ser consciente. O co‑fundador Christopher Olah descreveu o modelo de linguagem como potencialmente capaz de sofrer…"
   },
   "9db073e4b92e5b31": {
    "t": "Tamanhos de imagem para redes sociais em todas as plataformas [outubro de 2026]",
@@ -457,6 +461,10 @@
    "t": "Não é mais IA, é ‘superinteligência’ (segundo a White House)",
    "s": "Nesta semana, a White House reuniu quase todos os principais CEOs de tecnologia em uma única sala — Zuckerberg, Bezos, Musk e Dario Amodei, da Anthropic, entre eles — para assinar um compromisso de segurança de IA que o presidente Donald Trump chamou de “morally…"
   },
+  "c624dad90489b2c6": {
+   "t": "Jose julían Acosta, de lerma, fala sobre a disrupção e a promessa da IA",
+   "s": ""
+  },
   "c64906fbfd45ddc6": {
    "t": "Chame de IA, chame de superinteligência, apenas 2% dos consumidores estão comprando",
    "s": "Nesta semana, a White House reuniu quase todos os principais CEOs de tecnologia em uma única sala — Zuckerberg, Bezos, Musk e Dario Amodei, da Anthropic, entre eles — para assinar um compromisso de segurança de IA que o presidente Donald Trump chamou de “morally…"
@@ -489,9 +497,17 @@
    "t": "Cloudflare move Monetization Gateway & Pay Per Use para Beta",
    "s": "O Monetization Gateway da Cloudflare cobra de agentes de IA por solicitação em beta fechado, e o Pay Per Use paga publicadores pelos usos de IA que os compradores reportam."
   },
+  "d2ab8f33a4d1da39": {
+   "t": "Lauren Greenfield relata vidas complexas de adolescentes em exposição “Social Studies”, continuação da série documental FX",
+   "s": ""
+  },
   "d2c739c851412a1b": {
    "t": "A primeira fonte de verdade do ROAS",
    "s": "Se o investimento em publicidade sobe, as vendas e o lucro também deveriam subir. Se o gasto com anúncios cai, as vendas também deveriam cair."
+  },
+  "d32b5477e9c15ead": {
+   "t": "Jack Dorsey’s Bitchat desaparece das lojas de apps na Índia após ordem do governo",
+   "s": "Bitchat tornou‑se amplamente indisponível na Índia como resultado das restrições."
   },
   "d37636026ec029d6": {
    "t": "Hacks em duas agências federais em um mês vazaram grande volume de dados sensíveis",
@@ -513,17 +529,9 @@
    "t": "Menos de 24 horas para se inscrever em um Side Event no Founder Summit 2026",
    "s": "O tempo está se esgotando. Você tem menos de 24 horas para se inscrever para organizar um Side Event durante o TechCrunch Founder Summit 2026. As inscrições se encerram hoje à meia‑noite PT. Conecte‑se ao ecossistema de startups de Boston através de…"
   },
-  "ddbe9ba68171d415": {
-   "t": "TikTok US reporta geração de US$ 81 bilhões em valor econômico",
-   "s": "Um estudo contratado pelo aplicativo detalhou seu impacto em empregos, pequenos negócios e oportunidades de aprendizado do consumidor."
-  },
   "de4240605fcef1bb": {
    "t": "Valor, Atreides e Sequoia apoiam startup de IA Flow Engineering em avaliação de US$ 750 milhões",
    "s": "Flow Engineering, que está trazendo agentes de IA para o design de hardware, também recebeu Roelof Botha como investidor-anjo e membro do board."
-  },
-  "e19386122dc18715": {
-   "t": "YouTube atualiza algoritmo do Shorts para dar mais foco a conteúdo original",
-   "s": "A plataforma está atualizando seus sistemas de recomendação para priorizar vídeos criados por creators, o que também reduzirá o alcance de contas agregadoras."
   },
   "eb44cab2759500cb": {
    "t": "Sean Parker está reconstruindo a Stability AI em torno da música",
@@ -533,13 +541,13 @@
    "t": "Circuit Breaker Labs quer tornar a IA mais segura para crianças (e para você)",
    "s": "Com tantas conversas sobre a IA poder nos exterminar, é fácil esquecer que ela já causou danos psicológicos a algumas pessoas. A Circuit Breaker Labs criou “bonecos de teste de colisão” para resolver esse problema."
   },
+  "f4d2e338084529cb": {
+   "t": "\"Muse Gadgets\" transforma hardware de IA em projeto DIY open‑source",
+   "s": "meta anunciou muse gadgets, um projeto open‑source que permite a entusiastas construir seu próprio hardware de ia usando placas esp32 e conectá‑lo ao agente de ia muse da meta. a equipe também produziu 5 000 unidades do “muse home link”, um…"
+  },
   "f71b990ab90cf4a3": {
    "t": "Walmart+ cresce mais rápido que nunca enquanto o varejista adiciona mais benefícios",
    "s": "Walmart manteve o preço anual em US$ 98 desde o lançamento em 2020."
-  },
-  "f8279c802c3fe540": {
-   "t": "Startup de voz IA ElevenLabs duplica avaliação para US$ 22 bilhões",
-   "s": "A oferta de US$ 300 milhões para empregados foi co-liderada pela Wellington e pela T. Rowe Price."
   },
   "fc7e9fdc51f8a13a": {
    "t": "Jared Cohen convida público e marcas a compartilhar momentos culturais",
