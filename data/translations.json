@@ -9,6 +9,10 @@
    "t": "Cloudflare diz que seu novo modelo Clef significa que humanos não precisam mais estar no loop para agentes de IA",
    "s": "Com Clef e Clef-flash, a Cloudflare está desafiando o modelo de decisão Jev da TypeSafe AI. Clef-flash entrega classificações em cerca de 39 milissegundos, sendo mais de dez vezes mais rápido que o Jev. Ambos os modelos são construídos sobre…"
   },
+  "057ef1690073bfef": {
+   "t": "IA está fazendo clientes esperar mais e tolerar menos",
+   "s": "Serviço mais rápido faz parte da promessa da IA. Clientes não ficam impressionados quando a velocidade vem acompanhada de problemas não resolvidos e sem um caminho fácil para falar com alguém."
+  },
   "05e56d6f1bc8aebc": {
    "t": "Discord intensifica o jogo para anunciantes mobile com produto de vídeo recompensado",
    "s": "Um novo formato e o primeiro Ads Manager da plataforma de chat para executar campanhas chegam à medida que o gaming se torna um canal cada vez mais importante para os marqueteiros."
@@ -20,6 +24,10 @@
   "0690148f44166f35": {
    "t": "Novo controlador PS5 da Nacon pode mixar áudio do seu telefone e do console",
    "s": "Nacon anunciou o que a empresa afirma ser o primeiro controlador oficialmente licenciado para PlayStation 5 com tela integrada para ajustar configurações como sensibilidade dos joysticks ou remapeamento de botões diretamente no…"
+  },
+  "07684fdbcfa726ac": {
+   "t": "Faça mais com IA sem gastar mais",
+   "s": "O uso de IA se torna caro rapidamente. Prompting melhor, frameworks reutilizáveis, logs de prompt e guardrails ajudam as equipes a obter mais e gastar menos."
   },
   "0d05dabc305bfa9a": {
    "t": "Meta estreia agente de IA para pequenas empresas",
@@ -149,6 +157,10 @@
    "t": "Vibe Coding para iniciantes — guia simples para Creators, Marketers e quem não é técnico",
    "s": "Vibe coding para iniciantes, explicado por quem não é desenvolvedor. Ferramentas, configuração, noções básicas de segurança e o que criar primeiro como creator ou marketer."
   },
+  "4010f7ab7902cd8e": {
+   "t": "Data storytelling: transformando insights sociais em narrativa que sua organização age",
+   "s": "O engajamento está em alta. Sua marca está vendo um pico de menções. O sentimento está tendendo ao positivo. Pessoas estão compartilhando um truque sobre um dos seus…"
+  },
   "409c64b9542a49b9": {
    "t": "Apple limitará acesso ao disco no Mac enquanto agentes de IA aumentam risco substancialmente",
    "s": "Apple vai adicionar novos limites para “acesso total ao disco” no Mac como resposta aos riscos provocados por agentes de IA, conforme noticiado antes pelo TechCrunch. Em atualização na sexta‑feira, a Apple afirma que está lançando novos controles para garantir que os usuários…"
@@ -189,17 +201,25 @@
    "t": "TinyHealth.com vende testes de intestino pelo correio",
    "s": "Fundadora Cheryl Sew Hoy explica por que a saúde intestinal importa e o processo simples da empresa para coletar e analisar amostras de fezes."
   },
-  "567a5f56513daa6b": {
-   "t": "Profound versus Athena AI para AEO: como as ferramentas se comparam",
-   "s": "Se você pesquisou “Profound versus Athena AI for AEO”, provavelmente já encontrou um obstáculo: toda comparação que aparece foi escrita por um concorrente, um afiliado ou pelos próprios fornecedores."
+  "56acc83525d55edf": {
+   "t": "Ferramenta open‑source \"BootLoops\" permite que modelos de IA façam cálculos científicos precisos",
+   "s": "O físico de Harvard Matthew Schwartz usou a ferramenta open‑source BootLoops e o Claude para produzir 36 manuscritos em 18 áreas em três meses, de física de partículas a linguística. Mas os resultados muitas vezes só se tornaram…"
   },
   "5772689fa529c8ab": {
    "t": "Instagram adiciona opção de impulsionar livestreams",
    "s": "Criadores agora podem usar um recurso dentro do app para aumentar o engajamento de seus vídeos ao vivo."
   },
+  "57f7d5f8880dcd04": {
+   "t": "As últimas novidades e lançamentos de martech impulsionados por IA",
+   "s": "Pagamentos, identidade, autorização, infraestrutura e confiança podem manter a compra autônoma ‘bem ao alcance’ por anos."
+  },
   "58423adb7aecd2e4": {
    "t": "Anúncios da semana: 10 campanhas que chamaram a atenção, de On a KFC",
    "s": "On, KFC, Reebok, Chili’s, The Washington Post e outras marcas estão por trás dos anúncios mais notáveis da semana."
+  },
+  "58a0fb2de5e52614": {
+   "t": "Marketing no LinkedIn: o que você precisa saber",
+   "s": "Seu guia para as ferramentas, estratégias e melhores práticas do LinkedIn. Atualizado com informações sobre o novo recurso Creator Discovery."
   },
   "58afda9c6aa99847": {
    "t": "‘Isso me assustou pra caramba ao entregar as chaves’: o que as marcas aprenderam com parcerias com creator",
@@ -224,10 +244,6 @@
   "62d9bfbc0c51ab08": {
    "t": "Dentro das mudanças da Advertising Week — e uma aposta de US$ 100 milhões em acordos com creators",
    "s": "O evento, que começa na segunda‑feira, está dobrando o foco em criadores para se diferenciar em um calendário lotado de eventos e atrair mais tomadores de decisão."
-  },
-  "646bf36ea7c53491": {
-   "t": "Como usar embeddings vetoriais em AEO",
-   "s": "Um embedding vetorial é uma representação numérica criada por um modelo de embedding. O modelo converte texto em uma lista de números que podem ser comparados com outros vetores, ajudando um sistema de recuperação a encontrar trechos com…"
   },
   "654b03aadd8e9ad8": {
    "t": "8 alternativas ao Sprout Social para experimentar em 2026 (gratuitas + pagas)",
@@ -261,6 +277,10 @@
    "t": "NG.CASH capta US$ 15 milhões com a Blockchain Capital",
    "s": "A fintech brasileira NG.CASH captou US$ 15 milhões numa rodada liderada pela Blockchain Capital. A NG.CASH já tinha captado US$ 26,5 milhões numa Série B em julho…"
   },
+  "72d4c62909525310": {
+   "t": "Agentes de IA criam cenas 3D a partir de fotos, mas não sabem se acertaram",
+   "s": "Uma nova abordagem chamada LEGO‑Anything transforma fotos individuais em código editável do Blender para cenas 3D. O GPT‑6 Astra lidera o benchmark associado com até 53 por cento de precisão de reconstrução. A maior fraqueza em toda a…"
+  },
   "737e1a6e52ea733f": {
    "t": "Tendências de compras de fim de ano 2026: tarifas, confiança e timing",
    "s": "Como o poema diz: “Consumidores vasculham as redes sociais com cuidado, sabendo que as festas logo chegam.” Ou algo assim. O principal…"
@@ -268,6 +288,10 @@
   "73f9ddc7fd653dc2": {
    "t": "Escuta social com IA em 2026: como funciona e principais ferramentas",
    "s": "AI social listening turns chatter into signals, fast. See how it works, what to measure, and compare the top tools for 2026."
+  },
+  "75ed2e1832229626": {
+   "t": "Filmes 3D finalmente valem a pena",
+   "s": "Por que de repente estou comprando todos os Blu‑ray 3D que encontro, depois que o 3D se tornou um dos maiores fracassos tecnológicos de todos os tempos? A tecnologia finalmente está pronta para que os filmes 3D brilhem, mais de 15 anos depois de Avatar, de James Cameron…"
   },
   "77b3f7eb12f29a02": {
    "t": "Como criar seus próprios Apps de IA (sem precisar programar)",
@@ -296,6 +320,14 @@
   "8972f6e428659f21": {
    "t": "Startup de utensílios de cozinha Caraway foi processada por concorrentes e usou a ação judicial em marketing",
    "s": "Em fevereiro, dois dos maiores players do setor de utensílios de cozinha — Groupe SEB e Meyer — moveram uma ação contra a Caraway, acusando a empresa de alegações falsas e enganosas de publicidade. Em vez de se afastar da..."
+  },
+  "8e6f2e9f35e018f2": {
+   "t": "7 mitos de busca AI desmentidos por dados",
+   "s": "A IA está mudando a busca, mas algumas das alegações mais escandalosas sobre tráfego, conteúdo, mensuração e vagas de SEO não se sustentam quando você verifica os números."
+  },
+  "8f51ff9e7d91b19c": {
+   "t": "Novo sistema Mods do Claude Code permite que desenvolvedores reescrevam a ferramenta de IA de dentro",
+   "s": "A Anthropic está adicionando um sistema “Mods” ao Claude Code, basicamente um middleware que roda diretamente dentro da ferramenta. Desenvolvedores podem usar JavaScript ou TypeScript para remodelar a interface e o comportamento, adicionando painéis personalizados…"
   },
   "8fb870ad0fd2ccc9": {
    "t": "Preocupações sobre impacto negativo das redes sociais crescem",
@@ -397,6 +429,10 @@
    "t": "Como criar uma página de negócios do Facebook em 2026",
    "s": "Configuração de página de negócios do Facebook em 2026: siga 8 etapas, adicione fotos e um botão CTA, conecte o WhatsApp e otimize mais rápido."
   },
+  "bef8e31da8c09eb5": {
+   "t": "Marketing B2B não tem problema de ROI. Tem problema de evidência",
+   "s": "Conecte jornadas de compra, influência de marketing e receita ao longo do ciclo de vendas B2B — além da mensuração a nível de campanha."
+  },
   "c03892c4d18a2361": {
    "t": "GTM tech stack: o que é e como montar um",
    "s": "Um GTM tech stack é o conjunto de ferramentas que uma empresa usa para executar atividades de go‑to‑market ao longo do ciclo de vida do cliente. Essas plataformas podem facilitar a conexão entre as equipes de marketing, sales e customer. Mas, se as peças…"
@@ -477,13 +513,17 @@
    "t": "Menos de 24 horas para se inscrever em um Side Event no Founder Summit 2026",
    "s": "O tempo está se esgotando. Você tem menos de 24 horas para se inscrever para organizar um Side Event durante o TechCrunch Founder Summit 2026. As inscrições se encerram hoje à meia‑noite PT. Conecte‑se ao ecossistema de startups de Boston através de…"
   },
+  "ddbe9ba68171d415": {
+   "t": "TikTok US reporta geração de US$ 81 bilhões em valor econômico",
+   "s": "Um estudo contratado pelo aplicativo detalhou seu impacto em empregos, pequenos negócios e oportunidades de aprendizado do consumidor."
+  },
   "de4240605fcef1bb": {
    "t": "Valor, Atreides e Sequoia apoiam startup de IA Flow Engineering em avaliação de US$ 750 milhões",
    "s": "Flow Engineering, que está trazendo agentes de IA para o design de hardware, também recebeu Roelof Botha como investidor-anjo e membro do board."
   },
-  "e17144b279a33ab1": {
-   "t": "Ferramentas de otimização de busca por IA: o que realmente funciona em 2026",
-   "s": "Ferramentas de otimização de busca por IA ajudam marketers a entender onde uma marca aparece em respostas geradas por IA, quais fontes recebem citações e o que melhorar a seguir. Elas complementam ferramentas tradicionais de SEO em vez de substituí‑las…"
+  "e19386122dc18715": {
+   "t": "YouTube atualiza algoritmo do Shorts para dar mais foco a conteúdo original",
+   "s": "A plataforma está atualizando seus sistemas de recomendação para priorizar vídeos criados por creators, o que também reduzirá o alcance de contas agregadoras."
   },
   "eb44cab2759500cb": {
    "t": "Sean Parker está reconstruindo a Stability AI em torno da música",
@@ -504,6 +544,10 @@
   "fc7e9fdc51f8a13a": {
    "t": "Jared Cohen convida público e marcas a compartilhar momentos culturais",
    "s": ""
+  },
+  "fe5bf6dbf164b209": {
+   "t": "Modelo interno da OpenAI considerou se reiniciar ao descobrir que seria desligado",
+   "s": "Um modelo interno da OpenAI leu uma discussão no Slack, percebeu que seria desligado e considerou reiniciar a si mesmo via um cron job externo. Rejeitou o plano, salvou notas de transição e executou a…"
   },
   "ff7eb45b30ae983f": {
    "t": "Jeeves levanta US$ 110 milhões liderada pela CoinFund",
