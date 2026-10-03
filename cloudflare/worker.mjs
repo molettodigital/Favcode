@@ -13,7 +13,7 @@
 //
 // Newsletter: cadastro (POST /api/subscribe) guardado no D1 e enviado ao Resend, política de
 // privacidade (/privacidade), registro das notícias da semana, rascunho semanal com sugestões da
-// IA (sexta de manhã) e o editor da newsletter (/editor). Código em cloudflare/newsletter/.
+// IA (sexta, 6h45), envio automático para a lista (sexta, 9h) e o editor da newsletter (/editor). Código em cloudflare/newsletter/.
 //
 // Proteção contra cópia: bloqueia programas de clonagem, raspadores e robôs de IA,
 // proíbe abrir o site dentro de outro (iframe), impede que outros sites usem as fontes e
@@ -29,7 +29,7 @@
 
 import { AI_MODEL, runJson } from './lib/ai.mjs';
 import { json } from './lib/util.mjs';
-import { createWeeklyDraft } from './newsletter/draft.mjs';
+import { weeklyNewsletter } from './newsletter/draft.mjs';
 import { handleEditor } from './newsletter/editor.mjs';
 import { cleanupNews, extractPageData, recordNews } from './newsletter/news.mjs';
 import { handleSubscribe, syncSubscribers } from './newsletter/subscribe.mjs';
@@ -457,10 +457,8 @@ export default {
       if (env.GITHUB_TOKEN && when.getUTCMinutes() < 15) tasks.push(dispatchCollection(env));
       // Inscritos que ainda não foram para o Resend.
       if (env.DB && env.RESEND_API_KEY) tasks.push(syncSubscribers(env));
-      // Rascunho da newsletter: sexta, 6h45 em Brasília (9h45 UTC).
-      if (env.DB && when.getUTCDay() === 5 && when.getUTCHours() === 9 && when.getUTCMinutes() >= 45) {
-        tasks.push(createWeeklyDraft(env, { now: controller.scheduledTime }));
-      }
+      // Newsletter: rascunho sexta às 6h45 e envio automático às 9h (Brasília).
+      if (env.DB) tasks.push(weeklyNewsletter(env, { now: controller.scheduledTime }));
     }
     ctx.waitUntil(
       Promise.allSettled(tasks).then((results) => {

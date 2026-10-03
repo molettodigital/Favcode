@@ -2,7 +2,7 @@
 // (EDITOR_EMAILS), com sessão em cookie assinado; nada de senha.
 
 import { DAY, json, readCookie, signToken, verifyToken } from '../lib/util.mjs';
-import { createWeeklyDraft, getEdition, latestEdition, saveDraft } from './draft.mjs';
+import { createWeeklyDraft, getEdition, latestEdition, saveDraft, sendEdition } from './draft.mjs';
 import { renderEditorLink, renderNewsletter } from './email.mjs';
 import { weekNews } from './news.mjs';
 import { resendClient } from './resend.mjs';
@@ -208,28 +208,11 @@ export async function handleEditor(request, env, ctx, url) {
       scheduledAt = new Date(when).toISOString();
     }
     await saveDraft(env, data);
-    // Trava a edição antes de enviar, para um clique duplo não mandar duas vezes.
-    const lock = await env.DB.prepare("UPDATE editions SET status = 'sending' WHERE id = ? AND status = 'draft'").bind(current.id).run();
-    if ((lock.meta?.changes ?? 1) === 0) return json(409, { error: 'Esta edição já está sendo enviada.' });
     try {
-      const { html, text } = renderNewsletter(data, { origin });
-      const broadcast = await resend.createBroadcast({
-        segmentId: await resend.segmentId(),
-        from: fromAddress(env),
-        replyTo: replyTo(env),
-        subject: data.subject,
-        html,
-        text,
-        name: `Newsletter ${current.id}`,
-        scheduledAt,
-      });
-      const status = scheduledAt ? 'scheduled' : 'sent';
-      await env.DB.prepare('UPDATE editions SET status = ?, broadcast_id = ?, sent_at = ? WHERE id = ?')
-        .bind(status, broadcast?.id || '', scheduledAt || new Date().toISOString(), current.id)
-        .run();
+      const { status } = await sendEdition(env, { id: current.id, data }, { scheduledAt });
+      if (status === 'locked') return json(409, { error: 'Esta edição já está sendo enviada.' });
       return json(200, { ok: true, status, scheduledAt, subscribers: (await stats(env)).total });
     } catch (err) {
-      await env.DB.prepare("UPDATE editions SET status = 'draft' WHERE id = ?").bind(current.id).run();
       return json(502, { error: `O Resend recusou o envio: ${err?.message || err}` });
     }
   }

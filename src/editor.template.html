@@ -137,6 +137,7 @@
       <p class="alert" data-no-resend hidden>O envio de e-mails ainda não está configurado (falta a chave do Resend na Cloudflare). Dá para editar e ver a prévia; o envio fica desativado.</p>
       <p class="alert" data-ai-error hidden>A IA não conseguiu sugerir comentários desta vez. As notícias mais repercutidas já estão aqui; é só escrever os comentários.</p>
       <p class="alert" data-locked hidden></p>
+      <p class="muted" data-auto hidden>Esta edição sai sozinha para a lista na sexta às 9h (horário de Brasília). Mexer aqui é opcional: o que você salvar até lá vai junto.</p>
     </div>
 
     <div class="panel subs">
@@ -151,7 +152,7 @@
 
     <div class="panel" data-empty hidden>
       <h2>Ainda não há rascunho desta semana</h2>
-      <p class="muted">O rascunho é montado sozinho toda sexta às 6h45. Se quiser, monte agora com as notícias dos últimos 7 dias.</p>
+      <p class="muted">Toda sexta a newsletter é montada sozinha às 6h45 e enviada para a lista às 9h, sem precisar de aprovação. Se quiser, monte agora com as notícias dos últimos 7 dias.</p>
       <button class="btn btn--primary" type="button" data-generate>Montar rascunho agora</button>
     </div>
 
@@ -293,6 +294,7 @@
     $('[data-bar]').hidden = !ed;
     if (!ed) {
       $('[data-title]').textContent = 'Newsletter';
+      $('[data-auto]').hidden = true;
       $('[data-status]').hidden = true;
       $('[data-week]').textContent = '';
       return;
@@ -306,6 +308,7 @@
     $('[data-ai-error]').hidden = !state.data.aiError;
     const locked = $('[data-locked]');
     locked.hidden = !state.locked;
+    $('[data-auto]').hidden = state.locked || ed.status !== 'draft';
     if (state.locked) {
       locked.textContent = `Esta edição foi ${ed.status === 'scheduled' ? 'agendada para' : 'enviada em'} ${ed.sent_at ? fmtFull.format(new Date(ed.sent_at)) : ''} e não pode mais ser alterada. Para a próxima, use "Montar novo rascunho" na semana que vem.`;
     }

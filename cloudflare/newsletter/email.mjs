@@ -181,17 +181,17 @@ export function renderWelcome({ name, origin }) {
 
 /** Link de acesso ao editor (pedido de login ou aviso de rascunho pronto). */
 export function renderEditorLink({ link, origin, draft = null }) {
-  const subject = draft ? `Rascunho da newsletter pronto: ${draft.week || draft.id}` : 'Seu link de acesso ao editor da newsletter';
+  const subject = draft ? 'Newsletter da semana pronta: sai hoje às 9h' : 'Seu link de acesso ao editor da newsletter';
   const lines = draft
     ? [
-        `O rascunho da newsletter desta semana está pronto, com ${draft.items?.length || 0} notícias e sugestões de comentário para você revisar.`,
-        'Revise, escreva do seu jeito e envie quando quiser. O link abaixo vale por 4 dias.',
+        `A newsletter desta semana está pronta, com ${draft.items?.length || 0} notícias e os comentários sugeridos pela IA.`,
+        'Ela sai sozinha para a lista hoje às 9h (horário de Brasília); você não precisa fazer nada. Se quiser mudar algum texto antes, use o botão abaixo. O link vale por 4 dias.',
       ]
     : ['Use o botão abaixo para entrar no editor da newsletter. O link vale por 30 minutos e só funciona para você.'];
   const body = `<tr><td style="padding:28px 28px 26px;">
     ${lines.map((x) => p(escapeHtml(x))).join('')}
     <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:6px 0 18px;"><tr><td style="background:${C.link};border-radius:999px;">
-      <a href="${escapeHtml(link)}" style="display:inline-block;padding:13px 24px;font-family:${FONT};font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">${draft ? 'Abrir o rascunho' : 'Entrar no editor'}</a>
+      <a href="${escapeHtml(link)}" style="display:inline-block;padding:13px 24px;font-family:${FONT};font-size:15px;font-weight:700;color:#ffffff;text-decoration:none;">${draft ? 'Ver ou ajustar antes das 9h' : 'Entrar no editor'}</a>
     </td></tr></table>
     ${p(`Se o botão não funcionar, copie este endereço: <br><span style="word-break:break-all;color:${C.muted};font-size:13px;">${escapeHtml(link)}</span>`)}
   </td></tr>`;

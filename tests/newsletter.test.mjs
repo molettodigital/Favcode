@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 
 import worker from '../cloudflare/worker.mjs';
 import { signToken, verifyToken } from '../cloudflare/lib/util.mjs';
-import { createWeeklyDraft, editionId, weekLabel } from '../cloudflare/newsletter/draft.mjs';
+import { createWeeklyDraft, editionId, weekLabel, weeklyNewsletter } from '../cloudflare/newsletter/draft.mjs';
 import { renderNewsletter, renderWelcome } from '../cloudflare/newsletter/email.mjs';
 import { extractPageData, recordNews, weekNews } from '../cloudflare/newsletter/news.mjs';
 import { CONSENT_VERSION, editorEmails, fromAddress, replyTo, teamFromAddress } from '../cloudflare/newsletter/settings.mjs';
@@ -305,6 +305,45 @@ test('rascunho sem a IA sai com as notícias mais repercutidas e comentários em
   assert.equal(edition.data.items[0].id, 'a1');
   assert.ok(edition.data.items.every((i) => i.comment === ''));
   assert.match(edition.data.aiError, /limite/);
+});
+
+test('sexta: rascunho às 6h45 e envio automático às 9h (Brasília), sem aprovação e uma vez só', async () => {
+  const at = (day, h, m) => Date.UTC(2026, 9, day, h + 3, m); // horário de Brasília (UTC-3)
+  await recordNews(env, pageData(at(2, 6, 0)), at(2, 6, 0));
+  assert.equal(await weeklyNewsletter(env, { now: at(1, 23, 0) }), null, 'quinta: nada');
+  assert.equal(await weeklyNewsletter(env, { now: at(2, 6, 30) }), null, 'sexta antes das 6h45: nada');
+
+  let res = await weeklyNewsletter(env, { now: at(2, 6, 45) });
+  assert.deepEqual(res, { id: '2026-W40', status: 'draft' });
+  assert.equal(resend.broadcasts.length, 0);
+  assert.match(resend.emails.at(-1).subject, /sai hoje às 9h/);
+  assert.match(resend.emails.at(-1).text, /sai sozinha para a lista hoje às 9h/);
+
+  res = await weeklyNewsletter(env, { now: at(2, 8, 45) });
+  assert.equal(res.status, 'draft');
+  assert.equal(resend.broadcasts.length, 0);
+
+  res = await weeklyNewsletter(env, { now: at(2, 9, 0) });
+  assert.deepEqual(res, { id: '2026-W40', status: 'sent' });
+  assert.equal(resend.broadcasts.length, 1);
+  assert.equal(resend.broadcasts[0].from, 'Radar FavCode <noticias@favcode.com.br>');
+  assert.equal(resend.broadcasts[0].send, true);
+  assert.ok(resend.broadcasts[0].html.includes('Clara Poletto'));
+
+  res = await weeklyNewsletter(env, { now: at(2, 9, 15) });
+  assert.equal(res.status, 'sent');
+  assert.equal(resend.broadcasts.length, 1, 'não envia duas vezes');
+});
+
+test('envio automático recupera no fim de semana se a sexta passar sem rodar', async () => {
+  const at = (day, h, m) => Date.UTC(2026, 9, day, h + 3, m);
+  await recordNews(env, pageData(at(2, 6, 0)), at(2, 6, 0));
+  const emailsBefore = resend.emails.length;
+  const res = await weeklyNewsletter(env, { now: at(3, 8, 0) });
+  assert.deepEqual(res, { id: '2026-W40', status: 'sent' });
+  assert.equal(resend.broadcasts.length, 1);
+  assert.equal(resend.emails.length, emailsBefore, 'sem aviso de rascunho quando já é hora de enviar');
+  assert.equal(await weeklyNewsletter(env, { now: at(5, 10, 0) }), null, 'segunda: espera a próxima sexta');
 });
 
 test('semana ISO e rótulo em português', () => {

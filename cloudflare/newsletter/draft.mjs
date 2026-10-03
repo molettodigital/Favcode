@@ -1,15 +1,18 @@
-// Rascunho semanal da newsletter: escolhe as notícias da semana, pede à IA sugestões de
-// assunto, abertura e comentários, grava a edição no D1 e avisa quem edita.
+// Newsletter semanal: escolhe as notícias da semana, pede à IA sugestões de assunto, abertura e
+// comentários, grava a edição no D1, avisa quem edita e envia sozinha para a lista na sexta.
 
 import { AI_MODEL, runJson } from '../lib/ai.mjs';
 import { DAY, signToken } from '../lib/util.mjs';
-import { renderEditorLink } from './email.mjs';
+import { renderEditorLink, renderNewsletter } from './email.mjs';
 import { columnNames, extractPageData, weekNews } from './news.mjs';
 import { resendClient } from './resend.mjs';
-import { NEWSLETTER, editorEmails, siteOrigin, teamFromAddress } from './settings.mjs';
+import { NEWSLETTER, editorEmails, fromAddress, replyTo, siteOrigin, teamFromAddress } from './settings.mjs';
 
 export const EDITION_SIZE = 8;
 const TZ = 'America/Sao_Paulo';
+/** Sexta, em minutos do dia no horário de Brasília: rascunho às 6h45, envio automático às 9h. */
+export const DRAFT_AT = 6 * 60 + 45;
+export const SEND_AT = 9 * 60;
 
 /** Semana ISO no fuso de Brasília, ex.: 2026-W40. */
 export function editionId(now = Date.now()) {
@@ -169,4 +172,66 @@ export async function notifyEditors(env, draft, now = Date.now(), fetchImpl = fe
     await resend.sendEmail({ from: teamFromAddress(env), to: email, ...mail });
   }
   return emails.length;
+}
+
+/**
+ * Envia a edição para a lista pelo Resend, na hora ou agendada. Trava a edição antes, para
+ * um clique duplo ou duas rodadas do agendamento não mandarem duas vezes.
+ * Devolve { status: 'sent' | 'scheduled' | 'locked' }; se o Resend recusar, a edição volta a rascunho.
+ */
+export async function sendEdition(env, edition, { scheduledAt = null, fetchImpl = fetch } = {}) {
+  const resend = resendClient(env, fetchImpl);
+  if (!resend) throw new Error('O envio de e-mails ainda não foi configurado (falta a chave do Resend).');
+  const lock = await env.DB.prepare("UPDATE editions SET status = 'sending' WHERE id = ? AND status = 'draft'").bind(edition.id).run();
+  if ((lock.meta?.changes ?? 1) === 0) return { status: 'locked' };
+  try {
+    const { html, text } = renderNewsletter(edition.data, { origin: siteOrigin(env) });
+    const broadcast = await resend.createBroadcast({
+      segmentId: await resend.segmentId(),
+      from: fromAddress(env),
+      replyTo: replyTo(env),
+      subject: edition.data.subject,
+      html,
+      text,
+      name: `Newsletter ${edition.id}`,
+      scheduledAt,
+    });
+    const status = scheduledAt ? 'scheduled' : 'sent';
+    await env.DB.prepare('UPDATE editions SET status = ?, broadcast_id = ?, sent_at = ? WHERE id = ?')
+      .bind(status, broadcast?.id || '', scheduledAt || new Date().toISOString(), edition.id)
+      .run();
+    return { status, scheduledAt };
+  } catch (err) {
+    await env.DB.prepare("UPDATE editions SET status = 'draft' WHERE id = ?").bind(edition.id).run();
+    throw err;
+  }
+}
+
+/** Dia da semana (segunda = 1 … domingo = 7) e minutos do dia no horário de Brasília. */
+function brasiliaClock(now) {
+  const parts = Object.fromEntries(
+    new Intl.DateTimeFormat('en-US', { timeZone: TZ, weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(now)
+      .map((p) => [p.type, p.value]),
+  );
+  const day = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(parts.weekday) + 1;
+  return { day, minutes: Number(parts.hour) * 60 + Number(parts.minute) };
+}
+
+/**
+ * Rotina da newsletter, chamada a cada 15 minutos: na sexta monta o rascunho às 6h45 e envia
+ * sozinha para a lista às 9h (Brasília), sem esperar aprovação. Se a sexta passar sem rodar,
+ * recupera no sábado ou no domingo. Quem edita pode mexer no rascunho ou enviar antes das 9h.
+ */
+export async function weeklyNewsletter(env, { now = Date.now() } = {}) {
+  if (!env.DB) return null;
+  const { day, minutes } = brasiliaClock(now);
+  const after = (at) => day > 5 || (day === 5 && minutes >= at);
+  if (!after(DRAFT_AT)) return null;
+  const sendNow = after(SEND_AT);
+  const { edition } = await createWeeklyDraft(env, { now, notify: !sendNow });
+  if (!sendNow || edition.status !== 'draft' || !env.RESEND_API_KEY) return { id: edition.id, status: edition.status };
+  if (!edition.data?.subject || !edition.data?.items?.length) throw new Error(`Edição ${edition.id} sem assunto ou sem notícias; não foi enviada.`);
+  const { status } = await sendEdition(env, edition);
+  return { id: edition.id, status };
 }
